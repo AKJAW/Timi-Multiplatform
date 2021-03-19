@@ -3,22 +3,22 @@ package com.example.timicompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.timicompose.ui.tasks.Task
-import com.example.timicompose.ui.tasks.TaskList
+import androidx.activity.viewModels
+import com.example.timicompose.common.presentation.MyViewModelProvider
+import com.example.timicompose.tasks.TaskScreen
+import com.example.timicompose.tasks.presentation.TaskViewModel
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
 class MainActivity : ComponentActivity() {
+    private val provider = MyViewModelProvider()
+    private val viewModel: TaskViewModel by viewModels { provider }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TimiComposeTheme {
                 // A surface container using the 'background' color from the theme
-                TaskList()
+                TaskScreen(viewModel)
 //                Surface(color = MaterialTheme.colors.background) {
 //
 //                }
