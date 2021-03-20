@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.StateFlow
 abstract class TaskViewModel : ViewModel() {
 
     abstract val tasks: StateFlow<List<Task>>
+
+    abstract fun toggleTask(toggledTask: Task)
 }

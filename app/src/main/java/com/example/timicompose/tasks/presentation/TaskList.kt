@@ -1,32 +1,44 @@
-package com.example.timicompose.tasks
+package com.example.timicompose.tasks.presentation
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.timicompose.tasks.data.TaskRepository
-import com.example.timicompose.tasks.presentation.TaskViewModel
 import com.example.timicompose.tasks.presentation.model.Task
+import com.example.timicompose.tasks.presentation.model.toColor
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
 @Composable
 fun TaskScreen(taskViewModel: TaskViewModel) {
     val tasks = taskViewModel.tasks.collectAsState()
-    TaskList(tasks = tasks.value)
+    TaskList(tasks = tasks.value, onTaskClicked = taskViewModel::toggleTask)
 }
 
 @Composable
-fun TaskList(tasks: List<Task>, modifier: Modifier = Modifier) {
+fun TaskList(
+    tasks: List<Task>,
+    modifier: Modifier = Modifier,
+    onTaskClicked: (Task) -> Unit = { }
+) {
     LazyColumn(
         modifier = modifier
             .fillMaxHeight()
@@ -35,25 +47,80 @@ fun TaskList(tasks: List<Task>, modifier: Modifier = Modifier) {
     ) {
         tasks.forEach { task ->
             item {
-                TaskItem(task)
+                TaskItem(task, onTaskClicked)
             }
         }
     }
 }
 
 @Composable
-private fun TaskItem(task: Task, modifier: Modifier = Modifier) {
+private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifier = Modifier) {
+    val color = task.hexBackgroundColor.toColor()
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(50.dp)
-            .clickable { /* Empty */ },
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) { onTaskClicked(task) },
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = Color.Green
+        backgroundColor = color,
+        elevation = 0.dp,
     ) {
-        Box(contentAlignment = Alignment.Center) {
+        Box(
+            contentAlignment = Alignment.Center
+        ) {
             Text(text = task.name)
+            TaskSelectButton(task.isSelected)
         }
+    }
+}
+
+@Composable
+private fun TaskSelectButton(isSelected: Boolean) {
+    Row {
+        Box(modifier = Modifier.weight(1f))
+        val width: Dp by animateDpAsState(targetValue = if (isSelected) 0.dp else 50.dp)
+        Box(
+            modifier = Modifier
+                .background(MaterialTheme.colors.background)
+                .width(width)
+                .fillMaxHeight()
+                .animateContentSize(animationSpec = spring(stiffness = Spring.StiffnessHigh))
+        )
+    }
+}
+
+@Preview
+@Composable
+fun TaskItemPreview() {
+    TimiComposeTheme {
+        TaskItem(TaskRepository.tasks.first().copy(isSelected = false), {})
+    }
+}
+
+@Preview
+@Composable
+fun TaskItemSelectedPreview() {
+    TimiComposeTheme {
+        TaskItem(TaskRepository.tasks.first().copy(isSelected = true), {})
+    }
+}
+
+@Preview
+@Composable
+fun DarkTaskItemPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        TaskItem(TaskRepository.tasks.first().copy(isSelected = false), {})
+    }
+}
+
+@Preview
+@Composable
+fun DarkTaskItemSelectedPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        TaskItem(TaskRepository.tasks.first().copy(isSelected = true), {})
     }
 }
 
@@ -61,6 +128,13 @@ private fun TaskItem(task: Task, modifier: Modifier = Modifier) {
 @Composable
 fun TaskListPreview() {
     TimiComposeTheme {
-        TaskList(TaskRepository.tasks, Modifier.background(Color.White))
+        TaskList(TaskRepository.tasks, Modifier.background(MaterialTheme.colors.background))
+    }
+}
+@Preview
+@Composable
+fun DarkTaskListPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        TaskList(TaskRepository.tasks, Modifier.background(MaterialTheme.colors.background))
     }
 }

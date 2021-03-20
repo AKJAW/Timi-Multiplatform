@@ -8,4 +8,14 @@ class TasksViewModelImpl : TaskViewModel() {
 
     override val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(TaskRepository.tasks)
 
+    override fun toggleTask(toggledTask: Task) {
+        val newTasks = tasks.value.map { task ->
+            if (task == toggledTask) {
+                task.copy(isSelected = task.isSelected.not())
+            } else {
+                task
+            }
+        }
+        tasks.value = newTasks
+    }
 }

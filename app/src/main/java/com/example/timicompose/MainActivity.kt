@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.timicompose.common.presentation.MyViewModelProvider
-import com.example.timicompose.tasks.TaskScreen
+import com.example.timicompose.tasks.presentation.TaskScreen
 import com.example.timicompose.tasks.presentation.TaskViewModel
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
