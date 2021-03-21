@@ -1,18 +1,16 @@
 package com.example.timicompose.tasks.presentation
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -72,24 +70,34 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
             contentAlignment = Alignment.Center
         ) {
             Text(text = task.name)
-            TaskSelectButton(task.isSelected)
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                TaskSelectButton(task.isSelected)
+            }
         }
     }
 }
 
 @Composable
 private fun TaskSelectButton(isSelected: Boolean) {
-    Row {
-        Box(modifier = Modifier.weight(1f))
-        val width: Dp by animateDpAsState(targetValue = if (isSelected) 0.dp else 50.dp)
-        Box(
-            modifier = Modifier
-                .background(MaterialTheme.colors.background)
-                .width(width)
-                .fillMaxHeight()
-                .animateContentSize(animationSpec = spring(stiffness = Spring.StiffnessHigh))
-        )
-    }
+    val transition = updateTransition(targetState = isSelected)
+    val backgroundWidth: Dp by transition.animateDp { if (it) 0.dp else 50.dp }
+    Box(
+        modifier = Modifier
+            .background(MaterialTheme.colors.background)
+            .width(backgroundWidth)
+            .fillMaxHeight()
+            .animateContentSize(animationSpec = spring(stiffness = Spring.StiffnessHigh))
+    )
+    val iconAlpha: Float by transition.animateFloat { if (it) 1f else 0.1f }
+    Icon(
+        modifier = Modifier.padding(end = 15.dp),
+        imageVector = Icons.Filled.Done,
+        contentDescription = "checkmark",
+        tint = LocalContentColor.current.copy(iconAlpha)
+    )
 }
 
 @Preview
@@ -131,6 +139,7 @@ fun TaskListPreview() {
         TaskList(TaskRepository.tasks, Modifier.background(MaterialTheme.colors.background))
     }
 }
+
 @Preview
 @Composable
 fun DarkTaskListPreview() {
