@@ -28,7 +28,14 @@ import com.example.timicompose.ui.theme.TimiComposeTheme
 @Composable
 fun TaskScreen(taskViewModel: TaskViewModel) {
     val tasks = taskViewModel.tasks.collectAsState()
-    TaskList(tasks = tasks.value, onTaskClicked = taskViewModel::toggleTask)
+    Scaffold(
+        scaffoldState = rememberScaffoldState(),
+        topBar = { TaskTopAppBar(taskViewModel = taskViewModel) },
+        content = {
+            TaskList(tasks = tasks.value, onTaskClicked = taskViewModel::toggleTask)
+        }
+    )
+
 }
 
 @Composable
