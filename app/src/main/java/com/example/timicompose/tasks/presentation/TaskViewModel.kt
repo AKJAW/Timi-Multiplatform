@@ -1,12 +1,27 @@
 package com.example.timicompose.tasks.presentation
 
 import androidx.lifecycle.ViewModel
+import com.example.timicompose.tasks.data.TaskRepository
 import com.example.timicompose.tasks.presentation.model.Task
-import kotlinx.coroutines.flow.StateFlow
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-abstract class TaskViewModel : ViewModel() {
+@HiltViewModel
+class TaskViewModel @Inject constructor(
+    private val taskRepository: TaskRepository
+) : ViewModel() {
 
-    abstract val tasks: StateFlow<List<Task>>
+    val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(taskRepository.tasks)
 
-    abstract fun toggleTask(toggledTask: Task)
+    fun toggleTask(toggledTask: Task) {
+        val newTasks = tasks.value.map { task ->
+            if (task == toggledTask) {
+                task.copy(isSelected = task.isSelected.not())
+            } else {
+                task
+            }
+        }
+        tasks.value = newTasks
+    }
 }

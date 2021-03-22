@@ -1,17 +1,17 @@
-package com.example.timicompose
+package com.example.timicompose.common.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.example.timicompose.common.presentation.MyViewModelProvider
 import com.example.timicompose.tasks.presentation.TaskScreen
 import com.example.timicompose.tasks.presentation.TaskViewModel
 import com.example.timicompose.ui.theme.TimiComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val provider = MyViewModelProvider()
-    private val viewModel: TaskViewModel by viewModels { provider }
+    private val viewModel: TaskViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

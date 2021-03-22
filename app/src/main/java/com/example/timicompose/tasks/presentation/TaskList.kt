@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.timicompose.tasks.data.TaskRepository
+import com.example.timicompose.tasks.presentation.model.HexColor
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.tasks.presentation.model.toColor
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -111,7 +111,7 @@ private fun TaskSelectButton(isSelected: Boolean) {
 @Composable
 fun TaskItemPreview() {
     TimiComposeTheme {
-        TaskItem(TaskRepository.tasks.first().copy(isSelected = false), {})
+        TaskItem(tasks.first().copy(isSelected = false), {})
     }
 }
 
@@ -119,7 +119,7 @@ fun TaskItemPreview() {
 @Composable
 fun TaskItemSelectedPreview() {
     TimiComposeTheme {
-        TaskItem(TaskRepository.tasks.first().copy(isSelected = true), {})
+        TaskItem(tasks.first().copy(isSelected = true), {})
     }
 }
 
@@ -127,7 +127,7 @@ fun TaskItemSelectedPreview() {
 @Composable
 fun DarkTaskItemPreview() {
     TimiComposeTheme(darkTheme = true) {
-        TaskItem(TaskRepository.tasks.first().copy(isSelected = false), {})
+        TaskItem(tasks.first().copy(isSelected = false), {})
     }
 }
 
@@ -135,7 +135,7 @@ fun DarkTaskItemPreview() {
 @Composable
 fun DarkTaskItemSelectedPreview() {
     TimiComposeTheme(darkTheme = true) {
-        TaskItem(TaskRepository.tasks.first().copy(isSelected = true), {})
+        TaskItem(tasks.first().copy(isSelected = true), {})
     }
 }
 
@@ -143,7 +143,7 @@ fun DarkTaskItemSelectedPreview() {
 @Composable
 fun TaskListPreview() {
     TimiComposeTheme {
-        TaskList(TaskRepository.tasks, Modifier.background(MaterialTheme.colors.background))
+        TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
     }
 }
 
@@ -151,6 +151,12 @@ fun TaskListPreview() {
 @Composable
 fun DarkTaskListPreview() {
     TimiComposeTheme(darkTheme = true) {
-        TaskList(TaskRepository.tasks, Modifier.background(MaterialTheme.colors.background))
+        TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
     }
 }
+
+private val tasks = listOf(
+    Task("Task 1", HexColor("#80d5ed"), false),
+    Task("Task 2", HexColor("#e5f087"), false),
+    Task("Task 3", HexColor("#80f0a3"), false),
+)
