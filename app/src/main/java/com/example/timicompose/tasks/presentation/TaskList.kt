@@ -26,13 +26,13 @@ import com.example.timicompose.tasks.presentation.model.toColor
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
 @Composable
-fun TaskScreen(taskViewModel: TaskViewModel) {
-    val tasks = taskViewModel.tasks.collectAsState()
+fun TaskScreen(taskListViewModel: TaskListViewModel) {
+    val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(
         scaffoldState = rememberScaffoldState(),
-        topBar = { TaskTopAppBar(taskViewModel = taskViewModel) },
+        topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         content = {
-            TaskList(tasks = tasks.value, onTaskClicked = taskViewModel::toggleTask)
+            TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
         }
     )
 

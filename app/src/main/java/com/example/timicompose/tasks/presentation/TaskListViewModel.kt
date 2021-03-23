@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class TaskViewModel @Inject constructor(
+class TaskListViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
@@ -22,6 +22,11 @@ class TaskViewModel @Inject constructor(
                 task
             }
         }
+        tasks.value = newTasks
+    }
+
+    fun deleteTasks(tasksToBeDeleted: List<Task>) {
+        val newTasks = tasks.value.filterNot { task -> tasksToBeDeleted.contains(task) }
         tasks.value = newTasks
     }
 }
