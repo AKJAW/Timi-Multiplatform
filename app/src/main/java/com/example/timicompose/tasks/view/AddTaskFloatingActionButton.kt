@@ -1,4 +1,4 @@
-package com.example.timicompose.tasks.presentation
+package com.example.timicompose.tasks.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -27,23 +27,22 @@ fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add a task")
     }
 
-    AddTaskDialog(
-        isAddTaskDialogOpen = isAddTaskDialogOpen,
-        setIsAddTaskDialogOpen = setIsAddTaskDialogOpen,
-        onAddTaskClicked = onAddTaskClicked,
-    )
+    if (isAddTaskDialogOpen) {
+        AddTaskDialog(
+            closeDialog = { setIsAddTaskDialogOpen(false) },
+            onAddTaskClicked = onAddTaskClicked,
+        )
+    }
 }
 
 @Composable
 private fun AddTaskDialog(
-    isAddTaskDialogOpen: Boolean,
-    setIsAddTaskDialogOpen: (Boolean) -> Unit,
+    closeDialog: () -> Unit,
     onAddTaskClicked: (Task) -> Unit
 ) {
-    if (isAddTaskDialogOpen.not()) return
     val (taskName, setTaskName) = remember { mutableStateOf("") }
     val focusRequester = remember { FocusRequester() }
-    Dialog(onDismissRequest = { setIsAddTaskDialogOpen(false) }) {
+    Dialog(onDismissRequest = { closeDialog() }) {
         Card(
             backgroundColor = MaterialTheme.colors.background
         ) {
@@ -64,7 +63,9 @@ private fun AddTaskDialog(
                         .focusRequester(focusRequester)
                 )
                 Row(
-                    modifier = Modifier.padding(top = 8.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     DialogButton(
@@ -82,7 +83,7 @@ private fun AddTaskDialog(
                                 isSelected = false
                             )
                             onAddTaskClicked(task)
-                            setIsAddTaskDialogOpen(false)
+                            closeDialog()
                         }
                     )
                 }
