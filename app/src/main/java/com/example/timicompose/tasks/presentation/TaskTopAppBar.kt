@@ -59,6 +59,7 @@ private fun ConfirmDeletionDialog(
 ) {
     if (isDeleteDialogOpen.not()) return
     AlertDialog(
+        modifier = Modifier.padding(32.dp),
         onDismissRequest = {
             setIsDeleteDialogOpen(false)
         },
