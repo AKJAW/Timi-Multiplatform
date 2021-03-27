@@ -29,4 +29,10 @@ class TaskListViewModel @Inject constructor(
         val newTasks = tasks.value.filterNot { task -> tasksToBeDeleted.contains(task) }
         tasks.value = newTasks
     }
+
+    fun addTask(taskToBeAdded: Task) {
+        val newTasks = tasks.value.toMutableList()
+        newTasks.add(taskToBeAdded)
+        tasks.value = newTasks
+    }
 }

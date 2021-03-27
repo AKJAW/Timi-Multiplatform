@@ -31,6 +31,7 @@ fun TaskScreen(taskListViewModel: TaskListViewModel) {
     Scaffold(
         scaffoldState = rememberScaffoldState(),
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
+        floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
         content = {
             TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
         }
