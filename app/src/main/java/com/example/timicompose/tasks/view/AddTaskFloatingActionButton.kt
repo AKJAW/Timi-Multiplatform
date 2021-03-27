@@ -41,8 +41,45 @@ private fun AddTaskDialog(
     onAddTaskClicked: (Task) -> Unit
 ) {
     val (taskName, setTaskName) = remember { mutableStateOf("") }
-    val focusRequester = remember { FocusRequester() }
-    Dialog(onDismissRequest = { closeDialog() }) {
+    val (isInputError, setIsInputError) = remember { mutableStateOf(false) }
+    AddTaskDialog(
+        onDismissRequest = closeDialog,
+        onAddTaskClicked = {
+            if (taskName.isNotBlank()) {
+                val task = Task(
+                    name = taskName,
+                    hexBackgroundColor = HexColor("#80d5ed"),
+                    isSelected = false
+                )
+                onAddTaskClicked(task)
+                closeDialog()
+            } else {
+                setIsInputError(true)
+            }
+        },
+        taskName = taskName,
+        setTaskName = { name ->
+            setTaskName(name)
+            if (name.isBlank()) {
+                setIsInputError(true)
+            } else {
+                setIsInputError(false)
+            }
+        },
+        isInputError = isInputError
+    )
+}
+
+@Composable
+private fun AddTaskDialog(
+    onDismissRequest: () -> Unit,
+    onAddTaskClicked: () -> Unit,
+    taskName: String,
+    setTaskName: (String) -> Unit,
+    isInputError: Boolean
+) {
+    val focusRequester = remember { FocusRequester() } //TODO fix this
+    Dialog(onDismissRequest = onDismissRequest) {
         Card(
             backgroundColor = MaterialTheme.colors.background
         ) {
@@ -54,10 +91,9 @@ private fun AddTaskDialog(
             ) {
                 OutlinedTextField(
                     value = taskName,
-                    onValueChange = { text ->
-                        setTaskName(text)
-                    },
+                    onValueChange = setTaskName,
                     label = { Text(text = "Task name") },
+                    isError = isInputError,
                     modifier = Modifier
                         .fillMaxWidth()
                         .focusRequester(focusRequester)
@@ -76,15 +112,7 @@ private fun AddTaskDialog(
                     DialogButton(
                         icon = Icons.Filled.Send,
                         text = "Add",
-                        onClick = {
-                            val task = Task(
-                                name = taskName,
-                                hexBackgroundColor = HexColor("#80d5ed"),
-                                isSelected = false
-                            )
-                            onAddTaskClicked(task)
-                            closeDialog()
-                        }
+                        onClick = onAddTaskClicked
                     )
                 }
             }
