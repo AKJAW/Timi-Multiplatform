@@ -13,10 +13,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.example.timicompose.tasks.presentation.model.HexColor
 import com.example.timicompose.tasks.presentation.model.Task
 
 @Composable
@@ -48,7 +48,7 @@ private fun AddTaskDialog(
             if (taskName.isNotBlank()) {
                 val task = Task(
                     name = taskName,
-                    hexBackgroundColor = HexColor("#80d5ed"),
+                    backgroundColor = Color(132, 212, 240),
                     isSelected = false
                 )
                 onAddTaskClicked(task)

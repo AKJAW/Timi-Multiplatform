@@ -17,13 +17,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.timicompose.tasks.presentation.TaskListViewModel
-import com.example.timicompose.tasks.presentation.model.HexColor
 import com.example.timicompose.tasks.presentation.model.Task
-import com.example.timicompose.tasks.presentation.model.toColor
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
 @Composable
@@ -62,7 +61,6 @@ fun TaskList(
 
 @Composable
 private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifier = Modifier) {
-    val color = task.hexBackgroundColor.toColor()
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -72,7 +70,7 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
                 indication = null
             ) { onTaskClicked(task) },
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = color,
+        backgroundColor = task.backgroundColor,
         elevation = 0.dp,
     ) {
         Box(
@@ -158,7 +156,7 @@ fun DarkTaskListPreview() {
 }
 
 private val tasks = listOf(
-    Task("Task 1", HexColor("#80d5ed"), false),
-    Task("Task 2", HexColor("#e5f087"), false),
-    Task("Task 3", HexColor("#80f0a3"), false),
+    Task("Task 1", Color(132, 212, 240), false),
+    Task("Task 2", Color(230, 240, 132), false),
+    Task("Task 3", Color(132, 240, 161), false),
 )
