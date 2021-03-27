@@ -1,7 +1,13 @@
 package com.example.timicompose.tasks.view
 
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationVector4D
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -10,14 +16,20 @@ import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.timicompose.tasks.presentation.model.Task
+import com.example.timicompose.ui.theme.TimiComposeTheme
+import com.example.timicompose.ui.theme.taskColors
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
@@ -38,17 +50,22 @@ fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
 @Composable
 private fun AddTaskDialog(
     closeDialog: () -> Unit,
-    onAddTaskClicked: (Task) -> Unit
+    onAddTaskClicked: (Task) -> Unit,
+    defaultBackgroundColor: Color = MaterialTheme.colors.background,
 ) {
+    val composableScope = rememberCoroutineScope()
     val (taskName, setTaskName) = remember { mutableStateOf("") }
     val (isInputError, setIsInputError) = remember { mutableStateOf(false) }
+    val (isColorPickerShown, setIsColorPickerShown) = remember { mutableStateOf(false) }
+    val (taskColor) = remember { mutableStateOf(Animatable(defaultBackgroundColor)) }
     AddTaskDialog(
         onDismissRequest = closeDialog,
+        onShowColorClicked = { setIsColorPickerShown(isColorPickerShown.not()) },
         onAddTaskClicked = {
             if (taskName.isNotBlank()) {
                 val task = Task(
                     name = taskName,
-                    backgroundColor = Color(132, 212, 240),
+                    backgroundColor = taskColor.value,
                     isSelected = false
                 )
                 onAddTaskClicked(task)
@@ -66,28 +83,38 @@ private fun AddTaskDialog(
                 setIsInputError(false)
             }
         },
-        isInputError = isInputError
+        taskColor = taskColor.value,
+        isInputError = isInputError,
+        colorPicker = {
+            ColorPicker(
+                composableScope = composableScope,
+                isColorPickerShown = isColorPickerShown,
+                taskColor = taskColor
+            )
+        }
     )
 }
 
 @Composable
 private fun AddTaskDialog(
     onDismissRequest: () -> Unit,
+    onShowColorClicked: () -> Unit,
     onAddTaskClicked: () -> Unit,
     taskName: String,
     setTaskName: (String) -> Unit,
-    isInputError: Boolean
+    taskColor: Color,
+    isInputError: Boolean,
+    colorPicker: @Composable () -> Unit,
 ) {
     val focusRequester = remember { FocusRequester() } //TODO fix this
     Dialog(onDismissRequest = onDismissRequest) {
         Card(
-            backgroundColor = MaterialTheme.colors.background
+            backgroundColor = taskColor
         ) {
             Column(
                 modifier = Modifier
                     .padding(vertical = 8.dp, horizontal = 16.dp)
                     .fillMaxWidth()
-                    .background(MaterialTheme.colors.background)
             ) {
                 OutlinedTextField(
                     value = taskName,
@@ -107,7 +134,7 @@ private fun AddTaskDialog(
                     DialogButton(
                         icon = Icons.Filled.Palette,
                         text = "Color",
-                        onClick = { /* Will be implemented in the future */ }
+                        onClick = onShowColorClicked
                     )
                     DialogButton(
                         icon = Icons.Filled.Send,
@@ -115,6 +142,7 @@ private fun AddTaskDialog(
                         onClick = onAddTaskClicked
                     )
                 }
+                colorPicker()
             }
         }
     }
@@ -130,5 +158,57 @@ private fun DialogButton(icon: ImageVector, text: String, onClick: () -> Unit) {
             modifier = Modifier.size(32.dp),
             tint = MaterialTheme.colors.primary
         )
+    }
+}
+
+@Composable
+private fun ColorPicker(
+    composableScope: CoroutineScope,
+    isColorPickerShown: Boolean,
+    taskColor: Animatable<Color, AnimationVector4D>
+) {
+    if (isColorPickerShown) {
+        ColorPicker(
+            colors = taskColors,
+            onColorClicked =
+            { targetColor ->
+                composableScope.launch {
+                    taskColor.animateTo(targetColor)
+                }
+            }
+        )
+    }
+}
+
+@Composable
+private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
+    LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
+        colors.forEach { color ->
+            item {
+                Box(
+                    modifier = Modifier
+                        .clickable { onColorClicked(color) }
+                        .background(color)
+                        .border(width = 1.dp, color = MaterialTheme.colors.background)
+                        .size(50.dp)
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun ColorPickerPreview() {
+    TimiComposeTheme {
+        ColorPicker(colors = taskColors, onColorClicked = {})
+    }
+}
+
+@Preview
+@Composable
+fun DarkColorPickerPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        ColorPicker(colors = taskColors, onColorClicked = {})
     }
 }
