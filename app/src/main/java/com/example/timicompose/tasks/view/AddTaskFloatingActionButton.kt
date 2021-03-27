@@ -41,6 +41,7 @@ fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
 
     if (isAddTaskDialogOpen) {
         AddTaskDialog(
+            isAddTaskDialogOpen = isAddTaskDialogOpen,
             closeDialog = { setIsAddTaskDialogOpen(false) },
             onAddTaskClicked = onAddTaskClicked,
         )
@@ -49,17 +50,32 @@ fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
 
 @Composable
 private fun AddTaskDialog(
+    isAddTaskDialogOpen: Boolean,
+    closeDialog: () -> Unit,
+    onAddTaskClicked: (Task) -> Unit
+) {
+    if (isAddTaskDialogOpen) {
+        Dialog(onDismissRequest = closeDialog) {
+            AddTaskDialogContent(
+                closeDialog = closeDialog,
+                onAddTaskClicked = onAddTaskClicked,
+            )
+        }
+    }
+}
+
+@Composable
+private fun AddTaskDialogContent(
     closeDialog: () -> Unit,
     onAddTaskClicked: (Task) -> Unit,
-    defaultBackgroundColor: Color = MaterialTheme.colors.background,
+    defaultBackgroundColor: Color = MaterialTheme.colors.background
 ) {
     val composableScope = rememberCoroutineScope()
     val (taskName, setTaskName) = remember { mutableStateOf("") }
     val (isInputError, setIsInputError) = remember { mutableStateOf(false) }
     val (isColorPickerShown, setIsColorPickerShown) = remember { mutableStateOf(false) }
     val (taskColor) = remember { mutableStateOf(Animatable(defaultBackgroundColor)) }
-    AddTaskDialog(
-        onDismissRequest = closeDialog,
+    AddTaskDialogContent(
         onShowColorClicked = { setIsColorPickerShown(isColorPickerShown.not()) },
         onAddTaskClicked = {
             if (taskName.isNotBlank()) {
@@ -83,33 +99,27 @@ private fun AddTaskDialog(
                 setIsInputError(false)
             }
         },
-        taskColor = taskColor.value,
         isInputError = isInputError,
-        colorPicker = {
-            ColorPicker(
-                composableScope = composableScope,
-                isColorPickerShown = isColorPickerShown,
-                taskColor = taskColor
-            )
-        }
+        composableScope = composableScope,
+        isColorPickerShown = isColorPickerShown,
+        taskColor = taskColor,
     )
 }
 
 @Composable
-private fun AddTaskDialog(
-    onDismissRequest: () -> Unit,
+private fun AddTaskDialogContent(
     onShowColorClicked: () -> Unit,
     onAddTaskClicked: () -> Unit,
     taskName: String,
     setTaskName: (String) -> Unit,
-    taskColor: Color,
     isInputError: Boolean,
-    colorPicker: @Composable () -> Unit,
+    composableScope: CoroutineScope,
+    isColorPickerShown: Boolean,
+    taskColor: Animatable<Color, AnimationVector4D>
 ) {
     val focusRequester = remember { FocusRequester() } //TODO fix this
-    Dialog(onDismissRequest = onDismissRequest) {
         Card(
-            backgroundColor = taskColor
+            backgroundColor = taskColor.value
         ) {
             Column(
                 modifier = Modifier
@@ -142,9 +152,12 @@ private fun AddTaskDialog(
                         onClick = onAddTaskClicked
                     )
                 }
-                colorPicker()
+                ColorPicker(
+                    composableScope = composableScope,
+                    isColorPickerShown = isColorPickerShown,
+                    taskColor = taskColor
+                )
             }
-        }
     }
 }
 
@@ -199,7 +212,7 @@ private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
 
 @Preview
 @Composable
-fun ColorPickerPreview() {
+private fun ColorPickerPreview() {
     TimiComposeTheme {
         ColorPicker(colors = taskColors, onColorClicked = {})
     }
@@ -207,8 +220,71 @@ fun ColorPickerPreview() {
 
 @Preview
 @Composable
-fun DarkColorPickerPreview() {
+private fun DarkColorPickerPreview() {
     TimiComposeTheme(darkTheme = true) {
         ColorPicker(colors = taskColors, onColorClicked = {})
     }
+}
+
+@Preview
+@Composable
+private fun AddTaskDialogPreview() {
+    TimiComposeTheme {
+        AddTaskDialogContent(closeDialog = {}, onAddTaskClicked = {})
+    }
+}
+
+@Preview
+@Composable
+private fun DarkAddTaskDialogPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        AddTaskDialogContent(closeDialog = {}, onAddTaskClicked = {})
+    }
+}
+
+@Preview
+@Composable
+private fun AddTaskDialogWithColorPickerPreview() {
+    TimiComposeTheme {
+        TestAddTaskDialogWithColorPicker()
+    }
+}
+
+@Preview
+@Composable
+private fun DarkAddTaskDialogWithColorPickerPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        TestAddTaskDialogWithColorPicker()
+    }
+}
+
+@Preview
+@Composable
+private fun SelectedAddTaskDialogWithColorPickerPreview() {
+    TimiComposeTheme {
+        TestAddTaskDialogWithColorPicker(Color(132, 212, 240))
+    }
+}
+
+@Preview
+@Composable
+private fun SelectedDarkAddTaskDialogWithColorPickerPreview() {
+    TimiComposeTheme(darkTheme = true) {
+        TestAddTaskDialogWithColorPicker(Color(132, 212, 240))
+    }
+}
+
+@Composable
+fun TestAddTaskDialogWithColorPicker(backgroundColor: Color = MaterialTheme.colors.background) {
+    val taskColor = mutableStateOf(Animatable(backgroundColor))
+    AddTaskDialogContent(
+        onShowColorClicked = {},
+        onAddTaskClicked = {},
+        taskName = "",
+        setTaskName = {},
+        isInputError = false,
+        composableScope = rememberCoroutineScope(),
+        isColorPickerShown = true,
+        taskColor = taskColor.value
+    )
 }

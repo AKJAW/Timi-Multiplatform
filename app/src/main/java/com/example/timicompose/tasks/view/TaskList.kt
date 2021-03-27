@@ -109,7 +109,7 @@ private fun TaskSelectButton(isSelected: Boolean) {
 
 @Preview
 @Composable
-fun TaskItemPreview() {
+private fun TaskItemPreview() {
     TimiComposeTheme {
         TaskItem(tasks.first().copy(isSelected = false), {})
     }
@@ -117,7 +117,7 @@ fun TaskItemPreview() {
 
 @Preview
 @Composable
-fun TaskItemSelectedPreview() {
+private fun TaskItemSelectedPreview() {
     TimiComposeTheme {
         TaskItem(tasks.first().copy(isSelected = true), {})
     }
@@ -125,7 +125,7 @@ fun TaskItemSelectedPreview() {
 
 @Preview
 @Composable
-fun DarkTaskItemPreview() {
+private fun DarkTaskItemPreview() {
     TimiComposeTheme(darkTheme = true) {
         TaskItem(tasks.first().copy(isSelected = false), {})
     }
@@ -133,7 +133,7 @@ fun DarkTaskItemPreview() {
 
 @Preview
 @Composable
-fun DarkTaskItemSelectedPreview() {
+private fun DarkTaskItemSelectedPreview() {
     TimiComposeTheme(darkTheme = true) {
         TaskItem(tasks.first().copy(isSelected = true), {})
     }
@@ -141,7 +141,7 @@ fun DarkTaskItemSelectedPreview() {
 
 @Preview
 @Composable
-fun TaskListPreview() {
+private fun TaskListPreview() {
     TimiComposeTheme {
         TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
     }
@@ -149,7 +149,7 @@ fun TaskListPreview() {
 
 @Preview
 @Composable
-fun DarkTaskListPreview() {
+private fun DarkTaskListPreview() {
     TimiComposeTheme(darkTheme = true) {
         TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
     }
