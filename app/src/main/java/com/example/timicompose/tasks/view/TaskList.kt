@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.timicompose.common.presentation.TimiBottomBar
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -33,10 +34,10 @@ fun TaskScreen(taskListViewModel: TaskListViewModel) {
         scaffoldState = rememberScaffoldState(),
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
-        content = {
-            TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
-        }
-    )
+        bottomBar = { TimiBottomBar() },
+    ) {
+        TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
+    }
 
 }
 
