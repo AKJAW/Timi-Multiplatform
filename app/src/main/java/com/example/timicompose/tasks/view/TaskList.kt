@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.timicompose.common.presentation.TimiBottomBar
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.presentation.model.Task
@@ -28,13 +29,12 @@ import com.example.timicompose.ui.theme.TimiComposeTheme
 import com.example.timicompose.ui.theme.taskTextColorFor
 
 @Composable
-fun TaskScreen(taskListViewModel: TaskListViewModel) {
+fun TaskScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
     val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(
-        scaffoldState = rememberScaffoldState(),
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
-        bottomBar = { TimiBottomBar() },
+        bottomBar = { TimiBottomBar(navController) },
     ) {
         TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
     }

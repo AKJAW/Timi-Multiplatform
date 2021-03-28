@@ -4,6 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.view.TaskScreen
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -16,12 +26,42 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             TimiComposeTheme {
-                // A surface container using the 'background' color from the theme
-                TaskScreen(taskListViewModel)
-//                Surface(color = MaterialTheme.colors.background) {
-//
-//                }
+                NavHost(
+                    navController = navController,
+                    startDestination = BottomBarScreen.Home.route
+                ) {
+                    composable(BottomBarScreen.Home.route) {
+                        TaskScreen(navController, taskListViewModel)
+                    }
+                    composable(BottomBarScreen.Timer.route) {
+                        Scaffold(
+                            topBar = { TopAppBar(title = { Text(text = "Timer") }) },
+                            bottomBar = { TimiBottomBar(navController) },
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(text = "Timer")
+                            }
+                        }
+                    }
+                    composable(BottomBarScreen.Settings.route) {
+                        Scaffold(
+                            topBar = { TopAppBar(title = { Text(text = "Settings") }) },
+                            bottomBar = { TimiBottomBar(navController) },
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(text = "Settings")
+                            }
+                        }
+                    }
+                }
             }
         }
     }
