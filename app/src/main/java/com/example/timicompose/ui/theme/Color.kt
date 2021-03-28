@@ -1,6 +1,7 @@
 package com.example.timicompose.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 
 val Purple200 = Color(0xFFBB86FC)
 val Purple500 = Color(0xFF6200EE)
@@ -21,3 +22,14 @@ val taskColors = listOf(
     Color(206, 132, 239),
     Color(239, 132, 214),
 )
+
+private val whiteTextColor = Color(230, 230, 230)
+private val blackTextColor = Color(10, 10, 10)
+
+fun taskTextColorFor(color: Color): Color {
+    return if (color.luminance() < 0.5) {
+        whiteTextColor
+    } else {
+        blackTextColor
+    }
+}

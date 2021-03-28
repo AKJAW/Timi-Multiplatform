@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
+import com.example.timicompose.ui.theme.taskTextColorFor
 
 @Composable
 fun TaskScreen(taskListViewModel: TaskListViewModel) {
@@ -76,7 +77,12 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
         Box(
             contentAlignment = Alignment.Center
         ) {
-            Text(text = task.name)
+            Text(
+                text = task.name,
+                style = MaterialTheme.typography.h6.copy(
+                    color = taskTextColorFor(task.backgroundColor)
+                )
+            )
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.CenterEnd

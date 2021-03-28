@@ -24,10 +24,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
 import com.example.timicompose.ui.theme.taskColors
+import com.example.timicompose.ui.theme.taskTextColorFor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -68,13 +70,15 @@ private fun AddTaskDialog(
 private fun AddTaskDialogContent(
     closeDialog: () -> Unit,
     onAddTaskClicked: (Task) -> Unit,
-    defaultBackgroundColor: Color = MaterialTheme.colors.background
+    defaultBackgroundColor: Color = MaterialTheme.colors.background,
+    defaultTextColor: Color = contentColorFor(defaultBackgroundColor),
 ) {
     val composableScope = rememberCoroutineScope()
     val (taskName, setTaskName) = remember { mutableStateOf("") }
     val (isInputError, setIsInputError) = remember { mutableStateOf(false) }
     val (isColorPickerShown, setIsColorPickerShown) = remember { mutableStateOf(false) }
     val (taskColor) = remember { mutableStateOf(Animatable(defaultBackgroundColor)) }
+    val (textColor) = remember { mutableStateOf(Animatable(defaultTextColor)) }
     AddTaskDialogContent(
         onShowColorClicked = { setIsColorPickerShown(isColorPickerShown.not()) },
         onAddTaskClicked = {
@@ -103,6 +107,7 @@ private fun AddTaskDialogContent(
         composableScope = composableScope,
         isColorPickerShown = isColorPickerShown,
         taskColor = taskColor,
+        textColor = textColor,
     )
 }
 
@@ -115,61 +120,76 @@ private fun AddTaskDialogContent(
     isInputError: Boolean,
     composableScope: CoroutineScope,
     isColorPickerShown: Boolean,
-    taskColor: Animatable<Color, AnimationVector4D>
+    taskColor: Animatable<Color, AnimationVector4D>,
+    textColor: Animatable<Color, AnimationVector4D>,
 ) {
     val focusRequester = remember { FocusRequester() } //TODO fix this
-        Card(
-            backgroundColor = taskColor.value
+    Card(
+        backgroundColor = taskColor.value
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .fillMaxWidth()
         ) {
-            Column(
+            OutlinedTextField(
+                value = taskName,
+                onValueChange = setTaskName,
+                label = { Text(text = "Task name") },
+                isError = isInputError,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = textColor.value,
+                    focusedBorderColor = textColor.value,
+                    focusedLabelColor = textColor.value,
+                    unfocusedBorderColor = textColor.value.copy(ContentAlpha.medium),
+                    unfocusedLabelColor = textColor.value.copy(ContentAlpha.medium),
+                    placeholderColor = textColor.value.copy(ContentAlpha.medium),
+                ),
                 modifier = Modifier
-                    .padding(vertical = 8.dp, horizontal = 16.dp)
                     .fillMaxWidth()
+                    .focusRequester(focusRequester)
+            )
+            Row(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                OutlinedTextField(
-                    value = taskName,
-                    onValueChange = setTaskName,
-                    label = { Text(text = "Task name") },
-                    isError = isInputError,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .focusRequester(focusRequester)
+                DialogButton(
+                    icon = Icons.Filled.Palette,
+                    text = "Color",
+                    textColor = textColor.value,
+                    onClick = onShowColorClicked
                 )
-                Row(
-                    modifier = Modifier
-                        .padding(top = 8.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    DialogButton(
-                        icon = Icons.Filled.Palette,
-                        text = "Color",
-                        onClick = onShowColorClicked
-                    )
-                    DialogButton(
-                        icon = Icons.Filled.Send,
-                        text = "Add",
-                        onClick = onAddTaskClicked
-                    )
-                }
-                ColorPicker(
-                    composableScope = composableScope,
-                    isColorPickerShown = isColorPickerShown,
-                    taskColor = taskColor
+                DialogButton(
+                    icon = Icons.Filled.Send,
+                    text = "Add",
+                    textColor = textColor.value,
+                    onClick = onAddTaskClicked
                 )
             }
+            ColorPicker(
+                composableScope = composableScope,
+                isColorPickerShown = isColorPickerShown,
+                taskColor = taskColor,
+                textColor = textColor,
+            )
+        }
     }
 }
 
 @Composable
-private fun DialogButton(icon: ImageVector, text: String, onClick: () -> Unit) {
+private fun DialogButton(icon: ImageVector, text: String, textColor: Color, onClick: () -> Unit) {
     TextButton(onClick = { onClick() }) {
-        Text(text = text, style = MaterialTheme.typography.body1)
+        Text(
+            text = text,
+            style = MaterialTheme.typography.body1.copy(color = textColor, fontSize = 18.sp)
+        )
         Icon(
             imageVector = icon,
             contentDescription = null,
             modifier = Modifier.size(32.dp),
-            tint = MaterialTheme.colors.primary
+            tint = textColor
         )
     }
 }
@@ -178,15 +198,20 @@ private fun DialogButton(icon: ImageVector, text: String, onClick: () -> Unit) {
 private fun ColorPicker(
     composableScope: CoroutineScope,
     isColorPickerShown: Boolean,
-    taskColor: Animatable<Color, AnimationVector4D>
+    taskColor: Animatable<Color, AnimationVector4D>,
+    textColor: Animatable<Color, AnimationVector4D>,
 ) {
     if (isColorPickerShown) {
         ColorPicker(
             colors = taskColors,
             onColorClicked =
             { targetColor ->
+                // Two parallel animations don't work together so well
                 composableScope.launch {
                     taskColor.animateTo(targetColor)
+                }
+                composableScope.launch {
+                    textColor.animateTo(taskTextColorFor(targetColor))
                 }
             }
         )
@@ -275,8 +300,12 @@ private fun SelectedDarkAddTaskDialogWithColorPickerPreview() {
 }
 
 @Composable
-fun TestAddTaskDialogWithColorPicker(backgroundColor: Color = MaterialTheme.colors.background) {
+fun TestAddTaskDialogWithColorPicker(
+    backgroundColor: Color = MaterialTheme.colors.background,
+    defaultTextColor: Color = contentColorFor(backgroundColor),
+) {
     val taskColor = mutableStateOf(Animatable(backgroundColor))
+    val textColor = mutableStateOf(Animatable(defaultTextColor))
     AddTaskDialogContent(
         onShowColorClicked = {},
         onAddTaskClicked = {},
@@ -285,6 +314,7 @@ fun TestAddTaskDialogWithColorPicker(backgroundColor: Color = MaterialTheme.colo
         isInputError = false,
         composableScope = rememberCoroutineScope(),
         isColorPickerShown = true,
-        taskColor = taskColor.value
+        taskColor = taskColor.value,
+        textColor = textColor.value,
     )
 }
