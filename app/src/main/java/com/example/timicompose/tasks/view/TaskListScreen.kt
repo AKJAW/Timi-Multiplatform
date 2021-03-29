@@ -29,7 +29,7 @@ import com.example.timicompose.ui.theme.TimiComposeTheme
 import com.example.timicompose.ui.theme.taskTextColorFor
 
 @Composable
-fun TaskScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
+fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
     val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },

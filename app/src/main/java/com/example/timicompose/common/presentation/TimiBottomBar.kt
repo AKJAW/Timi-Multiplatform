@@ -20,14 +20,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
-private val values = listOf(BottomBarScreen.Home, BottomBarScreen.Timer, BottomBarScreen.Settings)
+private val values = listOf(BottomBarScreen.Home, BottomBarScreen.Stopwatch, BottomBarScreen.Settings)
 
 sealed class BottomBarScreen(
     val imageVector: ImageVector,
     val route: String,
 ) {
     object Home : BottomBarScreen(Icons.Filled.Home, "Tasks")
-    object Timer : BottomBarScreen(Icons.Filled.Timer, "Timer")
+    object Stopwatch : BottomBarScreen(Icons.Filled.Timer, "Stopwatch")
     object Settings : BottomBarScreen(Icons.Filled.Settings, "Settings")
 }
 

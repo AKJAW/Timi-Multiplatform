@@ -15,7 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.timicompose.tasks.presentation.TaskListViewModel
-import com.example.timicompose.tasks.view.TaskScreen
+import com.example.timicompose.tasks.view.TaskListScreen
 import com.example.timicompose.ui.theme.TimiComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,18 +33,18 @@ class MainActivity : ComponentActivity() {
                     startDestination = BottomBarScreen.Home.route
                 ) {
                     composable(BottomBarScreen.Home.route) {
-                        TaskScreen(navController, taskListViewModel)
+                        TaskListScreen(navController, taskListViewModel)
                     }
-                    composable(BottomBarScreen.Timer.route) {
+                    composable(BottomBarScreen.Stopwatch.route) {
                         Scaffold(
-                            topBar = { TopAppBar(title = { Text(text = "Timer") }) },
+                            topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
                             bottomBar = { TimiBottomBar(navController) },
                         ) {
                             Box(
                                 modifier = Modifier.fillMaxSize(),
                                 contentAlignment = Alignment.Center
                             ) {
-                                Text(text = "Timer")
+                                Text(text = "Stopwatch")
                             }
                         }
                     }
