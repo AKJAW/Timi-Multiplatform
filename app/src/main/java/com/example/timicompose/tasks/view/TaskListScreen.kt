@@ -7,7 +7,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
@@ -17,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -26,7 +24,9 @@ import com.example.timicompose.common.presentation.TimiBottomBar
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
+import com.example.timicompose.ui.theme.taskShape
 import com.example.timicompose.ui.theme.taskTextColorFor
+import com.example.timicompose.ui.theme.tasksPreview
 
 @Composable
 fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
@@ -71,7 +71,7 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
             ) { onTaskClicked(task) },
-        shape = RoundedCornerShape(8.dp),
+        shape = taskShape,
         backgroundColor = task.backgroundColor,
         elevation = 0.dp,
     ) {
@@ -162,8 +162,4 @@ private fun DarkTaskListPreview() {
     }
 }
 
-private val tasks = listOf(
-    Task("Task 1", Color(132, 212, 240), false),
-    Task("Task 2", Color(230, 240, 132), false),
-    Task("Task 3", Color(132, 240, 161), false),
-)
+private val tasks = tasksPreview

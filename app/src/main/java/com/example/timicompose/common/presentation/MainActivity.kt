@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.timicompose.stopwatch.StopwatchScreen
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.view.TaskListScreen
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -36,17 +37,7 @@ class MainActivity : ComponentActivity() {
                         TaskListScreen(navController, taskListViewModel)
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
-                        Scaffold(
-                            topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
-                            bottomBar = { TimiBottomBar(navController) },
-                        ) {
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(text = "Stopwatch")
-                            }
-                        }
+                        StopwatchScreen(navController)
                     }
                     composable(BottomBarScreen.Settings.route) {
                         Scaffold(
