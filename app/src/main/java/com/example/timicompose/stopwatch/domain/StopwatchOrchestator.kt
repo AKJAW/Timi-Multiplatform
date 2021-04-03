@@ -2,6 +2,7 @@ package com.example.timicompose.stopwatch.domain
 
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.tasksPreview
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
@@ -9,22 +10,29 @@ class StopwatchOrchestator @Inject constructor(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
 ) {
 
-    //TODO does this have to be thread-safe?
-    //TODO this is temp
-    val ticker = MutableStateFlow<Map<Task, String>>(
-        tasksPreview.map { it to TimestampMillisecondsFormatter.DEFAULT_TIME }.toMap()
-    )
-    private var stopwatchStateHolders: MutableMap<Task, StopwatchStateHolder> = mutableMapOf()
+    private var job: Job? = null
+    private var stopwatchStateHolders: MutableMap<Task, StopwatchStateHolder> =
+        tasksPreview.map { it to stopwatchStateHolderFactory.create() }.toMap().toMutableMap() //TODO remove
+    val ticker = MutableStateFlow<Map<Task, String>>(mapOf())
 
-    fun start(task: Task) {//TODO only the orchestrator should update the time
+    init {
+        job = GlobalScope.launch(Dispatchers.Default) {
+            while (true) {
+                val newValues = stopwatchStateHolders.map { (task, stateHolder) ->
+                    //TODO should only be called when changed?
+                    task to stateHolder.getStringTimeRepresentation()
+                }.toMap()
+                ticker.value = newValues
+                delay(20)
+            }
+        }
+    }
+
+    fun start(task: Task) {
         val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
             stopwatchStateHolderFactory.create()
         }
-        stopwatchForTask.start { timerString ->
-            val newTime = ticker.value.toMutableMap()
-            newTime[task] = timerString
-            ticker.value = newTime
-        }
+        stopwatchForTask.start()
     }
 
     fun pause(task: Task) {
