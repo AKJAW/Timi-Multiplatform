@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,24 +19,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.timicompose.common.presentation.TimiBottomBar
+import com.example.timicompose.stopwatch.domain.StopwatchOrchestator
 import com.example.timicompose.stopwatch.presentation.StopwatchEntry
+import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
 import com.example.timicompose.ui.theme.stopwatchBorder
 import com.example.timicompose.ui.theme.taskShape
 import com.example.timicompose.ui.theme.tasksPreview
 
 @Composable
-fun StopwatchScreen(navController: NavHostController) {
+fun StopwatchScreen(navController: NavHostController, stopwatchOrchestator: StopwatchOrchestator) {
+    val stopwatches = stopwatchOrchestator.ticker.collectAsState()
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
         bottomBar = { TimiBottomBar(navController) },
     ) {
-        StopwatchContent()
+        StopwatchContent(
+            stopwatches = stopwatches.value,
+            onStartClicked = { task -> stopwatchOrchestator.start(task) },
+            onPauseClicked = { task -> stopwatchOrchestator.pause(task) },
+        )
     }
 }
 
 @Composable
-fun StopwatchContent() {
+fun StopwatchContent(
+    stopwatches: Map<Task, String>,
+    onStartClicked: (Task) -> Unit,
+    onPauseClicked: (Task) -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,9 +56,14 @@ fun StopwatchContent() {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            previewStopwatches.forEach { stopwatchEntry ->
+            stopwatches.keys.forEach { task ->
                 item {
-                    StopwatchItem(stopwatchEntry = stopwatchEntry)
+                    val stopwatchEntry = StopwatchEntry(task, stopwatches[task]!!)
+                    StopwatchItem(
+                        stopwatchEntry = stopwatchEntry,
+                        onStartClicked = { onStartClicked(task) },
+                        onPauseClicked = { onPauseClicked(task) }
+                    )
                 }
             }
         }
@@ -55,7 +72,11 @@ fun StopwatchContent() {
 }
 
 @Composable
-fun StopwatchItem(stopwatchEntry: StopwatchEntry) {
+fun StopwatchItem(
+    stopwatchEntry: StopwatchEntry,
+    onStartClicked: () -> Unit,
+    onPauseClicked: () -> Unit,
+) {
     Card(
         shape = taskShape,
         border = stopwatchBorder(MaterialTheme.colors)
@@ -86,13 +107,13 @@ fun StopwatchItem(stopwatchEntry: StopwatchEntry) {
                     imageVector = Icons.Filled.PlayArrow,
                     contentDescription = "Start",
                     color = stopwatchEntry.task.backgroundColor,
-                    onClick = { /*TODO*/ },
+                    onClick = onStartClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Pause,
                     contentDescription = "Pause",
                     color = stopwatchEntry.task.backgroundColor,
-                    onClick = { /*TODO*/ },
+                    onClick = onPauseClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Stop,
@@ -150,7 +171,11 @@ fun AddNewStopwatchEntryButton() {
 @Composable
 fun StopwatchItemPreview() {
     TimiComposeTheme {
-        StopwatchItem(stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"))
+        StopwatchItem(
+            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"),
+            onStartClicked = {},
+            onPauseClicked = {}
+        )
     }
 }
 
@@ -158,7 +183,11 @@ fun StopwatchItemPreview() {
 @Composable
 fun DarkStopwatchItemPreview() {
     TimiComposeTheme(darkTheme = true) {
-        StopwatchItem(stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"))
+        StopwatchItem(
+            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"),
+            onStartClicked = {},
+            onPauseClicked = {}
+        )
     }
 }
 
@@ -182,7 +211,11 @@ fun DarkAddNewStopwatchEntryButtonPreview() {
 @Composable
 fun StopwatchContentPreview() {
     TimiComposeTheme {
-        StopwatchContent()
+        StopwatchContent(
+            stopwatches = previewStopwatches,
+            onStartClicked = {},
+            onPauseClicked = {}
+        )
     }
 }
 
@@ -190,12 +223,13 @@ fun StopwatchContentPreview() {
 @Composable
 fun DarkStopwatchContentPreview() {
     TimiComposeTheme(darkTheme = true) {
-        StopwatchContent()
+        StopwatchContent(
+            stopwatches = previewStopwatches,
+            onStartClicked = {},
+            onPauseClicked = {}
+        )
+
     }
 }
 
-private val previewStopwatches = listOf(
-    StopwatchEntry(tasksPreview.first(), timeString = "23:66"),
-    StopwatchEntry(tasksPreview.first(), timeString = "01:23:66"),
-    StopwatchEntry(tasksPreview.first(), timeString = "1:01:23:66"),
-)
+private val previewStopwatches = tasksPreview.map { it to "00:00" }.toMap()

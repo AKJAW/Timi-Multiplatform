@@ -19,11 +19,12 @@ import java.util.stream.Stream
 internal class StopwatchStateCalculatorTest {
 
     private val timestampProvider: TimestampProvider = mockk()
+    private val elapsedTimeCalculator = ElapsedTimeCalculator(timestampProvider)
     private lateinit var systemUnderTest: StopwatchStateCalculator
 
     @BeforeEach
     fun setUp() {
-        systemUnderTest = StopwatchStateCalculator(timestampProvider)
+        systemUnderTest = StopwatchStateCalculator(timestampProvider, elapsedTimeCalculator)
     }
 
     @ParameterizedTest
