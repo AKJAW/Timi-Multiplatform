@@ -10,7 +10,8 @@ class StopwatchStateHolder(
 ) {
 
     //TODO does this have to be thread-safe?
-    private var currentState: StopwatchState = StopwatchState.Paused(0.toTimestampMilliseconds())
+    var currentState: StopwatchState = StopwatchState.Paused(0.toTimestampMilliseconds())
+        private set
 
     fun start() {
         currentState = stopwatchStateCalculator.calculateRunningState(currentState)
