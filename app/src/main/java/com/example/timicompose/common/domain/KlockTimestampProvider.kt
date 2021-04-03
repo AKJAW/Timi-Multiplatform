@@ -1,7 +1,7 @@
 package com.example.timicompose.common.domain
 
-import com.example.timicompose.stopwatch.domain.model.TimestampMilliseconds
-import com.example.timicompose.stopwatch.domain.model.toTimestampMilliseconds
+import com.example.timicompose.common.domain.model.TimestampMilliseconds
+import com.example.timicompose.common.domain.model.toTimestampMilliseconds
 import com.soywiz.klock.DateTime
 import javax.inject.Inject
 

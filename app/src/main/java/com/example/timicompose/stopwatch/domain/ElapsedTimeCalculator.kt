@@ -1,9 +1,9 @@
 package com.example.timicompose.stopwatch.domain
 
 import com.example.timicompose.common.domain.TimestampProvider
+import com.example.timicompose.common.domain.model.TimestampMilliseconds
+import com.example.timicompose.common.domain.model.toTimestampMilliseconds
 import com.example.timicompose.stopwatch.domain.model.StopwatchState
-import com.example.timicompose.stopwatch.domain.model.TimestampMilliseconds
-import com.example.timicompose.stopwatch.domain.model.toTimestampMilliseconds
 import javax.inject.Inject
 
 class ElapsedTimeCalculator @Inject constructor(

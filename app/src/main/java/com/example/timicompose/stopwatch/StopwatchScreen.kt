@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.timicompose.common.presentation.TimiBottomBar
 import com.example.timicompose.stopwatch.domain.StopwatchOrchestator
+import com.example.timicompose.stopwatch.domain.TimestampMillisecondsFormatter
 import com.example.timicompose.stopwatch.presentation.StopwatchEntry
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -172,7 +173,7 @@ fun AddNewStopwatchEntryButton() {
 fun StopwatchItemPreview() {
     TimiComposeTheme {
         StopwatchItem(
-            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"),
+            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "00:23:667"),
             onStartClicked = {},
             onPauseClicked = {}
         )
@@ -184,7 +185,7 @@ fun StopwatchItemPreview() {
 fun DarkStopwatchItemPreview() {
     TimiComposeTheme(darkTheme = true) {
         StopwatchItem(
-            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "23:66"),
+            stopwatchEntry = StopwatchEntry(tasksPreview.first(), timeString = "00:23:667"),
             onStartClicked = {},
             onPauseClicked = {}
         )
@@ -232,4 +233,5 @@ fun DarkStopwatchContentPreview() {
     }
 }
 
-private val previewStopwatches = tasksPreview.map { it to "00:00" }.toMap()
+private val previewStopwatches = tasksPreview
+    .map { it to TimestampMillisecondsFormatter.DEFAULT_TIME }.toMap()

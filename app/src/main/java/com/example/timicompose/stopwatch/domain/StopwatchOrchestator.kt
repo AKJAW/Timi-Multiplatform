@@ -6,18 +6,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 class StopwatchOrchestator @Inject constructor(
-    private val stopwatchStateCalculator: StopwatchStateCalculator,
-    private val elapsedTimeCalculator: ElapsedTimeCalculator,
+    private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
 ) {
 
     //TODO does this have to be thread-safe?
     //TODO this is temp
-    val ticker = MutableStateFlow<Map<Task, String>>(tasksPreview.map { it to "00:00" }.toMap())
+    val ticker = MutableStateFlow<Map<Task, String>>(
+        tasksPreview.map { it to TimestampMillisecondsFormatter.DEFAULT_TIME }.toMap()
+    )
     private var stopwatchStateHolders: MutableMap<Task, StopwatchStateHolder> = mutableMapOf()
 
     fun start(task: Task) {//TODO only the orchestrator should update the time
         val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
-            StopwatchStateHolder(stopwatchStateCalculator, elapsedTimeCalculator)
+            stopwatchStateHolderFactory.create()
         }
         stopwatchForTask.start { timerString ->
             val newTime = ticker.value.toMutableMap()
@@ -28,7 +29,7 @@ class StopwatchOrchestator @Inject constructor(
 
     fun pause(task: Task) {
         val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
-            StopwatchStateHolder(stopwatchStateCalculator, elapsedTimeCalculator)
+            stopwatchStateHolderFactory.create()
         }
         stopwatchForTask.pause()
     }

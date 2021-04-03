@@ -1,4 +1,4 @@
-package com.example.timicompose.stopwatch.domain.model
+package com.example.timicompose.common.domain.model
 
 data class TimestampMilliseconds(val value: Long) {
 
