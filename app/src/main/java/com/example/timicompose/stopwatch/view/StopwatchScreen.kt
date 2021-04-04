@@ -10,6 +10,8 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,7 +34,9 @@ fun StopwatchScreen(
     navController: NavHostController,
     stopwatchViewModel: StopwatchViewModel,
 ) {
+    val availableTasks = stopwatchViewModel.availableTasks.collectAsState(emptyList())
     val stopwatches = stopwatchViewModel.stopwatches.collectAsState()
+    val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
         bottomBar = { TimiBottomBar(navController) },
@@ -40,9 +44,16 @@ fun StopwatchScreen(
         Box(modifier = Modifier.padding(innerPadding)) {
             StopwatchContent(
                 stopwatches = stopwatches.value,
+                onAddStopwatchClicked = { setIsDialogOpen(true) },
                 onStartClicked = { task -> stopwatchViewModel.start(task) },
                 onPauseClicked = { task -> stopwatchViewModel.pause(task) },
                 onStoppedClicked = { task -> stopwatchViewModel.stop(task) },
+            )
+            AddStopwatchDialog(
+                isDialogOpen = isDialogOpen,
+                closeDialog = { setIsDialogOpen(false) },
+                availableTasks = availableTasks.value,
+                onAddStopwatchClicked = { task -> stopwatchViewModel.start(task) }
             )
         }
     }
@@ -51,6 +62,7 @@ fun StopwatchScreen(
 @Composable
 fun StopwatchContent(
     stopwatches: Map<Task, String>,
+    onAddStopwatchClicked: () -> Unit = {},
     onStartClicked: (Task) -> Unit = {},
     onPauseClicked: (Task) -> Unit = {},
     onStoppedClicked: (Task) -> Unit = {},
@@ -72,7 +84,7 @@ fun StopwatchContent(
             }
         }
         item {
-            AddNewStopwatchEntryButton(onClick = { onStartClicked(tasksPreview.first()) })
+            AddNewStopwatchEntryButton(onClick = onAddStopwatchClicked)
         }
     }
 }

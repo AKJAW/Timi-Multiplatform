@@ -3,7 +3,9 @@ package com.example.timicompose.tasks.data
 import androidx.compose.ui.graphics.Color
 import com.example.timicompose.tasks.presentation.model.Task
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TaskRepository @Inject constructor() {
     val tasks = listOf(
         Task("Task 1", Color(132, 212, 240), false),

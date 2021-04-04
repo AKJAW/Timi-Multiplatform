@@ -35,22 +35,26 @@ fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskList
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
         bottomBar = { TimiBottomBar(navController) },
-    ) {
-        TaskList(tasks = tasks.value, onTaskClicked = taskListViewModel::toggleTask)
+    ) { paddingValues ->
+        TaskList(
+            modifier = Modifier.padding(paddingValues),
+            tasks = tasks.value,
+            onTaskClicked = taskListViewModel::toggleTask
+        )
     }
 
 }
 
 @Composable
 fun TaskList(
-    tasks: List<Task>,
     modifier: Modifier = Modifier,
+    tasks: List<Task>,
     onTaskClicked: (Task) -> Unit = { }
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxHeight()
-            .padding(10.dp, 10.dp, 10.dp),
+            .fillMaxHeight(),
+        contentPadding = PaddingValues(10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         tasks.forEach { task ->
@@ -150,7 +154,7 @@ private fun DarkTaskItemSelectedPreview() {
 @Composable
 private fun TaskListPreview() {
     TimiComposeTheme {
-        TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
+        TaskList(Modifier.background(MaterialTheme.colors.background), tasks)
     }
 }
 
@@ -158,7 +162,7 @@ private fun TaskListPreview() {
 @Composable
 private fun DarkTaskListPreview() {
     TimiComposeTheme(darkTheme = true) {
-        TaskList(tasks, Modifier.background(MaterialTheme.colors.background))
+        TaskList(Modifier.background(MaterialTheme.colors.background), tasks)
     }
 }
 
