@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.timicompose.common.view.PaddedAlertDialog
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.ui.theme.TimiComposeTheme
 
@@ -59,8 +60,7 @@ private fun ConfirmDeletionDialog(
     onDeleteConfirm: () -> Unit
 ) {
     if (isDeleteDialogOpen.not()) return
-    AlertDialog(
-        modifier = Modifier.padding(32.dp),
+    PaddedAlertDialog(
         onDismissRequest = {
             setIsDeleteDialogOpen(false)
         },
