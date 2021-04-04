@@ -1,20 +1,22 @@
 package com.example.timicompose.stopwatch.domain
 
-import com.example.timicompose.common.composition.DispatcherQualifiers
 import com.example.timicompose.stopwatch.domain.model.StopwatchState
 import com.example.timicompose.tasks.presentation.model.Task
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
-import javax.inject.Inject
+import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Singleton
 
-class StopwatchListOrchestrator @Inject constructor(
+@Singleton
+class StopwatchListOrchestrator(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
-    @DispatcherQualifiers private val scope: CoroutineScope,
+    private val scope: CoroutineScope,
 ) {
 
     private var job: Job? = null
     private var stopwatchStateHolders: MutableMap<Task, StopwatchStateHolder> = mutableMapOf()
-    val ticker = MutableStateFlow<Map<Task, String>>(mapOf())
+    private val mutableTicker = MutableStateFlow<Map<Task, String>>(mapOf())
+    val ticker: StateFlow<Map<Task, String>> = mutableTicker
 
     fun start(task: Task) {
         if (job == null) startJob()
@@ -31,7 +33,7 @@ class StopwatchListOrchestrator @Inject constructor(
                     //TODO should only be called when changed?
                     task to stateHolder.getStringTimeRepresentation()
                 }.toMap()
-                ticker.value = newValues
+                mutableTicker.value = newValues
                 delay(20)
             }
         }
@@ -69,6 +71,6 @@ class StopwatchListOrchestrator @Inject constructor(
 
     private fun clearValues() {
         stopwatchStateHolders.clear()
-        ticker.value = mapOf()
+        mutableTicker.value = mapOf()
     }
 }

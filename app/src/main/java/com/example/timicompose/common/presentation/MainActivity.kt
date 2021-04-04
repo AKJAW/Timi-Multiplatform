@@ -14,19 +14,17 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.timicompose.stopwatch.StopwatchScreen
-import com.example.timicompose.stopwatch.domain.StopwatchListOrchestrator
+import com.example.timicompose.stopwatch.presentation.StopwatchViewModel
+import com.example.timicompose.stopwatch.view.StopwatchScreen
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.view.TaskListScreen
 import com.example.timicompose.ui.theme.TimiComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var stopwatchListOrchestrator: StopwatchListOrchestrator
     private val taskListViewModel: TaskListViewModel by viewModels()
+    private val stopwatchViewModel: StopwatchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         TaskListScreen(navController, taskListViewModel)
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
-                        StopwatchScreen(navController, stopwatchListOrchestrator)
+                        StopwatchScreen(navController, stopwatchViewModel)
                     }
                     composable(BottomBarScreen.Settings.route) {
                         Scaffold(
