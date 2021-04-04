@@ -36,13 +36,15 @@ fun StopwatchScreen(
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
         bottomBar = { TimiBottomBar(navController) },
-    ) {
-        StopwatchContent(
-            stopwatches = stopwatches.value,
-            onStartClicked = { task -> stopwatchViewModel.start(task) },
-            onPauseClicked = { task -> stopwatchViewModel.pause(task) },
-            onStoppedClicked = { task -> stopwatchViewModel.stop(task) },
-        )
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            StopwatchContent(
+                stopwatches = stopwatches.value,
+                onStartClicked = { task -> stopwatchViewModel.start(task) },
+                onPauseClicked = { task -> stopwatchViewModel.pause(task) },
+                onStoppedClicked = { task -> stopwatchViewModel.stop(task) },
+            )
+        }
     }
 }
 
@@ -53,27 +55,25 @@ fun StopwatchContent(
     onPauseClicked: (Task) -> Unit = {},
     onStoppedClicked: (Task) -> Unit = {},
 ) {
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
             .padding(10.dp, 10.dp, 10.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            stopwatches.forEach { (task, timeString) ->
-                item {
-                    StopwatchItem(
-                        task = task,
-                        timeString = timeString,
-                        onStartClicked = { onStartClicked(task) },
-                        onPauseClicked = { onPauseClicked(task) },
-                        onStoppedClicked = { onStoppedClicked(task) },
-                    )
-                }
+        stopwatches.forEach { (task, timeString) ->
+            item {
+                StopwatchItem(
+                    task = task,
+                    timeString = timeString,
+                    onStartClicked = { onStartClicked(task) },
+                    onPauseClicked = { onPauseClicked(task) },
+                    onStoppedClicked = { onStoppedClicked(task) },
+                )
             }
         }
-        AddNewStopwatchEntryButton(onClick = { onStartClicked(tasksPreview.first()) })
+        item {
+            AddNewStopwatchEntryButton(onClick = { onStartClicked(tasksPreview.first()) })
+        }
     }
 }
 
