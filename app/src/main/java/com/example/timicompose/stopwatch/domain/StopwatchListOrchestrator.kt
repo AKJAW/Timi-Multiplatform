@@ -5,6 +5,7 @@ import com.example.timicompose.tasks.presentation.model.Task
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Singleton
 
 @Singleton
@@ -12,9 +13,8 @@ class StopwatchListOrchestrator(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,
 ) {
-
     private var job: Job? = null
-    private var stopwatchStateHolders: MutableMap<Task, StopwatchStateHolder> = mutableMapOf()
+    private var stopwatchStateHolders = ConcurrentHashMap<Task, StopwatchStateHolder>()
     private val mutableTicker = MutableStateFlow<Map<Task, String>>(mapOf())
     val ticker: StateFlow<Map<Task, String>> = mutableTicker
 
@@ -29,10 +29,12 @@ class StopwatchListOrchestrator(
     private fun startJob() {
         scope.launch {
             while (true) {
-                val newValues = stopwatchStateHolders.map { (task, stateHolder) ->
-                    //TODO should only be called when changed?
-                    task to stateHolder.getStringTimeRepresentation()
-                }.toMap()
+                val newValues = stopwatchStateHolders
+                    .toSortedMap(compareBy { task -> task.name }) //TODO order by order on task list / id
+                    .map { (task, stateHolder) ->
+                        task to stateHolder.getStringTimeRepresentation()
+                    }
+                    .toMap()
                 mutableTicker.value = newValues
                 delay(20)
             }
