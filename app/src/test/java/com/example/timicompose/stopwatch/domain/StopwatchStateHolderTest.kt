@@ -2,6 +2,8 @@ package com.example.timicompose.stopwatch.domain
 
 import com.example.timicompose.common.domain.TimestampProvider
 import com.example.timicompose.common.domain.model.toTimestampMilliseconds
+import com.example.timicompose.stopwatch.domain.utilities.ElapsedTimeCalculator
+import com.example.timicompose.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach

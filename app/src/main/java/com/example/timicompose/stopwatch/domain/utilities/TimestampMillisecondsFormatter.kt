@@ -1,4 +1,4 @@
-package com.example.timicompose.stopwatch.domain
+package com.example.timicompose.stopwatch.domain.utilities
 
 import com.example.timicompose.common.domain.model.TimestampMilliseconds
 import javax.inject.Inject

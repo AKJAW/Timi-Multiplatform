@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.timicompose.common.presentation.TimiBottomBar
-import com.example.timicompose.stopwatch.domain.StopwatchOrchestator
-import com.example.timicompose.stopwatch.domain.TimestampMillisecondsFormatter
+import com.example.timicompose.stopwatch.domain.StopwatchListOrchestrator
+import com.example.timicompose.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.example.timicompose.stopwatch.presentation.StopwatchEntry
 import com.example.timicompose.tasks.presentation.model.Task
 import com.example.timicompose.ui.theme.TimiComposeTheme
@@ -29,8 +29,8 @@ import com.example.timicompose.ui.theme.taskShape
 import com.example.timicompose.ui.theme.tasksPreview
 
 @Composable
-fun StopwatchScreen(navController: NavHostController, stopwatchOrchestator: StopwatchOrchestator) {
-    val stopwatches = stopwatchOrchestator.ticker.collectAsState()
+fun StopwatchScreen(navController: NavHostController, stopwatchListOrchestrator: StopwatchListOrchestrator) {
+    val stopwatches = stopwatchListOrchestrator.ticker.collectAsState()
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
         bottomBar = { TimiBottomBar(navController) },
