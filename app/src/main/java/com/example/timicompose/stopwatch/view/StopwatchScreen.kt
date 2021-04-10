@@ -20,14 +20,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.timicompose.common.presentation.TimiBottomBar
+import com.akjaw.core.common.domain.model.Task
+import com.akjaw.core.common.presentation.TimiBottomBar
+import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.core.common.view.theme.stopwatchBorder
+import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.core.common.view.theme.tasksPreview
 import com.example.timicompose.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.example.timicompose.stopwatch.presentation.StopwatchViewModel
-import com.example.timicompose.tasks.presentation.model.Task
-import com.example.timicompose.ui.theme.TimiComposeTheme
-import com.example.timicompose.ui.theme.stopwatchBorder
-import com.example.timicompose.ui.theme.taskShape
-import com.example.timicompose.ui.theme.tasksPreview
 
 @Composable
 fun StopwatchScreen(

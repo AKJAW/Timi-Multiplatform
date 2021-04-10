@@ -1,4 +1,4 @@
-package com.example.timicompose.common.domain.model
+package com.akjaw.core.common.domain.model
 
 data class TimestampMilliseconds(val value: Long) {
 

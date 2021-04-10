@@ -1,4 +1,4 @@
-package com.example.timicompose.common.presentation
+package com.akjaw.core.common.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.BottomNavigation
@@ -18,9 +18,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
-import com.example.timicompose.ui.theme.TimiComposeTheme
+import com.akjaw.core.common.view.theme.TimiComposeTheme
 
-private val values = listOf(BottomBarScreen.Home, BottomBarScreen.Stopwatch, BottomBarScreen.Settings)
+private val values = listOf(
+    BottomBarScreen.Home,
+    BottomBarScreen.Stopwatch,
+    BottomBarScreen.Settings
+)
 
 sealed class BottomBarScreen(
     val imageVector: ImageVector,

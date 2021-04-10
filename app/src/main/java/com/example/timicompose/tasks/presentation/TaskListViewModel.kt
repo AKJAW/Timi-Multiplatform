@@ -1,8 +1,8 @@
 package com.example.timicompose.tasks.presentation
 
 import androidx.lifecycle.ViewModel
-import com.example.timicompose.tasks.data.TaskRepository
-import com.example.timicompose.tasks.presentation.model.Task
+import com.akjaw.core.common.domain.data.TaskRepository
+import com.akjaw.core.common.domain.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject

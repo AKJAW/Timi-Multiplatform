@@ -20,13 +20,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.timicompose.common.presentation.TimiBottomBar
+import com.akjaw.core.common.domain.model.Task
+import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.core.common.view.theme.tasksPreview
 import com.example.timicompose.tasks.presentation.TaskListViewModel
-import com.example.timicompose.tasks.presentation.model.Task
-import com.example.timicompose.ui.theme.TimiComposeTheme
-import com.example.timicompose.ui.theme.taskShape
-import com.example.timicompose.ui.theme.taskTextColorFor
-import com.example.timicompose.ui.theme.tasksPreview
 
 @Composable
 fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
@@ -34,7 +33,7 @@ fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskList
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
-        bottomBar = { TimiBottomBar(navController) },
+        bottomBar = { com.akjaw.core.common.presentation.TimiBottomBar(navController) },
     ) { paddingValues ->
         TaskList(
             modifier = Modifier.padding(paddingValues),

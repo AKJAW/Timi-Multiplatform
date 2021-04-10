@@ -1,6 +1,6 @@
 package com.example.timicompose.stopwatch.domain.model
 
-import com.example.timicompose.common.domain.model.TimestampMilliseconds
+import com.akjaw.core.common.domain.model.TimestampMilliseconds
 
 sealed class StopwatchState {
     data class Running(

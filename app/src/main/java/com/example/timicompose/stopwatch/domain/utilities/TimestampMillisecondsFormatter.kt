@@ -1,6 +1,6 @@
 package com.example.timicompose.stopwatch.domain.utilities
 
-import com.example.timicompose.common.domain.model.TimestampMilliseconds
+import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import javax.inject.Inject
 
 class TimestampMillisecondsFormatter @Inject constructor() {

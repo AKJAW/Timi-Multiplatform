@@ -1,4 +1,4 @@
-package com.example.timicompose.common.composition
+package com.akjaw.core.common.composition
 
 import javax.inject.Qualifier
 

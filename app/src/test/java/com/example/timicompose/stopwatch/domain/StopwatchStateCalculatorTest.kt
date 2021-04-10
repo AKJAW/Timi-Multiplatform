@@ -1,8 +1,8 @@
 package com.example.timicompose.stopwatch.domain
 
-import com.example.timicompose.common.domain.TimestampProvider
-import com.example.timicompose.common.domain.model.TimestampMilliseconds
-import com.example.timicompose.common.domain.model.toTimestampMilliseconds
+import com.akjaw.core.common.domain.TimestampProvider
+import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.example.timicompose.stopwatch.domain.model.StopwatchState
 import com.example.timicompose.stopwatch.domain.utilities.ElapsedTimeCalculator
 import io.mockk.every

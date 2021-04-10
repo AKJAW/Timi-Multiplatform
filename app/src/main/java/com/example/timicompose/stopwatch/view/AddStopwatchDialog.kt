@@ -12,12 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.timicompose.common.view.PaddedDialog
-import com.example.timicompose.tasks.presentation.model.Task
-import com.example.timicompose.ui.theme.TimiComposeTheme
-import com.example.timicompose.ui.theme.taskShape
-import com.example.timicompose.ui.theme.taskTextColorFor
-import com.example.timicompose.ui.theme.tasksPreview
+import com.akjaw.core.common.domain.model.Task
+import com.akjaw.core.common.view.PaddedDialog
+import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.core.common.view.theme.tasksPreview
 
 @Composable
 fun AddStopwatchDialog(

@@ -1,7 +1,7 @@
 package com.example.timicompose.stopwatch.domain
 
+import com.akjaw.core.common.domain.model.Task
 import com.example.timicompose.stopwatch.domain.model.StopwatchState
-import com.example.timicompose.tasks.presentation.model.Task
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

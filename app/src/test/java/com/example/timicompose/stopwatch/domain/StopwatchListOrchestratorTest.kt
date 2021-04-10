@@ -1,9 +1,9 @@
 package com.example.timicompose.stopwatch.domain
 
 import androidx.compose.ui.graphics.Color
-import com.example.timicompose.common.domain.model.toTimestampMilliseconds
+import com.akjaw.core.common.domain.model.Task
+import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.example.timicompose.stopwatch.domain.model.StopwatchState
-import com.example.timicompose.tasks.presentation.model.Task
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope

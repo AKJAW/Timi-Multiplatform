@@ -1,11 +1,11 @@
-package com.example.timicompose.tasks.data
+package com.akjaw.core.common.domain.data
 
 import androidx.compose.ui.graphics.Color
-import com.example.timicompose.tasks.presentation.model.Task
+import com.akjaw.core.common.domain.model.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+@Singleton//TODO move interface to task:list-api
 class TaskRepository @Inject constructor() {
     val tasks = listOf(
         Task("Task 1", Color(132, 212, 240), false),

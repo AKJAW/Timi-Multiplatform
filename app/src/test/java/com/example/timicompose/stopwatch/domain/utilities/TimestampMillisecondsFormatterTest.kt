@@ -1,7 +1,7 @@
 package com.example.timicompose.stopwatch.domain.utilities
 
-import com.example.timicompose.common.domain.model.TimestampMilliseconds
-import com.example.timicompose.common.domain.model.toTimestampMilliseconds
+import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest

@@ -1,7 +1,7 @@
-package com.example.timicompose.ui.theme
+package com.akjaw.core.common.view.theme
 
 import androidx.compose.ui.graphics.Color
-import com.example.timicompose.tasks.presentation.model.Task
+import com.akjaw.core.common.domain.model.Task
 
 val tasksPreview = listOf(
     Task("Task 1", Color(132, 212, 240), false),

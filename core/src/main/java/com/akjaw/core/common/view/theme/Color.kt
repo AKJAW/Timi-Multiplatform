@@ -1,4 +1,4 @@
-package com.example.timicompose.ui.theme
+package com.akjaw.core.common.view.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance

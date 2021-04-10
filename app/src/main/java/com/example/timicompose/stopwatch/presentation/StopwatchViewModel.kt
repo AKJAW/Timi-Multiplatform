@@ -1,9 +1,9 @@
 package com.example.timicompose.stopwatch.presentation
 
 import androidx.lifecycle.ViewModel
+import com.akjaw.core.common.domain.data.TaskRepository
+import com.akjaw.core.common.domain.model.Task
 import com.example.timicompose.stopwatch.domain.StopwatchListOrchestrator
-import com.example.timicompose.tasks.data.TaskRepository
-import com.example.timicompose.tasks.presentation.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

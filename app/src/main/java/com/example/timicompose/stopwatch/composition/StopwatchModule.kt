@@ -1,8 +1,8 @@
 package com.example.timicompose.stopwatch.composition
 
-import com.example.timicompose.common.composition.DispatcherQualifiers
-import com.example.timicompose.common.domain.KlockTimestampProvider
-import com.example.timicompose.common.domain.TimestampProvider
+import com.akjaw.core.common.composition.DispatcherQualifiers
+import com.akjaw.core.common.domain.KlockTimestampProvider
+import com.akjaw.core.common.domain.TimestampProvider
 import com.example.timicompose.stopwatch.domain.StopwatchListOrchestrator
 import com.example.timicompose.stopwatch.domain.StopwatchStateHolderFactory
 import dagger.Binds
