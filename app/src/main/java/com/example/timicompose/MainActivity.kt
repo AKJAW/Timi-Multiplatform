@@ -17,8 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.example.timicompose.stopwatch.presentation.StopwatchViewModel
-import com.example.timicompose.stopwatch.view.StopwatchScreen
+import com.akjaw.stopwatch.presentation.StopwatchViewModel
+import com.akjaw.stopwatch.view.StopwatchScreen
 import com.example.timicompose.tasks.presentation.TaskListViewModel
 import com.example.timicompose.tasks.view.TaskListScreen
 import dagger.hilt.android.AndroidEntryPoint
