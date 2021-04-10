@@ -26,10 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.akjaw.core.common.domain.model.Task
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskColors
 import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.task.list_api.domain.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

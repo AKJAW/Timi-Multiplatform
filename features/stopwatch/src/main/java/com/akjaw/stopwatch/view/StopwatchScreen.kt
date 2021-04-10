@@ -21,14 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavHostController
-import com.akjaw.core.common.domain.model.Task
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
-import com.akjaw.core.common.view.theme.tasksPreview
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
+import com.akjaw.task.list_api.domain.Task
+import com.akjaw.task.list_api.view.tasksPreview
 
 @Composable
 fun StopwatchScreen(

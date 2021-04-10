@@ -1,9 +1,9 @@
 package com.akjaw.stopwatch.presentation
 
 import androidx.lifecycle.ViewModel
-import com.akjaw.core.common.domain.data.TaskRepository
-import com.akjaw.core.common.domain.model.Task
 import com.akjaw.stopwatch.domain.StopwatchListOrchestrator
+import com.akjaw.task.list_api.data.TaskRepository
+import com.akjaw.task.list_api.domain.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

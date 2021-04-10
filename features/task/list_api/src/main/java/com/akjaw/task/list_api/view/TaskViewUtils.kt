@@ -1,7 +1,7 @@
-package com.akjaw.core.common.view.theme
+package com.akjaw.task.list_api.view
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.core.common.domain.model.Task
+import com.akjaw.task.list_api.domain.Task
 
 val tasksPreview = listOf(
     Task("Task 1", Color(132, 212, 240), false),

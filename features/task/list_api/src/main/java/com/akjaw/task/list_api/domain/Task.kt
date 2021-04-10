@@ -1,4 +1,4 @@
-package com.akjaw.core.common.domain.model
+package com.akjaw.task.list_api.domain
 
 import androidx.compose.ui.graphics.Color
 //TODO move to tasks:list-api

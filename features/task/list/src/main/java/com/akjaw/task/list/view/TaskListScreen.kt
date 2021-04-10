@@ -21,12 +21,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavHostController
-import com.akjaw.core.common.domain.model.Task
+import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
-import com.akjaw.core.common.view.theme.tasksPreview
 import com.akjaw.task.list.presentation.TaskListViewModel
+import com.akjaw.task.list_api.domain.Task
+import com.akjaw.task.list_api.view.tasksPreview
 
 @Composable
 fun TaskListScreen(navController: NavHostController) {
@@ -35,7 +36,7 @@ fun TaskListScreen(navController: NavHostController) {
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
-        bottomBar = { com.akjaw.core.common.presentation.TimiBottomBar(navController) },
+        bottomBar = { TimiBottomBar(navController) },
     ) { paddingValues ->
         TaskList(
             modifier = Modifier.padding(paddingValues),

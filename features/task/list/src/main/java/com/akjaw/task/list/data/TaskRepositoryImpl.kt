@@ -1,13 +1,16 @@
-package com.akjaw.core.common.domain.data
+package com.akjaw.task.list.data
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.core.common.domain.model.Task
+import com.akjaw.task.list_api.data.TaskRepository
+import com.akjaw.task.list_api.domain.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @Singleton//TODO move interface to task:list-api
-class TaskRepository @Inject constructor() {
-    val tasks = listOf(
+internal class TaskRepositoryImpl @Inject constructor(): TaskRepository {
+
+    override val tasks: List<Task> = listOf(
         Task("Task 1", Color(132, 212, 240), false),
         Task("Task 2", Color(230, 240, 132), false),
         Task("Task 3", Color(132, 240, 161), false),
