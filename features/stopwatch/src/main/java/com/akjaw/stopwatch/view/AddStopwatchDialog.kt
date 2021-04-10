@@ -20,7 +20,7 @@ import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.theme.tasksPreview
 
 @Composable
-fun AddStopwatchDialog(
+internal fun AddStopwatchDialog(
     isDialogOpen: Boolean,
     closeDialog: () -> Unit,
     availableTasks: List<Task>,

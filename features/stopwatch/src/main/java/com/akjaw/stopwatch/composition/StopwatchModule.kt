@@ -1,11 +1,8 @@
 package com.akjaw.stopwatch.composition
 
 import com.akjaw.core.common.composition.DispatcherQualifiers
-import com.akjaw.core.common.domain.KlockTimestampProvider
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.stopwatch.domain.StopwatchListOrchestrator
 import com.akjaw.stopwatch.domain.StopwatchStateHolderFactory
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,10 +13,7 @@ import kotlinx.coroutines.SupervisorJob
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-abstract class StopwatchModule {
-
-    @Binds
-    abstract fun bindTimestampProvider(klockTimestampProvider: KlockTimestampProvider): TimestampProvider
+internal abstract class StopwatchModule {
 
     companion object {
 

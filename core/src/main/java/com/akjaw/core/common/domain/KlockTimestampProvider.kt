@@ -5,7 +5,7 @@ import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.soywiz.klock.DateTime
 import javax.inject.Inject
 
-class KlockTimestampProvider @Inject constructor() : TimestampProvider {
+internal class KlockTimestampProvider @Inject constructor() : TimestampProvider {
 
     override fun getMilliseconds(): TimestampMilliseconds =
         DateTime.nowUnixLong().toTimestampMilliseconds()

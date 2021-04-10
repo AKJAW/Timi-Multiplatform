@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StopwatchListOrchestrator @Inject constructor(
+internal class StopwatchListOrchestrator @Inject constructor(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,
 ) {

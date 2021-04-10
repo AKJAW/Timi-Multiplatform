@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.domain.model.Task
 import com.akjaw.core.common.presentation.TimiBottomBar
@@ -31,9 +32,9 @@ import com.akjaw.stopwatch.presentation.StopwatchViewModel
 
 @Composable
 fun StopwatchScreen(
-    navController: NavHostController,
-    stopwatchViewModel: StopwatchViewModel,
+    navController: NavHostController
 ) {
+    val stopwatchViewModel = hiltNavGraphViewModel<StopwatchViewModel>()
     val availableTasks = stopwatchViewModel.availableTasks.collectAsState(emptyList())
     val stopwatches = stopwatchViewModel.stopwatches.collectAsState()
     val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
@@ -60,7 +61,7 @@ fun StopwatchScreen(
 }
 
 @Composable
-fun StopwatchContent(
+private fun StopwatchContent(
     stopwatches: Map<Task, String>,
     onAddStopwatchClicked: () -> Unit = {},
     onStartClicked: (Task) -> Unit = {},
@@ -90,7 +91,7 @@ fun StopwatchContent(
 }
 
 @Composable
-fun StopwatchItem(
+private fun StopwatchItem(
     task: Task,
     timeString: String,
     onStartClicked: () -> Unit = {},
@@ -147,7 +148,7 @@ fun StopwatchItem(
 }
 
 @Composable
-fun StopwatchButton(
+private fun StopwatchButton(
     imageVector: ImageVector,
     contentDescription: String?,
     color: Color,
@@ -171,7 +172,7 @@ fun StopwatchButton(
 }
 
 @Composable
-fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
+private fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -189,7 +190,7 @@ fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
 
 @Preview
 @Composable
-fun StopwatchItemPreview() {
+private fun StopwatchItemPreview() {
     TimiComposeTheme {
         StopwatchItem(
             task = tasksPreview.first(),
@@ -200,7 +201,7 @@ fun StopwatchItemPreview() {
 
 @Preview
 @Composable
-fun DarkStopwatchItemPreview() {
+private fun DarkStopwatchItemPreview() {
     TimiComposeTheme(darkTheme = true) {
         StopwatchItem(
             task = tasksPreview.first(),
@@ -211,7 +212,7 @@ fun DarkStopwatchItemPreview() {
 
 @Preview
 @Composable
-fun AddNewStopwatchEntryButtonPreview() {
+private fun AddNewStopwatchEntryButtonPreview() {
     TimiComposeTheme {
         AddNewStopwatchEntryButton()
     }
@@ -219,7 +220,7 @@ fun AddNewStopwatchEntryButtonPreview() {
 
 @Preview
 @Composable
-fun DarkAddNewStopwatchEntryButtonPreview() {
+private fun DarkAddNewStopwatchEntryButtonPreview() {
     TimiComposeTheme(darkTheme = true) {
         AddNewStopwatchEntryButton()
     }
@@ -227,7 +228,7 @@ fun DarkAddNewStopwatchEntryButtonPreview() {
 
 @Preview
 @Composable
-fun StopwatchContentPreview() {
+private fun StopwatchContentPreview() {
     TimiComposeTheme {
         StopwatchContent(stopwatches = previewStopwatches)
     }
@@ -235,7 +236,7 @@ fun StopwatchContentPreview() {
 
 @Preview
 @Composable
-fun DarkStopwatchContentPreview() {
+private fun DarkStopwatchContentPreview() {
     TimiComposeTheme(darkTheme = true) {
         StopwatchContent(stopwatches = previewStopwatches)
 

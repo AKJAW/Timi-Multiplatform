@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class TaskListViewModel @Inject constructor(
+internal class TaskListViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 

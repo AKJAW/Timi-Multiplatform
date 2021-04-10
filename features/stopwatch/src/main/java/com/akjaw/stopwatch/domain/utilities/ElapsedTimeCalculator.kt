@@ -6,7 +6,7 @@ import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.stopwatch.domain.model.StopwatchState
 import javax.inject.Inject
 
-class ElapsedTimeCalculator @Inject constructor(
+internal class ElapsedTimeCalculator @Inject constructor(
     private val timestampProvider: TimestampProvider,
 ) {
 

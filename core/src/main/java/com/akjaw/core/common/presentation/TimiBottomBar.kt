@@ -51,7 +51,7 @@ fun TimiBottomBar(navController: NavHostController) {
 }
 
 @Composable
-fun TimiBottomBar(
+private fun TimiBottomBar(
     currentRoute: String?,
     onClick: (BottomBarScreen) -> Unit,
     items: List<BottomBarScreen> = values
@@ -85,7 +85,7 @@ private fun BottomNavIcon(
 
 @Preview
 @Composable
-fun TimiBottomBarPreview() {
+private fun TimiBottomBarPreview() {
     TimiComposeTheme {
         TimiBottomBar(currentRoute = BottomBarScreen.Home.route, onClick = { })
     }
@@ -93,7 +93,7 @@ fun TimiBottomBarPreview() {
 
 @Preview
 @Composable
-fun TimiBottomBarPreviewDark() {
+private fun TimiBottomBarPreviewDark() {
     TimiComposeTheme(darkTheme = true) {
         TimiBottomBar(currentRoute = BottomBarScreen.Home.route, onClick = { })
     }

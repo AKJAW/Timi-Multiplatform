@@ -34,7 +34,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
+internal fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
     val (isAddTaskDialogOpen, setIsAddTaskDialogOpen) = remember { mutableStateOf(false) }
 
     FloatingActionButton(onClick = { setIsAddTaskDialogOpen(true) }) {

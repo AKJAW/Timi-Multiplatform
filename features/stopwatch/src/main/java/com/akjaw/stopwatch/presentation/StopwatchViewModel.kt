@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.combineTransform
 import javax.inject.Inject
 
 @HiltViewModel
-class StopwatchViewModel @Inject constructor(
+internal class StopwatchViewModel @Inject constructor(
     private val taskRepository: TaskRepository,
     private val stopwatchListOrchestrator: StopwatchListOrchestrator,
 ) : ViewModel() {

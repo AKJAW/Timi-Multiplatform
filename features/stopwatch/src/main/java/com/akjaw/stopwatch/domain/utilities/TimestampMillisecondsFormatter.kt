@@ -3,7 +3,7 @@ package com.akjaw.stopwatch.domain.utilities
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import javax.inject.Inject
 
-class TimestampMillisecondsFormatter @Inject constructor() {
+internal class TimestampMillisecondsFormatter @Inject constructor() {
 
     companion object {
         const val DEFAULT_TIME = "00:00:000"

@@ -15,7 +15,7 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
-fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
+internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
     val (isDeleteDialogOpen, setIsDeleteDialogOpen) = remember { mutableStateOf(false) }
 
     val tasks = taskListViewModel.tasks.collectAsState().value
@@ -98,7 +98,7 @@ private fun pluralTaskText(count: Int) = when (count) { //TODO replace with reso
 
 @Preview
 @Composable
-fun ConfirmDeletionDialogPreview() {
+private fun ConfirmDeletionDialogPreview() {
     TimiComposeTheme {
         ConfirmDeletionDialog(true, { }, 2, { })
     }

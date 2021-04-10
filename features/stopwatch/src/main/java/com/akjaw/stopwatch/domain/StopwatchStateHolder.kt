@@ -5,7 +5,7 @@ import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 
-class StopwatchStateHolder(
+internal class StopwatchStateHolder(
     private val stopwatchStateCalculator: StopwatchStateCalculator,
     private val elapsedTimeCalculator: ElapsedTimeCalculator,
     private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,

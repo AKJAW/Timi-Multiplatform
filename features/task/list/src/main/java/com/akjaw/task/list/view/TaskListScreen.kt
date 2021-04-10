@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.domain.model.Task
 import com.akjaw.core.common.view.theme.TimiComposeTheme
@@ -28,7 +29,8 @@ import com.akjaw.core.common.view.theme.tasksPreview
 import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
-fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {
+fun TaskListScreen(navController: NavHostController) {
+    val taskListViewModel = hiltNavGraphViewModel<TaskListViewModel>()
     val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
@@ -45,7 +47,7 @@ fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskList
 }
 
 @Composable
-fun TaskList(
+private fun TaskList(
     modifier: Modifier = Modifier,
     tasks: List<Task>,
     onTaskClicked: (Task) -> Unit = { }

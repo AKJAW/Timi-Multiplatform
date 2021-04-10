@@ -3,7 +3,6 @@ package com.example.timicompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
@@ -17,16 +16,12 @@ import androidx.navigation.compose.rememberNavController
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.stopwatch.view.StopwatchScreen
-import com.akjaw.task.list.presentation.TaskListViewModel
 import com.akjaw.task.list.view.TaskListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val taskListViewModel: TaskListViewModel by viewModels()
-    private val stopwatchViewModel: StopwatchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +34,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable(BottomBarScreen.Home.route) {
                         TaskListScreen(
-                            navController,
-                            taskListViewModel
+                            navController
                         )
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
                         StopwatchScreen(
-                            navController,
-                            stopwatchViewModel
+                            navController
                         )
                     }
                     composable(BottomBarScreen.Settings.route) {
