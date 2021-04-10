@@ -1,4 +1,4 @@
-package com.example.timicompose.tasks.view
+package com.akjaw.task.list.view
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.*
@@ -25,7 +25,7 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.theme.tasksPreview
-import com.example.timicompose.tasks.presentation.TaskListViewModel
+import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
 fun TaskListScreen(navController: NavHostController, taskListViewModel: TaskListViewModel) {

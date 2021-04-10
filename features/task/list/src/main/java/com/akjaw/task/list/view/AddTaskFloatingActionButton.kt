@@ -1,4 +1,4 @@
-package com.example.timicompose.tasks.view
+package com.akjaw.task.list.view
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable

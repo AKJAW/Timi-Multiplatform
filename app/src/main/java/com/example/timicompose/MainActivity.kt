@@ -19,8 +19,8 @@ import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.stopwatch.view.StopwatchScreen
-import com.example.timicompose.tasks.presentation.TaskListViewModel
-import com.example.timicompose.tasks.view.TaskListScreen
+import com.akjaw.task.list.presentation.TaskListViewModel
+import com.akjaw.task.list.view.TaskListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +38,10 @@ class MainActivity : ComponentActivity() {
                     startDestination = BottomBarScreen.Home.route
                 ) {
                     composable(BottomBarScreen.Home.route) {
-                        TaskListScreen(navController, taskListViewModel)
+                        TaskListScreen(
+                            navController,
+                            taskListViewModel
+                        )
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
                         StopwatchScreen(

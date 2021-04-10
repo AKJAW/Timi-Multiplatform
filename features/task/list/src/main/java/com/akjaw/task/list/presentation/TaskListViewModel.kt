@@ -1,4 +1,4 @@
-package com.example.timicompose.tasks.presentation
+package com.akjaw.task.list.presentation
 
 import androidx.lifecycle.ViewModel
 import com.akjaw.core.common.domain.data.TaskRepository
