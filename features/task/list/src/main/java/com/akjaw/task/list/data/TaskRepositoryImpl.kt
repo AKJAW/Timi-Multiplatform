@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-@Singleton//TODO move interface to task:list-api
+@Singleton
 internal class TaskRepositoryImpl @Inject constructor(): TaskRepository {
 
     override val tasks: List<Task> = listOf(

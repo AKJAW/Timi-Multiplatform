@@ -7,9 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 internal class StopwatchListOrchestrator @Inject constructor(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,

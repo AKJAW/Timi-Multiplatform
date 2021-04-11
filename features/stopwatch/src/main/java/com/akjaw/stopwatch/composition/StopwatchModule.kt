@@ -9,13 +9,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(SingletonComponent::class)
 internal abstract class StopwatchModule {
 
     @Binds
@@ -24,6 +25,7 @@ internal abstract class StopwatchModule {
     companion object {
 
         @Provides
+        @Singleton
         fun provideStopwatchListOrchestrator(
             stopwatchStateHolderFactory: StopwatchStateHolderFactory,
             @DispatcherQualifiers dispatcher: CoroutineDispatcher

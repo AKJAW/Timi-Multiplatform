@@ -34,10 +34,4 @@ internal class StopwatchViewModel @Inject constructor(
     fun pause(task: Task) = stopwatchListOrchestrator.pause(task)
 
     fun stop(task: Task) = stopwatchListOrchestrator.stop(task)
-
-    // TODO is this correct?
-    override fun onCleared() {
-        super.onCleared()
-        stopwatchListOrchestrator.destroy()
-    }
 }
