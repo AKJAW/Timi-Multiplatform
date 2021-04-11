@@ -31,7 +31,7 @@ import com.akjaw.task.list_api.domain.Task
 import com.akjaw.task.list_api.view.tasksPreview
 
 @Composable
-fun StopwatchScreen(
+internal fun StopwatchScreen(
     navController: NavHostController
 ) {
     val stopwatchViewModel = hiltNavGraphViewModel<StopwatchViewModel>()

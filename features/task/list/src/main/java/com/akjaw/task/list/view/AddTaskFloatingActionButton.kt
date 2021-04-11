@@ -300,7 +300,7 @@ private fun SelectedDarkAddTaskDialogWithColorPickerPreview() {
 }
 
 @Composable
-fun TestAddTaskDialogWithColorPicker(
+private fun TestAddTaskDialogWithColorPicker(
     backgroundColor: Color = MaterialTheme.colors.background,
     defaultTextColor: Color = contentColorFor(backgroundColor),
 ) {

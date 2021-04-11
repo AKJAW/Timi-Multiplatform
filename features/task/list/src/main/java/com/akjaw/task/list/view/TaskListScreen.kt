@@ -30,7 +30,7 @@ import com.akjaw.task.list_api.domain.Task
 import com.akjaw.task.list_api.view.tasksPreview
 
 @Composable
-fun TaskListScreen(navController: NavHostController) {
+internal fun TaskListScreen(navController: NavHostController) {
     val taskListViewModel = hiltNavGraphViewModel<TaskListViewModel>()
     val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(

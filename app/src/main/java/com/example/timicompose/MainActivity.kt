@@ -15,13 +15,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
+import com.akjaw.core.common.view.NavigationHolder
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.stopwatch.view.StopwatchScreen
-import com.akjaw.task.list.view.TaskListScreen
+import com.akjaw.stopwatch.view.StopwatchScreenCreator
+import com.akjaw.task.list_api.view.TaskListScreenCreator
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var taskListScreenCreator: TaskListScreenCreator
+
+    @Inject
+    lateinit var stopwatchScreenCreator: StopwatchScreenCreator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +41,13 @@ class MainActivity : ComponentActivity() {
                     startDestination = BottomBarScreen.Home.route
                 ) {
                     composable(BottomBarScreen.Home.route) {
-                        TaskListScreen(
-                            navController
+                        taskListScreenCreator.Create(
+                            navigationHolder = NavigationHolder(navController)
                         )
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
-                        StopwatchScreen(
-                            navController
+                        stopwatchScreenCreator.Create(
+                            navigationHolder = NavigationHolder(navController)
                         )
                     }
                     composable(BottomBarScreen.Settings.route) {
