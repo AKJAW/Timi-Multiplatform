@@ -1,8 +1,8 @@
 package com.akjaw.task.list.presentation
 
 import androidx.lifecycle.ViewModel
-import com.akjaw.task.list_api.data.TaskRepository
-import com.akjaw.task.list_api.domain.Task
+import com.akjaw.task.api.data.TaskRepository
+import com.akjaw.task.api.domain.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject

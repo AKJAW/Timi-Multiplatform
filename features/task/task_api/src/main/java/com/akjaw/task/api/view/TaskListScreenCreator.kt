@@ -1,4 +1,4 @@
-package com.akjaw.task.list_api.view
+package com.akjaw.task.api.view
 
 import androidx.compose.runtime.Composable
 import com.akjaw.core.common.view.NavigationHolder

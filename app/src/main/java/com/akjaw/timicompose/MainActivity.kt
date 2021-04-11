@@ -18,7 +18,7 @@ import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.NavigationHolder
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.stopwatch.view.StopwatchScreenCreator
-import com.akjaw.task.list_api.view.TaskListScreenCreator
+import com.akjaw.task.api.view.TaskListScreenCreator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

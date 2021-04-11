@@ -1,7 +1,7 @@
 package com.akjaw.stopwatch.domain
 
 import com.akjaw.stopwatch.domain.model.StopwatchState
-import com.akjaw.task.list_api.domain.Task
+import com.akjaw.task.api.domain.Task
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

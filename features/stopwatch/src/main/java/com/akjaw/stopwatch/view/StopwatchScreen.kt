@@ -27,8 +27,8 @@ import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
-import com.akjaw.task.list_api.domain.Task
-import com.akjaw.task.list_api.view.tasksPreview
+import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.view.tasksPreview
 
 @Composable
 internal fun StopwatchScreen(

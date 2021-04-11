@@ -1,8 +1,8 @@
 package com.akjaw.task.list.data
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.task.list_api.data.TaskRepository
-import com.akjaw.task.list_api.domain.Task
+import com.akjaw.task.api.data.TaskRepository
+import com.akjaw.task.api.domain.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 

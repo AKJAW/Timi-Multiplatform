@@ -25,9 +25,9 @@ import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.view.tasksPreview
 import com.akjaw.task.list.presentation.TaskListViewModel
-import com.akjaw.task.list_api.domain.Task
-import com.akjaw.task.list_api.view.tasksPreview
 
 @Composable
 internal fun TaskListScreen(navController: NavHostController) {
