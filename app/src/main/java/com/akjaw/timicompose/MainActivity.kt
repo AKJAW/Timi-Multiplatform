@@ -1,4 +1,4 @@
-package com.example.timicompose
+package com.akjaw.timicompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
