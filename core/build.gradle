@@ -36,27 +36,25 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.30'
+        kotlinCompilerExtensionVersion versions.compose
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
-    implementation "com.soywiz.korlibs.klock:klock:2.0.7"
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.material
+    implementation composeDependencies.ui
+    implementation composeDependencies.material
+    implementation composeDependencies.tooling
+    implementation composeDependencies.materialIcons
+    implementation composeDependencies.navigation
+    implementation kotlinDependencies.coroutines
+    implementation otherDependencies.klock
 
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation hiltDependencies.android
+    kapt hiltDependencies.compiler
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation testingDependencies.jupiterApi
+    testRuntimeOnly testingDependencies.jupiterRuntimeEngine
 }

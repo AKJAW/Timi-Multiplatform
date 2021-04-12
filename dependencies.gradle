@@ -1,0 +1,49 @@
+ext {
+    versions = [
+            "kotlin": "1.4.30",
+            "coroutines": "1.4.3",
+            "compose": "1.0.0-beta01",
+            "hilt": "2.33-beta",
+            "jupiter": "5.6.2",
+    ]
+
+    androidxDependencies = [
+            "coreKtx": "androidx.core:core-ktx:1.3.2",
+            "appCompat": "androidx.appcompat:appcompat:1.2.0",
+            "material": "com.google.android.material:material:1.3.0",
+            "lifecycleRuntimeKtx": "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06",
+    ]
+
+    kotlinDependencies = [
+            "coroutines": "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+    ]
+
+    composeDependencies = [
+            "ui": "androidx.compose.ui:ui:${versions.compose}",
+            "material": "androidx.compose.material:material:${versions.compose}",
+            "materialIcons": "androidx.compose.material:material-icons-extended:${versions.compose}",
+            "tooling": "androidx.compose.ui:ui-tooling:${versions.compose}",
+            "navigation": "androidx.navigation:navigation-compose:1.0.0-alpha09",
+            "activity": "androidx.activity:activity-compose:1.3.0-alpha02",
+            "viewModel": "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03",
+    ]
+
+    hiltDependencies = [
+            "android": "com.google.dagger:hilt-android:${versions.hilt}",
+            "compiler": "com.google.dagger:hilt-compiler:${versions.hilt}",
+            "navigationCompose": "androidx.hilt:hilt-navigation-compose:1.0.0-alpha01",
+    ]
+
+    testingDependencies = [
+            "jupiterApi": "org.junit.jupiter:junit-jupiter-api:${versions.jupiter}",
+            "jupiterParams": "org.junit.jupiter:junit-jupiter-params:${versions.jupiter}",
+            "strikt": "io.strikt:strikt-core:0.30.0",
+            "mock": "io.mockk:mockk:1.11.0",
+            "coroutinesTest": "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
+            "jupiterRuntimeEngine": "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter}",
+    ]
+
+    otherDependencies = [
+            "klock": "com.soywiz.korlibs.klock:klock:2.0.7"
+    ]
+}
