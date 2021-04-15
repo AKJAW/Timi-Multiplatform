@@ -8,3 +8,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Timi Compose"
 include ':app'
+include ':features'
+include ':features:stopwatch'
+include ':core'
+include ':features:task'
+include ':features:task:list'
+include ':features:task:task_api'
