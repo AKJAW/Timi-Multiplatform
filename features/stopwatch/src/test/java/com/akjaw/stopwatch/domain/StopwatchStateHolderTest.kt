@@ -15,15 +15,12 @@ import strikt.assertions.isEqualTo
 internal class StopwatchStateHolderTest {
 
     private val timestampProvider: TimestampProvider = mockk()
-    private val elapsedTimeCalculator =
-        ElapsedTimeCalculator(timestampProvider)
-    private val stopwatchStateCalculator =
-        StopwatchStateCalculator(
-            timestampProvider = timestampProvider,
-            elapsedTimeCalculator = elapsedTimeCalculator
-        )
-    private val timestampMillisecondsFormatter =
-        TimestampMillisecondsFormatter()
+    private val elapsedTimeCalculator = ElapsedTimeCalculator(timestampProvider)
+    private val stopwatchStateCalculator = StopwatchStateCalculator(
+        timestampProvider = timestampProvider,
+        elapsedTimeCalculator = elapsedTimeCalculator
+    )
+    private val timestampMillisecondsFormatter = TimestampMillisecondsFormatter()
     private lateinit var systemUnderTest: StopwatchStateHolder
 
     @BeforeEach

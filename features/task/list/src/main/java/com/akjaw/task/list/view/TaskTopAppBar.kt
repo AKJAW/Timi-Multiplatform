@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.akjaw.core.common.view.PaddedAlertDialog
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.task.list.presentation.TaskListViewModel
 
@@ -59,7 +60,7 @@ private fun ConfirmDeletionDialog(
     onDeleteConfirm: () -> Unit
 ) {
     if (isDeleteDialogOpen.not()) return
-    com.akjaw.core.common.view.PaddedAlertDialog(
+    PaddedAlertDialog(
         onDismissRequest = {
             setIsDeleteDialogOpen(false)
         },

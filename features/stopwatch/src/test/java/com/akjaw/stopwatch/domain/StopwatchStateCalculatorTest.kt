@@ -26,8 +26,8 @@ internal class StopwatchStateCalculatorTest {
     @BeforeEach
     fun setUp() {
         systemUnderTest = StopwatchStateCalculator(
-            timestampProvider,
-            elapsedTimeCalculator
+            timestampProvider = timestampProvider,
+            elapsedTimeCalculator = elapsedTimeCalculator
         )
     }
 
