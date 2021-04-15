@@ -109,14 +109,18 @@ private fun StopwatchItem(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = task.name,
-                    style = MaterialTheme.typography.body1.copy(fontSize = 20.sp)
-                )
-                Text(
-                    text = timeString,
-                    style = MaterialTheme.typography.body1.copy(fontSize = 20.sp)
-                )
+                Box(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = task.name,
+                        style = MaterialTheme.typography.body1.copy(fontSize = 20.sp)
+                    )
+                }
+                Box {
+                    Text(
+                        text = timeString,
+                        style = MaterialTheme.typography.body1.copy(fontSize = 20.sp)
+                    )
+                }
             }
             Divider()
             Row(

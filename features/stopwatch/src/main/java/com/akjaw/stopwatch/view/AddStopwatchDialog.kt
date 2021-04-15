@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -98,11 +99,14 @@ private fun AddStopwatchTaskItem(
             contentAlignment = Alignment.Center
         ) {
             Text(
+                modifier = Modifier.padding(horizontal = 8.dp),
                 style = MaterialTheme.typography.body1.copy(
                     color = taskTextColorFor(task.backgroundColor),
                     fontSize = 22.sp,
                 ),
-                text = task.name
+                text = task.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

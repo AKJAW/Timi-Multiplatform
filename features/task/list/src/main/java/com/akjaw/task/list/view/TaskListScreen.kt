@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -81,29 +82,33 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
         backgroundColor = task.backgroundColor,
         elevation = 0.dp,
     ) {
+        val buttonWidth = remember { 50.dp }
         Box(
             contentAlignment = Alignment.Center
         ) {
             Text(
+                modifier = Modifier.padding(start = 8.dp, end = buttonWidth),
                 text = task.name,
                 style = MaterialTheme.typography.h6.copy(
                     color = taskTextColorFor(task.backgroundColor)
-                )
+                ),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.CenterEnd
             ) {
-                TaskSelectButton(task.isSelected)
+                TaskSelectButton(task.isSelected, buttonWidth)
             }
         }
     }
 }
 
 @Composable
-private fun TaskSelectButton(isSelected: Boolean) {
+private fun TaskSelectButton(isSelected: Boolean, buttonWidth: Dp) {
     val transition = updateTransition(targetState = isSelected)
-    val backgroundWidth: Dp by transition.animateDp { if (it) 0.dp else 50.dp }
+    val backgroundWidth: Dp by transition.animateDp { if (it) 0.dp else buttonWidth }
     Box(
         modifier = Modifier
             .background(MaterialTheme.colors.background)
