@@ -27,7 +27,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
 
     private fun startJob() {
         scope.launch {
-            while (true) {
+            while (isActive) {
                 val newValues = stopwatchStateHolders
                     .toSortedMap(compareBy { task -> task.name }) //TODO order by order on task list / id
                     .map { (task, stateHolder) ->
