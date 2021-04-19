@@ -6,7 +6,6 @@ import com.akjaw.task.api.data.TaskRepository
 import com.akjaw.task.api.domain.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combineTransform
 import javax.inject.Inject
@@ -20,7 +19,7 @@ internal class StopwatchViewModel @Inject constructor(
     val stopwatches: StateFlow<Map<Task, String>> = stopwatchListOrchestrator.ticker
 
     val availableTasks: Flow<List<Task>> = combineTransform(
-        MutableStateFlow(taskRepository.tasks),
+        taskRepository.tasks,
         stopwatches
     ) { tasks, stopwatches ->
         val availableTasks = tasks.filterNot { task ->

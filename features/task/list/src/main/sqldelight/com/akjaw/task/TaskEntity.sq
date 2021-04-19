@@ -2,7 +2,7 @@ CREATE TABLE TaskEntity (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   position INTEGER NOT NULL,
   name TEXT NOT NULL,
-  color INTEGER NOT NULL
+  color INTEGER AS Int NOT NULL
 );
 
 selectAllTasks:

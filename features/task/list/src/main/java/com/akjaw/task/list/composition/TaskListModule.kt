@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-@Module
+@Module(includes = [DatabaseModule::class])
 @InstallIn(SingletonComponent::class)
 internal abstract class TaskListModule {
 

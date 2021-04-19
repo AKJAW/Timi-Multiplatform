@@ -33,7 +33,7 @@ import com.akjaw.task.list.presentation.TaskListViewModel
 @Composable
 internal fun TaskListScreen(navController: NavHostController) {
     val taskListViewModel = hiltNavGraphViewModel<TaskListViewModel>()
-    val tasks = taskListViewModel.tasks.collectAsState()
+    val tasks = taskListViewModel.tasks.collectAsState(emptyList())
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
