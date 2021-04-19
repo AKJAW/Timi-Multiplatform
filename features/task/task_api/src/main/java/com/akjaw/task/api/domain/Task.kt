@@ -6,4 +6,5 @@ data class Task(
     val name: String,
     val backgroundColor: Color, //TODO change the type?
     val isSelected: Boolean = false,
+    val id: Long = 0, // TODO move to beggining
 )

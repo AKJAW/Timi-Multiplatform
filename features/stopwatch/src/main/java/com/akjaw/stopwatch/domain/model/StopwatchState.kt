@@ -10,6 +10,4 @@ internal sealed class StopwatchState {
     data class Paused(
         val elapsedTime: TimestampMilliseconds
     ) : StopwatchState()
-    //TODO Stopped?
-//        data class Stopped()
 }

@@ -5,6 +5,7 @@ ext {
             "compose": "1.0.0-beta01",
             "hilt": "2.33-beta",
             "jupiter": "5.6.2",
+            "sqldelight": "1.4.4",
     ]
 
     androidxDependencies = [
@@ -37,13 +38,16 @@ ext {
     testingDependencies = [
             "jupiterApi": "org.junit.jupiter:junit-jupiter-api:${versions.jupiter}",
             "jupiterParams": "org.junit.jupiter:junit-jupiter-params:${versions.jupiter}",
+            "jupiterRuntimeEngine": "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter}",
             "strikt": "io.strikt:strikt-core:0.30.0",
             "mock": "io.mockk:mockk:1.11.0",
             "coroutinesTest": "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
-            "jupiterRuntimeEngine": "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter}",
+            "sqldelightInMemory": "com.squareup.sqldelight:sqlite-driver:${versions.sqldelight}",
     ]
 
     otherDependencies = [
-            "klock": "com.soywiz.korlibs.klock:klock:2.0.7"
+            "klock": "com.soywiz.korlibs.klock:klock:2.0.7",
+            "sqldelight": "com.squareup.sqldelight:android-driver:${versions.sqldelight}",
+            "sqldelightCoroutines": "com.squareup.sqldelight:coroutines-extensions-jvm:${versions.sqldelight}",
     ]
 }

@@ -1,0 +1,28 @@
+CREATE TABLE TaskEntity (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  position INTEGER NOT NULL,
+  name TEXT NOT NULL,
+  color INTEGER NOT NULL
+);
+
+selectAllTasks:
+SELECT * FROM TaskEntity;
+
+selectTaskById:
+SELECT * FROM TaskEntity
+WHERE id = ?;
+
+insertTask:
+INSERT INTO TaskEntity(id, position, name, color)
+VALUES(?, ?, ?, ?);
+
+updateTaskName:
+UPDATE TaskEntity
+SET position = ?,
+name = ?,
+color = ?
+WHERE id = ?;
+
+deleteTaskById:
+DELETE FROM TaskEntity
+WHERE id = ?;
