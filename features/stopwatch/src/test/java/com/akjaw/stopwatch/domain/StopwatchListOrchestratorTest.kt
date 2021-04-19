@@ -26,8 +26,16 @@ import strikt.assertions.isNull
 internal class StopwatchListOrchestratorTest {
 
     companion object {
-        private val TASK1 = Task("First task", Color.White, false)
-        private val TASK2 = Task("Second the cooler task", Color.White, false)
+        private val TASK1 = Task(
+            name = "First task",
+            backgroundColor = Color.White,
+            isSelected = false
+        )
+        private val TASK2 = Task(
+            name = "Second the cooler task",
+            backgroundColor = Color.White,
+            isSelected = false
+        )
     }
 
     private val stopwatchStateHolder: StopwatchStateHolder = mockk(relaxed = true) {

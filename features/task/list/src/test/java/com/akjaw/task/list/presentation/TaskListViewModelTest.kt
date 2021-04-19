@@ -15,16 +15,16 @@ internal class TaskListViewModelTest {
 
     companion object {
         val TASK1 = Task(
+            id = 0,
             name = "name",
             backgroundColor = Color.White,
             isSelected = false,
-            id = 0,
         )
         val TASK2 = Task(
+            id = 1,
             name = "name2",
             backgroundColor = Color.White,
             isSelected = false,
-            id = 1,
         )
     }
 

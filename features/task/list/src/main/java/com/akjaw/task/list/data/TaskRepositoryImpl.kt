@@ -22,7 +22,7 @@ internal class TaskRepositoryImpl @Inject constructor(
             position: Long,
             name: String,
             color: Int ->
-        Task(name, Color(color), false, id)
+        Task(id, name, Color(color), false)
     }.asFlow().mapToList()
 
     override fun addTask(taskToBeAdded: Task) {
