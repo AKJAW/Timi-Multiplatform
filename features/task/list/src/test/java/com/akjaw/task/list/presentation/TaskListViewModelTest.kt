@@ -3,6 +3,7 @@ package com.akjaw.task.list.presentation
 import androidx.compose.ui.graphics.Color
 import com.akjaw.task.api.data.TaskRepository
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
@@ -29,6 +30,7 @@ internal class TaskListViewModelTest {
     }
 
     private lateinit var taskRepository: TaskRepositoryFake
+    private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
     private lateinit var systemUnderTest: TaskListViewModel
 
     @BeforeEach
@@ -36,26 +38,27 @@ internal class TaskListViewModelTest {
         taskRepository = TaskRepositoryFake()
         systemUnderTest = TaskListViewModel(
             taskRepository = taskRepository,
+            taskSelectionTrackerFactory = taskSelectionTrackerFactory,
         )
     }
 
     @Test
     fun `Adding a task changes the list`() = runBlockingTest {
         taskRepository.init(listOf(TASK1))
+
         systemUnderTest.addTask(TASK2)
 
         val result = systemUnderTest.tasks.first()
-
         expectThat(result).isEqualTo(listOf(TASK1, TASK2))
     }
 
     @Test
     fun `Deleting tasks changes the list`() = runBlockingTest {
         taskRepository.init(listOf(TASK1, TASK2))
+
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))
 
         val result = systemUnderTest.tasks.first()
-
         expectThat(result).isEqualTo(emptyList())
 
     }
@@ -63,10 +66,10 @@ internal class TaskListViewModelTest {
 
 class TaskRepositoryFake : TaskRepository {
 
-    override var tasks: MutableStateFlow<List<Task>> = MutableStateFlow(emptyList())
+    override val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(emptyList())
 
     fun init(tasks: List<Task>) {
-        this.tasks = MutableStateFlow(tasks)
+        this.tasks.value = tasks
     }
 
     override fun addTask(taskToBeAdded: Task) {

@@ -31,17 +31,16 @@ class TaskDatabaseTest {
         givenTaskExists(TASK1)
 
         val result = queries.selectAllTasks().executeAsList()
-
         expectThat(result).isEqualTo(listOf(TASK1))
     }
 
     @Test
     fun `Inserting a task without an id sets the incremented id as a number`() {
         givenTaskExists(TASK1)
+
         givenTaskExists(TASK2, isIdNull = true)
 
         val result = queries.selectAllTasks().executeAsList()
-
         val taskEntity = result.last()
         expectThat(taskEntity.id).isEqualTo(2)
     }
@@ -58,6 +57,7 @@ class TaskDatabaseTest {
     @Test
     fun `Updating a task works as expected`() {
         givenTaskExists(TASK1)
+
         queries.updateTaskName(
             position = 1,
             name = "different",
@@ -66,17 +66,16 @@ class TaskDatabaseTest {
         )
 
         val result = queries.selectAllTasks().executeAsList().first()
-
         expectThat(result).isEqualTo(TASK1.copy(position = 1, name = "different"))
     }
 
     @Test
     fun `Deleting a task works as expected`() {
         givenTaskExists(TASK1)
+
         queries.deleteTaskById(TASK1.id)
 
         val result = queries.selectAllTasks().executeAsList()
-
         expectThat(result).isEmpty()
     }
 
