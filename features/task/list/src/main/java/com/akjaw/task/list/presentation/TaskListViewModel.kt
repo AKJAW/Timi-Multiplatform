@@ -1,7 +1,9 @@
 package com.akjaw.task.list.presentation
 
 import androidx.lifecycle.ViewModel
-import com.akjaw.task.api.data.TaskRepository
+import com.akjaw.task.api.data.AddTask
+import com.akjaw.task.api.data.DeleteTasks
+import com.akjaw.task.api.data.GetTasks
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
@@ -11,12 +13,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class TaskListViewModel @Inject constructor(
-    private val taskRepository: TaskRepository,
+    private val getTasks: GetTasks,
+    private val deleteTasks: DeleteTasks,
+    private val addTask: AddTask,
     taskSelectionTrackerFactory: TaskSelectionTrackerFactory,
 ) : ViewModel() {
 
     private val selectionTracker: TaskSelectionTracker =
-        taskSelectionTrackerFactory.create(taskRepository.tasks)
+        taskSelectionTrackerFactory.create(getTasks.execute())
     val tasks: Flow<List<Task>> = selectionTracker.taskWithSelection
 
     fun toggleTask(toggledTask: Task) {
@@ -24,10 +28,10 @@ internal class TaskListViewModel @Inject constructor(
     }
 
     fun deleteTasks(tasksToBeDeleted: List<Task>) {
-        taskRepository.deleteTasks(tasksToBeDeleted)
+        deleteTasks.execute(tasksToBeDeleted)
     }
 
     fun addTask(taskToBeAdded: Task) {
-        taskRepository.addTask(taskToBeAdded)
+        addTask.execute(taskToBeAdded)
     }
 }

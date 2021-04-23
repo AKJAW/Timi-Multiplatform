@@ -1,10 +1,13 @@
 package com.akjaw.task.list.presentation
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.task.api.data.TaskRepository
+import androidx.compose.ui.graphics.toArgb
+import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.list.Database
+import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
@@ -29,22 +32,28 @@ internal class TaskListViewModelTest {
         )
     }
 
-    private lateinit var taskRepository: TaskRepositoryFake
+    private lateinit var taskEntityQueries: TaskEntityQueries
     private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
     private lateinit var systemUnderTest: TaskListViewModel
 
     @BeforeEach
     fun setUp() {
-        taskRepository = TaskRepositoryFake()
+        val inMemorySqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).apply {
+            Database.Schema.create(this)
+        }
+        taskEntityQueries = Database(inMemorySqlDriver).taskEntityQueries
+        val factory = DatabaseInteractorFactory(taskEntityQueries)
         systemUnderTest = TaskListViewModel(
-            taskRepository = taskRepository,
+            getTasks = factory.createGetTasks(),
+            deleteTasks = factory.createDeleteTasks(),
+            addTask = factory.createAddTask(),
             taskSelectionTrackerFactory = taskSelectionTrackerFactory,
         )
     }
 
     @Test
     fun `Adding a task changes the list`() = runBlockingTest {
-        taskRepository.init(listOf(TASK1))
+        givenTasks(TASK1)
 
         systemUnderTest.addTask(TASK2)
 
@@ -54,7 +63,7 @@ internal class TaskListViewModelTest {
 
     @Test
     fun `Deleting tasks changes the list`() = runBlockingTest {
-        taskRepository.init(listOf(TASK1, TASK2))
+        givenTasks(TASK1, TASK2)
 
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))
 
@@ -62,22 +71,11 @@ internal class TaskListViewModelTest {
         expectThat(result).isEqualTo(emptyList())
 
     }
-}
 
-class TaskRepositoryFake : TaskRepository {
-
-    override val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(emptyList())
-
-    fun init(tasks: List<Task>) {
-        this.tasks.value = tasks
-    }
-
-    override fun addTask(taskToBeAdded: Task) {
-        tasks.value = tasks.value + taskToBeAdded
-    }
-
-    override fun deleteTasks(tasksToBeDeleted: List<Task>) {
-        val newTasks = tasks.value.filterNot { task -> tasksToBeDeleted.contains(task) }
-        tasks.value = newTasks
+    private fun givenTasks(vararg task: Task) {
+        task.forEach {
+            taskEntityQueries.insertTask(it.id, 0, it.name, it.backgroundColor.toArgb())
+        }
     }
 }
+
