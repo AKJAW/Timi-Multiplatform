@@ -4,5 +4,5 @@ import com.akjaw.task.api.domain.Task
 
 interface DeleteTasks {
 
-    fun execute(tasks: List<Task>)
+    suspend fun execute(tasks: List<Task>)
 }

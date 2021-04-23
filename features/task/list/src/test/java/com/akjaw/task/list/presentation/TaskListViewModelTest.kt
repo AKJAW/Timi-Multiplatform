@@ -9,7 +9,8 @@ import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
@@ -34,6 +35,7 @@ internal class TaskListViewModelTest {
 
     private lateinit var taskEntityQueries: TaskEntityQueries
     private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
+    private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private lateinit var systemUnderTest: TaskListViewModel
 
     @BeforeEach
@@ -47,12 +49,13 @@ internal class TaskListViewModelTest {
             getTasks = factory.createGetTasks(),
             deleteTasks = factory.createDeleteTasks(),
             addTask = factory.createAddTask(),
+            dispatcher = testCoroutineDispatcher,
             taskSelectionTrackerFactory = taskSelectionTrackerFactory,
         )
     }
 
     @Test
-    fun `Adding a task changes the list`() = runBlockingTest {
+    fun `Adding a task changes the list`(): Unit = runBlocking {
         givenTasks(TASK1)
 
         systemUnderTest.addTask(TASK2)
@@ -62,7 +65,7 @@ internal class TaskListViewModelTest {
     }
 
     @Test
-    fun `Deleting tasks changes the list`() = runBlockingTest {
+    fun `Deleting tasks changes the list`(): Unit = runBlocking  {
         givenTasks(TASK1, TASK2)
 
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))

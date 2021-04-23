@@ -10,7 +10,7 @@ internal class AddTaskToDatabase @Inject constructor(
     private val taskEntityQueries: TaskEntityQueries
 ) : AddTask {
 
-    override fun execute(task: Task) {
+    override suspend fun execute(task: Task) {
         taskEntityQueries.insertTask(
             id = null,
             position = 0,

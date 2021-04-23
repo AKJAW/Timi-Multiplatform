@@ -6,10 +6,10 @@ import com.akjaw.task.api.domain.Task
 import javax.inject.Inject
 
 internal class DeleteTasksFromDatabase @Inject constructor(
-    private val taskEntityQueries: TaskEntityQueries
+    private val taskEntityQueries: TaskEntityQueries,
 ) : DeleteTasks {
 
-    override fun execute(tasks: List<Task>) {
+    override suspend fun execute(tasks: List<Task>) {
         taskEntityQueries.transaction {
             tasks.forEach {
                 taskEntityQueries.deleteTaskById(it.id)

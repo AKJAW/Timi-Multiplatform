@@ -4,5 +4,5 @@ import com.akjaw.task.api.domain.Task
 
 interface AddTask {
 
-    fun execute(task: Task)
+    suspend fun execute(task: Task)
 }

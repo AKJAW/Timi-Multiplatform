@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 internal class GetTasksFromDatabase @Inject constructor(
-    private val taskEntityQueries: TaskEntityQueries
+    private val taskEntityQueries: TaskEntityQueries,
 ) : GetTasks {
 
     override fun execute(): Flow<List<Task>> =
@@ -19,6 +19,6 @@ internal class GetTasksFromDatabase @Inject constructor(
                 position: Long,
                 name: String,
                 color: Int ->
-            Task(id, name, Color(color), false) //TODO extract converter
+            Task(id, name, Color(color), false)
         }.asFlow().mapToList()
 }
