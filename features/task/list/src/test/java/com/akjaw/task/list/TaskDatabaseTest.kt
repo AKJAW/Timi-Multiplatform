@@ -2,7 +2,6 @@ package com.akjaw.task.list
 
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
-import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
@@ -16,14 +15,12 @@ class TaskDatabaseTest {
         private val TASK2 = TaskEntity(-1, 0, "name2", 123)
     }
 
+    private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()
     private lateinit var queries: TaskEntityQueries
 
     @BeforeEach
     fun setUp() {
-        val inMemorySqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).apply {
-            Database.Schema.create(this)
-        }
-        queries = Database(inMemorySqlDriver).taskEntityQueries
+        queries = inMemoryTaskEntityQueriesFactory.create()
     }
 
     @Test
