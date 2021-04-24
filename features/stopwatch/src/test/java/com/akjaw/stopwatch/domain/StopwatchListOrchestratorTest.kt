@@ -27,11 +27,13 @@ internal class StopwatchListOrchestratorTest {
 
     companion object {
         private val TASK1 = Task(
+            id = 1,
             name = "First task",
             backgroundColor = Color.White,
             isSelected = false
         )
         private val TASK2 = Task(
+            id = 2,
             name = "Second the cooler task",
             backgroundColor = Color.White,
             isSelected = false
@@ -139,6 +141,19 @@ internal class StopwatchListOrchestratorTest {
         val result = systemUnderTest.ticker.first()
 
         expectThat(result).isEmpty()
+    }
+
+    @Test
+    fun `Multiple task stopwatches can run in parallel`() = runBlockingTest {
+        givenStateHolderReturnsTime("0", "1", "2")
+        systemUnderTest.start(task = TASK1)
+        systemUnderTest.start(task = TASK2)
+        coroutineDispatcher.advanceTimeBy(1000)
+
+        val result = systemUnderTest.ticker.first()
+
+        expectThat(result[TASK1]).isEqualTo("2")
+        expectThat(result[TASK2]).isEqualTo("2")
     }
 
     @Nested
