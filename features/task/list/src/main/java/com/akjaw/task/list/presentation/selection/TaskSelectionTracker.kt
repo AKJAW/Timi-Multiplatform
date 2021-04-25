@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.combine
 class TaskSelectionTracker(originalTaskFlow: Flow<List<Task>>) {
 
     private val selections = MutableStateFlow<List<Long>>(emptyList())
-    val taskWithSelection: Flow<List<Task>> = combine(
+    val tasksWithSelection: Flow<List<Task>> = combine(
         originalTaskFlow,
         selections,
         ::markSelectedTasks

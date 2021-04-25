@@ -25,8 +25,8 @@ internal class TaskListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val selectionTracker: TaskSelectionTracker =
-        taskSelectionTrackerFactory.create(getTasks.execute())
-    val tasks: Flow<List<Task>> = selectionTracker.taskWithSelection
+        taskSelectionTrackerFactory.create(originalTaskFlow = getTasks.execute())
+    val tasks: Flow<List<Task>> = selectionTracker.tasksWithSelection
 
     fun toggleTask(toggledTask: Task) {
         selectionTracker.toggleTask(toggledTask)

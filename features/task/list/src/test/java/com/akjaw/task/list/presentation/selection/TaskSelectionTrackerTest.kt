@@ -33,7 +33,7 @@ internal class TaskSelectionTrackerTest {
 
         systemUnderTest.toggleTask(TASK1)
 
-        val result = systemUnderTest.taskWithSelection.first()
+        val result = systemUnderTest.tasksWithSelection.first()
         val task = result.first()
         expectThat(task).isEqualTo(TASK1.copy(isSelected = true))
     }
@@ -45,7 +45,7 @@ internal class TaskSelectionTrackerTest {
 
         systemUnderTest.toggleTask(task)
 
-        val result = systemUnderTest.taskWithSelection.first().last()
+        val result = systemUnderTest.tasksWithSelection.first().last()
         expectThat(result).isEqualTo(TASK2)
     }
 
@@ -55,7 +55,7 @@ internal class TaskSelectionTrackerTest {
         systemUnderTest.toggleTask(TASK2)
         givenTasks(TASK1)
 
-        val result = systemUnderTest.taskWithSelection.first()
+        val result = systemUnderTest.tasksWithSelection.first()
         expectThat(result).hasSize(1)
     }
 

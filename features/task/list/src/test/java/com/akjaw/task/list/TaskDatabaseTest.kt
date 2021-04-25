@@ -32,14 +32,14 @@ class TaskDatabaseTest {
     }
 
     @Test
-    fun `Inserting a task without an id sets the incremented id as a number`() {
-        givenTaskExists(TASK1)
+    fun `Inserting a task without an id sets the incremented previous id as the id`() {
+        givenTaskExists(TASK1.copy(id = 2))
 
         givenTaskExists(TASK2, isIdNull = true)
 
         val result = queries.selectAllTasks().executeAsList()
         val taskEntity = result.last()
-        expectThat(taskEntity.id).isEqualTo(2)
+        expectThat(taskEntity.id).isEqualTo(3)
     }
 
     @Test
