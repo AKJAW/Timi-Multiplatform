@@ -2,7 +2,7 @@ package com.akjaw.task.api.data
 
 import com.akjaw.task.api.domain.Task
 
-interface TaskRepository {
+interface DeleteTasks {
 
-    val tasks: List<Task>
+    suspend fun execute(tasks: List<Task>)
 }

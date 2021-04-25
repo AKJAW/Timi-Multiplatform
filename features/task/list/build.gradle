@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.squareup.sqldelight'
 }
 
 android {
@@ -54,6 +55,8 @@ dependencies {
     implementation composeDependencies.navigation
     implementation composeDependencies.viewModel
     implementation kotlinDependencies.coroutines
+    implementation otherDependencies.sqldelight
+    implementation otherDependencies.sqldelightCoroutines
 
     implementation hiltDependencies.android
     implementation hiltDependencies.navigationCompose
@@ -64,5 +67,6 @@ dependencies {
     testImplementation testingDependencies.strikt
     testImplementation testingDependencies.mock
     testImplementation testingDependencies.coroutinesTest
+    testImplementation testingDependencies.sqldelightInMemory
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
 }

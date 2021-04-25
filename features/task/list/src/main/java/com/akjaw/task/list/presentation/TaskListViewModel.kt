@@ -1,38 +1,42 @@
 package com.akjaw.task.list.presentation
 
 import androidx.lifecycle.ViewModel
-import com.akjaw.task.api.data.TaskRepository
+import androidx.lifecycle.viewModelScope
+import com.akjaw.core.common.composition.IoDispatcherQualifier
+import com.akjaw.task.api.data.AddTask
+import com.akjaw.task.api.data.DeleteTasks
+import com.akjaw.task.api.data.GetTasks
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.list.presentation.selection.TaskSelectionTracker
+import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 internal class TaskListViewModel @Inject constructor(
-    private val taskRepository: TaskRepository
+    private val getTasks: GetTasks,
+    private val deleteTasks: DeleteTasks,
+    private val addTask: AddTask,
+    @IoDispatcherQualifier private val dispatcher: CoroutineDispatcher,
+    taskSelectionTrackerFactory: TaskSelectionTrackerFactory,
 ) : ViewModel() {
 
-    val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(taskRepository.tasks)
+    private val selectionTracker: TaskSelectionTracker =
+        taskSelectionTrackerFactory.create(originalTaskFlow = getTasks.execute())
+    val tasks: Flow<List<Task>> = selectionTracker.tasksWithSelection
 
     fun toggleTask(toggledTask: Task) {
-        val newTasks = tasks.value.map { task ->
-            if (task == toggledTask) {
-                task.copy(isSelected = task.isSelected.not())
-            } else {
-                task
-            }
-        }
-        tasks.value = newTasks
+        selectionTracker.toggleTask(toggledTask)
     }
 
-    fun deleteTasks(tasksToBeDeleted: List<Task>) {
-        val newTasks = tasks.value.filterNot { task -> tasksToBeDeleted.contains(task) }
-        tasks.value = newTasks
+    fun deleteTasks(tasksToBeDeleted: List<Task>) = viewModelScope.launch(dispatcher) {
+        deleteTasks.execute(tasksToBeDeleted)
     }
 
-    fun addTask(taskToBeAdded: Task) {
-        val newTasks = tasks.value.toMutableList()
-        newTasks.add(taskToBeAdded)
-        tasks.value = newTasks
+    fun addTask(taskToBeAdded: Task) = viewModelScope.launch(dispatcher) {
+        addTask.execute(taskToBeAdded)
     }
 }

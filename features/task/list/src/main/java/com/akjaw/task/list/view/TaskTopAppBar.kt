@@ -19,7 +19,7 @@ import com.akjaw.task.list.presentation.TaskListViewModel
 internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
     val (isDeleteDialogOpen, setIsDeleteDialogOpen) = remember { mutableStateOf(false) }
 
-    val tasks = taskListViewModel.tasks.collectAsState().value
+    val tasks = taskListViewModel.tasks.collectAsState(emptyList()).value
     val selectedTasks = tasks.filter { it.isSelected }
     val selectedCount = selectedTasks.count()
     val title = when {

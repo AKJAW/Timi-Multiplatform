@@ -29,7 +29,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         scope.launch {
             while (isActive) {
                 val newValues = stopwatchStateHolders
-                    .toSortedMap(compareBy { task -> task.name }) //TODO order by order on task list / id
+                    .toSortedMap(compareBy { task -> task.id }) //TODO this won't work if multiple tasks have the same place
                     .map { (task, stateHolder) ->
                         task to stateHolder.getStringTimeRepresentation()
                     }
