@@ -15,10 +15,10 @@ internal class GetTasksFromDatabase @Inject constructor(
 
     override fun execute(): Flow<List<Task>> =
         taskEntityQueries.selectAllTasks {
-                id: Long,
-                position: Long,
-                name: String,
-                color: Int ->
+            id: Long,
+            position: Long,
+            name: String,
+            color: Int ->
             Task(id, name, Color(color), false)
         }.asFlow().mapToList()
 }

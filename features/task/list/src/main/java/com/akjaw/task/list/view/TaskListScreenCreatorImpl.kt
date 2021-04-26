@@ -5,7 +5,7 @@ import com.akjaw.core.common.view.NavigationHolder
 import com.akjaw.task.api.view.TaskListScreenCreator
 import javax.inject.Inject
 
-internal class TaskListScreenCreatorImpl @Inject constructor(): TaskListScreenCreator {
+internal class TaskListScreenCreatorImpl @Inject constructor() : TaskListScreenCreator {
 
     @Composable
     override fun Create(navigationHolder: NavigationHolder) {

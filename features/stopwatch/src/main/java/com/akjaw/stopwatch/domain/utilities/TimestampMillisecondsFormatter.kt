@@ -21,7 +21,7 @@ internal class TimestampMillisecondsFormatter @Inject constructor() {
             val hoursFormatted = (minutes / 60).pad(2)
             "$hoursFormatted:$minutesFormatted:$secondsFormatted"
         } else {
-            "$minutesFormatted:$secondsFormatted:${millisecondsFormatted}"
+            "$minutesFormatted:$secondsFormatted:$millisecondsFormatted"
         }
     }
 
