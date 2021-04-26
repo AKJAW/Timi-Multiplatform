@@ -11,7 +11,7 @@ internal class StopwatchStateHolder(
     private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,
 ) {
 
-    //TODO does this have to be thread-safe?
+    // TODO does this have to be thread-safe?
     var currentState: StopwatchState = StopwatchState.Paused(0.toTimestampMilliseconds())
         private set
 

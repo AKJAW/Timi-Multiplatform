@@ -41,7 +41,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     private val stopwatchStateHolder: StopwatchStateHolder = mockk(relaxed = true) {
-        every { getStringTimeRepresentation() } returns  ""
+        every { getStringTimeRepresentation() } returns ""
     }
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory = mockk {
         every { create() } returns stopwatchStateHolder
@@ -160,14 +160,14 @@ internal class StopwatchListOrchestratorTest {
     inner class Coroutines {
 
         @Test
-        fun `Initially the scope is inactive`(){
+        fun `Initially the scope is inactive`() {
             coroutineDispatcher.advanceTimeBy(1000)
 
             expectThat(coroutineScope).hasChildrenCount(0)
         }
 
         @Test
-        fun `When first task is stared the scope becomes active`(){
+        fun `When first task is stared the scope becomes active`() {
             systemUnderTest.start(task = TASK1)
 
             coroutineDispatcher.advanceTimeBy(1000)
@@ -202,7 +202,6 @@ internal class StopwatchListOrchestratorTest {
             systemUnderTest.start(task = TASK1)
 
             systemUnderTest.pause(task = TASK1)
-
 
             expectThat(coroutineScope).hasChildrenCount(0)
         }

@@ -4,19 +4,30 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.0-alpha09"
+        classpath "com.android.tools.build:gradle:7.0.0-alpha14"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
         classpath "com.squareup.sqldelight:gradle-plugin:${versions.sqldelight}"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}"
     }
 }
 
 allprojects {
     apply from: rootProject.file("dependencies.gradle")
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
     tasks.withType(Test) {
         useJUnitPlatform()
+    }
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
     }
 }
 

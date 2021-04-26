@@ -1,11 +1,12 @@
 ext {
     versions = [
-            "kotlin": "1.4.30",
+            "kotlin": "1.4.32",
             "coroutines": "1.4.3",
-            "compose": "1.0.0-beta01",
+            "compose": "1.0.0-beta05",
             "hilt": "2.33-beta",
             "jupiter": "5.6.2",
             "sqldelight": "1.4.4",
+            "ktlint": "10.0.0",
     ]
 
     androidxDependencies = [

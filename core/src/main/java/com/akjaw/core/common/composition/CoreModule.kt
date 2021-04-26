@@ -7,8 +7,6 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-
-
 @Module(includes = [DispatchersModule::class])
 @InstallIn(SingletonComponent::class)
 internal abstract class CoreModule {

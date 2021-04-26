@@ -2,9 +2,14 @@ package com.akjaw.stopwatch.domain
 
 import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.task.api.domain.Task
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
@@ -29,7 +34,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         scope.launch {
             while (isActive) {
                 val newValues = stopwatchStateHolders
-                    .toSortedMap(compareBy { task -> task.id }) //TODO this won't work if multiple tasks have the same place
+                    .toSortedMap(compareBy { task -> task.id }) // TODO this won't work if multiple tasks have the same place
                     .map { (task, stateHolder) ->
                         task to stateHolder.getStringTimeRepresentation()
                     }
@@ -59,7 +64,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         }
     }
 
-    //TODO this probably should be preserved on config changes, right...?
+    // TODO this probably should be preserved on config changes, right...?
     fun destroy() {
         stopJob()
         clearValues()

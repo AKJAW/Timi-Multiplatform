@@ -6,9 +6,24 @@ import androidx.compose.animation.core.AnimationVector4D
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.contentColorFor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Palette
@@ -123,7 +138,7 @@ private fun AddTaskDialogContent(
     taskColor: Animatable<Color, AnimationVector4D>,
     textColor: Animatable<Color, AnimationVector4D>,
 ) {
-    val focusRequester = remember { FocusRequester() } //TODO fix this
+    val focusRequester = remember { FocusRequester() } // TODO fix this
     Card(
         backgroundColor = taskColor.value
     ) {
@@ -304,8 +319,8 @@ private fun TestAddTaskDialogWithColorPicker(
     backgroundColor: Color = MaterialTheme.colors.background,
     defaultTextColor: Color = contentColorFor(backgroundColor),
 ) {
-    val taskColor = mutableStateOf(Animatable(backgroundColor))
-    val textColor = mutableStateOf(Animatable(defaultTextColor))
+    val taskColor = remember { mutableStateOf(Animatable(backgroundColor)) }
+    val textColor = remember { mutableStateOf(Animatable(defaultTextColor)) }
     AddTaskDialogContent(
         onShowColorClicked = {},
         onAddTaskClicked = {},

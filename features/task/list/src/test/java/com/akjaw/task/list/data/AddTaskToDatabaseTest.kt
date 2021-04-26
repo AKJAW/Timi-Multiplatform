@@ -16,7 +16,7 @@ internal class AddTaskToDatabaseTest {
 
     companion object {
         private val TASK1 = Task(1, "name", Color.White)
-        private val TASK2 = Task(-1,  "name2", Color.Black)
+        private val TASK2 = Task(-1, "name2", Color.Black)
     }
 
     private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()
@@ -34,12 +34,14 @@ internal class AddTaskToDatabaseTest {
         systemUnderTest.execute(TASK1)
 
         val result = queries.selectTaskById(1).executeAsOne()
-        expectThat(result).isEqualTo(TaskEntity(
-            id = 1,
-            position = 0,
-            name = "name",
-            color = Color.White.toArgb()
-        ))
+        expectThat(result).isEqualTo(
+            TaskEntity(
+                id = 1,
+                position = 0,
+                name = "name",
+                color = Color.White.toArgb()
+            )
+        )
     }
 
     @Test

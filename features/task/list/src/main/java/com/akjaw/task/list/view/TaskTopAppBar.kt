@@ -1,7 +1,11 @@
 package com.akjaw.task.list.view
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
@@ -92,7 +96,7 @@ private fun ConfirmDeletionDialog(
     )
 }
 
-private fun pluralTaskText(count: Int) = when (count) { //TODO replace with resources
+private fun pluralTaskText(count: Int) = when (count) { // TODO replace with resources
     1 -> "Task"
     else -> "Tasks"
 }

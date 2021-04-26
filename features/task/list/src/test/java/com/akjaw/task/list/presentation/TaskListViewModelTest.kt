@@ -65,14 +65,13 @@ internal class TaskListViewModelTest {
     }
 
     @Test
-    fun `Deleting tasks changes the list`(): Unit = runBlocking  {
+    fun `Deleting tasks changes the list`(): Unit = runBlocking {
         givenTasks(TASK1, TASK2)
 
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))
 
         val result = systemUnderTest.tasks.first()
         expectThat(result).isEqualTo(emptyList())
-
     }
 
     private fun givenTasks(vararg task: Task) {
@@ -81,4 +80,3 @@ internal class TaskListViewModelTest {
         }
     }
 }
-
