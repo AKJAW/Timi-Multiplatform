@@ -1,4 +1,4 @@
-package com.akjaw.settings
+package com.akjaw.settings.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

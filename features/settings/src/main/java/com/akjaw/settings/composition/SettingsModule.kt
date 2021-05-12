@@ -1,7 +1,7 @@
 package com.akjaw.settings.composition
 
-import com.akjaw.settings.SettingsScreenCreator
-import com.akjaw.settings.SettingsScreenCreatorImpl
+import com.akjaw.settings.view.SettingsScreenCreator
+import com.akjaw.settings.view.SettingsScreenCreatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
