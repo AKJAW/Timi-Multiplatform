@@ -25,12 +25,19 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 
 @Composable
 fun SettingsScreen() {
     SettingsSection {
-        SettingsSwitch(Icons.Default.DarkMode, "Dark mode")
+        SettingsSwitch(
+            icon = Icons.Default.DarkMode,
+            title = "Dark mode",
+            onClick = { value ->
+                ThemeState.isDarkTheme.value = value
+            } // TODO move this out to a separate class
+        )
     }
 }
 
@@ -54,12 +61,19 @@ private fun SettingsSection(items: @Composable ColumnScope.() -> Unit) {
 fun SettingsSwitch(
     icon: ImageVector,
     title: String,
+    onClick: (Boolean) -> Unit,
 ) {
     val (isChecked, setIsChecked) = remember { mutableStateOf(false) }
+    val onSwitchValueChange: (Boolean) -> Unit = remember {
+        { value ->
+            setIsChecked(value)
+            onClick(value)
+        }
+    }
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { setIsChecked(!isChecked) },
+            .clickable { onSwitchValueChange(!isChecked) },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
@@ -78,7 +92,9 @@ fun SettingsSwitch(
         )
         Switch(
             checked = isChecked,
-            onCheckedChange = { newValue -> setIsChecked(newValue) },
+            onCheckedChange = { newValue ->
+                onSwitchValueChange(newValue)
+            },
             modifier = Modifier.padding(8.dp)
         )
     }
@@ -91,6 +107,7 @@ fun SettingsScreenPreview() {
         SettingsScreen()
     }
 }
+
 @Preview
 @Composable
 fun DarkSettingsScreenPreview() {

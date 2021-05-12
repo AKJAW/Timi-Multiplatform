@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.NavigationHolder
+import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.settings.SettingsScreenCreator
 import com.akjaw.stopwatch.view.StopwatchScreenCreator
@@ -35,7 +36,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            TimiComposeTheme {
+            // ThemeState.isDarkTheme.value = isSystemInDarkTheme()
+            TimiComposeTheme(darkTheme = ThemeState.isDarkTheme.value) {
                 NavHost(
                     navController = navController,
                     startDestination = BottomBarScreen.Home.route
