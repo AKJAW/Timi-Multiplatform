@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 internal class SettingsChanger(
     private val inMemorySettingsRepository: Repository, // TODO test for only uses defaults when it doesn't exist
-    defaultSettings: Map<SettingsOption, Boolean>
+    defaultBooleanSettings: Map<BooleanSettingsOption, Boolean>
 ) {
 
-    private val mutableSettings = MutableStateFlow(defaultSettings)
-    val settings: StateFlow<Map<SettingsOption, Boolean>> = mutableSettings
+    private val mutableSettings = MutableStateFlow(defaultBooleanSettings)
+    val booleanSettings: StateFlow<Map<BooleanSettingsOption, Boolean>> = mutableSettings
 
-    fun changeBooleanSetting(setting: SettingsOption, value: Boolean) {
+    fun changeBooleanSetting(setting: BooleanSettingsOption, value: Boolean) {
         val newSettings = mutableSettings.value.toMutableMap()
         newSettings[setting] = value
         mutableSettings.value = newSettings

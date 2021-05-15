@@ -1,10 +1,10 @@
 package com.akjaw.settings.data
 
-import com.akjaw.settings.domain.SettingsOption
+import com.akjaw.settings.domain.BooleanSettingsOption
 
 interface Repository {
 
-    fun getBoolean(key: SettingsOption): Boolean?
+    fun getBoolean(key: BooleanSettingsOption): Boolean?
 
-    fun setBoolean(key: SettingsOption, value: Boolean)
+    fun setBoolean(key: BooleanSettingsOption, value: Boolean)
 }

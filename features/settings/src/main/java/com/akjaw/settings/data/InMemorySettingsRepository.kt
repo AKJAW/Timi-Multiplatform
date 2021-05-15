@@ -1,14 +1,14 @@
 package com.akjaw.settings.data
 
-import com.akjaw.settings.domain.SettingsOption
+import com.akjaw.settings.domain.BooleanSettingsOption
 
 internal class InMemorySettingsRepository : Repository {
 
-    private val mutableBooleanSettings = mutableMapOf<SettingsOption, Boolean>()
+    private val mutableBooleanSettings = mutableMapOf<BooleanSettingsOption, Boolean>()
 
-    override fun getBoolean(key: SettingsOption) = mutableBooleanSettings[key]
+    override fun getBoolean(key: BooleanSettingsOption) = mutableBooleanSettings[key]
 
-    override fun setBoolean(key: SettingsOption, value: Boolean) {
+    override fun setBoolean(key: BooleanSettingsOption, value: Boolean) {
         mutableBooleanSettings[key] = value
     }
 }
