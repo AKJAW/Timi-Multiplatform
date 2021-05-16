@@ -2,7 +2,7 @@ package com.akjaw.stopwatch.composition
 
 import com.akjaw.core.common.composition.BackgroundDispatcherQualifier
 import com.akjaw.stopwatch.domain.StopwatchListOrchestrator
-import com.akjaw.stopwatch.domain.StopwatchStateHolderFactory
+import com.akjaw.stopwatch.domain.StopwatchStateHolder
 import com.akjaw.stopwatch.view.StopwatchScreenCreator
 import com.akjaw.stopwatch.view.StopwatchScreenCreatorImpl
 import dagger.Binds
@@ -27,11 +27,11 @@ internal abstract class StopwatchModule {
         @Provides
         @Singleton
         fun provideStopwatchListOrchestrator(
-            stopwatchStateHolderFactory: StopwatchStateHolderFactory,
+            stopwatchStateHolder: StopwatchStateHolder,
             @BackgroundDispatcherQualifier dispatcher: CoroutineDispatcher
         ): StopwatchListOrchestrator {
             return StopwatchListOrchestrator(
-                stopwatchStateHolderFactory = stopwatchStateHolderFactory,
+                stopwatchStateHolder = stopwatchStateHolder,
                 scope = CoroutineScope(SupervisorJob() + dispatcher)
             )
         }

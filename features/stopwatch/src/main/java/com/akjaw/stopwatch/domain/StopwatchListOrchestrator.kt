@@ -1,7 +1,5 @@
 package com.akjaw.stopwatch.domain
 
-import com.akjaw.stopwatch.domain.model.StopwatchState
-import com.akjaw.task.api.domain.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
@@ -10,64 +8,39 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
 internal class StopwatchListOrchestrator @Inject constructor(
-    private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
+    private val stopwatchStateHolder: StopwatchStateHolder,
     private val scope: CoroutineScope,
 ) {
     private var job: Job? = null
-    private var stopwatchStateHolders = ConcurrentHashMap<Task, StopwatchStateHolder>()
-    private val mutableTicker = MutableStateFlow<Map<Task, String>>(mapOf())
-    val ticker: StateFlow<Map<Task, String>> = mutableTicker
+    private val mutableTicker = MutableStateFlow("")
+    val ticker: StateFlow<String> = mutableTicker
 
-    fun start(task: Task) {
+    fun start() {
         if (job == null) startJob()
-        val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
-            stopwatchStateHolderFactory.create()
-        }
-        stopwatchForTask.start()
+        stopwatchStateHolder.start()
     }
 
     private fun startJob() {
         scope.launch {
             while (isActive) {
-                val newValues = stopwatchStateHolders
-                    .toSortedMap(compareBy { task -> task.id }) // TODO this won't work if multiple tasks have the same place
-                    .map { (task, stateHolder) ->
-                        task to stateHolder.getStringTimeRepresentation()
-                    }
-                    .toMap()
-                mutableTicker.value = newValues
+                mutableTicker.value = stopwatchStateHolder.getStringTimeRepresentation()
                 delay(20)
             }
         }
     }
 
-    fun pause(task: Task) {
-        val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
-            stopwatchStateHolderFactory.create()
-        }
-        stopwatchForTask.pause()
-        val areAllStopwatchesPaused = stopwatchStateHolders.values.all { stateHolder ->
-            stateHolder.currentState is StopwatchState.Paused
-        }
-        if (areAllStopwatchesPaused) stopJob()
-    }
-
-    fun stop(task: Task) {
-        stopwatchStateHolders.remove(task)
-        if (stopwatchStateHolders.isEmpty()) {
-            stopJob()
-            clearValues()
-        }
-    }
-
-    // TODO this probably should be preserved on config changes, right...?
-    fun destroy() {
+    fun pause() {
+        stopwatchStateHolder.pause()
         stopJob()
-        clearValues()
+    }
+
+    fun stop() {
+        stopwatchStateHolder.stop()
+        stopJob()
+        clearValue()
     }
 
     private fun stopJob() {
@@ -75,8 +48,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         job = null
     }
 
-    private fun clearValues() {
-        stopwatchStateHolders.clear()
-        mutableTicker.value = mapOf()
+    private fun clearValue() {
+        mutableTicker.value = ""
     }
 }
