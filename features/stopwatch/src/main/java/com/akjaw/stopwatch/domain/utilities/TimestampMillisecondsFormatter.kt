@@ -1,6 +1,5 @@
 package com.akjaw.stopwatch.domain.utilities
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import javax.inject.Inject
 
 internal class TimestampMillisecondsFormatter @Inject constructor() {
@@ -9,10 +8,9 @@ internal class TimestampMillisecondsFormatter @Inject constructor() {
         const val DEFAULT_TIME = "00:00:000"
     }
 
-    fun format(timestamp: TimestampMilliseconds): String {
-        val millisecondsLong = timestamp.value
-        val millisecondsFormatted = (millisecondsLong % 1000).pad(3)
-        val seconds = millisecondsLong / 1000
+    fun format(timestamp: Long): String {
+        val millisecondsFormatted = (timestamp % 1000).pad(3)
+        val seconds = timestamp / 1000
         val secondsFormatted = (seconds % 60).pad(2)
         val minutes = seconds / 60
         val minutesFormatted = (minutes % 60).pad(2)

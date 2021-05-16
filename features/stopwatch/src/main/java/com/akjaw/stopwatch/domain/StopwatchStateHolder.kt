@@ -1,6 +1,5 @@
 package com.akjaw.stopwatch.domain
 
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
@@ -12,7 +11,7 @@ internal class StopwatchStateHolder(
 ) {
 
     // TODO does this have to be thread-safe?
-    var currentState: StopwatchState = StopwatchState.Paused(0.toTimestampMilliseconds())
+    var currentState: StopwatchState = StopwatchState.Paused(0)
         private set
 
     fun start() {

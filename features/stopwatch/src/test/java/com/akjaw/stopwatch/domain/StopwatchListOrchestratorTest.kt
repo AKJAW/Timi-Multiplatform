@@ -1,7 +1,6 @@
 package com.akjaw.stopwatch.domain
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.task.api.domain.Task
 import io.mockk.every
@@ -198,7 +197,7 @@ internal class StopwatchListOrchestratorTest {
         @Test
         fun `When every stopwatch is paused the scope becomes inactive`() {
             every { stopwatchStateHolder.currentState }
-                .returns(StopwatchState.Paused(0.toTimestampMilliseconds()))
+                .returns(StopwatchState.Paused(0))
             systemUnderTest.start(task = TASK1)
 
             systemUnderTest.pause(task = TASK1)
@@ -209,7 +208,7 @@ internal class StopwatchListOrchestratorTest {
         @Test
         fun `Resuming after every stopwatch is paused makes the scope active`() {
             every { stopwatchStateHolder.currentState }
-                .returns(StopwatchState.Paused(0.toTimestampMilliseconds()))
+                .returns(StopwatchState.Paused(0))
             systemUnderTest.start(task = TASK1)
             systemUnderTest.pause(task = TASK1)
 

@@ -1,13 +1,12 @@
 package com.akjaw.stopwatch.domain
 
 import com.akjaw.core.common.domain.TimestampProvider
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -34,7 +33,7 @@ internal class StopwatchStateCalculatorTest {
     @ParameterizedTest
     @ArgumentsSource(ToRunningStateArgumentsProvider::class)
     fun `Correctly calculates running state`(
-        startingTimestamp: TimestampMilliseconds,
+        startingTimestamp: Long,
         oldState: StopwatchState,
         expectedState: StopwatchState.Running,
     ) {
@@ -49,37 +48,37 @@ internal class StopwatchStateCalculatorTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
             return Stream.of(
                 testCase(
-                    startingTimestamp = 0.toTimestampMilliseconds(),
-                    oldState = StopwatchState.Paused(elapsedTime = 0.toTimestampMilliseconds()),
+                    startingTimestamp = 0,
+                    oldState = StopwatchState.Paused(elapsedTime = 0),
                     expectedState = StopwatchState.Running(
-                        startTime = 0.toTimestampMilliseconds(),
-                        elapsedTime = 0.toTimestampMilliseconds(),
+                        startTime = 0,
+                        elapsedTime = 0,
                     )
                 ),
                 testCase(
-                    startingTimestamp = 1000.toTimestampMilliseconds(),
-                    oldState = StopwatchState.Paused(elapsedTime = 200.toTimestampMilliseconds()),
+                    startingTimestamp = 1000,
+                    oldState = StopwatchState.Paused(elapsedTime = 200),
                     expectedState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 200.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 200,
                     )
                 ),
                 testCase(
-                    startingTimestamp = 0.toTimestampMilliseconds(),
+                    startingTimestamp = 0,
                     oldState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 200.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 200,
                     ),
                     expectedState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 200.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 200,
                     )
                 )
             )
         }
 
         private fun testCase(
-            startingTimestamp: TimestampMilliseconds,
+            startingTimestamp: Long,
             oldState: StopwatchState,
             expectedState: StopwatchState.Running,
         ) = Arguments.of(startingTimestamp, oldState, expectedState)
@@ -88,7 +87,7 @@ internal class StopwatchStateCalculatorTest {
     @ParameterizedTest
     @ArgumentsSource(ToPausedStateArgumentsProvider::class)
     fun `Correctly calculates paused state`(
-        currentTimestamp: TimestampMilliseconds,
+        currentTimestamp: Long,
         oldState: StopwatchState,
         expectedState: StopwatchState.Paused,
     ) {
@@ -103,61 +102,90 @@ internal class StopwatchStateCalculatorTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
             return Stream.of(
                 testCase(
-                    currentTimestamp = 1500.toTimestampMilliseconds(),
+                    currentTimestamp = 1500,
                     oldState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 0.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 0,
                     ),
                     expectedState = StopwatchState.Paused(
-                        elapsedTime = (1500 - 1000).toTimestampMilliseconds()
+                        elapsedTime = (1500 - 1000)
                     )
                 ),
                 testCase(
-                    currentTimestamp = 1500.toTimestampMilliseconds(),
+                    currentTimestamp = 1500,
                     oldState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 300.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 300,
                     ),
                     expectedState = StopwatchState.Paused(
-                        elapsedTime = (1500 - 1000 + 300).toTimestampMilliseconds()
+                        elapsedTime = (1500 - 1000 + 300)
                     )
                 ),
                 testCase(
-                    currentTimestamp = 500.toTimestampMilliseconds(),
+                    currentTimestamp = 500,
                     oldState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 300.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 300,
                     ),
                     expectedState = StopwatchState.Paused(
-                        elapsedTime = 300.toTimestampMilliseconds()
+                        elapsedTime = 300
                     )
                 ),
                 testCase(
-                    currentTimestamp = 500.toTimestampMilliseconds(),
+                    currentTimestamp = 500,
                     oldState = StopwatchState.Running(
-                        startTime = 1000.toTimestampMilliseconds(),
-                        elapsedTime = 0.toTimestampMilliseconds(),
+                        startTime = 1000,
+                        elapsedTime = 0,
                     ),
                     expectedState = StopwatchState.Paused(
-                        elapsedTime = 0.toTimestampMilliseconds()
+                        elapsedTime = 0
                     )
                 ),
                 testCase(
-                    currentTimestamp = 500.toTimestampMilliseconds(),
+                    currentTimestamp = 500,
                     oldState = StopwatchState.Paused(
-                        elapsedTime = 200.toTimestampMilliseconds(),
+                        elapsedTime = 200,
                     ),
                     expectedState = StopwatchState.Paused(
-                        elapsedTime = 200.toTimestampMilliseconds(),
+                        elapsedTime = 200,
                     ),
                 )
             )
         }
 
         private fun testCase(
-            currentTimestamp: TimestampMilliseconds,
+            currentTimestamp: Long,
             oldState: StopwatchState,
             expectedState: StopwatchState.Paused,
         ) = Arguments.of(currentTimestamp, oldState, expectedState)
+    }
+
+    @Test
+    fun `Article example test`() {
+        val timestampProvider: TimestampProvider = mockk()
+        val elapsedTimeCalculator = ElapsedTimeCalculator(timestampProvider)
+        val stopwatchStateCalculator = StopwatchStateCalculator(
+            timestampProvider = timestampProvider,
+            elapsedTimeCalculator = elapsedTimeCalculator
+        )
+
+        every { timestampProvider.getMilliseconds() } returns 0
+        val initialState = StopwatchState.Paused(0L)
+        val firstStart = stopwatchStateCalculator.calculateRunningState(initialState)
+        expectThat(firstStart.startTime).isEqualTo(0L)
+        expectThat(firstStart.elapsedTime).isEqualTo(0L)
+
+        every { timestampProvider.getMilliseconds() } returns 100
+        val firstPause = stopwatchStateCalculator.calculatePausedState(firstStart)
+        expectThat(firstPause.elapsedTime).isEqualTo(100L)
+
+        every { timestampProvider.getMilliseconds() } returns 1000
+        val secondStart = stopwatchStateCalculator.calculateRunningState(firstPause)
+        expectThat(secondStart.startTime).isEqualTo(1000L)
+        expectThat(secondStart.elapsedTime).isEqualTo(100L)
+
+        every { timestampProvider.getMilliseconds() } returns 1500
+        val secondPause = stopwatchStateCalculator.calculatePausedState(secondStart)
+        expectThat(secondPause.elapsedTime).isEqualTo(600L)
     }
 }

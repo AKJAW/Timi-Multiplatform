@@ -1,7 +1,6 @@
 package com.akjaw.stopwatch.domain
 
 import com.akjaw.core.common.domain.TimestampProvider
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import io.mockk.every
@@ -83,15 +82,15 @@ internal class StopwatchStateHolderTest {
     }
 
     private fun givenNoTimePasses() {
-        every { timestampProvider.getMilliseconds() } returns 0.toTimestampMilliseconds()
+        every { timestampProvider.getMilliseconds() } returns 0
     }
 
-    private fun givenTimePassesAfterStart(amount: Int) {
+    private fun givenTimePassesAfterStart(amount: Long) {
         every { timestampProvider.getMilliseconds() }
             .returnsMany(
                 listOf(
-                    0.toTimestampMilliseconds(),
-                    amount.toTimestampMilliseconds(),
+                    0L,
+                    amount,
                 )
             )
     }

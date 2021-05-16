@@ -1,13 +1,11 @@
 package com.akjaw.stopwatch.domain.model
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
-
 internal sealed class StopwatchState {
     data class Running(
-        val startTime: TimestampMilliseconds,
-        val elapsedTime: TimestampMilliseconds
+        val startTime: Long,
+        val elapsedTime: Long
     ) : StopwatchState()
     data class Paused(
-        val elapsedTime: TimestampMilliseconds
+        val elapsedTime: Long
     ) : StopwatchState()
 }

@@ -1,7 +1,5 @@
 package com.akjaw.stopwatch.domain.utilities
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -24,7 +22,7 @@ internal class TimestampMillisecondsFormatterTest {
     @ParameterizedTest
     @ArgumentsSource(TimestampArgumentsProvider::class)
     fun `Correctly formats the timestamp`(
-        timestamp: TimestampMilliseconds,
+        timestamp: Long,
         expectedString: String
     ) {
         val result = systemUnderTest.format(timestamp)
@@ -35,20 +33,20 @@ internal class TimestampMillisecondsFormatterTest {
     private class TimestampArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
             return Stream.of(
-                testCase(timestamp = 0.toTimestampMilliseconds(), expectedString = "00:00:000"),
-                testCase(timestamp = 500.toTimestampMilliseconds(), expectedString = "00:00:500"),
-                testCase(timestamp = 59999.toTimestampMilliseconds(), expectedString = "00:59:999"),
-                testCase(timestamp = 60000.toTimestampMilliseconds(), expectedString = "01:00:000"),
-                testCase(timestamp = 90000.toTimestampMilliseconds(), expectedString = "01:30:000"),
-                testCase(timestamp = 3599999.toTimestampMilliseconds(), expectedString = "59:59:999"),
-                testCase(timestamp = 3600000.toTimestampMilliseconds(), expectedString = "01:00:00"),
-                testCase(timestamp = 86399999.toTimestampMilliseconds(), expectedString = "23:59:59"),
-                testCase(timestamp = 86400000.toTimestampMilliseconds(), expectedString = "24:00:00"),
-                testCase(timestamp = 86401000.toTimestampMilliseconds(), expectedString = "24:00:01"),
+                testCase(timestamp = 0, expectedString = "00:00:000"),
+                testCase(timestamp = 500, expectedString = "00:00:500"),
+                testCase(timestamp = 59999, expectedString = "00:59:999"),
+                testCase(timestamp = 60000, expectedString = "01:00:000"),
+                testCase(timestamp = 90000, expectedString = "01:30:000"),
+                testCase(timestamp = 3599999, expectedString = "59:59:999"),
+                testCase(timestamp = 3600000, expectedString = "01:00:00"),
+                testCase(timestamp = 86399999, expectedString = "23:59:59"),
+                testCase(timestamp = 86400000, expectedString = "24:00:00"),
+                testCase(timestamp = 86401000, expectedString = "24:00:01"),
             )
         }
 
-        private fun testCase(timestamp: TimestampMilliseconds, expectedString: String): Arguments =
+        private fun testCase(timestamp: Long, expectedString: String): Arguments =
             Arguments.of(timestamp, expectedString)
     }
 }
