@@ -19,32 +19,32 @@ internal class ChangeBooleanSettingTest {
 
     @Test
     fun `Changing to true is reflected in the state`() {
-        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DarkMode to true))
+        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DARK_MODE to true))
 
-        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DarkMode, true)
+        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, true)
 
         val result = systemUnderTest.booleanSettingsFlow.value
-        expectThat(result[BooleanSettingsOption.DarkMode]).isTrue()
+        expectThat(result[BooleanSettingsOption.DARK_MODE]).isTrue()
     }
 
     @Test
     fun `Changing to false is reflected in the state`() {
-        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DarkMode to true))
+        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DARK_MODE to true))
 
-        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DarkMode, false)
+        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, false)
 
         val result = systemUnderTest.booleanSettingsFlow.value
-        expectThat(result[BooleanSettingsOption.DarkMode]).isFalse()
+        expectThat(result[BooleanSettingsOption.DARK_MODE]).isFalse()
     }
 
     @Test
     fun `The changed value is persisted`() {
         val repository = InMemorySettingsRepository()
-        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DarkMode to true), repository)
+        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DARK_MODE to true), repository)
 
-        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DarkMode, true)
+        systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, true)
 
-        val result = repository.getBoolean(BooleanSettingsOption.DarkMode)
+        val result = repository.getBoolean(BooleanSettingsOption.DARK_MODE)
         expectThat(result).isTrue()
     }
 }

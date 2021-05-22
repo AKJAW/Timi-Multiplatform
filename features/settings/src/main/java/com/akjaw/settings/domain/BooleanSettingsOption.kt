@@ -1,6 +1,5 @@
 package com.akjaw.settings.domain
 
-sealed class BooleanSettingsOption {
-
-    object DarkMode : BooleanSettingsOption()
+enum class BooleanSettingsOption(val key: String) {
+    DARK_MODE("boolean_dark_mode")
 }
