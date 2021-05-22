@@ -46,6 +46,11 @@ ext {
             "sqldelightInMemory": "com.squareup.sqldelight:sqlite-driver:${versions.sqldelight}",
     ]
 
+    androidTestingDependencies = [
+            "composeJunit": "androidx.compose.ui:ui-test-junit4:${versions.compose}",
+//            "composeTestManifest": "androidx.compose.ui:ui-test-manifest:${versions.compose}",
+    ]
+
     otherDependencies = [
             "klock": "com.soywiz.korlibs.klock:klock:2.0.7",
             "sqldelight": "com.squareup.sqldelight:android-driver:${versions.sqldelight}",

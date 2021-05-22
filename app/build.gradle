@@ -39,6 +39,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion versions.compose
     }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -60,6 +64,8 @@ dependencies {
 
     testImplementation testingDependencies.jupiterApi
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
+
+    androidTestImplementation androidTestingDependencies.composeJunit
 }
 
 kotlin {
