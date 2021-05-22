@@ -17,6 +17,6 @@ internal class SettingsChanger(
         newSettings[setting] = value
         mutableSettings.value = newSettings
 
-        inMemorySettingsRepository.setBoolean(key = setting, value = value)
+        inMemorySettingsRepository.setBoolean(option = setting, value = value)
     }
 }

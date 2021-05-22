@@ -4,7 +4,7 @@ import com.akjaw.settings.domain.BooleanSettingsOption
 
 interface Repository {
 
-    fun getBoolean(key: BooleanSettingsOption): Boolean?
+    fun getBoolean(option: BooleanSettingsOption): Boolean?
 
-    fun setBoolean(key: BooleanSettingsOption, value: Boolean)
+    fun setBoolean(option: BooleanSettingsOption, value: Boolean)
 }

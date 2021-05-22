@@ -6,9 +6,10 @@ internal class InMemorySettingsRepository : Repository {
 
     private val mutableBooleanSettings = mutableMapOf<BooleanSettingsOption, Boolean>()
 
-    override fun getBoolean(key: BooleanSettingsOption) = mutableBooleanSettings[key]
+    override fun getBoolean(option: BooleanSettingsOption): Boolean =
+        mutableBooleanSettings[option] ?: false
 
-    override fun setBoolean(key: BooleanSettingsOption, value: Boolean) {
-        mutableBooleanSettings[key] = value
+    override fun setBoolean(option: BooleanSettingsOption, value: Boolean) {
+        mutableBooleanSettings[option] = value
     }
 }
