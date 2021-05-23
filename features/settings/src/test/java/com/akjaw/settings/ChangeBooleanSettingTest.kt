@@ -1,10 +1,13 @@
 package com.akjaw.settings
 
 import com.akjaw.settings.data.InMemorySettingsRepository
+import com.akjaw.settings.data.InitialSettingsOptionsProvider
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.domain.BooleanSettingsOption
 import com.akjaw.settings.domain.SettingsChanger
 import com.akjaw.settings.presentation.SettingsViewModel
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isFalse
@@ -50,9 +53,12 @@ internal class ChangeBooleanSettingTest {
 }
 
 internal fun prepareViewModel(
-    defaultBooleanSettings: Map<BooleanSettingsOption, Boolean> = mapOf(),
+    initialBooleanSettings: Map<BooleanSettingsOption, Boolean> = mapOf(),
     settingsRepository: SettingsRepository = InMemorySettingsRepository(),
 ): SettingsViewModel {
-    val settingsChanger = SettingsChanger(settingsRepository, defaultBooleanSettings)
+    val initialSettingsOptionsProvider: InitialSettingsOptionsProvider = mockk {
+        every { this@mockk.get() } returns initialBooleanSettings
+    }
+    val settingsChanger = SettingsChanger(settingsRepository, initialSettingsOptionsProvider)
     return SettingsViewModel(settingsChanger)
 }
