@@ -2,7 +2,7 @@ package com.akjaw.settings.data
 
 import com.akjaw.settings.domain.BooleanSettingsOption
 
-internal class InMemorySettingsRepository : Repository {
+internal class InMemorySettingsRepository : SettingsRepository {
 
     private val mutableBooleanSettings = mutableMapOf<BooleanSettingsOption, Boolean>()
 

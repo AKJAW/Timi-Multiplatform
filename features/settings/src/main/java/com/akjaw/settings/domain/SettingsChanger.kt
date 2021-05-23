@@ -1,11 +1,11 @@
 package com.akjaw.settings.domain
 
-import com.akjaw.settings.data.Repository
+import com.akjaw.settings.data.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 internal class SettingsChanger(
-    private val inMemorySettingsRepository: Repository, // TODO test for only uses defaults when it doesn't exist
+    private val inMemorySettingsRepository: SettingsRepository, // TODO test for only uses defaults when it doesn't exist
     defaultBooleanSettings: Map<BooleanSettingsOption, Boolean>
 ) {
 

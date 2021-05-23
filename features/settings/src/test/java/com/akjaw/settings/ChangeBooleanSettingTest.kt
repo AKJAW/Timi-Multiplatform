@@ -1,7 +1,7 @@
 package com.akjaw.settings
 
 import com.akjaw.settings.data.InMemorySettingsRepository
-import com.akjaw.settings.data.Repository
+import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.domain.BooleanSettingsOption
 import com.akjaw.settings.domain.SettingsChanger
 import com.akjaw.settings.presentation.SettingsViewModel
@@ -51,8 +51,8 @@ internal class ChangeBooleanSettingTest {
 
 internal fun prepareViewModel(
     defaultBooleanSettings: Map<BooleanSettingsOption, Boolean> = mapOf(),
-    repository: Repository = InMemorySettingsRepository(),
+    settingsRepository: SettingsRepository = InMemorySettingsRepository(),
 ): SettingsViewModel {
-    val settingsChanger = SettingsChanger(repository, defaultBooleanSettings)
+    val settingsChanger = SettingsChanger(settingsRepository, defaultBooleanSettings)
     return SettingsViewModel(settingsChanger)
 }

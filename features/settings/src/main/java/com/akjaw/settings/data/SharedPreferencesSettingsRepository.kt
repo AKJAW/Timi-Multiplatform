@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 internal class SharedPreferencesSettingsRepository @Inject constructor(
     private val sharedPreferences: SharedPreferences
-) : Repository {
+) : SettingsRepository {
 
     override fun getBoolean(option: BooleanSettingsOption): Boolean =
         sharedPreferences.getBoolean(option.key, false)
