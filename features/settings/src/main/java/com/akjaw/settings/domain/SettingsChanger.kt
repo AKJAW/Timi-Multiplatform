@@ -4,10 +4,11 @@ import com.akjaw.settings.data.InitialSettingsOptionsProvider
 import com.akjaw.settings.data.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-internal class SettingsChanger(
-    private val inMemorySettingsRepository: SettingsRepository, // TODO test for only uses defaults when it doesn't exist
-    initialSettingsOptionsProvider: InitialSettingsOptionsProvider
+internal class SettingsChanger @Inject constructor(
+    private val settingsRepository: SettingsRepository,
+    initialSettingsOptionsProvider: InitialSettingsOptionsProvider,
 ) {
 
     private val mutableSettings = MutableStateFlow(initialSettingsOptionsProvider.get())
@@ -18,6 +19,6 @@ internal class SettingsChanger(
         newSettings[setting] = value
         mutableSettings.value = newSettings
 
-        inMemorySettingsRepository.setBoolean(option = setting, value = value)
+        settingsRepository.setBoolean(option = setting, value = value)
     }
 }

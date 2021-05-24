@@ -26,7 +26,7 @@ internal class ChangeBooleanSettingTest {
 
         systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, true)
 
-        val result = systemUnderTest.booleanSettingsFlow.value
+        val result = systemUnderTest.booleanOptionsFlow.value
         expectThat(result[BooleanSettingsOption.DARK_MODE]).isTrue()
     }
 
@@ -36,7 +36,7 @@ internal class ChangeBooleanSettingTest {
 
         systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, false)
 
-        val result = systemUnderTest.booleanSettingsFlow.value
+        val result = systemUnderTest.booleanOptionsFlow.value
         expectThat(result[BooleanSettingsOption.DARK_MODE]).isFalse()
     }
 

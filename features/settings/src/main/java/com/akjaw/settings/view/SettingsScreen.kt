@@ -17,27 +17,46 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.akjaw.core.common.view.theme.ThemeState
+import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.settings.R
+import com.akjaw.settings.domain.BooleanSettingsOption
+import com.akjaw.settings.presentation.SettingsViewModel
 
 @Composable
-fun SettingsScreen() {
+internal fun SettingsScreen() {
+    val settingsViewModel = hiltNavGraphViewModel<SettingsViewModel>()
+    SettingsScreen(
+        booleanOptions = settingsViewModel.booleanOptionsFlow.collectAsState().value,
+        onSwitchClicked = settingsViewModel::onSwitchValueChange
+    )
+}
+
+@Composable
+internal fun SettingsScreen(
+    booleanOptions: Map<BooleanSettingsOption, Boolean>,
+    onSwitchClicked: (BooleanSettingsOption, Boolean) -> Unit
+) {
     SettingsSection {
-        SettingsSwitch(
-            icon = Icons.Default.DarkMode,
-            title = "Dark mode",
-            onClick = { value ->
-                ThemeState.isDarkTheme.value = value
-            } // TODO move this out to a separate class
-        )
+        booleanOptions.forEach { (option, value) ->
+            SettingsSwitch(
+                icon = Icons.Default.DarkMode,
+                title = stringResource(id = R.string.boolean_dark_mode),
+                currentValue = value,
+                onClick = { newValue ->
+                    onSwitchClicked(option, newValue)
+                    // ThemeState.isDarkTheme.value = value // TODO move this out to a separate class
+                }
+            )
+        }
     }
 }
 
@@ -61,19 +80,13 @@ private fun SettingsSection(items: @Composable ColumnScope.() -> Unit) {
 fun SettingsSwitch(
     icon: ImageVector,
     title: String,
+    currentValue: Boolean,
     onClick: (Boolean) -> Unit,
 ) {
-    val (isChecked, setIsChecked) = remember { mutableStateOf(false) }
-    val onSwitchValueChange: (Boolean) -> Unit = remember {
-        { value ->
-            setIsChecked(value)
-            onClick(value)
-        }
-    }
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onSwitchValueChange(!isChecked) },
+            .clickable { onClick(currentValue.not()) },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
@@ -91,9 +104,9 @@ fun SettingsSwitch(
                 .padding(8.dp)
         )
         Switch(
-            checked = isChecked,
+            checked = currentValue,
             onCheckedChange = { newValue ->
-                onSwitchValueChange(newValue)
+                onClick(newValue)
             },
             modifier = Modifier.padding(8.dp)
         )
@@ -104,7 +117,10 @@ fun SettingsSwitch(
 @Composable
 fun SettingsScreenPreview() {
     TimiComposeTheme {
-        SettingsScreen()
+        SettingsScreen(
+            booleanOptions = previewOptions,
+            onSwitchClicked = { _, _ -> }
+        )
     }
 }
 
@@ -112,6 +128,11 @@ fun SettingsScreenPreview() {
 @Composable
 fun DarkSettingsScreenPreview() {
     TimiComposeTheme(darkTheme = true) {
-        SettingsScreen()
+        SettingsScreen(
+            booleanOptions = previewOptions,
+            onSwitchClicked = { _, _ -> }
+        )
     }
 }
+
+private val previewOptions = mapOf(BooleanSettingsOption.DARK_MODE to false)
