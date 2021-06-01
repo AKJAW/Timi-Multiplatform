@@ -3,8 +3,10 @@ package com.akjaw.settings.composition
 import android.content.Context
 import android.content.SharedPreferences
 import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
+import com.akjaw.settings.data.ResourcesSystemDarkModeProvider
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.data.SharedPreferencesSettingsRepository
+import com.akjaw.settings.data.SystemDarkModeProvider
 import com.akjaw.settings.view.SettingsScreenCreator
 import com.akjaw.settings.view.SettingsScreenCreatorImpl
 import dagger.Binds
@@ -22,7 +24,10 @@ internal abstract class SettingsModule {
     abstract fun bindStopwatchScreenCreator(creator: SettingsScreenCreatorImpl): SettingsScreenCreator
 
     @Binds
-    abstract fun bindSettingsRepository(settingsRepository: SharedPreferencesSettingsRepository): SettingsRepository
+    abstract fun bindSettingsRepository(repository: SharedPreferencesSettingsRepository): SettingsRepository
+
+    @Binds
+    abstract fun bindSystemDarkModeProvider(provider: ResourcesSystemDarkModeProvider): SystemDarkModeProvider
 
     companion object {
 

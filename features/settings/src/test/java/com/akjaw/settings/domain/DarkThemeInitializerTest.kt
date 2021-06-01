@@ -2,7 +2,7 @@ package com.akjaw.settings.domain
 
 import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.settings.data.InMemorySettingsRepository
-import com.akjaw.settings.domain.DarkThemeInitializer.SystemDarkModeProvider
+import com.akjaw.settings.data.SystemDarkModeProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -39,7 +39,7 @@ internal class DarkThemeInitializerTest {
 
         @Test
         fun `Given the option is not yet persisted then the system value is persisted`() {
-            every { systemDarkModeProvider.get() } returns true
+            every { systemDarkModeProvider.isDarkModeEnabled() } returns true
 
             systemUnderTest.initialize()
 
@@ -58,7 +58,7 @@ internal class DarkThemeInitializerTest {
             systemUnderTest.initialize()
 
             verify(exactly = 0) {
-                systemDarkModeProvider.get()
+                systemDarkModeProvider.isDarkModeEnabled()
             }
         }
     }
