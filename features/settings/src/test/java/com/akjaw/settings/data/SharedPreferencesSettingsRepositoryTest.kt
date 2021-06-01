@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isFalse
+import strikt.assertions.isTrue
 
 internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContractTest() {
 
@@ -18,6 +19,24 @@ internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContr
     @BeforeEach
     fun setUp() {
         systemUnderTest = SharedPreferencesSettingsRepository(sharedPreferences)
+    }
+
+    @Test
+    override fun `Given the value is not persisted the repository does not contain the value`() {
+        every { sharedPreferences.contains(BooleanSettingsOption.DARK_MODE.key) } returns false
+
+        val result = systemUnderTest.containsOption(BooleanSettingsOption.DARK_MODE)
+
+        expectThat(result).isFalse()
+    }
+
+    @Test
+    override fun `Given the value is persisted the repository contains the value`() {
+        every { sharedPreferences.contains(BooleanSettingsOption.DARK_MODE.key) } returns true
+
+        val result = systemUnderTest.containsOption(BooleanSettingsOption.DARK_MODE)
+
+        expectThat(result).isTrue()
     }
 
     @Test

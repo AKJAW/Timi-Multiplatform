@@ -8,6 +8,9 @@ internal class SharedPreferencesSettingsRepository @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : SettingsRepository {
 
+    override fun containsOption(option: BooleanSettingsOption): Boolean =
+        sharedPreferences.contains(option.key)
+
     override fun getBoolean(option: BooleanSettingsOption): Boolean =
         sharedPreferences.getBoolean(option.key, false)
 
