@@ -10,6 +10,7 @@ class ResourcesSystemDarkModeProvider @Inject constructor(
 ) : SystemDarkModeProvider {
 
     override fun isDarkModeEnabled(): Boolean {
-        return applicationContext.resources.configuration.uiMode == Configuration.UI_MODE_NIGHT_YES
+        return applicationContext.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 }

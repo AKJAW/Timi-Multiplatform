@@ -1,5 +1,6 @@
 package com.akjaw.settings.domain
 
+import com.akjaw.core.common.domain.ApplicationInitializer
 import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.data.SystemDarkModeProvider
@@ -8,9 +9,9 @@ import javax.inject.Inject
 class DarkThemeInitializer @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val systemDarkModeProvider: SystemDarkModeProvider
-) {
+) : ApplicationInitializer {
 
-    fun initialize() {
+    override fun initialize() {
         val persistedValue = if (isDarkModeAlreadyPersisted().not()) {
             val newValue = systemDarkModeProvider.isDarkModeEnabled()
             settingsRepository.setBoolean(BooleanSettingsOption.DARK_MODE, newValue)
