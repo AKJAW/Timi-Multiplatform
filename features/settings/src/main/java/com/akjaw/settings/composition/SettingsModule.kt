@@ -3,7 +3,7 @@ package com.akjaw.settings.composition
 import android.content.Context
 import android.content.SharedPreferences
 import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
-import com.akjaw.core.common.domain.ApplicationInitializer
+import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.settings.data.ResourcesSystemDarkModeProvider
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.data.SharedPreferencesSettingsRepository
@@ -34,7 +34,7 @@ internal abstract class SettingsModule {
 
     @Binds
     @IntoSet
-    abstract fun bindDarkThemeInitializer(initializer: DarkThemeInitializer): ApplicationInitializer
+    abstract fun bindDarkThemeInitializer(initializer: DarkThemeInitializer): ActivityInitializer
 
     companion object {
 

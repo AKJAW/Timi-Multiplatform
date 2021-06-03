@@ -1,6 +1,6 @@
 package com.akjaw.core.common.domain
 
-interface ApplicationInitializer {
+interface ActivityInitializer {
 
     fun initialize()
 }

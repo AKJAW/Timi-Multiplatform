@@ -53,7 +53,6 @@ internal fun SettingsScreen(
                 currentValue = value,
                 onClick = { newValue ->
                     onSwitchClicked(option, newValue)
-                    // ThemeState.isDarkTheme.value = value // TODO move this out to a separate class
                 }
             )
         }

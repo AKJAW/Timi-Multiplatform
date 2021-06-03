@@ -9,6 +9,7 @@ import androidx.compose.material.TopAppBar
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.NavigationHolder
@@ -32,8 +33,12 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var settingsScreenCreator: SettingsScreenCreator
 
+    @Inject
+    lateinit var initializers: Set<@JvmSuppressWildcards ActivityInitializer>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializers.forEach { it.initialize() }
         setContent {
             val navController = rememberNavController()
             // ThemeState.isDarkTheme.value = isSystemInDarkTheme()

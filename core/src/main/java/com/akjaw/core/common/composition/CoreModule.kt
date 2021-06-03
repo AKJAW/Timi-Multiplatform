@@ -1,6 +1,6 @@
 package com.akjaw.core.common.composition
 
-import com.akjaw.core.common.domain.ApplicationInitializer
+import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.core.common.domain.KlockTimestampProvider
 import com.akjaw.core.common.domain.TimestampProvider
 import dagger.Binds
@@ -17,5 +17,5 @@ internal abstract class CoreModule {
     abstract fun bindTimestampProvider(klockTimestampProvider: KlockTimestampProvider): TimestampProvider
 
     @Multibinds
-    abstract fun bindApplicationInitializer(): Set<ApplicationInitializer>
+    abstract fun bindActivityInitializer(): Set<ActivityInitializer>
 }
