@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class SettingsViewModel @Inject constructor(
-    private val settingsChanger: SettingsChanger
+    private val settingsChanger: SettingsChanger,
+    private val darkModeThemeStateUpdater: DarkModeThemeStateUpdater
 ) : ViewModel() {
 
     val booleanOptionsFlow: StateFlow<Map<BooleanSettingsOption, Boolean>> =
@@ -17,5 +18,8 @@ internal class SettingsViewModel @Inject constructor(
 
     fun onSwitchValueChange(setting: BooleanSettingsOption, value: Boolean) {
         settingsChanger.changeBooleanSetting(setting, value)
+        if (setting == BooleanSettingsOption.DARK_MODE) {
+            darkModeThemeStateUpdater.changeDarkModeValue(value)
+        }
     }
 }
