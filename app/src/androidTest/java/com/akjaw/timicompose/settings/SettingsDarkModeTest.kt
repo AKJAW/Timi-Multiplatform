@@ -3,13 +3,9 @@ package com.akjaw.timicompose.settings
 import android.content.Context
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.SemanticsNodeInteraction
-import androidx.compose.ui.test.assertIsOff
-import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onChild
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
 import com.akjaw.settings.R
 import com.akjaw.timicompose.ActivityComposeTestRule
@@ -19,10 +15,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-// TODO extract a verifier and a robot
 class SettingsDarkModeTest {
 
     private lateinit var bottomNavRobot: BottomNavRobot
+    private lateinit var settingsScreenRobot: SettingsScreenRobot
+    private lateinit var settingsScreenVerifier: SettingsScreenVerifier
 
     @get:Rule
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
@@ -34,6 +31,8 @@ class SettingsDarkModeTest {
     @Before
     fun setUp() {
         bottomNavRobot = BottomNavRobot(composeTestRule)
+        settingsScreenRobot = SettingsScreenRobot(composeTestRule)
+        settingsScreenVerifier = SettingsScreenVerifier(composeTestRule)
     }
 
     @After
@@ -50,32 +49,29 @@ class SettingsDarkModeTest {
         bottomNavRobot.navigateToSettings()
         assertDarkModeDisabled()
 
-        composeTestRule.onNodeWithText(darkModeText).performClick()
+        settingsScreenRobot.clickTheDarkModeSwitch()
 
-        composeTestRule.mainClock.advanceTimeBy(500)
         assertDarkModeEnabled()
     }
 
     @Test
     fun changingDarkSettingUpdatesTheSwitch() {
         bottomNavRobot.navigateToSettings()
-        composeTestRule.onNodeWithText(darkModeText).onChild().assertIsOff()
+        settingsScreenVerifier.assertDarkModeSwitch(isSet = false)
 
-        composeTestRule.onNodeWithText(darkModeText).performClick()
+        settingsScreenRobot.clickTheDarkModeSwitch()
 
-        composeTestRule.mainClock.advanceTimeBy(500)
-        composeTestRule.onNodeWithText(darkModeText).onChild().assertIsOn()
+        settingsScreenVerifier.assertDarkModeSwitch(isSet = true)
     }
 
     @Test
     fun theDarkSettingIsPersisted() {
         bottomNavRobot.navigateToSettings()
-        composeTestRule.onNodeWithText(darkModeText).performClick()
-        composeTestRule.mainClock.advanceTimeBy(500)
+        settingsScreenRobot.clickTheDarkModeSwitch()
 
         composeTestRule.activityRule.scenario.recreate()
 
-        composeTestRule.onNodeWithText(darkModeText).onChild().assertIsOn()
+        settingsScreenVerifier.assertDarkModeSwitch(isSet = true)
         assertDarkModeEnabled()
     }
 
