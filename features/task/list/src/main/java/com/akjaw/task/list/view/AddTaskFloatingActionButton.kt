@@ -37,6 +37,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,7 +53,10 @@ import kotlinx.coroutines.launch
 internal fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
     val (isAddTaskDialogOpen, setIsAddTaskDialogOpen) = remember { mutableStateOf(false) }
 
-    FloatingActionButton(onClick = { setIsAddTaskDialogOpen(true) }) {
+    FloatingActionButton(
+        modifier = Modifier.testTag("AddTaskFab"),
+        onClick = { setIsAddTaskDialogOpen(true) }
+    ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add a task")
     }
 
@@ -244,6 +248,7 @@ private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
                         .background(color)
                         .border(width = 1.dp, color = MaterialTheme.colors.background)
                         .size(50.dp)
+                        .testTag("ColorPickerItem")
                 )
             }
         }

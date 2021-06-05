@@ -89,6 +89,7 @@ class SettingsDarkModeTest {
         )
     }
 
+    @Deprecated("Use the extension function from ColorAssertions")
     private fun assertFirstPixelColor(node: SemanticsNodeInteraction, expectedHexColor: String) {
         val imageBitmap = node.captureToImage()
         val color = imageBitmap.asAndroidBitmap().getPixel(0, 0)
