@@ -5,6 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -27,10 +28,14 @@ private val LightColorPalette = lightColors(
     */
 )
 
+object ThemeState {
+    val isDarkTheme = mutableStateOf(false)
+}
+
 @Composable
 fun TimiComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
