@@ -15,9 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.navigate
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 
 private val values = listOf(
@@ -38,12 +36,12 @@ sealed class BottomBarScreen(
 @Composable
 fun TimiBottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+    val currentRoute = navBackStackEntry?.destination?.route
     TimiBottomBar(
         currentRoute = currentRoute,
         onClick = { screen ->
             navController.navigate(screen.route) {
-                popUpTo = navController.graph.startDestination
+                popUpTo(navController.graph.startDestinationId)
                 launchSingleTop = true
             }
         }
