@@ -1,14 +1,15 @@
 package com.akjaw.settings.domain
 
 import com.akjaw.core.common.domain.ActivityInitializer
-import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.data.SystemDarkModeProvider
+import com.akjaw.settings.presentation.DarkModeThemeStateUpdater
 import javax.inject.Inject
 
 class DarkThemeInitializer @Inject constructor(
     private val settingsRepository: SettingsRepository,
-    private val systemDarkModeProvider: SystemDarkModeProvider
+    private val systemDarkModeProvider: SystemDarkModeProvider,
+    private val darkModeThemeStateUpdater: DarkModeThemeStateUpdater,
 ) : ActivityInitializer {
 
     override fun initialize() {
@@ -19,7 +20,7 @@ class DarkThemeInitializer @Inject constructor(
         } else {
             settingsRepository.getBoolean(BooleanSettingsOption.DARK_MODE)
         }
-        ThemeState.isDarkTheme.value = persistedValue
+        darkModeThemeStateUpdater.changeDarkModeValue(persistedValue)
     }
 
     private fun isDarkModeAlreadyPersisted() =

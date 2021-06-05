@@ -15,16 +15,13 @@ import strikt.api.expectThat
 import strikt.assertions.isFalse
 import strikt.assertions.isTrue
 
-// the setting is persisted - Here
-// on start the setting is taken from the settings - RetrievingSettingsTest
-// Shows the correct list of settings - RetrievingSettingsTest
-internal class ChangeBooleanSettingTest {
+internal class ChangeBooleanSettingIntegrationTest {
 
     private lateinit var systemUnderTest: SettingsViewModel
 
     @Test
     fun `Changing to true is reflected in the state`() {
-        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DARK_MODE to true))
+        systemUnderTest = prepareViewModel(mapOf(BooleanSettingsOption.DARK_MODE to false))
 
         systemUnderTest.onSwitchValueChange(BooleanSettingsOption.DARK_MODE, true)
 

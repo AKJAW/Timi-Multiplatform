@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
         initializers.forEach { it.initialize() }
         setContent {
             val navController = rememberNavController()
-            // ThemeState.isDarkTheme.value = isSystemInDarkTheme()
             TimiComposeTheme(darkTheme = ThemeState.isDarkTheme.value) {
                 NavHost(
                     navController = navController,
