@@ -33,7 +33,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
@@ -48,7 +48,7 @@ import com.akjaw.task.api.view.tasksPreview
 internal fun StopwatchScreen(
     navController: NavHostController
 ) {
-    val stopwatchViewModel = hiltNavGraphViewModel<StopwatchViewModel>()
+    val stopwatchViewModel = hiltViewModel<StopwatchViewModel>()
     val availableTasks = stopwatchViewModel.availableTasks.collectAsState(emptyList())
     val stopwatches = stopwatchViewModel.stopwatches.collectAsState()
     val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
@@ -88,7 +88,7 @@ private fun StopwatchContent(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         stopwatches.forEach { (task, timeString) ->
-            item {
+            item(key = task.id) {
                 StopwatchItem(
                     task = task,
                     timeString = timeString,
@@ -98,7 +98,7 @@ private fun StopwatchContent(
                 )
             }
         }
-        item {
+        item(key = "AddStopwatch") {
             AddNewStopwatchEntryButton(onClick = onAddStopwatchClicked)
         }
     }
@@ -195,12 +195,14 @@ private fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 16.dp)
-            .height(50.dp)
-            .clickable { onClick() },
+            .height(50.dp),
         shape = taskShape,
         border = stopwatchBorder(MaterialTheme.colors)
     ) {
-        Box(contentAlignment = Alignment.Center) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.clickable { onClick() },
+        ) {
             Text(text = "Add a new stopwatch")
         }
     }

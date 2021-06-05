@@ -37,7 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
@@ -49,7 +49,7 @@ import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
 internal fun TaskListScreen(navController: NavHostController) {
-    val taskListViewModel = hiltNavGraphViewModel<TaskListViewModel>()
+    val taskListViewModel = hiltViewModel<TaskListViewModel>()
     val tasks = taskListViewModel.tasks.collectAsState(emptyList())
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
@@ -89,18 +89,19 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(50.dp)
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = null
-            ) { onTaskClicked(task) },
+            .height(50.dp),
         shape = taskShape,
         backgroundColor = task.backgroundColor,
         elevation = 0.dp,
     ) {
         val buttonWidth = remember { 50.dp }
         Box(
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = { onTaskClicked(task) }
+            ),
         ) {
             Text(
                 modifier = Modifier.padding(start = 8.dp, end = buttonWidth),
