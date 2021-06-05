@@ -59,7 +59,9 @@ private fun AddStopwatchDialogContent(
         ) {
             item {
                 Box(
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -92,17 +94,17 @@ private fun AddStopwatchTaskItem(
     Card(
         modifier = Modifier
             .height(40.dp)
-            .fillMaxWidth()
-            .clickable {
-                onAddStopwatchClicked(task)
-                closeDialog()
-            },
+            .fillMaxWidth(),
         elevation = 0.dp,
         backgroundColor = task.backgroundColor,
         shape = taskShape,
     ) {
         Box(
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.clickable {
+                onAddStopwatchClicked(task)
+                closeDialog()
+            },
         ) {
             Text(
                 modifier = Modifier.padding(horizontal = 8.dp),

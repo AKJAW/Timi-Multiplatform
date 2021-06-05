@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.settings.R
 import com.akjaw.settings.domain.BooleanSettingsOption
@@ -33,7 +33,7 @@ import com.akjaw.settings.presentation.SettingsViewModel
 
 @Composable
 internal fun SettingsScreen() {
-    val settingsViewModel = hiltNavGraphViewModel<SettingsViewModel>()
+    val settingsViewModel = hiltViewModel<SettingsViewModel>()
     SettingsScreen(
         booleanOptions = settingsViewModel.booleanOptionsFlow.collectAsState().value,
         onSwitchClicked = settingsViewModel::onSwitchValueChange
