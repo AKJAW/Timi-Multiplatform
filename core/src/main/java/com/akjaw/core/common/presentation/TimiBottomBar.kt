@@ -12,7 +12,9 @@ import androidx.compose.material.icons.filled.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -54,7 +56,9 @@ private fun TimiBottomBar(
     onClick: (BottomBarScreen) -> Unit,
     items: List<BottomBarScreen> = values
 ) {
-    BottomNavigation {
+    BottomNavigation(
+        modifier = Modifier.testTag("BottomNav")
+    ) {
         items.forEach { screen ->
             BottomNavigationItem(
                 selected = screen.route == currentRoute,

@@ -48,6 +48,7 @@ ext {
 
     androidTestingDependencies = [
             "composeJunit": "androidx.compose.ui:ui-test-junit4:${versions.compose}",
+            "espressoCore": "androidx.test.espresso:espresso-core:3.3.0",
 //            "composeTestManifest": "androidx.compose.ui:ui-test-manifest:${versions.compose}",
     ]
 

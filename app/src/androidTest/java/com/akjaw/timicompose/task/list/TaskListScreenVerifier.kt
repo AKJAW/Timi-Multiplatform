@@ -1,8 +1,10 @@
 package com.akjaw.timicompose.task.list
 
-import androidx.compose.ui.test.assertAny
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.hasAnyChild
+import androidx.compose.ui.test.hasAnyDescendant
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithTag
@@ -16,8 +18,7 @@ class TaskListScreenVerifier(
     fun confirmTaskWithNameExists(name: String) {
         composeTestRule
             .onNodeWithTag("TaskList")
-            .onChildren()
-            .assertAny(hasAnyChild(hasText(name)))
+            .assert(hasAnyDescendant(hasText(name)))
     }
 
     fun confirmTaskWithNameHasTheCorrectColor(name: String, color: String) {
@@ -26,5 +27,17 @@ class TaskListScreenVerifier(
             .onChildren()
             .filterToOne(hasAnyChild(hasText(name)))
             .hasMainColor(color)
+    }
+
+    // TODO revise when additional Compose API will be added
+    fun confirmTaskWithNameDoesNotExists(name: String) {
+        val nodes = composeTestRule
+            .onNodeWithTag("TaskList")
+            .onChildren()
+            .filter(hasAnyDescendant(hasText(name)))
+
+        assert(nodes.fetchSemanticsNodes(atLeastOneRootRequired = false).isEmpty()) {
+            "The task with the name: $name exists but shouldn't"
+        }
     }
 }

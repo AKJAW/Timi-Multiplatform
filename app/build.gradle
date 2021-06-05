@@ -66,6 +66,7 @@ dependencies {
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
 
     androidTestImplementation androidTestingDependencies.composeJunit
+    androidTestImplementation androidTestingDependencies.espressoCore
 }
 
 kotlin {

@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performTextInput
+import androidx.test.espresso.Espresso
 import com.akjaw.timicompose.ActivityComposeTestRule
 
 class AddTaskDialogRobot(
@@ -33,5 +34,12 @@ class AddTaskDialogRobot(
 
     fun confirm() {
         composeTestRule.onNodeWithText("Add").performClick()
+    }
+
+    // TODO revise when additional Compose API will be added
+    fun cancel() {
+        Espresso.pressBack()
+        Espresso.pressBack()
+        Espresso.pressBack()
     }
 }
