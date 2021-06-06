@@ -20,6 +20,7 @@ class AddTaskDialogRobot(
             .performTextInput(name)
     }
 
+    // TODO this is flaky, revise later
     fun clickColorToggle() {
         composeTestRule.onNodeWithText("Color").performClick()
         Thread.sleep(50)

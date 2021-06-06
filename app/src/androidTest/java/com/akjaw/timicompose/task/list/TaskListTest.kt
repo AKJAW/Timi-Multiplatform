@@ -1,5 +1,7 @@
 package com.akjaw.timicompose.task.list
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.task.TaskEntityQueries
@@ -7,8 +9,8 @@ import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.After
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
@@ -16,11 +18,13 @@ import javax.inject.Inject
 @HiltAndroidTest
 class TaskListTest {
 
+    // TODO maybe inject a different database so it is not connected with the regular one?
     @Inject
     lateinit var taskEntityQueries: TaskEntityQueries
 
     private lateinit var bottomNavVerifier: BottomNavVerifier
     private lateinit var addTaskDialogRobot: AddTaskDialogRobot
+    private lateinit var deleteTaskDialogRobot: DeleteTaskDialogRobot
     private lateinit var taskListScreenRobot: TaskListScreenRobot
     private lateinit var taskListScreenVerifier: TaskListScreenVerifier
 
@@ -37,8 +41,12 @@ class TaskListTest {
         bottomNavVerifier = BottomNavVerifier(composeTestRule)
         taskListScreenRobot = TaskListScreenRobot(composeTestRule)
         addTaskDialogRobot = AddTaskDialogRobot(composeTestRule)
+        deleteTaskDialogRobot = DeleteTaskDialogRobot(composeTestRule)
         taskListScreenVerifier = TaskListScreenVerifier(composeTestRule)
+    }
 
+    @After
+    fun tearDown() {
         taskEntityQueries.transaction {
             taskEntityQueries.selectAllTasks().executeAsList().forEach { task ->
                 taskEntityQueries.deleteTaskById(task.id)
@@ -79,13 +87,42 @@ class TaskListTest {
         bottomNavVerifier.confirmTasksSelected()
     }
 
-    @Ignore
     @Test
     fun deletingATaskRemovesItFromTheList() {
+        taskEntityQueries.insertTask(id = null, position = 0, name = "Existing", color = 0)
+        taskListScreenRobot.selectTaskWithName("Existing")
+        taskListScreenRobot.clickDeleteIcon()
+
+        deleteTaskDialogRobot.confirm()
+
+        taskListScreenVerifier.confirmTaskWithNameDoesNotExists("Existing")
     }
 
-    @Ignore
+    @Test
+    fun cancellingTheTaskRemovalDoesNotModifyTheList() {
+        taskEntityQueries.insertTask(id = null, position = 0, name = "Existing", color = 0)
+        taskListScreenRobot.selectTaskWithName("Existing")
+        taskListScreenRobot.clickDeleteIcon()
+
+        deleteTaskDialogRobot.cancel()
+
+        taskListScreenVerifier.confirmTaskWithNameExists("Existing")
+    }
+
     @Test
     fun selectingATaskMakesTheColorFill() {
+        taskEntityQueries.insertTask(
+            id = null,
+            position = 0,
+            name = "Existing",
+            color = Color.Magenta.toArgb()
+        )
+
+        taskListScreenRobot.selectTaskWithName("Existing")
+
+        taskListScreenVerifier.confirmTaskWithNameSelected(
+            name = "Existing",
+            color = Color.Magenta
+        )
     }
 }

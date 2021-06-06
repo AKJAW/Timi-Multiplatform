@@ -39,7 +39,7 @@ internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
-                        contentDescription = "delete",
+                        contentDescription = "Delete",
                     )
                 }
             }
