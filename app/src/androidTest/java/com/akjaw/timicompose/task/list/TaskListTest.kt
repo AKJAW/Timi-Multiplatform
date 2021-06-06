@@ -2,6 +2,7 @@ package com.akjaw.timicompose.task.list
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -10,9 +11,13 @@ import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
 
 @HiltAndroidTest
 class TaskListTest {
+
+    @Inject
+    lateinit var taskEntityQueries: TaskEntityQueries
 
     private lateinit var bottomNavVerifier: BottomNavVerifier
     private lateinit var addTaskDialogRobot: AddTaskDialogRobot
@@ -27,10 +32,18 @@ class TaskListTest {
 
     @Before
     fun setUp() {
+        hiltRule.inject()
+
         bottomNavVerifier = BottomNavVerifier(composeTestRule)
         taskListScreenRobot = TaskListScreenRobot(composeTestRule)
         addTaskDialogRobot = AddTaskDialogRobot(composeTestRule)
         taskListScreenVerifier = TaskListScreenVerifier(composeTestRule)
+
+        taskEntityQueries.transaction {
+            taskEntityQueries.selectAllTasks().executeAsList().forEach { task ->
+                taskEntityQueries.deleteTaskById(task.id)
+            }
+        }
     }
 
     @ExperimentalTestApi
