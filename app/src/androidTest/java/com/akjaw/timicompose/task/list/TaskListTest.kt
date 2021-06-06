@@ -4,11 +4,14 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
+@HiltAndroidTest
 class TaskListTest {
 
     private lateinit var bottomNavVerifier: BottomNavVerifier
@@ -16,10 +19,11 @@ class TaskListTest {
     private lateinit var taskListScreenRobot: TaskListScreenRobot
     private lateinit var taskListScreenVerifier: TaskListScreenVerifier
 
-    @get:Rule
-    val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+    @get:Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
 
-    // TODO inject inMemoryDatabase
+    @get:Rule(order = 1)
+    val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
 
     @Before
     fun setUp() {
