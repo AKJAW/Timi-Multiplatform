@@ -239,7 +239,11 @@ private fun ColorPicker(
 
 @Composable
 private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
-    LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
+    LazyRow(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .testTag("ColorPicker")
+    ) {
         colors.forEach { color ->
             item {
                 Box(
@@ -248,7 +252,6 @@ private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
                         .background(color)
                         .border(width = 1.dp, color = MaterialTheme.colors.background)
                         .size(50.dp)
-                        .testTag("ColorPickerItem")
                 )
             }
         }

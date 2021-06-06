@@ -1,9 +1,9 @@
 package com.akjaw.timicompose.task.list
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performTextInput
@@ -22,14 +22,14 @@ class AddTaskDialogRobot(
 
     fun clickColorToggle() {
         composeTestRule.onNodeWithText("Color").performClick()
+        Thread.sleep(50)
     }
 
     @ExperimentalTestApi
     fun selectAColorAt(index: Int) {
-        val allColors = composeTestRule.onAllNodesWithTag("ColorPickerItem")
-        allColors[0].onParent().performScrollToIndex(index)
-        composeTestRule.mainClock.advanceTimeBy(100)
-        allColors[index].performClick()
+        composeTestRule.onNodeWithTag("ColorPicker").performScrollToIndex(index)
+        composeTestRule.mainClock.advanceTimeBy(500)
+        composeTestRule.onNodeWithTag("ColorPicker").onChildren()[index].performClick()
     }
 
     fun confirm() {

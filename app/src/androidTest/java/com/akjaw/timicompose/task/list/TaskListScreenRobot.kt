@@ -10,5 +10,6 @@ class TaskListScreenRobot(
 
     fun clickOnFab() {
         composeTestRule.onNodeWithTag("AddTaskFab").performClick()
+        composeTestRule.mainClock.advanceTimeBy(500)
     }
 }
