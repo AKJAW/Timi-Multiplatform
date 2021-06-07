@@ -6,6 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
+import com.akjaw.timicompose.composition.TimestampProviderStub
 import com.akjaw.timicompose.utils.clearDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -35,6 +36,9 @@ class StopwatchTest {
     @Inject
     lateinit var taskEntityQueries: TaskEntityQueries
 
+    @Inject
+    lateinit var timestampProviderStub: TimestampProviderStub
+
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var stopwatchScreenRobot: StopwatchScreenRobot
     private lateinit var stopwatchScreenVerifier: StopwatchScreenVerifier
@@ -58,13 +62,17 @@ class StopwatchTest {
 
     @Test
     fun addingAStopwatchStartsTheStopwatchInTheList() {
+        timestampProviderStub.currentMilliseconds = 0
         stopwatchScreenRobot.clickAddButton()
 
         stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
 
+        timestampProviderStub.currentMilliseconds = 22000
         stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
-//        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(FIRST_TASK_NAME, "00:22:000")
-//        stopwatchScreenVerifier.confirmStopwatchHasColor(FIRST_TASK_NAME, FIRST_TASK_COLOR)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = FIRST_TASK_NAME,
+            timestamp = "00:22:000"
+        )
     }
 
     @Ignore

@@ -3,6 +3,7 @@ package com.akjaw.timicompose.task.list
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.filter
@@ -55,7 +56,7 @@ class TaskListScreenVerifier(
         }
     }
 
-    private fun selectTaskWithName(name: String) =
+    private fun selectTaskWithName(name: String): SemanticsNodeInteraction =
         composeTestRule
             .onNodeWithTag("TaskList")
             .onChildren()
