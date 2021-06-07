@@ -20,15 +20,15 @@ import org.junit.Test
 @HiltAndroidTest
 class SettingsDarkModeTest {
 
-    private lateinit var bottomNavRobot: BottomNavRobot
-    private lateinit var settingsScreenRobot: SettingsScreenRobot
-    private lateinit var settingsScreenVerifier: SettingsScreenVerifier
-
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+
+    private lateinit var bottomNavRobot: BottomNavRobot
+    private lateinit var settingsScreenRobot: SettingsScreenRobot
+    private lateinit var settingsScreenVerifier: SettingsScreenVerifier
 
     private val darkModeText by lazy {
         composeTestRule.activity.getString(R.string.boolean_dark_mode)
