@@ -1,11 +1,9 @@
 package com.akjaw.timicompose.stopwatch
 
 import androidx.compose.ui.test.assert
-import androidx.compose.ui.test.filter
-import androidx.compose.ui.test.hasAnyDescendant
-import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onAllNodesWithTag
 import com.akjaw.timicompose.ActivityComposeTestRule
+import com.akjaw.timicompose.utils.assertDescendantDoesNotContainText
 
 class AddStopwatchDialogVerifier(
     private val composeTestRule: ActivityComposeTestRule
@@ -22,12 +20,8 @@ class AddStopwatchDialogVerifier(
     }
 
     fun confirmTaskListDoesNotContain(taskName: String) {
-        val nodes = composeTestRule
+        composeTestRule
             .onAllNodesWithTag("AddStopwatchTaskItem")
-            .filter(hasAnyDescendant(hasText(taskName))) // TODO extract with assertion
-
-        assert(nodes.fetchSemanticsNodes(atLeastOneRootRequired = false).isEmpty()) {
-            "The task with the name: $taskName exists but shouldn't"
-        }
+            .assertDescendantDoesNotContainText(taskName)
     }
 }
