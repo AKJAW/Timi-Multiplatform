@@ -10,5 +10,10 @@ class StopwatchScreenRobot(
 
     fun clickAddButton() {
         composeTestRule.onNodeWithText("Add a new stopwatch").performClick()
+        composeTestRule.mainClock.advanceTimeBy(500)
+    }
+
+    fun pauseStopwatchForTask(taskName: String) {
+        selectStopwatchWithTaskName(taskName).onChildren().filterToOne(hasText("Pause")).performClick()
     }
 }

@@ -99,12 +99,29 @@ class StopwatchTest {
         addStopwatchDialogVerifier.confirmTaskListDoesNotContain(taskName = FIRST_TASK_NAME)
     }
 
-    @Ignore
     @Test
     fun multipleStopwatchesCanBeStaredAndAreUpdated() {
+        timestampProviderStub.currentMilliseconds = 0
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+        timestampProviderStub.currentMilliseconds = 30000
+        stopwatchScreenRobot.clickAddButton()
+
+        addStopwatchDialogRobot.selectTaskWithName(SECOND_TASK_NAME)
+
+        timestampProviderStub.currentMilliseconds = 60000
+        stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = FIRST_TASK_NAME,
+            timestamp = "01:00:000"
+        )
+        stopwatchScreenVerifier.confirmStopwatchForTaskExists(SECOND_TASK_NAME)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = SECOND_TASK_NAME,
+            timestamp = "00:30:000"
+        )
     }
 
-    @Ignore
     @Test
     fun pausingAStopwatchPreventsItFromUpdatingTheTime() {
     }

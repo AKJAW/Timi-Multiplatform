@@ -10,5 +10,6 @@ class AddStopwatchDialogRobot(
 
     fun selectTaskWithName(name: String) {
         composeTestRule.onNodeWithText(name).performClick()
+        composeTestRule.mainClock.advanceTimeBy(500)
     }
 }
