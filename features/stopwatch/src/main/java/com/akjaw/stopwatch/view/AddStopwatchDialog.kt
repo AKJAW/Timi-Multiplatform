@@ -15,6 +15,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -94,7 +95,8 @@ private fun AddStopwatchTaskItem(
     Card(
         modifier = Modifier
             .height(40.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("AddStopwatchTaskItem"),
         elevation = 0.dp,
         backgroundColor = task.backgroundColor,
         shape = taskShape,

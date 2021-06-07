@@ -12,6 +12,7 @@ class StopwatchScreenRobot(
         composeTestRule.onNodeWithText("Add a new stopwatch").performClick()
     }
 
+    // TODO extract to dialogRobot
     fun selectTaskWithName(name: String) {
         composeTestRule.onNodeWithText(name).performClick()
     }

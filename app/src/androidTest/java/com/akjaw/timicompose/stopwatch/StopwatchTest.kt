@@ -75,14 +75,24 @@ class StopwatchTest {
         )
     }
 
-    @Ignore
     @Test
     fun afterAddingAStopwatchTheAddButtonIsUnderneath() {
+        stopwatchScreenRobot.clickAddButton()
+
+        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+
+        stopwatchScreenVerifier.confirmAddButtonAtIndex(1)
     }
 
-    @Ignore
     @Test
     fun afterAddingAStopwatchItIsNotAvailableInTheDialogList() {
+        stopwatchScreenRobot.clickAddButton()
+        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+
+        stopwatchScreenRobot.clickAddButton()
+
+        stopwatchScreenVerifier.confirmTaskListHasSize(1)
+        stopwatchScreenVerifier.confirmTaskListDoesNotContain(taskName = FIRST_TASK_NAME)
     }
 
     @Ignore
