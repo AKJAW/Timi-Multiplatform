@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -84,7 +85,8 @@ private fun StopwatchContent(
 ) {
     LazyColumn(
         modifier = Modifier
-            .padding(10.dp, 10.dp, 10.dp),
+            .padding(10.dp, 10.dp, 10.dp)
+            .testTag("StopwatchList"),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         stopwatches.forEach { (task, timeString) ->

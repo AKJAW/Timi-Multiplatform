@@ -36,12 +36,16 @@ class StopwatchTest {
     lateinit var taskEntityQueries: TaskEntityQueries
 
     private lateinit var bottomNavRobot: BottomNavRobot
+    private lateinit var stopwatchScreenRobot: StopwatchScreenRobot
+    private lateinit var stopwatchScreenVerifier: StopwatchScreenVerifier
 
     @Before
     fun setUp() {
         hiltRule.inject()
 
         bottomNavRobot = BottomNavRobot(composeTestRule).apply { navigateToStopwatch() }
+        stopwatchScreenRobot = StopwatchScreenRobot(composeTestRule)
+        stopwatchScreenVerifier = StopwatchScreenVerifier(composeTestRule)
 
         addTask(name = FIRST_TASK_NAME, color = FIRST_TASK_COLOR)
         addTask(name = SECOND_TASK_NAME, color = SECOND_TASK_COLOR)
@@ -52,14 +56,25 @@ class StopwatchTest {
         taskEntityQueries.clearDatabase()
     }
 
-    @Ignore
     @Test
     fun addingAStopwatchStartsTheStopwatchInTheList() {
+        stopwatchScreenRobot.clickAddButton()
+
+        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+
+        stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
+//        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(FIRST_TASK_NAME, "00:22:000")
+//        stopwatchScreenVerifier.confirmStopwatchHasColor(FIRST_TASK_NAME, FIRST_TASK_COLOR)
     }
 
     @Ignore
     @Test
     fun afterAddingAStopwatchTheAddButtonIsUnderneath() {
+    }
+
+    @Ignore
+    @Test
+    fun afterAddingAStopwatchItIsNotAvailableInTheDialogList() {
     }
 
     @Ignore
