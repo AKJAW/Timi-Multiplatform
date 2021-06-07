@@ -4,11 +4,11 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.akjaw.timicompose.ActivityComposeTestRule
 
-class StopwatchScreenRobot(
+class AddStopwatchDialogRobot(
     private val composeTestRule: ActivityComposeTestRule
 ) {
 
-    fun clickAddButton() {
-        composeTestRule.onNodeWithText("Add a new stopwatch").performClick()
+    fun selectTaskWithName(name: String) {
+        composeTestRule.onNodeWithText(name).performClick()
     }
 }

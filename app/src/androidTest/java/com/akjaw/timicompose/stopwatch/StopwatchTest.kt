@@ -41,7 +41,9 @@ class StopwatchTest {
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var stopwatchScreenRobot: StopwatchScreenRobot
+    private lateinit var addStopwatchDialogRobot: AddStopwatchDialogRobot
     private lateinit var stopwatchScreenVerifier: StopwatchScreenVerifier
+    private lateinit var addStopwatchDialogVerifier: AddStopwatchDialogVerifier
 
     @Before
     fun setUp() {
@@ -49,7 +51,9 @@ class StopwatchTest {
 
         bottomNavRobot = BottomNavRobot(composeTestRule).apply { navigateToStopwatch() }
         stopwatchScreenRobot = StopwatchScreenRobot(composeTestRule)
+        addStopwatchDialogRobot = AddStopwatchDialogRobot(composeTestRule)
         stopwatchScreenVerifier = StopwatchScreenVerifier(composeTestRule)
+        addStopwatchDialogVerifier = AddStopwatchDialogVerifier(composeTestRule)
 
         addTask(name = FIRST_TASK_NAME, color = FIRST_TASK_COLOR)
         addTask(name = SECOND_TASK_NAME, color = SECOND_TASK_COLOR)
@@ -65,7 +69,7 @@ class StopwatchTest {
         timestampProviderStub.currentMilliseconds = 0
         stopwatchScreenRobot.clickAddButton()
 
-        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
 
         timestampProviderStub.currentMilliseconds = 22000
         stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
@@ -79,7 +83,7 @@ class StopwatchTest {
     fun afterAddingAStopwatchTheAddButtonIsUnderneath() {
         stopwatchScreenRobot.clickAddButton()
 
-        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
 
         stopwatchScreenVerifier.confirmAddButtonAtIndex(1)
     }
@@ -87,12 +91,12 @@ class StopwatchTest {
     @Test
     fun afterAddingAStopwatchItIsNotAvailableInTheDialogList() {
         stopwatchScreenRobot.clickAddButton()
-        stopwatchScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
 
         stopwatchScreenRobot.clickAddButton()
 
-        stopwatchScreenVerifier.confirmTaskListHasSize(1)
-        stopwatchScreenVerifier.confirmTaskListDoesNotContain(taskName = FIRST_TASK_NAME)
+        addStopwatchDialogVerifier.confirmTaskListHasSize(1)
+        addStopwatchDialogVerifier.confirmTaskListDoesNotContain(taskName = FIRST_TASK_NAME)
     }
 
     @Ignore
