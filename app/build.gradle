@@ -68,6 +68,7 @@ dependencies {
     androidTestImplementation androidTestingDependencies.composeJunit
     androidTestImplementation androidTestingDependencies.espressoCore
     androidTestImplementation hiltDependencies.testing
+    androidTestImplementation otherDependencies.sqldelight
     kaptAndroidTest hiltDependencies.compiler
 }
 

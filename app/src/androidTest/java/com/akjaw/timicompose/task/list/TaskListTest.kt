@@ -18,7 +18,6 @@ import javax.inject.Inject
 @HiltAndroidTest
 class TaskListTest {
 
-    // TODO maybe inject a different database so it is not connected with the regular one?
     @Inject
     lateinit var taskEntityQueries: TaskEntityQueries
 
