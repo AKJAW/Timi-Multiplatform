@@ -124,21 +124,52 @@ class StopwatchTest {
 
     @Test
     fun pausingAStopwatchPreventsItFromUpdatingTheTime() {
+        timestampProviderStub.currentMilliseconds = 0
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+        timestampProviderStub.currentMilliseconds = 30000
+
+        stopwatchScreenRobot.pauseStopwatchForTask(taskName = FIRST_TASK_NAME)
+
+        timestampProviderStub.currentMilliseconds = 60000
+        Thread.sleep(50)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = FIRST_TASK_NAME,
+            timestamp = "00:30:000"
+        )
+    }
+
+    @Test
+    fun pausingAndResumingTheStopwatchWorksCorrectly() {
+        timestampProviderStub.currentMilliseconds = 0
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+        timestampProviderStub.currentMilliseconds = 30000
+        stopwatchScreenRobot.pauseStopwatchForTask(taskName = FIRST_TASK_NAME)
+
+        stopwatchScreenRobot.resumeStopwatchForTask(taskName = FIRST_TASK_NAME)
+
+        timestampProviderStub.currentMilliseconds = 60000
+        Thread.sleep(50)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = FIRST_TASK_NAME,
+            timestamp = "01:00:000"
+        )
+    }
+
+    @Test
+    fun stoppingTheStopwatchRemovesItFromTheList() {
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+
+        stopwatchScreenRobot.stopStopwatchForTask(taskName = FIRST_TASK_NAME)
+
+        stopwatchScreenVerifier.confirmStopwatchForTaskDoesNotExists(taskName = FIRST_TASK_NAME)
     }
 
     @Ignore
     @Test
     fun theStopwatchRemainsRunningWhenChangingTheBottomNav() {
-    }
-
-    @Ignore
-    @Test
-    fun pausingAndResumingTheStopwatchWorksCorrectly() {
-    }
-
-    @Ignore
-    @Test
-    fun stoppingTheStopwatchRemovesItFromTheList() {
     }
 
     private fun addTask(name: String, color: Int) {

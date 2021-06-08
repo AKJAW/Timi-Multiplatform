@@ -2,6 +2,9 @@ package com.akjaw.timicompose.stopwatch
 
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.assertIsNotDisplayed
+import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.hasAnyChild
 import androidx.compose.ui.test.hasAnyDescendant
@@ -15,12 +18,12 @@ class StopwatchScreenVerifier(
 ) {
 
     fun confirmStopwatchForTaskExists(taskName: String) {
-        selectStopwatchWithTaskName(taskName)
+        onStopwatchWithTaskName(taskName)
             .assertExists()
     }
 
     fun confirmStopwatchForTaskHasTime(taskName: String, timestamp: String) {
-        selectStopwatchWithTaskName(taskName)
+        onStopwatchWithTaskName(taskName)
             .assert(hasAnyDescendant(hasText(timestamp)))
     }
 
@@ -33,7 +36,18 @@ class StopwatchScreenVerifier(
         addButton.assert(hasAnyChild(hasText("Add a new stopwatch")))
     }
 
-    private fun selectStopwatchWithTaskName(name: String): SemanticsNodeInteraction =
+    // After stopping the stopwatch is still in the ist but it is not displayed
+    fun confirmStopwatchForTaskDoesNotExists(taskName: String) {
+        val nodes = composeTestRule
+            .onNodeWithTag("StopwatchList")
+            .onChildren()
+            .filter(hasAnyDescendant(hasText(taskName)))
+
+        nodes.assertCountEquals(1)
+        nodes.get(0).assertIsNotDisplayed()
+    }
+
+    private fun onStopwatchWithTaskName(name: String): SemanticsNodeInteraction =
         composeTestRule
             .onNodeWithTag("StopwatchList")
             .onChildren()
