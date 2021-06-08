@@ -77,7 +77,6 @@ class TaskListTest {
         taskListScreenVerifier.confirmTaskWithNameDoesNotExists("Example")
     }
 
-    // TODO move out to a bottom nav test
     @Test
     fun taskListIsVisibleOnStartUp() {
         bottomNavVerifier.confirmTasksSelected()

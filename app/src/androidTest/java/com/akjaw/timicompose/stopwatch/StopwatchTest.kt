@@ -7,6 +7,8 @@ import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
 import com.akjaw.timicompose.composition.TimestampProviderStub
+import com.akjaw.timicompose.task.list.DeleteTaskDialogRobot
+import com.akjaw.timicompose.task.list.TaskListScreenRobot
 import com.akjaw.timicompose.utils.clearDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -167,9 +169,44 @@ class StopwatchTest {
         stopwatchScreenVerifier.confirmStopwatchForTaskDoesNotExists(taskName = FIRST_TASK_NAME)
     }
 
-    @Ignore
+    @Ignore("Was broken by compose update")
     @Test
     fun theStopwatchRemainsRunningWhenChangingTheBottomNav() {
+        timestampProviderStub.currentMilliseconds = 0
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+        bottomNavRobot.navigateToTasks()
+        timestampProviderStub.currentMilliseconds = 30000
+
+        bottomNavRobot.navigateToStopwatch()
+
+        Thread.sleep(50)
+        timestampProviderStub.currentMilliseconds = 60000
+        Thread.sleep(50)
+        stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
+            taskName = FIRST_TASK_NAME,
+            timestamp = "01:00:000"
+        )
+    }
+
+    @Ignore("Not implemented yet")
+    @Test
+    fun removingATaskStopsTheStopwatchForThatTask() {
+        val taskListScreenRobot = TaskListScreenRobot(composeTestRule)
+        val deleteTaskDialogRobot = DeleteTaskDialogRobot(composeTestRule)
+
+        timestampProviderStub.currentMilliseconds = 0
+        stopwatchScreenRobot.clickAddButton()
+        addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
+
+        bottomNavRobot.navigateToTasks()
+        taskListScreenRobot.selectTaskWithName(FIRST_TASK_NAME)
+        taskListScreenRobot.clickDeleteIcon()
+        deleteTaskDialogRobot.confirm()
+
+        bottomNavRobot.navigateToStopwatch()
+
+        stopwatchScreenVerifier.confirmStopwatchForTaskDoesNotExists(taskName = FIRST_TASK_NAME)
     }
 
     private fun addTask(name: String, color: Int) {
