@@ -10,31 +10,39 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.akjaw.timicompose.ActivityComposeTestRule
+import com.akjaw.timicompose.R
+import com.akjaw.timicompose.utils.getString
 
 class StopwatchScreenRobot(
     private val composeTestRule: ActivityComposeTestRule
 ) {
 
+    private val addStopwatchText =
+        composeTestRule.getString(R.string.stopwatch_screen_add_stopwatch)
+    private val pauseText = composeTestRule.getString(R.string.stopwatch_screen_pause)
+    private val startText = composeTestRule.getString(R.string.stopwatch_screen_start)
+    private val stopText = composeTestRule.getString(R.string.stopwatch_screen_stop)
+
     fun clickAddButton() {
-        composeTestRule.onNodeWithText("Add a new stopwatch").performClick()
+        composeTestRule.onNodeWithText(addStopwatchText).performClick()
         composeTestRule.mainClock.advanceTimeBy(500)
     }
 
     fun pauseStopwatchForTask(taskName: String) {
         selectStopwatchWithTaskName(taskName)
-            .onStopwatchButtonWithDescription("Pause")
+            .onStopwatchButtonWithDescription(pauseText)
             .performClick()
     }
 
     fun resumeStopwatchForTask(taskName: String) {
         selectStopwatchWithTaskName(taskName)
-            .onStopwatchButtonWithDescription("Start")
+            .onStopwatchButtonWithDescription(startText)
             .performClick()
     }
 
     fun stopStopwatchForTask(taskName: String) {
         selectStopwatchWithTaskName(taskName)
-            .onStopwatchButtonWithDescription("Stop")
+            .onStopwatchButtonWithDescription(stopText)
             .performClick()
     }
 

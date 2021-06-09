@@ -12,10 +12,15 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithTag
 import com.akjaw.timicompose.ActivityComposeTestRule
+import com.akjaw.timicompose.R
+import com.akjaw.timicompose.utils.getString
 
 class StopwatchScreenVerifier(
     private val composeTestRule: ActivityComposeTestRule
 ) {
+
+    private val addStopwatchText =
+        composeTestRule.getString(R.string.stopwatch_screen_add_stopwatch)
 
     fun confirmStopwatchForTaskExists(taskName: String) {
         onStopwatchWithTaskName(taskName)
@@ -33,7 +38,7 @@ class StopwatchScreenVerifier(
             .onChildren()
             .get(index)
 
-        addButton.assert(hasAnyChild(hasText("Add a new stopwatch")))
+        addButton.assert(hasAnyChild(hasText(addStopwatchText)))
     }
 
     // After stopping the stopwatch is still in the ist but it is not displayed

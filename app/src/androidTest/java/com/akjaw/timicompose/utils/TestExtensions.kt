@@ -1,9 +1,11 @@
 package com.akjaw.timicompose.utils
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.test.SemanticsNodeInteractionCollection
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.hasAnyDescendant
 import androidx.compose.ui.test.hasText
+import com.akjaw.timicompose.ActivityComposeTestRule
 
 fun SemanticsNodeInteractionCollection.assertDescendantDoesNotContainText(
     text: String
@@ -16,3 +18,6 @@ fun SemanticsNodeInteractionCollection.assertDescendantDoesNotContainText(
 
     return this
 }
+
+fun ActivityComposeTestRule.getString(@StringRes id: Int): String =
+    this.activity.getString(id)
