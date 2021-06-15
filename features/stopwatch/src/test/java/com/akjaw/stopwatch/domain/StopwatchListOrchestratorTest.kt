@@ -46,7 +46,7 @@ internal class StopwatchListOrchestratorTest {
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory = mockk {
         every { create() } returns stopwatchStateHolder
     }
-    val coroutineDispatcher = TestCoroutineDispatcher()
+    private val coroutineDispatcher = TestCoroutineDispatcher()
     private val coroutineScope = CoroutineScope(SupervisorJob() + coroutineDispatcher)
     private lateinit var systemUnderTest: StopwatchListOrchestrator
 
@@ -68,7 +68,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     @Test
-    fun `After starting a stopwatch it is present in the list`() = runBlockingTest {
+    fun `When a stopwatch is started then it should be present in the list`() = runBlockingTest {
         givenStateHolderReturnsTime("0")
         systemUnderTest.start(task = TASK1)
         coroutineDispatcher.advanceTimeBy(1000)
@@ -83,7 +83,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     @Test
-    fun `Starting a stopwatch multiple times is not reflected in the list`() = runBlockingTest {
+    fun `When a stopwatch is started multiple times then it should not be duplicated`() = runBlockingTest {
         givenStateHolderReturnsTime("0")
         systemUnderTest.start(task = TASK1)
         systemUnderTest.start(task = TASK1)
@@ -96,7 +96,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     @Test
-    fun `When a stopwatch is running its value update is reflected in the list`() = runBlockingTest {
+    fun `When a stopwatch is running then its value should be updated`() = runBlockingTest {
         givenStateHolderReturnsTime("0", "1", "2", "3", "4", "5")
         systemUnderTest.start(task = TASK1)
         coroutineDispatcher.advanceTimeBy(1000)
@@ -107,7 +107,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     @Test
-    fun `When a stopwatch is paused its value does not change`() = runBlockingTest {
+    fun `When a stopwatch is paused then its value should not change`() = runBlockingTest {
         givenStateHolderReturnsTime("0", "1", "2", "3", "4", "5")
         systemUnderTest.start(task = TASK1)
         coroutineDispatcher.advanceTimeBy(50)
@@ -132,28 +132,16 @@ internal class StopwatchListOrchestratorTest {
     }
 
     @Test
-    fun `After destroying the list is empty`() = runBlockingTest {
-        systemUnderTest.start(task = TASK1)
-        systemUnderTest.start(task = TASK2)
-        systemUnderTest.destroy()
-        coroutineDispatcher.advanceTimeBy(1000)
-
-        val result = systemUnderTest.ticker.first()
-
-        expectThat(result).isEmpty()
-    }
-
-    @Test
-    fun `Multiple task stopwatches can run in parallel`() = runBlockingTest {
-        givenStateHolderReturnsTime("0", "1", "2")
+    fun `Multiple stopwatches can run in parallel`() = runBlockingTest {
+        givenStateHolderReturnsTime("0", "1", "2", "3", "4", "5")
         systemUnderTest.start(task = TASK1)
         systemUnderTest.start(task = TASK2)
         coroutineDispatcher.advanceTimeBy(1000)
 
         val result = systemUnderTest.ticker.first()
 
-        expectThat(result[TASK1]).isEqualTo("2")
-        expectThat(result[TASK2]).isEqualTo("2")
+        expectThat(result[TASK1]).isEqualTo("5")
+        expectThat(result[TASK2]).isEqualTo("5")
     }
 
     @Nested
@@ -167,7 +155,7 @@ internal class StopwatchListOrchestratorTest {
         }
 
         @Test
-        fun `When first task is stared the scope becomes active`() {
+        fun `When the first stopwatch is started then scope should become active`() {
             systemUnderTest.start(task = TASK1)
 
             coroutineDispatcher.advanceTimeBy(1000)
@@ -175,7 +163,7 @@ internal class StopwatchListOrchestratorTest {
         }
 
         @Test
-        fun `When last task is stopped the scope becomes inactive`() {
+        fun `When the last task is stopped then the scope should become inactive`() {
             systemUnderTest.start(task = TASK1)
             coroutineDispatcher.advanceTimeBy(1000)
 
@@ -185,7 +173,7 @@ internal class StopwatchListOrchestratorTest {
         }
 
         @Test
-        fun `Starting another stopwatch after stopping the last works correctly`() {
+        fun `When a stopped stopwatch is started again then the scope should become active`() {
             systemUnderTest.start(task = TASK1)
             coroutineDispatcher.advanceTimeBy(1000)
             systemUnderTest.stop(task = TASK1)
@@ -196,10 +184,12 @@ internal class StopwatchListOrchestratorTest {
         }
 
         @Test
-        fun `When every stopwatch is paused the scope becomes inactive`() {
+        fun `When every stopwatch is paused then the scope should become inactive`() {
             every { stopwatchStateHolder.currentState }
                 .returns(StopwatchState.Paused(0.toTimestampMilliseconds()))
             systemUnderTest.start(task = TASK1)
+            systemUnderTest.start(task = TASK2)
+            systemUnderTest.pause(task = TASK2)
 
             systemUnderTest.pause(task = TASK1)
 
@@ -207,7 +197,7 @@ internal class StopwatchListOrchestratorTest {
         }
 
         @Test
-        fun `Resuming after every stopwatch is paused makes the scope active`() {
+        fun `When a paused stopwatch is started then the scope should become active`() {
             every { stopwatchStateHolder.currentState }
                 .returns(StopwatchState.Paused(0.toTimestampMilliseconds()))
             systemUnderTest.start(task = TASK1)
@@ -215,26 +205,6 @@ internal class StopwatchListOrchestratorTest {
 
             systemUnderTest.start(task = TASK1)
 
-            expectThat(coroutineScope).hasChildrenCount(1)
-        }
-
-        @Test
-        fun `After destroying the scope is not active`() {
-            systemUnderTest.start(task = TASK1)
-            coroutineDispatcher.advanceTimeBy(1000)
-
-            systemUnderTest.destroy()
-
-            expectThat(coroutineScope).hasChildrenCount(0)
-        }
-
-        @Test
-        fun `After destroying it is possible to start another stopwatch`() {
-            systemUnderTest.start(task = TASK1)
-            coroutineDispatcher.advanceTimeBy(1000)
-            systemUnderTest.destroy()
-
-            systemUnderTest.start(task = TASK1)
             expectThat(coroutineScope).hasChildrenCount(1)
         }
 

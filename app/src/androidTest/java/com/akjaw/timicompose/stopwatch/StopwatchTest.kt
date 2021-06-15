@@ -102,16 +102,18 @@ class StopwatchTest {
     }
 
     @Test
-    fun multipleStopwatchesCanBeStaredAndAreUpdated() {
+    fun multipleStopwatchesCanBeStartedAndAreUpdated() {
         timestampProviderStub.currentMilliseconds = 0
+
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
         timestampProviderStub.currentMilliseconds = 30000
+
         stopwatchScreenRobot.clickAddButton()
-
         addStopwatchDialogRobot.selectTaskWithName(SECOND_TASK_NAME)
-
         timestampProviderStub.currentMilliseconds = 60000
+
+        Thread.sleep(50)
         stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
