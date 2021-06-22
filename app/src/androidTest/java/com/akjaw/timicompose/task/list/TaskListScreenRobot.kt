@@ -7,10 +7,14 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performGesture
 import com.akjaw.timicompose.ActivityComposeTestRule
+import com.akjaw.timicompose.R
+import com.akjaw.timicompose.utils.getString
 
 class TaskListScreenRobot(
     private val composeTestRule: ActivityComposeTestRule
 ) {
+
+    private val deleteTaskButtonDescription = composeTestRule.getString(R.string.task_list_top_bar_delete_description)
 
     fun clickOnFab() {
         composeTestRule.onNodeWithTag("AddTaskFab").performClick()
@@ -22,6 +26,6 @@ class TaskListScreenRobot(
     }
 
     fun clickDeleteIcon() {
-        composeTestRule.onNodeWithContentDescription("Delete").performClick()
+        composeTestRule.onNodeWithContentDescription(deleteTaskButtonDescription).performClick()
     }
 }

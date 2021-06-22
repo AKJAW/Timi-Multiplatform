@@ -9,20 +9,26 @@ import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performTextInput
 import androidx.test.espresso.Espresso
 import com.akjaw.timicompose.ActivityComposeTestRule
+import com.akjaw.timicompose.R
+import com.akjaw.timicompose.utils.getString
 
 class AddTaskDialogRobot(
     private val composeTestRule: ActivityComposeTestRule
 ) {
 
+    private val taskNameInput = composeTestRule.getString(R.string.task_list_fab_task_name)
+    private val colorToggle = composeTestRule.getString(R.string.task_list_fab_color)
+    private val addTaskButton = composeTestRule.getString(R.string.task_list_fab_add)
+
     fun enterTaskName(name: String) {
         composeTestRule
-            .onNodeWithText("Task name")
+            .onNodeWithText(taskNameInput)
             .performTextInput(name)
     }
 
     // TODO this is flaky, revise later
     fun clickColorToggle() {
-        composeTestRule.onNodeWithText("Color").performClick()
+        composeTestRule.onNodeWithText(colorToggle).performClick()
         Thread.sleep(50)
     }
 
@@ -34,7 +40,7 @@ class AddTaskDialogRobot(
     }
 
     fun confirm() {
-        composeTestRule.onNodeWithText("Add").performClick()
+        composeTestRule.onNodeWithText(addTaskButton).performClick()
     }
 
     // TODO revise when additional Compose API will be added

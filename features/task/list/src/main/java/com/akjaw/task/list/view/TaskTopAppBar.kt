@@ -13,10 +13,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.akjaw.core.common.view.PaddedAlertDialog
+import com.akjaw.core.common.view.pluralStringResource
 import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.task.list.R
 import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
@@ -27,8 +30,12 @@ internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
     val selectedTasks = tasks.filter { it.isSelected }
     val selectedCount = selectedTasks.count()
     val title = when {
-        selectedCount > 0 -> "$selectedCount ${pluralTaskText(selectedCount)} selected"
-        else -> "Tasks"
+        selectedCount > 0 -> pluralStringResource(
+            R.plurals.task_list_top_bar_title_selected,
+            selectedCount,
+            selectedCount
+        )
+        else -> stringResource(R.string.task_list_top_bar_title)
     }
     TopAppBar(
         title = { Text(text = title) },
@@ -39,7 +46,9 @@ internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
-                        contentDescription = "Delete",
+                        contentDescription = stringResource(
+                            R.string.task_list_top_bar_delete_description
+                        ),
                     )
                 }
             }
@@ -71,7 +80,11 @@ private fun ConfirmDeletionDialog(
         title = {
             Text(
                 modifier = Modifier.padding(bottom = 16.dp),
-                text = "Are you sure you want delete $selectedCount ${pluralTaskText(selectedCount)}?"
+                text = pluralStringResource(
+                    R.plurals.task_list_top_bar_are_you_sure,
+                    selectedCount,
+                    selectedCount
+                )
             )
         },
         confirmButton = {
@@ -81,7 +94,7 @@ private fun ConfirmDeletionDialog(
                     onDeleteConfirm()
                 }
             ) {
-                Text("Yes")
+                Text(stringResource(R.string.task_list_top_bar_confirm))
             }
         },
         dismissButton = {
@@ -90,15 +103,10 @@ private fun ConfirmDeletionDialog(
                     setIsDeleteDialogOpen(false)
                 }
             ) {
-                Text("Cancel")
+                Text(stringResource(R.string.task_list_top_bar_cancel))
             }
         }
     )
-}
-
-private fun pluralTaskText(count: Int) = when (count) { // TODO replace with resources
-    1 -> "Task"
-    else -> "Tasks"
 }
 
 @Preview

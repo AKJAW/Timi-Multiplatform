@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="task_list_screen_checkmark_description">Checkmark</string>
+
+    <string name="task_list_top_bar_title">Tasks</string>
+    <plurals name="task_list_top_bar_title_selected">
+        <item quantity="one">%d Task selected</item>
+        <item quantity="other">%d Tasks selected</item>
+    </plurals>
+    <string name="task_list_top_bar_title_selected">Tasks</string>
+    <string name="task_list_top_bar_delete_description">Delete</string>
+    <string name="task_list_top_bar_confirm">Yes</string>
+    <string name="task_list_top_bar_cancel">Cancel</string>
+    <plurals name="task_list_top_bar_are_you_sure">
+        <item quantity="one">Are you sure you want delete %d task?</item>
+        <item quantity="other">Are you sure you want delete %d tasks?</item>
+    </plurals>
+
+    <string name="task_list_fab_description">Add a task</string>
+    <string name="task_list_fab_task_name">Task name</string>
+    <string name="task_list_fab_color">Color</string>
+    <string name="task_list_fab_add">Add</string>
+</resources>

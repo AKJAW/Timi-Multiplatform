@@ -38,6 +38,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,6 +47,7 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskColors
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.list.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -57,7 +59,10 @@ internal fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
         modifier = Modifier.testTag("AddTaskFab"),
         onClick = { setIsAddTaskDialogOpen(true) }
     ) {
-        Icon(imageVector = Icons.Filled.Add, contentDescription = "Add a task")
+        Icon(
+            imageVector = Icons.Filled.Add,
+            contentDescription = stringResource(R.string.task_list_fab_description)
+        )
     }
 
     if (isAddTaskDialogOpen) {
@@ -154,7 +159,7 @@ private fun AddTaskDialogContent(
             OutlinedTextField(
                 value = taskName,
                 onValueChange = setTaskName,
-                label = { Text(text = "Task name") },
+                label = { Text(text = stringResource(id = R.string.task_list_fab_task_name)) },
                 isError = isInputError,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     textColor = textColor.value,
@@ -176,13 +181,13 @@ private fun AddTaskDialogContent(
             ) {
                 DialogButton(
                     icon = Icons.Filled.Palette,
-                    text = "Color",
+                    text = stringResource(R.string.task_list_fab_color),
                     textColor = textColor.value,
                     onClick = onShowColorClicked
                 )
                 DialogButton(
                     icon = Icons.Filled.Send,
-                    text = "Add",
+                    text = stringResource(R.string.task_list_fab_add),
                     textColor = textColor.value,
                     onClick = onAddTaskClicked
                 )
