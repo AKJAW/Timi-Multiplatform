@@ -7,6 +7,7 @@ import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
 import com.akjaw.timicompose.composition.TimestampProviderStub
+import com.akjaw.timicompose.createBaseTestRule
 import com.akjaw.timicompose.task.list.DeleteTaskDialogRobot
 import com.akjaw.timicompose.task.list.TaskListScreenRobot
 import com.akjaw.timicompose.utils.clearDatabase
@@ -29,11 +30,11 @@ class StopwatchTest {
         private val SECOND_TASK_COLOR = Color.Blue.toArgb()
     }
 
-    @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+
+    @get:Rule(order = 0)
+    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
 
     @Inject
     lateinit var taskEntityQueries: TaskEntityQueries

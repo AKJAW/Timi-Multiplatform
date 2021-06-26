@@ -10,6 +10,7 @@ import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
 import com.akjaw.settings.R
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
+import com.akjaw.timicompose.createBaseTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -20,11 +21,11 @@ import org.junit.Test
 @HiltAndroidTest
 class SettingsDarkModeTest {
 
-    @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+
+    @get:Rule(order = 0)
+    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var settingsScreenRobot: SettingsScreenRobot

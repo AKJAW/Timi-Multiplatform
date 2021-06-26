@@ -7,6 +7,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
+import com.akjaw.timicompose.createBaseTestRule
 import com.akjaw.timicompose.utils.clearDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -19,11 +20,11 @@ import javax.inject.Inject
 @HiltAndroidTest
 class TaskListTest {
 
-    @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+
+    @get:Rule(order = 0)
+    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
 
     @Inject
     lateinit var taskEntityQueries: TaskEntityQueries
