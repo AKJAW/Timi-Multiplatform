@@ -37,8 +37,6 @@ class TaskListTest {
 
     @Before
     fun setUp() {
-        hiltRule.inject()
-
         bottomNavVerifier = BottomNavVerifier(composeTestRule)
         taskListScreenRobot = TaskListScreenRobot(composeTestRule)
         addTaskDialogRobot = AddTaskDialogRobot(composeTestRule)

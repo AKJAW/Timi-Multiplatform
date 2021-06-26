@@ -50,8 +50,6 @@ class StopwatchTest {
 
     @Before
     fun setUp() {
-        hiltRule.inject()
-
         bottomNavRobot = BottomNavRobot(composeTestRule).apply { navigateToStopwatch() }
         stopwatchScreenRobot = StopwatchScreenRobot(composeTestRule)
         addStopwatchDialogRobot = AddStopwatchDialogRobot(composeTestRule)
