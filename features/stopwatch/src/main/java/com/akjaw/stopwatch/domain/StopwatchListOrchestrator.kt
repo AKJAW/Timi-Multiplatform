@@ -34,7 +34,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         job = scope.launch {
             while (isActive) {
                 val newValues = stopwatchStateHolders
-                    .toSortedMap(compareBy { task -> task.id }) // TODO this won't work if multiple tasks have the same place
+                    .toSortedMap(compareBy { task -> task.id })
                     .map { (task, stateHolder) ->
                         task to stateHolder.getStringTimeRepresentation()
                     }
@@ -46,28 +46,22 @@ internal class StopwatchListOrchestrator @Inject constructor(
     }
 
     fun pause(task: Task) {
-        val stopwatchForTask = stopwatchStateHolders.getOrPut(task) {
-            stopwatchStateHolderFactory.create()
-        }
+        val stopwatchForTask = stopwatchStateHolders[task] ?: return
         stopwatchForTask.pause()
-        val areAllStopwatchesPaused = stopwatchStateHolders.values.all { stateHolder ->
+        if (areAllStopwatchesPaused()) stopJob()
+    }
+
+    private fun areAllStopwatchesPaused(): Boolean =
+        stopwatchStateHolders.values.all { stateHolder ->
             stateHolder.currentState is StopwatchState.Paused
         }
-        if (areAllStopwatchesPaused) stopJob()
-    }
 
     fun stop(task: Task) {
         stopwatchStateHolders.remove(task)
         if (stopwatchStateHolders.isEmpty()) {
             stopJob()
-            clearValues()
+            resetTicker()
         }
-    }
-
-    // TODO this probably should be preserved on config changes, right...?
-    fun destroy() {
-        stopJob()
-        clearValues()
     }
 
     private fun stopJob() {
@@ -75,8 +69,7 @@ internal class StopwatchListOrchestrator @Inject constructor(
         job = null
     }
 
-    private fun clearValues() {
-        stopwatchStateHolders.clear()
+    private fun resetTicker() {
         mutableTicker.value = mapOf()
     }
 }

@@ -30,6 +30,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +41,7 @@ import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.stopwatch.R
 import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.task.api.domain.Task
@@ -53,7 +56,7 @@ internal fun StopwatchScreen(
     val stopwatches = stopwatchViewModel.stopwatches.collectAsState()
     val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = "Stopwatch") }) },
+        topBar = { TopAppBar(title = { Text(text = stringResource(R.string.stopwatch_screen_title)) }) },
         bottomBar = { TimiBottomBar(navController) },
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
@@ -84,7 +87,8 @@ private fun StopwatchContent(
 ) {
     LazyColumn(
         modifier = Modifier
-            .padding(10.dp, 10.dp, 10.dp),
+            .padding(10.dp, 10.dp, 10.dp)
+            .testTag("StopwatchList"),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         stopwatches.forEach { (task, timeString) ->
@@ -144,19 +148,19 @@ private fun StopwatchItem(
             ) {
                 StopwatchButton(
                     imageVector = Icons.Filled.PlayArrow,
-                    contentDescription = "Start",
+                    contentDescription = stringResource(R.string.stopwatch_screen_start),
                     color = task.backgroundColor,
                     onClick = onStartClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Pause,
-                    contentDescription = "Pause",
+                    contentDescription = stringResource(R.string.stopwatch_screen_pause),
                     color = task.backgroundColor,
                     onClick = onPauseClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Stop,
-                    contentDescription = "Stop",
+                    contentDescription = stringResource(R.string.stopwatch_screen_stop),
                     color = task.backgroundColor,
                     onClick = onStoppedClicked,
                 )
@@ -203,7 +207,7 @@ private fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
             contentAlignment = Alignment.Center,
             modifier = Modifier.clickable { onClick() },
         ) {
-            Text(text = "Add a new stopwatch")
+            Text(text = stringResource(R.string.stopwatch_screen_add_stopwatch))
         }
     }
 }

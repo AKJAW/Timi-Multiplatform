@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stopwatch_screen_title">Stopwatch</string>
+    <string name="stopwatch_screen_add_stopwatch">Add a new stopwatch</string>
+    <string name="stopwatch_screen_start">Start</string>
+    <string name="stopwatch_screen_pause">Pause</string>
+    <string name="stopwatch_screen_stop">Stop</string>
+
+    <string name="stopwatch_dialog_choose_task">Choose a task</string>
+</resources>

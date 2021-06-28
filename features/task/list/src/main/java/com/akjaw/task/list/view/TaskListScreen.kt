@@ -33,6 +33,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -45,6 +47,7 @@ import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.api.view.tasksPreview
+import com.akjaw.task.list.R
 import com.akjaw.task.list.presentation.TaskListViewModel
 
 @Composable
@@ -72,7 +75,8 @@ private fun TaskList(
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxHeight(),
+            .fillMaxHeight()
+            .testTag("TaskList"),
         contentPadding = PaddingValues(10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -137,7 +141,7 @@ private fun TaskSelectButton(isSelected: Boolean, buttonWidth: Dp) {
     Icon(
         modifier = Modifier.padding(end = 15.dp),
         imageVector = Icons.Filled.Done,
-        contentDescription = "checkmark",
+        contentDescription = stringResource(R.string.task_list_screen_checkmark_description),
         tint = LocalContentColor.current.copy(iconAlpha)
     )
 }

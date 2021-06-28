@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.akjaw.timicompose.HiltTestRunner"
     }
 
     buildTypes {
@@ -66,6 +66,10 @@ dependencies {
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
 
     androidTestImplementation androidTestingDependencies.composeJunit
+    androidTestImplementation androidTestingDependencies.espressoCore
+    androidTestImplementation hiltDependencies.testing
+    androidTestImplementation otherDependencies.sqldelight
+    kaptAndroidTest hiltDependencies.compiler
 }
 
 kotlin {

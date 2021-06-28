@@ -10,19 +10,26 @@ import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
 import com.akjaw.settings.R
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
+import com.akjaw.timicompose.createBaseTestRule
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@HiltAndroidTest
 class SettingsDarkModeTest {
+
+    var hiltRule = HiltAndroidRule(this)
+    val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
+
+    @get:Rule(order = 0)
+    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var settingsScreenRobot: SettingsScreenRobot
     private lateinit var settingsScreenVerifier: SettingsScreenVerifier
-
-    @get:Rule
-    val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
 
     private val darkModeText by lazy {
         composeTestRule.activity.getString(R.string.boolean_dark_mode)
@@ -89,6 +96,7 @@ class SettingsDarkModeTest {
         )
     }
 
+    @Deprecated("Use the extension function from ColorAssertions")
     private fun assertFirstPixelColor(node: SemanticsNodeInteraction, expectedHexColor: String) {
         val imageBitmap = node.captureToImage()
         val color = imageBitmap.asAndroidBitmap().getPixel(0, 0)

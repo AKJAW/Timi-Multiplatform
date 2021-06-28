@@ -15,6 +15,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,7 @@ import com.akjaw.core.common.view.PaddedDialog
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.stopwatch.R
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.api.view.tasksPreview
 
@@ -68,7 +71,7 @@ private fun AddStopwatchDialogContent(
                         style = MaterialTheme.typography.body1.copy(
                             fontSize = 20.sp,
                         ),
-                        text = "Choose a task"
+                        text = stringResource(R.string.stopwatch_dialog_choose_task)
                     )
                 }
             }
@@ -94,7 +97,8 @@ private fun AddStopwatchTaskItem(
     Card(
         modifier = Modifier
             .height(40.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("AddStopwatchTaskItem"),
         elevation = 0.dp,
         backgroundColor = task.backgroundColor,
         shape = taskShape,
