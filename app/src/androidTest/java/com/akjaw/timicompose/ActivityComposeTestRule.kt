@@ -10,6 +10,7 @@ typealias ActivityComposeTestRule =
     AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>
 
 fun createBaseTestRule(hiltRule: HiltAndroidRule, composeRule: ActivityComposeTestRule): RuleChain =
-    RuleChain.outerRule(hiltRule)
-        .around(composeRule)
+    RuleChain
+        .outerRule(hiltRule)
         .around(HiltInjectionRule(hiltRule))
+        .around(composeRule)

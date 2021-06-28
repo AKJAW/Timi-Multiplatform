@@ -153,7 +153,7 @@ class StopwatchTest {
         stopwatchScreenRobot.resumeStopwatchForTask(taskName = FIRST_TASK_NAME)
 
         timestampProviderStub.currentMilliseconds = 60000
-        Thread.sleep(50)
+        composeTestRule.mainClock.advanceTimeBy(300)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
             timestamp = "01:00:000"
