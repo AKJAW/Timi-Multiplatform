@@ -1,22 +1,22 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdkVersion 30
+    compileSdk 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.akjaw.timicompose"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.akjaw.timicompose.HiltTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -31,7 +31,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
     }
     buildFeatures {
         compose true
@@ -39,42 +38,28 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion versions.compose
     }
-    packagingOptions {
-        exclude 'META-INF/AL2.0'
-        exclude 'META-INF/LGPL2.1'
-    }
 }
 
 dependencies {
     implementation project(":core")
-    implementation project(":features:stopwatch")
-    implementation project(":features:task:list")
-    implementation project(":features:task:detail")
     implementation project(':features:task:task_api')
-    implementation project(':features:settings')
 
+    implementation androidxDependencies.coreKtx
     implementation androidxDependencies.appCompat
-    implementation androidxDependencies.lifecycleRuntimeKtx
+    implementation androidxDependencies.material
     implementation composeDependencies.ui
     implementation composeDependencies.material
-    implementation composeDependencies.navigation
-    implementation composeDependencies.activity
+    implementation composeDependencies.tooling
+    implementation composeDependencies.materialIcons
+    implementation composeDependencies.viewModel
 
     implementation hiltDependencies.android
     kapt hiltDependencies.compiler
 
     testImplementation testingDependencies.jupiterApi
+    testImplementation testingDependencies.jupiterParams
+    testImplementation testingDependencies.strikt
+    testImplementation testingDependencies.mock
+    testImplementation testingDependencies.coroutinesTest
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
-
-    androidTestImplementation androidTestingDependencies.composeJunit
-    androidTestImplementation androidTestingDependencies.espressoCore
-    androidTestImplementation hiltDependencies.testing
-    androidTestImplementation otherDependencies.sqldelight
-    kaptAndroidTest hiltDependencies.compiler
-}
-
-kotlin {
-    sourceSets.all {
-        languageSettings.enableLanguageFeature('InlineClasses')
-    }
 }
