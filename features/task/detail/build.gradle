@@ -51,9 +51,11 @@ dependencies {
     implementation composeDependencies.material
     implementation composeDependencies.tooling
     implementation composeDependencies.materialIcons
+    implementation composeDependencies.navigation
     implementation composeDependencies.viewModel
 
     implementation hiltDependencies.android
+    implementation hiltDependencies.navigationCompose
     kapt hiltDependencies.compiler
 
     testImplementation testingDependencies.jupiterApi
