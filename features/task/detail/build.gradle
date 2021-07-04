@@ -38,6 +38,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion versions.compose
     }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -64,4 +68,10 @@ dependencies {
     testImplementation testingDependencies.mock
     testImplementation testingDependencies.coroutinesTest
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
+
+    androidTestImplementation androidTestingDependencies.composeJunit
+    debugImplementation androidTestingDependencies.composeTestManifest
+    androidTestImplementation androidTestingDependencies.espressoCore
+    androidTestImplementation hiltDependencies.testing
+    kaptAndroidTest hiltDependencies.compiler
 }
