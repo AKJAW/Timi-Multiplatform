@@ -22,26 +22,21 @@ internal class CalendarViewModelTest {
     @BeforeEach
     fun setUp() {
         timestampProviderStub = TimestampProviderStub()
+        timestampProviderStub.value = 1625497411456.toTimestampMilliseconds()
+
+        systemUnderTest = createViewModel()
     }
 
     @Test
     fun `Initially the system timestamp is used for the month name`() = runBlocking {
-        timestampProviderStub.value = 1625495425.toTimestampMilliseconds()
-
-        systemUnderTest = createViewModel()
-
-        systemUnderTest.currentMonth.test {
+        systemUnderTest.viewState.test {
             expectThat(expectItem().monthName).isEqualTo("July")
         }
     }
 
     @Test
     fun `Initially the system timestamp is used for the month days`() = runBlocking {
-        timestampProviderStub.value = 1625495425.toTimestampMilliseconds()
-
-        systemUnderTest = createViewModel()
-
-        systemUnderTest.currentMonth.test {
+        systemUnderTest.viewState.test {
             expectThat(expectItem().dayRows).isEqualTo(
                 listOf(
                     listOf(28..30, 1..4).toDays(),
@@ -54,8 +49,27 @@ internal class CalendarViewModelTest {
         }
     }
 
+    @Test
+    fun `Changing to next month correctly changes the month name`() = runBlocking {
+        systemUnderTest.changeToNextMonth()
+
+        systemUnderTest.viewState.test {
+            expectThat(expectItem().monthName).isEqualTo("August")
+        }
+    }
+
+    @Test
+    fun `Changing to previous month correctly changes the month name`() = runBlocking {
+        systemUnderTest.changeToPreviousMonth()
+
+        systemUnderTest.viewState.test {
+            expectThat(expectItem().monthName).isEqualTo("June")
+        }
+    }
+
     private fun createViewModel() = CalendarViewModel(
         backgroundDispatcher = testCoroutineDispatcher,
+        timestampProvider = timestampProviderStub,
     )
 }
 
