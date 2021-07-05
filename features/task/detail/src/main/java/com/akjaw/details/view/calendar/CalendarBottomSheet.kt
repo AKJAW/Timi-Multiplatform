@@ -23,7 +23,7 @@ fun CalendarBottomSheet() {
     )
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "June")
-        months.map { row ->
+        months.forEach { row ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround

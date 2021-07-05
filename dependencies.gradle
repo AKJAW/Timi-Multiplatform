@@ -44,6 +44,7 @@ ext {
             "strikt": "io.strikt:strikt-core:0.30.0",
             "mock": "io.mockk:mockk:1.11.0",
             "coroutinesTest": "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
+            "turbine": "app.cash.turbine:turbine:0.5.2",
             "sqldelightInMemory": "com.squareup.sqldelight:sqlite-driver:${versions.sqldelight}",
     ]
 

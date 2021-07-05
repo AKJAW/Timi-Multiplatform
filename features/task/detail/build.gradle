@@ -57,6 +57,7 @@ dependencies {
     implementation composeDependencies.materialIcons
     implementation composeDependencies.navigation
     implementation composeDependencies.viewModel
+    implementation otherDependencies.klock
 
     implementation hiltDependencies.android
     implementation hiltDependencies.navigationCompose
@@ -67,6 +68,7 @@ dependencies {
     testImplementation testingDependencies.strikt
     testImplementation testingDependencies.mock
     testImplementation testingDependencies.coroutinesTest
+    testImplementation testingDependencies.turbine
     testRuntimeOnly testingDependencies.jupiterRuntimeEngine
 
     androidTestImplementation androidTestingDependencies.composeJunit
