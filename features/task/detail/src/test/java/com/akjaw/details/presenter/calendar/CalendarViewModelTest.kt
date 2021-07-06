@@ -4,6 +4,8 @@ import app.cash.turbine.test
 import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.soywiz.klock.DateTime
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
@@ -15,6 +17,14 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 internal class CalendarViewModelTest {
 
+    companion object {
+        private val JUNE_DATE_TIME = DateTime.createAdjusted(
+            year = 2021,
+            month = 7,
+            day = 5
+        )
+    }
+
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private lateinit var timestampProviderStub: TimestampProviderStub
     private lateinit var systemUnderTest: CalendarViewModel
@@ -22,9 +32,8 @@ internal class CalendarViewModelTest {
     @BeforeEach
     fun setUp() {
         timestampProviderStub = TimestampProviderStub()
-        timestampProviderStub.value = 1625497411456.toTimestampMilliseconds()
-
-        systemUnderTest = createViewModel()
+        timestampProviderStub.value = JUNE_DATE_TIME.unixMillisLong.toTimestampMilliseconds()
+        systemUnderTest = createCalendarViewModel(testCoroutineDispatcher, timestampProviderStub)
     }
 
     @Test
@@ -66,12 +75,15 @@ internal class CalendarViewModelTest {
             expectThat(expectItem().monthName).isEqualTo("June")
         }
     }
-
-    private fun createViewModel() = CalendarViewModel(
-        backgroundDispatcher = testCoroutineDispatcher,
-        timestampProvider = timestampProviderStub,
-    )
 }
+
+internal fun createCalendarViewModel(
+    backgroundDispatcher: CoroutineDispatcher,
+    timestampProvider: TimestampProvider,
+) = CalendarViewModel(
+    backgroundDispatcher = backgroundDispatcher,
+    timestampProvider = timestampProvider,
+)
 
 class TimestampProviderStub : TimestampProvider {
 
