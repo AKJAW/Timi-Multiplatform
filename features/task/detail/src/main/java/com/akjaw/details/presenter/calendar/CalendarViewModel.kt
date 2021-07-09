@@ -38,7 +38,7 @@ internal class CalendarViewModel @Inject constructor(
 
     private fun getMonthName(dateTime: DateTime): String = dateTime.month.localName
 
-    private fun getMonthDays(currentMonth: DateTime): List<List<Day>> {
+    private fun getMonthDays(currentMonth: DateTime): List<List<Day>> { // TODO on background thread
         return calendarDaysCalculator.calculate(currentMonth)
     }
 }
