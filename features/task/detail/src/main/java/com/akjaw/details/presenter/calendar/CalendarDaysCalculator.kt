@@ -14,7 +14,7 @@ class CalendarDaysCalculator {
     fun calculate(currentMonth: DateTime): List<List<Day>> {
         val firstRow = calculateFirstRow(currentMonth)
         val middleRows = calculateMiddleRows(currentMonth, firstRow)
-        val lastRow = calculateLastRow(currentMonth) // TODO refactor to use fifth row
+        val lastRow = calculateLastRow(currentMonth, middleRows.fifth)
         return listOf(
             firstRow.map { Day(it.toString()) },
             middleRows.second.map { Day(it.toString()) },
@@ -80,27 +80,15 @@ class CalendarDaysCalculator {
         return previousMonthDays + currentMonthDays
     }
 
-    private fun calculateLastRow(currentMonth: DateTime): List<Int> {
-        val numberOfDaysInCurrentMonth = getNumberOfDaysInMonth(currentMonth)
-        val firstDayWeekPosition =
-            getPositionInRelationToWeek(currentMonth.copyWithFirstDayOfMonth())
-
-        return if (firstDayWeekPosition + numberOfDaysInCurrentMonth <= 28) {
-            (8..14).toList()
+    private fun calculateLastRow(currentMonth: DateTime, fifthRow: List<Int>): List<Int> {
+        val lastRowStartingDay = fifthRow.last() + 1
+        return if (fifthRow.last() > 28) {
+            val numberOfDaysInCurrentMonth = getNumberOfDaysInMonth(currentMonth)
+            val currentMonthDays = lastRowStartingDay..numberOfDaysInCurrentMonth
+            val remainingDays = DAYS_IN_A_WEEK - currentMonthDays.count()
+            currentMonthDays.toList() + (1..remainingDays)
         } else {
-            val lastDayWeekPosition =
-                getPositionInRelationToWeek(currentMonth.copyWithLastDayOfMonth())
-            val start = numberOfDaysInCurrentMonth - lastDayWeekPosition
-            val currentMonthDays = (start..numberOfDaysInCurrentMonth).toList()
-            val end = DAYS_IN_A_WEEK - currentMonthDays.count()
-
-            if (firstDayWeekPosition + numberOfDaysInCurrentMonth <= 35) {
-                val startOfTheLastRow = end + 1
-                (startOfTheLastRow until startOfTheLastRow + DAYS_IN_A_WEEK).toList()
-            } else {
-                val nextMonthDays = (1..end)
-                currentMonthDays + nextMonthDays
-            }
+            (lastRowStartingDay until lastRowStartingDay + DAYS_IN_A_WEEK).toList()
         }
     }
 
