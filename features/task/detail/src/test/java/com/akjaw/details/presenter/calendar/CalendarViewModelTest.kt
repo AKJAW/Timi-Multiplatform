@@ -18,7 +18,7 @@ import kotlin.time.ExperimentalTime
 internal class CalendarViewModelTest {
 
     companion object {
-        private val JUNE_DATE_TIME = DateTime.createAdjusted(
+        private val JULY_DATE_TIME = DateTime.createAdjusted(
             year = 2021,
             month = 7,
             day = 5
@@ -32,7 +32,7 @@ internal class CalendarViewModelTest {
     @BeforeEach
     fun setUp() {
         timestampProviderStub = TimestampProviderStub()
-        timestampProviderStub.value = JUNE_DATE_TIME.unixMillisLong.toTimestampMilliseconds()
+        timestampProviderStub.value = JULY_DATE_TIME.unixMillisLong.toTimestampMilliseconds()
         systemUnderTest = createCalendarViewModel(testCoroutineDispatcher, timestampProviderStub)
     }
 
@@ -52,7 +52,8 @@ internal class CalendarViewModelTest {
                     listOf(5..11).toDays(),
                     listOf(12..18).toDays(),
                     listOf(19..25).toDays(),
-                    listOf(26..31, 1..6).toDays(),
+                    listOf(26, 27, 28, 29, 30, 31, 1).map { Day(it.toString()) },
+                    listOf(2..8).toDays(),
                 )
             )
         }
