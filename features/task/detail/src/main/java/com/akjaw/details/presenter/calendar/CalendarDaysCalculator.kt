@@ -13,13 +13,54 @@ class CalendarDaysCalculator {
     // TODO encapsulate the months in a separate data structure?
     fun calculate(currentMonth: DateTime): List<List<Day>> {
         val firstRow = calculateFirstRow(currentMonth)
-        val lastRow = calculateLastRow(currentMonth)
+        val middleRows = calculateMiddleRows(currentMonth, firstRow)
+        val lastRow = calculateLastRow(currentMonth) // TODO refactor to use fifth row
         return listOf(
             firstRow.map { Day(it.toString()) },
-            listOf(5..11).toDays(),
-            listOf(12..18).toDays(),
-            listOf(19..25).toDays(),
+            middleRows.second.map { Day(it.toString()) },
+            middleRows.third.map { Day(it.toString()) },
+            middleRows.fourth.map { Day(it.toString()) },
+            middleRows.fifth.map { Day(it.toString()) },
             lastRow.map { Day(it.toString()) },
+        )
+    }
+
+    data class MiddleRows(
+        val second: List<Int>,
+        val third: List<Int>,
+        val fourth: List<Int>,
+        val fifth: List<Int>,
+    )
+
+    private fun calculateMiddleRows(
+        currentMonth: DateTime,
+        firstRow: List<Int>,
+    ): MiddleRows {
+        val firstDayOfSecondRow = firstRow.last() + 1
+        val secondRow = (firstDayOfSecondRow until firstDayOfSecondRow + DAYS_IN_A_WEEK)
+
+        val firstDayOfThirdRow = secondRow.last() + 1
+        val thirdRow = (firstDayOfThirdRow until firstDayOfThirdRow + DAYS_IN_A_WEEK)
+
+        val firstDayOfFourthRow = thirdRow.last() + 1
+        val fourthRow = (firstDayOfFourthRow until firstDayOfFourthRow + DAYS_IN_A_WEEK)
+
+        val firstDayOfFifthRow = fourthRow.last() + 1
+        val numberOfDaysInCurrentMonth = getNumberOfDaysInMonth(currentMonth)
+        val fifthRow =
+            if (firstDayOfFifthRow + DAYS_IN_A_WEEK > numberOfDaysInCurrentMonth) {
+                val currentMonthDays = firstDayOfFifthRow..numberOfDaysInCurrentMonth
+                val remainingDays = DAYS_IN_A_WEEK - currentMonthDays.count()
+                currentMonthDays + (1..remainingDays)
+            } else {
+                firstDayOfFifthRow until firstDayOfFifthRow + DAYS_IN_A_WEEK
+            }
+
+        return MiddleRows(
+            second = secondRow.toList(),
+            third = thirdRow.toList(),
+            fourth = fourthRow.toList(),
+            fifth = fifthRow.toList()
         )
     }
 

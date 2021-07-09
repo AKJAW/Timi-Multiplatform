@@ -4,12 +4,15 @@ import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import strikt.api.Assertion
 import strikt.api.expectThat
+import strikt.assertions.get
 import strikt.assertions.isEqualTo
+import strikt.assertions.map
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-class FirstCalendarRowCalculator {
+class CalendarRowCalculatorTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
@@ -103,6 +106,86 @@ class FirstCalendarRowCalculator {
 
             val expectedDays = listOf(8, 9, 10, 11, 12, 13, 14).map { Day(it.toString()) }
             expectThat(result.last()).isEqualTo(expectedDays)
+        }
+    }
+
+    @Nested
+    inner class MiddleRows {
+
+        @Test
+        fun `Correctly calculates when the last middle row contains current and next month`() {
+            val monthUnderTest = DateTime.createAdjusted(2021, 11, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowEquals((8..14).toList())
+                thirdRowEquals((15..21).toList())
+                fourthRowEquals((22..28).toList())
+                fifthRowEquals(listOf(29, 30, 1, 2, 3, 4, 5))
+            }
+        }
+
+        @Test
+        fun `Correctly calculates when the middle row ends before current month ends`() {
+            val monthUnderTest = DateTime.createAdjusted(2022, 5, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowEquals((2..8).toList())
+                thirdRowEquals((9..15).toList())
+                fourthRowEquals((16..22).toList())
+                fifthRowEquals((23..29).toList())
+            }
+        }
+
+        @Test
+        fun `Correctly calculates when the middle row ends on the last day of the current month`() {
+            val monthUnderTest = DateTime.createAdjusted(2021, 10, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowEquals((4..10).toList())
+                thirdRowEquals((11..17).toList())
+                fourthRowEquals((18..24).toList())
+                fifthRowEquals((25..31).toList())
+            }
+        }
+
+        @Test
+        fun `Correctly calculates when the middle row ends on the first week of the next month`() {
+            val monthUnderTest = DateTime.createAdjusted(2021, 2, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowEquals((8..14).toList())
+                thirdRowEquals((15..21).toList())
+                fourthRowEquals((22..28).toList())
+                fifthRowEquals((1..7).toList())
+            }
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.secondRowEquals(expectedDays: List<Int>) =
+            rowEquals(1, expectedDays)
+
+        private fun Assertion.Builder<List<List<Day>>>.thirdRowEquals(expectedDays: List<Int>) =
+            rowEquals(2, expectedDays)
+
+        private fun Assertion.Builder<List<List<Day>>>.fourthRowEquals(expectedDays: List<Int>) =
+            rowEquals(3, expectedDays)
+
+        private fun Assertion.Builder<List<List<Day>>>.fifthRowEquals(expectedDays: List<Int>) =
+            rowEquals(4, expectedDays)
+
+        private fun Assertion.Builder<List<List<Day>>>.rowEquals(
+            rowIndex: Int,
+            expectedDays: List<Int>,
+        ) {
+            val rowDays = this[rowIndex].map { it.value.toInt() }
+            rowDays.isEqualTo(expectedDays)
         }
     }
 }
