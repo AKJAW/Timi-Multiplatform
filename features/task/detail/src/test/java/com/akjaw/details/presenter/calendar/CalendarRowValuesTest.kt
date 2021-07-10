@@ -12,7 +12,7 @@ import strikt.assertions.map
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-class CalendarRowCalculatorTest {
+class CalendarRowValuesTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
