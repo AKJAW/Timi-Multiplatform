@@ -10,7 +10,13 @@ class CalendarDaysCalculator {
         private const val DAYS_IN_A_WEEK = 7
     }
 
-    // TODO encapsulate the months in a separate data structure?
+    private data class MiddleRows(
+        val second: List<Int>,
+        val third: List<Int>,
+        val fourth: List<Int>,
+        val fifth: List<Int>,
+    )
+
     fun calculate(currentMonth: DateTime): List<List<Day>> {
         val firstRow = calculateFirstRow(currentMonth)
         val middleRows = calculateMiddleRows(currentMonth, firstRow)
@@ -25,12 +31,29 @@ class CalendarDaysCalculator {
         )
     }
 
-    data class MiddleRows(
-        val second: List<Int>,
-        val third: List<Int>,
-        val fourth: List<Int>,
-        val fifth: List<Int>,
-    )
+    private fun calculateFirstRow(currentMonth: DateTime): List<Int> {
+        val numberOfDaysInPreviousMonth = getNumberOfDaysInPreviousMonth(currentMonth)
+        val weekPositionOfCurrentMonthFirstDay =
+            getPositionInRelationToWeek(currentMonth.copyDayOfMonth(dayOfMonth = 1))
+        val firstRowStartDay =
+            numberOfDaysInPreviousMonth - weekPositionOfCurrentMonthFirstDay
+
+        return getDaysForMonthAndRemainingNextMonthDays(
+            rowStartingDay = firstRowStartDay,
+            numberOfDaysInMonth = numberOfDaysInPreviousMonth
+        )
+    }
+
+    private fun getNumberOfDaysInPreviousMonth(currentMonth: DateTime): Int {
+        val previousMonth = currentMonth.minus(MonthSpan(1))
+        return previousMonth.getNumberOfDaysInMonth()
+    }
+
+    private fun getPositionInRelationToWeek(currentMonth: DateTime): Int {
+        val dayOfWeekWithOffset = currentMonth.dayOfWeekInt - MONDAY_START_OF_WEEK_OFFSET
+        val indexedDayOfMonth = (DAYS_IN_A_WEEK + dayOfWeekWithOffset) % 7
+        return indexedDayOfMonth - MONDAY_START_OF_WEEK_OFFSET
+    }
 
     private fun calculateMiddleRows(
         currentMonth: DateTime,
@@ -46,12 +69,13 @@ class CalendarDaysCalculator {
         val fourthRow = (firstDayOfFourthRow until firstDayOfFourthRow + DAYS_IN_A_WEEK)
 
         val firstDayOfFifthRow = fourthRow.last() + 1
-        val numberOfDaysInCurrentMonth = getNumberOfDaysInMonth(currentMonth)
+        val numberOfDaysInCurrentMonth = currentMonth.getNumberOfDaysInMonth()
         val fifthRow =
             if (firstDayOfFifthRow + DAYS_IN_A_WEEK > numberOfDaysInCurrentMonth) {
-                val currentMonthDays = firstDayOfFifthRow..numberOfDaysInCurrentMonth
-                val remainingDays = DAYS_IN_A_WEEK - currentMonthDays.count()
-                currentMonthDays + (1..remainingDays)
+                getDaysForMonthAndRemainingNextMonthDays(
+                    rowStartingDay = firstDayOfFifthRow,
+                    numberOfDaysInMonth = numberOfDaysInCurrentMonth
+                )
             } else {
                 firstDayOfFifthRow until firstDayOfFifthRow + DAYS_IN_A_WEEK
             }
@@ -64,57 +88,29 @@ class CalendarDaysCalculator {
         )
     }
 
-    private fun calculateFirstRow(currentMonth: DateTime): List<Int> {
-        val numberOfDaysInPreviousMonth = getNumberOfDaysInPreviousMonth(currentMonth)
-        val firstDayWeekPosition =
-            getPositionInRelationToWeek(currentMonth.copyWithFirstDayOfMonth())
-        val indexAdjustment = 1
-        val previousMonthStartDay =
-            numberOfDaysInPreviousMonth - firstDayWeekPosition + indexAdjustment
-
-        val previousMonthDays = (previousMonthStartDay..numberOfDaysInPreviousMonth).toList()
-
-        val numberOfDaysLeftInFirstWeekOfCurrentMonth = DAYS_IN_A_WEEK - previousMonthDays.count()
-        val currentMonthDays = 1..numberOfDaysLeftInFirstWeekOfCurrentMonth
-
-        return previousMonthDays + currentMonthDays
-    }
-
     private fun calculateLastRow(currentMonth: DateTime, fifthRow: List<Int>): List<Int> {
         val lastRowStartingDay = fifthRow.last() + 1
-        return if (fifthRow.last() > 28) {
-            val numberOfDaysInCurrentMonth = getNumberOfDaysInMonth(currentMonth)
-            val currentMonthDays = lastRowStartingDay..numberOfDaysInCurrentMonth
-            val remainingDays = DAYS_IN_A_WEEK - currentMonthDays.count()
-            currentMonthDays.toList() + (1..remainingDays)
+        return if (lastRowStartingDay >= 28) {
+            val numberOfDaysInCurrentMonth = currentMonth.getNumberOfDaysInMonth()
+            getDaysForMonthAndRemainingNextMonthDays(
+                rowStartingDay = lastRowStartingDay,
+                numberOfDaysInMonth = numberOfDaysInCurrentMonth
+            )
         } else {
             (lastRowStartingDay until lastRowStartingDay + DAYS_IN_A_WEEK).toList()
         }
     }
 
-    private fun getPositionInRelationToWeek(currentMonth: DateTime): Int {
-        return currentMonth.dayOfWeekIntAdjustedForMonday()
+    private fun getDaysForMonthAndRemainingNextMonthDays(
+        rowStartingDay: Int,
+        numberOfDaysInMonth: Int
+    ): List<Int> {
+        val monthDays = rowStartingDay..numberOfDaysInMonth
+        val nextMonthRemainingDays = DAYS_IN_A_WEEK - monthDays.count()
+        return monthDays + (1..nextMonthRemainingDays)
     }
 
-    private fun getNumberOfDaysInPreviousMonth(currentMonth: DateTime): Int {
-        val previousMonth = currentMonth.minus(MonthSpan(1))
-        return getNumberOfDaysInMonth(previousMonth)
-    }
-
-    private fun getNumberOfDaysInMonth(currentMonth: DateTime): Int {
-        return currentMonth.month.days(currentMonth.year)
-    }
-
-    private fun DateTime.copyWithFirstDayOfMonth(): DateTime =
-        copyDayOfMonth(dayOfMonth = 1)
-
-    private fun DateTime.copyWithLastDayOfMonth(): DateTime {
-        val numberOfDays = month.days(year)
-        return copyDayOfMonth(dayOfMonth = numberOfDays)
-    }
-
-    private fun DateTime.dayOfWeekIntAdjustedForMonday(): Int {
-        val dayOfWeekWithOffset = this.dayOfWeekInt - MONDAY_START_OF_WEEK_OFFSET
-        return (DAYS_IN_A_WEEK + dayOfWeekWithOffset) % 7
+    private fun DateTime.getNumberOfDaysInMonth(): Int {
+        return month.days(year)
     }
 }

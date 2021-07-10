@@ -30,8 +30,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(28, 29, 30, 1, 2, 3, 4).map { Day(it.toString()) }
-            expectThat(result.first()).isEqualTo(expectedDays)
+            val expectedDays = listOf(28, 29, 30, 1, 2, 3, 4)
+            expectThat(result).firstRowEquals(expectedDays)
         }
 
         @Test
@@ -40,8 +40,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(1, 2, 3, 4, 5, 6, 7).map { Day(it.toString()) }
-            expectThat(result.first()).isEqualTo(expectedDays)
+            val expectedDays = listOf(1, 2, 3, 4, 5, 6, 7)
+            expectThat(result).firstRowEquals(expectedDays)
         }
 
         @Test
@@ -50,8 +50,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(26, 27, 28, 29, 30, 31, 1).map { Day(it.toString()) }
-            expectThat(result.first()).isEqualTo(expectedDays)
+            val expectedDays = listOf(26, 27, 28, 29, 30, 31, 1)
+            expectThat(result).firstRowEquals(expectedDays)
         }
 
         @Test
@@ -60,9 +60,12 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(24, 25, 26, 27, 28, 29, 1).map { Day(it.toString()) }
-            expectThat(result.first()).isEqualTo(expectedDays)
+            val expectedDays = listOf(24, 25, 26, 27, 28, 29, 1)
+            expectThat(result).firstRowEquals(expectedDays)
         }
+
+        private fun Assertion.Builder<List<List<Day>>>.firstRowEquals(expectedDays: List<Int>) =
+            rowEquals(0, expectedDays)
     }
 
     @Nested
@@ -74,8 +77,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(31, 1, 2, 3, 4, 5, 6).map { Day(it.toString()) }
-            expectThat(result.last()).isEqualTo(expectedDays)
+            val expectedDays = listOf(31, 1, 2, 3, 4, 5, 6)
+            expectThat(result).lastRowEquals(expectedDays)
         }
 
         @Test
@@ -84,8 +87,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(1, 2, 3, 4, 5, 6, 7).map { Day(it.toString()) }
-            expectThat(result.last()).isEqualTo(expectedDays)
+            val expectedDays = listOf(1, 2, 3, 4, 5, 6, 7)
+            expectThat(result).lastRowEquals(expectedDays)
         }
 
         @Test
@@ -94,8 +97,8 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(5, 6, 7, 8, 9, 10, 11).map { Day(it.toString()) }
-            expectThat(result.last()).isEqualTo(expectedDays)
+            val expectedDays = listOf(5, 6, 7, 8, 9, 10, 11)
+            expectThat(result).lastRowEquals(expectedDays)
         }
 
         @Test
@@ -104,9 +107,12 @@ class CalendarRowCalculatorTest {
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
-            val expectedDays = listOf(8, 9, 10, 11, 12, 13, 14).map { Day(it.toString()) }
-            expectThat(result.last()).isEqualTo(expectedDays)
+            val expectedDays = listOf(8, 9, 10, 11, 12, 13, 14)
+            expectThat(result).lastRowEquals(expectedDays)
         }
+
+        private fun Assertion.Builder<List<List<Day>>>.lastRowEquals(expectedDays: List<Int>) =
+            rowEquals(5, expectedDays)
     }
 
     @Nested
@@ -179,13 +185,13 @@ class CalendarRowCalculatorTest {
 
         private fun Assertion.Builder<List<List<Day>>>.fifthRowEquals(expectedDays: List<Int>) =
             rowEquals(4, expectedDays)
+    }
 
-        private fun Assertion.Builder<List<List<Day>>>.rowEquals(
-            rowIndex: Int,
-            expectedDays: List<Int>,
-        ) {
-            val rowDays = this[rowIndex].map { it.value.toInt() }
-            rowDays.isEqualTo(expectedDays)
-        }
+    private fun Assertion.Builder<List<List<Day>>>.rowEquals(
+        rowIndex: Int,
+        expectedDays: List<Int>,
+    ) {
+        val rowDays = this[rowIndex].map { it.value.toInt() }
+        rowDays.isEqualTo(expectedDays)
     }
 }
