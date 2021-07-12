@@ -133,7 +133,7 @@ class CalendarRowValuesTest {
         }
 
         @Test
-        fun `Correctly calculates when the middle row ends before current month ends`() {
+        fun `Correctly calculates when the middle row ends on the current month`() {
             val monthUnderTest = DateTime.createAdjusted(2022, 5, 1)
 
             val result = systemUnderTest.calculate(monthUnderTest)

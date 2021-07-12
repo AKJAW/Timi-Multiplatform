@@ -13,6 +13,14 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 class CalendarRowDatesTest {
 
+    private data class RowDateAssertionPayload(
+        val monthDaysCount: Int,
+        val monthNumber: Int,
+        val monthYear: Int,
+        val nextMonthNumber: Int,
+        val nextMonthYear: Int
+    )
+
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
     @BeforeEach
@@ -31,11 +39,13 @@ class CalendarRowDatesTest {
 
             expectThat(result) {
                 firstRowHasCorrectDate(
-                    previousMonthDaysCount = 3,
-                    previousMonthNumber = 6,
-                    previousMonthYear = 2021,
-                    currentMonthNumber = 7,
-                    currentMonthYear = 2021,
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 3,
+                        monthNumber = 6,
+                        monthYear = 2021,
+                        nextMonthNumber = 7,
+                        nextMonthYear = 2021
+                    ),
                 )
             }
         }
@@ -48,35 +58,180 @@ class CalendarRowDatesTest {
 
             expectThat(result) {
                 firstRowHasCorrectDate(
-                    previousMonthDaysCount = 4,
-                    previousMonthNumber = 12,
-                    previousMonthYear = 2020,
-                    currentMonthNumber = 1,
-                    currentMonthYear = 2021,
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 4,
+                        monthNumber = 12,
+                        monthYear = 2020,
+                        nextMonthNumber = 1,
+                        nextMonthYear = 2021
+                    ),
                 )
             }
         }
 
         private fun Assertion.Builder<List<List<Day>>>.firstRowHasCorrectDate(
-            previousMonthDaysCount: Int,
-            previousMonthNumber: Int,
-            previousMonthYear: Int,
-            currentMonthNumber: Int,
-            currentMonthYear: Int
+            payload: RowDateAssertionPayload
         ) {
-            val firstRow = this[0]
-            (0 until previousMonthDaysCount).forEach { previousMonthIndex ->
-                firstRow[previousMonthIndex].and {
-                    get { month }.isEqualTo(previousMonthNumber)
-                    get { year }.isEqualTo(previousMonthYear)
-                }
+            rowHasCorrectDate(
+                rowIndex = 0,
+                payload = payload
+            )
+        }
+    }
+
+    @Nested
+    inner class MiddleRows {
+
+        @Test
+        fun `Assigns correct dates when the middle row ends on the current month`() {
+            val monthUnderTest = DateTime.createAdjusted(2022, 5, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowHasCorrectDate(
+                    monthNumber = 5,
+                    monthYear = 2022,
+                )
+                thirdRowHasCorrectDate(
+                    monthNumber = 5,
+                    monthYear = 2022,
+                )
+                fourthRowHasCorrectDate(
+                    monthNumber = 5,
+                    monthYear = 2022,
+                )
+                fifthRowHasCorrectDate(
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 7,
+                        monthNumber = 5,
+                        monthYear = 2022,
+                        nextMonthNumber = 0,
+                        nextMonthYear = 0
+                    )
+                )
             }
-            (previousMonthDaysCount + 1 until 7).forEach { currentMonthIndex ->
-                firstRow[currentMonthIndex].and {
-                    get { month }.isEqualTo(currentMonthNumber)
-                    get { year }.isEqualTo(currentMonthYear)
-                }
+        }
+
+        @Test
+        fun `Assigns correct dates when the middle row contains current and next month`() {
+            val monthUnderTest = DateTime.createAdjusted(2021, 11, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowHasCorrectDate(
+                    monthNumber = 11,
+                    monthYear = 2021,
+                )
+                thirdRowHasCorrectDate(
+                    monthNumber = 11,
+                    monthYear = 2021,
+                )
+                fourthRowHasCorrectDate(
+                    monthNumber = 11,
+                    monthYear = 2021,
+                )
+                fifthRowHasCorrectDate(
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 2,
+                        monthNumber = 11,
+                        monthYear = 2021,
+                        nextMonthNumber = 12,
+                        nextMonthYear = 2021
+                    )
+                )
             }
+        }
+
+        @Test
+        fun `Assigns correct dates for december`() {
+            val monthUnderTest = DateTime.createAdjusted(2020, 12, 1)
+
+            val result = systemUnderTest.calculate(monthUnderTest)
+
+            expectThat(result) {
+                secondRowHasCorrectDate(
+                    monthNumber = 12,
+                    monthYear = 2020,
+                )
+                thirdRowHasCorrectDate(
+                    monthNumber = 12,
+                    monthYear = 2020,
+                )
+                fourthRowHasCorrectDate(
+                    monthNumber = 12,
+                    monthYear = 2020,
+                )
+                fifthRowHasCorrectDate(
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 4,
+                        monthNumber = 12,
+                        monthYear = 2020,
+                        nextMonthNumber = 1,
+                        nextMonthYear = 2021
+                    )
+                )
+            }
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.secondRowHasCorrectDate(
+            monthNumber: Int,
+            monthYear: Int
+        ) {
+            sameMonthRowHasCorrectDate(
+                rowIndex = 1,
+                monthNumber = monthNumber,
+                monthYear = monthYear
+            )
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.thirdRowHasCorrectDate(
+            monthNumber: Int,
+            monthYear: Int
+        ) {
+            sameMonthRowHasCorrectDate(
+                rowIndex = 2,
+                monthNumber = monthNumber,
+                monthYear = monthYear
+            )
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.fourthRowHasCorrectDate(
+            monthNumber: Int,
+            monthYear: Int
+        ) {
+            sameMonthRowHasCorrectDate(
+                rowIndex = 3,
+                monthNumber = monthNumber,
+                monthYear = monthYear
+            )
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.fifthRowHasCorrectDate(
+            payload: RowDateAssertionPayload
+        ) {
+            rowHasCorrectDate(
+                rowIndex = 4,
+                payload = payload
+            )
+        }
+
+        private fun Assertion.Builder<List<List<Day>>>.sameMonthRowHasCorrectDate(
+            rowIndex: Int,
+            monthNumber: Int,
+            monthYear: Int
+        ) {
+            rowHasCorrectDate(
+                rowIndex = rowIndex,
+                payload = RowDateAssertionPayload(
+                    monthDaysCount = 7,
+                    monthNumber = monthNumber,
+                    monthYear = monthYear,
+                    nextMonthNumber = 0,
+                    nextMonthYear = 0
+                )
+            )
         }
     }
 
@@ -91,11 +246,13 @@ class CalendarRowDatesTest {
 
             expectThat(result) {
                 lastRowHasCorrectDate(
-                    currentMonthDaysCount = 0,
-                    currentMonthNumber = 7,
-                    currentMonthYear = 2021,
-                    nextMonthNumber = 8,
-                    nextMonthYear = 2021,
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 0,
+                        monthNumber = 7,
+                        monthYear = 2021,
+                        nextMonthNumber = 8,
+                        nextMonthYear = 2021
+                    ),
                 )
             }
         }
@@ -108,11 +265,13 @@ class CalendarRowDatesTest {
 
             expectThat(result) {
                 lastRowHasCorrectDate(
-                    currentMonthDaysCount = 1,
-                    currentMonthNumber = 5,
-                    currentMonthYear = 2021,
-                    nextMonthNumber = 6,
-                    nextMonthYear = 2021,
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 1,
+                        monthNumber = 5,
+                        monthYear = 2021,
+                        nextMonthNumber = 6,
+                        nextMonthYear = 2021
+                    ),
                 )
             }
         }
@@ -125,34 +284,42 @@ class CalendarRowDatesTest {
 
             expectThat(result) {
                 lastRowHasCorrectDate(
-                    currentMonthDaysCount = 2,
-                    currentMonthNumber = 12,
-                    currentMonthYear = 2019,
-                    nextMonthNumber = 1,
-                    nextMonthYear = 2020,
+                    payload = RowDateAssertionPayload(
+                        monthDaysCount = 2,
+                        monthNumber = 12,
+                        monthYear = 2019,
+                        nextMonthNumber = 1,
+                        nextMonthYear = 2020
+                    ),
                 )
             }
         }
+
+        private fun Assertion.Builder<List<List<Day>>>.lastRowHasCorrectDate(
+            payload: RowDateAssertionPayload
+        ) {
+            rowHasCorrectDate(
+                rowIndex = 5,
+                payload = payload
+            )
+        }
     }
 
-    private fun Assertion.Builder<List<List<Day>>>.lastRowHasCorrectDate(
-        currentMonthDaysCount: Int,
-        currentMonthNumber: Int,
-        currentMonthYear: Int,
-        nextMonthNumber: Int,
-        nextMonthYear: Int
+    private fun Assertion.Builder<List<List<Day>>>.rowHasCorrectDate(
+        rowIndex: Int,
+        payload: RowDateAssertionPayload
     ) {
-        val firstRow = this[5]
-        (0 until currentMonthDaysCount).forEach { previousMonthIndex ->
-            firstRow[previousMonthIndex].and {
-                get { month }.isEqualTo(currentMonthNumber)
-                get { year }.isEqualTo(currentMonthYear)
+        val row = this[rowIndex]
+        (0 until payload.monthDaysCount).forEach { previousMonthIndex ->
+            row[previousMonthIndex].and {
+                get { month }.isEqualTo(payload.monthNumber)
+                get { year }.isEqualTo(payload.monthYear)
             }
         }
-        (currentMonthDaysCount + 1 until 7).forEach { currentMonthIndex ->
-            firstRow[currentMonthIndex].and {
-                get { month }.isEqualTo(nextMonthNumber)
-                get { year }.isEqualTo(nextMonthYear)
+        (payload.monthDaysCount + 1 until 7).forEach { currentMonthIndex ->
+            row[currentMonthIndex].and {
+                get { month }.isEqualTo(payload.nextMonthNumber)
+                get { year }.isEqualTo(payload.nextMonthYear)
             }
         }
     }
