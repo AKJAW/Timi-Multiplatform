@@ -27,7 +27,7 @@ class CalendarDaysCalculator {
             middleRows.third.map { Day(it.toString()) },
             middleRows.fourth.map { Day(it.toString()) },
             middleRows.fifth.map { Day(it.toString()) },
-            lastRow.map { Day(it.toString()) },
+            lastRow,
         )
     }
 
@@ -47,17 +47,6 @@ class CalendarDaysCalculator {
         val currentMonthDays = createFromDayRange(currentMonthDayRange, currentMonth)
 
         return previousMonthDays + currentMonthDays
-    }
-
-    private fun createFromDayRange(
-        dayRange: IntRange,
-        monthDateTime: DateTime
-    ): List<Day> {
-        val previousMonthNumber = monthDateTime.month.index1
-        val previousMonthYear = monthDateTime.yearInt
-        return dayRange.map { dayNumber ->
-            Day(dayNumber.toString(), previousMonthNumber, previousMonthYear)
-        }
     }
 
     private fun getPositionInRelationToWeek(currentMonth: DateTime): Int {
@@ -99,16 +88,20 @@ class CalendarDaysCalculator {
         )
     }
 
-    private fun calculateLastRow(currentMonth: DateTime, fifthRow: List<Int>): List<Int> {
+    private fun calculateLastRow(currentMonth: DateTime, fifthRow: List<Int>): List<Day> {
         val lastRowStartingDay = fifthRow.last() + 1
+        val nextMonth = currentMonth.plus(MonthSpan(1))
         return if (lastRowStartingDay >= 28) {
             val numberOfDaysInCurrentMonth = currentMonth.getNumberOfDaysInMonth()
-            getDaysForMonthAndRemainingNextMonthDays(
-                rowStartingDay = lastRowStartingDay,
-                numberOfDaysInMonth = numberOfDaysInCurrentMonth
-            )
+            val currentMontDayRange = lastRowStartingDay..numberOfDaysInCurrentMonth
+            val currentMonthDays = createFromDayRange(currentMontDayRange, currentMonth)
+
+            val nextMonthRemainingDays = DAYS_IN_A_WEEK - currentMontDayRange.count()
+            val nextMonthDays = createFromDayRange(1..nextMonthRemainingDays, nextMonth)
+            return currentMonthDays + nextMonthDays
         } else {
-            (lastRowStartingDay until lastRowStartingDay + DAYS_IN_A_WEEK).toList()
+            val nextMonthDayRange = (lastRowStartingDay until lastRowStartingDay + DAYS_IN_A_WEEK)
+            createFromDayRange(nextMonthDayRange, nextMonth)
         }
     }
 
@@ -123,5 +116,16 @@ class CalendarDaysCalculator {
 
     private fun DateTime.getNumberOfDaysInMonth(): Int {
         return month.days(year)
+    }
+
+    private fun createFromDayRange(
+        dayRange: IntRange,
+        monthDateTime: DateTime
+    ): List<Day> {
+        val monthNumber = monthDateTime.month.index1
+        val monthYear = monthDateTime.yearInt
+        return dayRange.map { dayNumber ->
+            Day(dayNumber.toString(), monthNumber, monthYear)
+        }
     }
 }
