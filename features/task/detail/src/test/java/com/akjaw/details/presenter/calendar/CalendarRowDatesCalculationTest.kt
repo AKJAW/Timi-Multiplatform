@@ -11,7 +11,7 @@ import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-class CalendarRowDatesTest {
+class CalendarRowDatesCalculationTest {
 
     private data class RowDateAssertionPayload(
         val monthDaysCount: Int,

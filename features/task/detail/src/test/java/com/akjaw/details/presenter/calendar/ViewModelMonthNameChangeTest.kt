@@ -16,7 +16,7 @@ import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-internal class CalendarViewModelTest {
+internal class ViewModelMonthNameChangeTest {
 
     companion object {
         private val JULY_DATE_TIME = DateTime.createAdjusted(
@@ -45,7 +45,7 @@ internal class CalendarViewModelTest {
     }
 
     @Test
-    @Disabled("Disables because the data structure is being refactored")
+    @Disabled("Disables because this test will be moved to a separate class")
     fun `Initially the system timestamp is used for the month days`() = runBlocking {
         systemUnderTest.viewState.test {
             expectThat(expectItem().calendarDayRows).isEqualTo(
@@ -79,7 +79,7 @@ internal class CalendarViewModelTest {
         }
     }
 
-    fun createCalendarViewModel(
+    private fun createCalendarViewModel(
         backgroundDispatcher: CoroutineDispatcher,
         timestampProvider: TimestampProvider,
     ) = CalendarViewModel(
@@ -87,4 +87,7 @@ internal class CalendarViewModelTest {
         timestampProvider = timestampProvider,
         calendarDaysCalculator = CalendarDaysCalculator()
     )
+
+    private fun List<Iterable<Int>>.toDays(): List<CalendarDay> =
+        this.flatMap { range -> range.map { number -> CalendarDay(number) } }
 }

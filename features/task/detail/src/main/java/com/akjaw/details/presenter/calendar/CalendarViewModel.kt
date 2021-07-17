@@ -42,6 +42,3 @@ internal class CalendarViewModel @Inject constructor(
         return calendarDaysCalculator.calculate(currentMonth)
     }
 }
-
-internal fun List<Iterable<Int>>.toDays(): List<CalendarDay> =
-    this.flatMap { range -> range.map { number -> CalendarDay(number) } }
