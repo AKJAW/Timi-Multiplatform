@@ -39,14 +39,11 @@ class CalendarDaysCalculator {
         val firstRowStartDay =
             numberOfDaysInPreviousMonth - weekPositionOfCurrentMonthFirstDay
 
-        val previousMonthDayRange = (firstRowStartDay..numberOfDaysInPreviousMonth)
-        val previousMonthDays = createFromDayRange(previousMonthDayRange, previousMonth)
-
-        val nextMonthRemainingDays = DAYS_IN_A_WEEK - previousMonthDays.count()
-        val currentMonthDayRange = (1..nextMonthRemainingDays)
-        val currentMonthDays = createFromDayRange(currentMonthDayRange, currentMonth)
-
-        return previousMonthDays + currentMonthDays
+        return getDaysForMonthAndRemainingNextMonthDays(
+            rowStartingDay = firstRowStartDay,
+            numberOfDaysInMonth = numberOfDaysInPreviousMonth,
+            monthDateTime = previousMonth
+        )
     }
 
     private fun getPositionInRelationToWeek(currentMonth: DateTime): Int {
@@ -75,14 +72,11 @@ class CalendarDaysCalculator {
         val numberOfDaysInCurrentMonth = currentMonth.getNumberOfDaysInMonth()
         val fifthRow =
             if (firstDayOfFifthRow + DAYS_IN_A_WEEK > numberOfDaysInCurrentMonth) {
-                val currentMonthDayRange = firstDayOfFifthRow..numberOfDaysInCurrentMonth
-                val currentMonthDays = createFromDayRange(currentMonthDayRange, currentMonth)
-
-                val nextMonth = currentMonth.plus(MonthSpan(1))
-                val nextMonthDayRange = DAYS_IN_A_WEEK - currentMonthDayRange.count()
-                val nextMonthDays = createFromDayRange((1..nextMonthDayRange), nextMonth)
-
-                currentMonthDays + nextMonthDays
+                getDaysForMonthAndRemainingNextMonthDays(
+                    rowStartingDay = firstDayOfFifthRow,
+                    numberOfDaysInMonth = numberOfDaysInCurrentMonth,
+                    monthDateTime = currentMonth
+                )
             } else {
                 val currentMonthDayRange = firstDayOfFifthRow until firstDayOfFifthRow + DAYS_IN_A_WEEK
                 createFromDayRange(currentMonthDayRange, currentMonth)
@@ -101,12 +95,11 @@ class CalendarDaysCalculator {
         val nextMonth = currentMonth.plus(MonthSpan(1))
         return if (lastRowStartingDay >= 28) {
             val numberOfDaysInCurrentMonth = currentMonth.getNumberOfDaysInMonth()
-            val currentMontDayRange = lastRowStartingDay..numberOfDaysInCurrentMonth
-            val currentMonthDays = createFromDayRange(currentMontDayRange, currentMonth)
-
-            val nextMonthRemainingDays = DAYS_IN_A_WEEK - currentMontDayRange.count()
-            val nextMonthDays = createFromDayRange(1..nextMonthRemainingDays, nextMonth)
-            return currentMonthDays + nextMonthDays
+            return getDaysForMonthAndRemainingNextMonthDays(
+                rowStartingDay = lastRowStartingDay,
+                numberOfDaysInMonth = numberOfDaysInCurrentMonth,
+                monthDateTime = currentMonth
+            )
         } else {
             val nextMonthDayRange = (lastRowStartingDay until lastRowStartingDay + DAYS_IN_A_WEEK)
             createFromDayRange(nextMonthDayRange, nextMonth)
@@ -115,11 +108,17 @@ class CalendarDaysCalculator {
 
     private fun getDaysForMonthAndRemainingNextMonthDays(
         rowStartingDay: Int,
-        numberOfDaysInMonth: Int
-    ): List<Int> {
-        val monthDays = rowStartingDay..numberOfDaysInMonth
-        val nextMonthRemainingDays = DAYS_IN_A_WEEK - monthDays.count()
-        return monthDays + (1..nextMonthRemainingDays)
+        numberOfDaysInMonth: Int,
+        monthDateTime: DateTime,
+    ): List<Day> {
+        val monthDayRange = rowStartingDay..numberOfDaysInMonth
+        val monthDays = createFromDayRange(monthDayRange, monthDateTime)
+
+        val nextMonth = monthDateTime.plus(MonthSpan(1))
+        val nextMonthRemainingDays = DAYS_IN_A_WEEK - monthDayRange.count()
+        val nextMonthDays = createFromDayRange(1..nextMonthRemainingDays, nextMonth)
+
+        return monthDays + nextMonthDays
     }
 
     private fun DateTime.getNumberOfDaysInMonth(): Int {
