@@ -69,7 +69,7 @@ class CalendarRowDatesTest {
             }
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.firstRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.firstRowHasCorrectDate(
             payload: RowDateAssertionPayload
         ) {
             rowWithTwoMonthsHasCorrectDate(
@@ -175,7 +175,7 @@ class CalendarRowDatesTest {
             }
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.secondRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.secondRowHasCorrectDate(
             monthNumber: Int,
             monthYear: Int
         ) {
@@ -186,7 +186,7 @@ class CalendarRowDatesTest {
             )
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.thirdRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.thirdRowHasCorrectDate(
             monthNumber: Int,
             monthYear: Int
         ) {
@@ -197,7 +197,7 @@ class CalendarRowDatesTest {
             )
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.fourthRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.fourthRowHasCorrectDate(
             monthNumber: Int,
             monthYear: Int
         ) {
@@ -208,7 +208,7 @@ class CalendarRowDatesTest {
             )
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.fifthRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.fifthRowHasCorrectDate(
             payload: RowDateAssertionPayload
         ) {
             rowWithTwoMonthsHasCorrectDate(
@@ -217,7 +217,7 @@ class CalendarRowDatesTest {
             )
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.rowWithOneMonthHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.rowWithOneMonthHasCorrectDate(
             rowIndex: Int,
             monthNumber: Int,
             monthYear: Int
@@ -295,7 +295,7 @@ class CalendarRowDatesTest {
             }
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.lastRowHasCorrectDate(
+        private fun Assertion.Builder<List<List<CalendarDay>>>.lastRowHasCorrectDate(
             payload: RowDateAssertionPayload
         ) {
             rowWithTwoMonthsHasCorrectDate(
@@ -305,7 +305,7 @@ class CalendarRowDatesTest {
         }
     }
 
-    private fun Assertion.Builder<List<List<Day>>>.rowWithTwoMonthsHasCorrectDate(
+    private fun Assertion.Builder<List<List<CalendarDay>>>.rowWithTwoMonthsHasCorrectDate(
         rowIndex: Int,
         payload: RowDateAssertionPayload
     ) {

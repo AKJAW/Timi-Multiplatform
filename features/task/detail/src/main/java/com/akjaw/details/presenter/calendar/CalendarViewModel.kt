@@ -21,7 +21,7 @@ internal class CalendarViewModel @Inject constructor(
     private val mutableViewState = MutableStateFlow(
         CalendarViewState(
             monthName = getMonthName(currentMonth),
-            dayRows = getMonthDays(currentMonth)
+            calendarDayRows = getMonthDays(currentMonth)
         )
     )
     val viewState: StateFlow<CalendarViewState> = mutableViewState
@@ -38,10 +38,10 @@ internal class CalendarViewModel @Inject constructor(
 
     private fun getMonthName(dateTime: DateTime): String = dateTime.month.localName
 
-    private fun getMonthDays(currentMonth: DateTime): List<List<Day>> { // TODO on background thread
+    private fun getMonthDays(currentMonth: DateTime): List<List<CalendarDay>> { // TODO on background thread
         return calendarDaysCalculator.calculate(currentMonth)
     }
 }
 
-internal fun List<Iterable<Int>>.toDays(): List<Day> =
-    this.flatMap { range -> range.map { number -> Day(number.toString()) } }
+internal fun List<Iterable<Int>>.toDays(): List<CalendarDay> =
+    this.flatMap { range -> range.map { number -> CalendarDay(number) } }

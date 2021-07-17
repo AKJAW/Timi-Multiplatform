@@ -64,7 +64,7 @@ class CalendarRowValuesTest {
             expectThat(result).firstRowDaysEqual(expectedDays)
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.firstRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.firstRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 0, expectedDays = expectedDays)
     }
 
@@ -127,16 +127,16 @@ class CalendarRowValuesTest {
             }
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.secondRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.secondRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 1, expectedDays = expectedDays)
 
-        private fun Assertion.Builder<List<List<Day>>>.thirdRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.thirdRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 2, expectedDays = expectedDays)
 
-        private fun Assertion.Builder<List<List<Day>>>.fourthRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.fourthRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 3, expectedDays = expectedDays)
 
-        private fun Assertion.Builder<List<List<Day>>>.fifthRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.fifthRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 4, expectedDays = expectedDays)
     }
 
@@ -183,15 +183,15 @@ class CalendarRowValuesTest {
             expectThat(result).lastRowDaysEqual(expectedDays)
         }
 
-        private fun Assertion.Builder<List<List<Day>>>.lastRowDaysEqual(expectedDays: List<Int>) =
+        private fun Assertion.Builder<List<List<CalendarDay>>>.lastRowDaysEqual(expectedDays: List<Int>) =
             rowDaysEqual(rowIndex = 5, expectedDays = expectedDays)
     }
 
-    private fun Assertion.Builder<List<List<Day>>>.rowDaysEqual(
+    private fun Assertion.Builder<List<List<CalendarDay>>>.rowDaysEqual(
         rowIndex: Int,
         expectedDays: List<Int>,
     ) {
-        val rowDays = this[rowIndex].map { it.value.toInt() }
+        val rowDays = this[rowIndex].map { it.day }
         rowDays.isEqualTo(expectedDays)
     }
 }

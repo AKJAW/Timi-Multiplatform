@@ -48,13 +48,13 @@ internal class CalendarViewModelTest {
     @Disabled("Disables because the data structure is being refactored")
     fun `Initially the system timestamp is used for the month days`() = runBlocking {
         systemUnderTest.viewState.test {
-            expectThat(expectItem().dayRows).isEqualTo(
+            expectThat(expectItem().calendarDayRows).isEqualTo(
                 listOf(
                     listOf(28..30, 1..4).toDays(),
                     listOf(5..11).toDays(),
                     listOf(12..18).toDays(),
                     listOf(19..25).toDays(),
-                    listOf(26, 27, 28, 29, 30, 31, 1).map { Day(it.toString()) },
+                    listOf(26, 27, 28, 29, 30, 31, 1).map { CalendarDay(it) },
                     listOf(2..8).toDays(),
                 )
             )
