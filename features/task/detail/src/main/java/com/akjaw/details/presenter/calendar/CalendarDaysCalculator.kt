@@ -2,8 +2,9 @@ package com.akjaw.details.presenter.calendar
 
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
+import javax.inject.Inject
 
-class CalendarDaysCalculator {
+class CalendarDaysCalculator @Inject constructor() {
 
     companion object {
         private const val MONDAY_START_OF_WEEK_OFFSET = 1

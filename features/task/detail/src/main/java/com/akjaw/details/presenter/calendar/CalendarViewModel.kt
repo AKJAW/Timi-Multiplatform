@@ -5,12 +5,14 @@ import com.akjaw.core.common.composition.BackgroundDispatcherQualifier
 import com.akjaw.core.common.domain.TimestampProvider
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-internal class CalendarViewModel @Inject constructor(
+@HiltViewModel
+class CalendarViewModel @Inject constructor(
     @BackgroundDispatcherQualifier private val backgroundDispatcher: CoroutineDispatcher,
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator

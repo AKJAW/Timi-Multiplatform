@@ -11,26 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.akjaw.details.presenter.calendar.CalendarViewModel
 
 @Composable
-fun CalendarBottomSheet() {
-    val months = listOf(
-        listOf(31, 1, 2, 3, 4, 5, 6),
-        (7..13),
-        (14..20),
-        (21..27),
-        listOf(28, 29, 30, 1, 2, 3, 4),
-    )
+fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
+    val months = calendarViewModel.viewState.value.calendarDayRows
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "June")
+        Text(text = calendarViewModel.viewState.value.monthName)
         months.forEach { row ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                row.map {
+                row.map { calendarDay ->
                     Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
-                        Text(text = it.toString())
+                        Text(text = calendarDay.day.toString())
                     }
                 }
             }
