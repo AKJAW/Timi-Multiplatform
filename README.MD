@@ -1,5 +1,8 @@
 [![Tests](https://github.com/AKJAW/Timi-Compose/actions/workflows/test.yml/badge.svg)](https://github.com/AKJAW/Timi-Compose/actions/workflows/test.yml)
 [![Linting check](https://github.com/AKJAW/Timi-Compose/actions/workflows/ktlint.yml/badge.svg)](https://github.com/AKJAW/Timi-Compose/actions/workflows/ktlint.yml)
+<a href="https://androidweekly.net/issues/issue-468">
+<img src="https://androidweekly.net/issues/issue-468/badge">
+</a>
 
 # What this project is
 
