@@ -26,6 +26,9 @@ class CalendarViewModel @Inject constructor(
             calendarDayRows = getMonthDays(currentMonth),
             previousMonth = MonthViewState( // TODO clean up
                 getMonthName(currentMonth.minus(MonthSpan(1))),
+            ),
+            nextMonth = MonthViewState( // TODO clean up
+                getMonthName(currentMonth.plus(MonthSpan(1))),
             )
         )
     )
@@ -37,7 +40,9 @@ class CalendarViewModel @Inject constructor(
         mutableViewState.value = mutableViewState.value.copy(
             monthName = getMonthName(currentMonth),
             previousMonth = mutableViewState.value.previousMonth
-                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1))))
+                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1)))),
+            nextMonth = mutableViewState.value.nextMonth
+                .copy(monthName = getMonthName(currentMonth.plus(MonthSpan(1)))),
         )
     }
 
@@ -46,7 +51,9 @@ class CalendarViewModel @Inject constructor(
         mutableViewState.value = mutableViewState.value.copy(
             monthName = getMonthName(currentMonth),
             previousMonth = mutableViewState.value.previousMonth
-                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1))))
+                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1)))),
+            nextMonth = mutableViewState.value.nextMonth
+                .copy(monthName = getMonthName(currentMonth.plus(MonthSpan(1)))),
         )
     }
 

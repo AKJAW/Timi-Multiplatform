@@ -54,6 +54,13 @@ internal class ViewModelMonthNameChangeTest {
                 expectThat(expectItem().previousMonth.monthName).isEqualTo("June")
             }
         }
+
+        @Test
+        fun `The next month name has the correct name`() = runBlocking {
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().nextMonth.monthName).isEqualTo("August")
+            }
+        }
     }
 
     @Test
@@ -93,6 +100,15 @@ internal class ViewModelMonthNameChangeTest {
                 expectThat(expectItem().previousMonth.monthName).isEqualTo("May")
             }
         }
+
+        @Test
+        fun `Correctly changes the next month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().nextMonth.monthName).isEqualTo("July")
+            }
+        }
     }
 
     @Nested
@@ -113,6 +129,15 @@ internal class ViewModelMonthNameChangeTest {
 
             systemUnderTest.viewState.test {
                 expectThat(expectItem().previousMonth.monthName).isEqualTo("July")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the next month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().nextMonth.monthName).isEqualTo("September")
             }
         }
     }
