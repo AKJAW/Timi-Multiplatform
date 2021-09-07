@@ -23,19 +23,31 @@ class CalendarViewModel @Inject constructor(
     private val mutableViewState = MutableStateFlow(
         CalendarViewState(
             monthName = getMonthName(currentMonth),
-            calendarDayRows = getMonthDays(currentMonth)
+            calendarDayRows = getMonthDays(currentMonth),
+            previousMonth = MonthViewState( // TODO clean up
+                getMonthName(currentMonth.minus(MonthSpan(1))),
+            )
         )
     )
     val viewState: StateFlow<CalendarViewState> = mutableViewState
 
     fun changeToNextMonth() {
+        // TODO first make currentMonth local, at the end assign the property
         currentMonth = currentMonth.plus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.copy(monthName = getMonthName(currentMonth))
+        mutableViewState.value = mutableViewState.value.copy(
+            monthName = getMonthName(currentMonth),
+            previousMonth = mutableViewState.value.previousMonth
+                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1))))
+        )
     }
 
     fun changeToPreviousMonth() {
         currentMonth = currentMonth.minus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.copy(monthName = getMonthName(currentMonth))
+        mutableViewState.value = mutableViewState.value.copy(
+            monthName = getMonthName(currentMonth),
+            previousMonth = mutableViewState.value.previousMonth
+                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1))))
+        )
     }
 
     private fun getMonthName(dateTime: DateTime): String = dateTime.month.localName

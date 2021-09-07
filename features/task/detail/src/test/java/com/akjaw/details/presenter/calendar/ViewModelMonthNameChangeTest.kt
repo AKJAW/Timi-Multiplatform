@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
@@ -37,10 +38,21 @@ internal class ViewModelMonthNameChangeTest {
         systemUnderTest = createCalendarViewModel(testCoroutineDispatcher, timestampProviderStub)
     }
 
-    @Test
-    fun `Initially the system timestamp is used for the month name`() = runBlocking {
-        systemUnderTest.viewState.test {
-            expectThat(expectItem().monthName).isEqualTo("July")
+    @Nested
+    inner class Initial {
+
+        @Test
+        fun `The current month name has the correct name`() = runBlocking {
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("July")
+            }
+        }
+
+        @Test
+        fun `The previous month name has the correct name`() = runBlocking {
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().previousMonth.monthName).isEqualTo("June")
+            }
         }
     }
 
@@ -61,21 +73,47 @@ internal class ViewModelMonthNameChangeTest {
         }
     }
 
-    @Test
-    fun `Changing to next month correctly changes the month name`() = runBlocking {
-        systemUnderTest.changeToNextMonth()
+    @Nested
+    inner class ChangingToPrevious {
 
-        systemUnderTest.viewState.test {
-            expectThat(expectItem().monthName).isEqualTo("August")
+        @Test
+        fun `Correctly changes the current month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("June")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the previous month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().previousMonth.monthName).isEqualTo("May")
+            }
         }
     }
 
-    @Test
-    fun `Changing to previous month correctly changes the month name`() = runBlocking {
-        systemUnderTest.changeToPreviousMonth()
+    @Nested
+    inner class ChangingToNext {
 
-        systemUnderTest.viewState.test {
-            expectThat(expectItem().monthName).isEqualTo("June")
+        @Test
+        fun `Correctly changes the current month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("August")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the previous month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().previousMonth.monthName).isEqualTo("July")
+            }
         }
     }
 
