@@ -57,6 +57,7 @@ dependencies {
     implementation composeDependencies.materialIcons
     implementation composeDependencies.navigation
     implementation composeDependencies.viewModel
+    implementation composeDependencies.accompanistPager
     implementation otherDependencies.klock
 
     implementation hiltDependencies.android

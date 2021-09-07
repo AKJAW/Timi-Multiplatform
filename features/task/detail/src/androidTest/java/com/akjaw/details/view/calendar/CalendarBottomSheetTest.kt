@@ -5,6 +5,9 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.performGesture
+import androidx.compose.ui.test.swipeRight
 import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
@@ -16,6 +19,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+// TODO change injection after Refactor from hilt to koin
 class CalendarBottomSheetTest {
 
     @get:Rule
@@ -47,6 +51,15 @@ class CalendarBottomSheetTest {
     fun theMonthDaysAreShown() {
         val days = listOf(31) + (1..30) + (1..11)
         assertDaysDisplayed(days)
+    }
+
+    @Test
+    fun swipingRightChangesToThePreviousMonth() {
+        composeTestRule.onRoot().performGesture {
+            swipeRight()
+        }
+
+        composeTestRule.onNodeWithText("May").assertIsDisplayed()
     }
 
     private fun assertDaysDisplayed(days: List<Int>) {
