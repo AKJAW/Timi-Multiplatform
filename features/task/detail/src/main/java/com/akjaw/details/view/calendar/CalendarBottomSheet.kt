@@ -19,13 +19,13 @@ import com.google.accompanist.pager.rememberPagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
-    val months = calendarViewModel.viewState.value.calendarDayRows
+internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
+    val months = calendarViewModel.viewState.value.currentMonth.calendarDayRows
     val pagerState = rememberPagerState(pageCount = 3, initialPage = 2)
 
     HorizontalPager(state = pagerState) { page ->
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = calendarViewModel.viewState.value.monthName)
+            Text(text = calendarViewModel.viewState.value.currentMonth.monthName)
             months.forEach { row ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),

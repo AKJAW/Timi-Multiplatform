@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class CalendarViewModel @Inject constructor(
+internal class CalendarViewModel @Inject constructor(
     @BackgroundDispatcherQualifier private val backgroundDispatcher: CoroutineDispatcher,
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator
@@ -22,10 +22,12 @@ class CalendarViewModel @Inject constructor(
 
     private val mutableViewState = MutableStateFlow(
         CalendarViewState(
-            monthName = getMonthName(currentMonth),
-            calendarDayRows = getMonthDays(currentMonth),
             previousMonth = MonthViewState(
                 monthName = getMonthName(currentMonth.minus(MonthSpan(1))),
+            ),
+            currentMonth = MonthViewState(
+                monthName = getMonthName(currentMonth),
+                calendarDayRows = getMonthDays(currentMonth),
             ),
             nextMonth = MonthViewState(
                 monthName = getMonthName(currentMonth.plus(MonthSpan(1))),
@@ -61,7 +63,7 @@ class CalendarViewModel @Inject constructor(
     ): CalendarViewState {
         return copy(
             previousMonth = MonthViewState(monthName = getMonthName(previousMonth)),
-            monthName = getMonthName(currentMonth),
+            currentMonth = MonthViewState(monthName = getMonthName(currentMonth)),
             nextMonth = MonthViewState(monthName = getMonthName(nextMonth)),
         )
     }

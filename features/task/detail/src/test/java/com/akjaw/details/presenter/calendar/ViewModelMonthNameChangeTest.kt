@@ -51,7 +51,7 @@ internal class ViewModelMonthNameChangeTest {
         @Test
         fun `The current month name has the correct name`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("July")
+                expectThat(expectItem().currentMonth.monthName).isEqualTo("July")
             }
         }
 
@@ -80,7 +80,7 @@ internal class ViewModelMonthNameChangeTest {
             systemUnderTest.changeToPreviousMonth()
 
             systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("June")
+                expectThat(expectItem().currentMonth.monthName).isEqualTo("June")
             }
         }
 
@@ -101,7 +101,7 @@ internal class ViewModelMonthNameChangeTest {
             systemUnderTest.changeToPreviousMonth()
 
             systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("April")
+                expectThat(expectItem().currentMonth.monthName).isEqualTo("April")
             }
         }
     }
@@ -123,7 +123,7 @@ internal class ViewModelMonthNameChangeTest {
             systemUnderTest.changeToNextMonth()
 
             systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("August")
+                expectThat(expectItem().currentMonth.monthName).isEqualTo("August")
             }
         }
 
@@ -144,7 +144,7 @@ internal class ViewModelMonthNameChangeTest {
             systemUnderTest.changeToNextMonth()
 
             systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("October")
+                expectThat(expectItem().currentMonth.monthName).isEqualTo("October")
             }
         }
     }
@@ -153,7 +153,7 @@ internal class ViewModelMonthNameChangeTest {
     @Disabled("Disables because this test will be moved to a separate class")
     fun `Initially the system timestamp is used for the month days`() = runBlocking {
         systemUnderTest.viewState.test {
-            expectThat(expectItem().calendarDayRows).isEqualTo(
+            expectThat(expectItem().currentMonth.calendarDayRows).isEqualTo(
                 listOf(
                     listOf(28..30, 1..4).toDays(),
                     listOf(5..11).toDays(),

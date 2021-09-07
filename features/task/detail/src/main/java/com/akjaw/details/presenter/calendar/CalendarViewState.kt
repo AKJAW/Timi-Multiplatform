@@ -1,13 +1,7 @@
 package com.akjaw.details.presenter.calendar
 
-data class CalendarViewState(
-    val monthName: String = "",
-    val calendarDayRows: List<List<CalendarDay>> = listOf(),
+internal data class CalendarViewState(
+    val currentMonth: MonthViewState = MonthViewState(),
     val previousMonth: MonthViewState = MonthViewState(),
     val nextMonth: MonthViewState = MonthViewState()
-)
-
-data class MonthViewState(
-    val monthName: String = "",
-    val calendarDayRows: List<List<CalendarDay>> = listOf()
 )
