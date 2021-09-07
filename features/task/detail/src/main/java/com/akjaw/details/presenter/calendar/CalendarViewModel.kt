@@ -24,36 +24,45 @@ class CalendarViewModel @Inject constructor(
         CalendarViewState(
             monthName = getMonthName(currentMonth),
             calendarDayRows = getMonthDays(currentMonth),
-            previousMonth = MonthViewState( // TODO clean up
-                getMonthName(currentMonth.minus(MonthSpan(1))),
+            previousMonth = MonthViewState(
+                monthName = getMonthName(currentMonth.minus(MonthSpan(1))),
             ),
-            nextMonth = MonthViewState( // TODO clean up
-                getMonthName(currentMonth.plus(MonthSpan(1))),
+            nextMonth = MonthViewState(
+                monthName = getMonthName(currentMonth.plus(MonthSpan(1))),
             )
         )
     )
     val viewState: StateFlow<CalendarViewState> = mutableViewState
 
     fun changeToNextMonth() {
-        // TODO first make currentMonth local, at the end assign the property
-        currentMonth = currentMonth.plus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.copy(
-            monthName = getMonthName(currentMonth),
-            previousMonth = mutableViewState.value.previousMonth
-                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1)))),
-            nextMonth = mutableViewState.value.nextMonth
-                .copy(monthName = getMonthName(currentMonth.plus(MonthSpan(1)))),
+        val newCurrentMonth = currentMonth.plus(MonthSpan(1))
+        mutableViewState.value = mutableViewState.value.calculateNewState(
+            previousMonth = currentMonth,
+            currentMonth = newCurrentMonth,
+            nextMonth = newCurrentMonth.plus(MonthSpan(1))
         )
+        currentMonth = newCurrentMonth
     }
 
     fun changeToPreviousMonth() {
-        currentMonth = currentMonth.minus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.copy(
+        val newCurrentMonth = currentMonth.minus(MonthSpan(1))
+        mutableViewState.value = mutableViewState.value.calculateNewState(
+            previousMonth = newCurrentMonth.minus(MonthSpan(1)),
+            currentMonth = newCurrentMonth,
+            nextMonth = currentMonth
+        )
+        currentMonth = newCurrentMonth
+    }
+
+    private fun CalendarViewState.calculateNewState(
+        previousMonth: DateTime,
+        currentMonth: DateTime,
+        nextMonth: DateTime
+    ): CalendarViewState {
+        return copy(
+            previousMonth = MonthViewState(monthName = getMonthName(previousMonth)),
             monthName = getMonthName(currentMonth),
-            previousMonth = mutableViewState.value.previousMonth
-                .copy(monthName = getMonthName(currentMonth.minus(MonthSpan(1)))),
-            nextMonth = mutableViewState.value.nextMonth
-                .copy(monthName = getMonthName(currentMonth.plus(MonthSpan(1)))),
+            nextMonth = MonthViewState(monthName = getMonthName(nextMonth)),
         )
     }
 

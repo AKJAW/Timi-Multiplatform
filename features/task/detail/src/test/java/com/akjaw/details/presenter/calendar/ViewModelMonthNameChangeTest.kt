@@ -42,13 +42,6 @@ internal class ViewModelMonthNameChangeTest {
     inner class Initial {
 
         @Test
-        fun `The current month name has the correct name`() = runBlocking {
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("July")
-            }
-        }
-
-        @Test
         fun `The previous month name has the correct name`() = runBlocking {
             systemUnderTest.viewState.test {
                 expectThat(expectItem().previousMonth.monthName).isEqualTo("June")
@@ -56,9 +49,78 @@ internal class ViewModelMonthNameChangeTest {
         }
 
         @Test
+        fun `The current month name has the correct name`() = runBlocking {
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("July")
+            }
+        }
+
+        @Test
         fun `The next month name has the correct name`() = runBlocking {
             systemUnderTest.viewState.test {
                 expectThat(expectItem().nextMonth.monthName).isEqualTo("August")
+            }
+        }
+    }
+
+    @Nested
+    inner class ChangingToPrevious {
+
+        @Test
+        fun `Correctly changes the previous month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().previousMonth.monthName).isEqualTo("May")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the current month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("June")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the next month name`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().nextMonth.monthName).isEqualTo("July")
+            }
+        }
+    }
+
+    @Nested
+    inner class ChangingToNext {
+
+        @Test
+        fun `Correctly changes the previous month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().previousMonth.monthName).isEqualTo("July")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the current month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("August")
+            }
+        }
+
+        @Test
+        fun `Correctly changes the next month name`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().nextMonth.monthName).isEqualTo("September")
             }
         }
     }
@@ -77,68 +139,6 @@ internal class ViewModelMonthNameChangeTest {
                     listOf(2..8).toDays(),
                 )
             )
-        }
-    }
-
-    @Nested
-    inner class ChangingToPrevious {
-
-        @Test
-        fun `Correctly changes the current month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("June")
-            }
-        }
-
-        @Test
-        fun `Correctly changes the previous month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().previousMonth.monthName).isEqualTo("May")
-            }
-        }
-
-        @Test
-        fun `Correctly changes the next month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().nextMonth.monthName).isEqualTo("July")
-            }
-        }
-    }
-
-    @Nested
-    inner class ChangingToNext {
-
-        @Test
-        fun `Correctly changes the current month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().monthName).isEqualTo("August")
-            }
-        }
-
-        @Test
-        fun `Correctly changes the previous month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().previousMonth.monthName).isEqualTo("July")
-            }
-        }
-
-        @Test
-        fun `Correctly changes the next month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().nextMonth.monthName).isEqualTo("September")
-            }
         }
     }
 
