@@ -92,6 +92,18 @@ internal class ViewModelMonthNameChangeTest {
                 expectThat(expectItem().nextMonth.monthName).isEqualTo("July")
             }
         }
+
+        @Test
+        fun `Consecutive changes result in the correct current month`() = runBlocking {
+            systemUnderTest.changeToPreviousMonth()
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.changeToPreviousMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("April")
+            }
+        }
     }
 
     @Nested
@@ -121,6 +133,18 @@ internal class ViewModelMonthNameChangeTest {
 
             systemUnderTest.viewState.test {
                 expectThat(expectItem().nextMonth.monthName).isEqualTo("September")
+            }
+        }
+
+        @Test
+        fun `Consecutive changes result in the correct current month`() = runBlocking {
+            systemUnderTest.changeToNextMonth()
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.changeToNextMonth()
+
+            systemUnderTest.viewState.test {
+                expectThat(expectItem().monthName).isEqualTo("October")
             }
         }
     }
