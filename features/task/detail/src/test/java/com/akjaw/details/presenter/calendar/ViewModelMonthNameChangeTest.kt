@@ -9,9 +9,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import strikt.api.expect
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
@@ -39,130 +39,67 @@ internal class ViewModelMonthNameChangeTest {
     }
 
     @Nested
-    inner class Initial {
+    inner class MonthName {
 
         @Test
-        fun `The previous month name has the correct name`() = runBlocking {
+        fun `The current month name is at the 40th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().previousMonth.monthName).isEqualTo("June")
+                expectThat(expectItem().months[40].monthName).isEqualTo("July")
             }
         }
 
         @Test
-        fun `The current month name has the correct name`() = runBlocking {
+        fun `The previous month name is at the 39th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().currentMonth.monthName).isEqualTo("July")
+                expectThat(expectItem().months[39].monthName).isEqualTo("June")
             }
         }
 
         @Test
-        fun `The next month name has the correct name`() = runBlocking {
+        fun `The next month name is at the 41th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().nextMonth.monthName).isEqualTo("August")
-            }
-        }
-    }
-
-    @Nested
-    inner class ChangingToPrevious {
-
-        @Test
-        fun `Correctly changes the previous month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().previousMonth.monthName).isEqualTo("May")
+                expectThat(expectItem().months[41].monthName).isEqualTo("August")
             }
         }
 
         @Test
-        fun `Correctly changes the current month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
+        fun `The next year month name the year number in it`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().currentMonth.monthName).isEqualTo("June")
+                expectThat(expectItem().months[46].monthName).isEqualTo("January 2022")
             }
         }
 
         @Test
-        fun `Correctly changes the next month name`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-
+        fun `The previous year month name the year number in it`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().nextMonth.monthName).isEqualTo("July")
-            }
-        }
-
-        @Test
-        fun `Consecutive changes result in the correct current month`() = runBlocking {
-            systemUnderTest.changeToPreviousMonth()
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.changeToPreviousMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().currentMonth.monthName).isEqualTo("April")
+                expectThat(expectItem().months[33].monthName).isEqualTo("December 2020")
             }
         }
     }
 
     @Nested
-    inner class ChangingToNext {
+    inner class MonthDays {
 
         @Test
-        fun `Correctly changes the previous month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
+        fun `The current month first day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().previousMonth.monthName).isEqualTo("July")
+                expect {
+                    val rows = expectItem().months[40].calendarDayRows
+                    val firstDay = rows.first().first()
+                    that(firstDay).isEqualTo(CalendarDay(28, 6, 2021))
+                }
             }
         }
 
         @Test
-        fun `Correctly changes the current month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
+        fun `The current month last day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().currentMonth.monthName).isEqualTo("August")
+                expect {
+                    val rows = expectItem().months[40].calendarDayRows
+                    val firstDay = rows.last().last()
+                    that(firstDay).isEqualTo(CalendarDay(8, 8, 2021))
+                }
             }
-        }
-
-        @Test
-        fun `Correctly changes the next month name`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().nextMonth.monthName).isEqualTo("September")
-            }
-        }
-
-        @Test
-        fun `Consecutive changes result in the correct current month`() = runBlocking {
-            systemUnderTest.changeToNextMonth()
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.changeToNextMonth()
-
-            systemUnderTest.viewState.test {
-                expectThat(expectItem().currentMonth.monthName).isEqualTo("October")
-            }
-        }
-    }
-
-    @Test
-    @Disabled("Disables because this test will be moved to a separate class")
-    fun `Initially the system timestamp is used for the month days`() = runBlocking {
-        systemUnderTest.viewState.test {
-            expectThat(expectItem().currentMonth.calendarDayRows).isEqualTo(
-                listOf(
-                    listOf(28..30, 1..4).toDays(),
-                    listOf(5..11).toDays(),
-                    listOf(12..18).toDays(),
-                    listOf(19..25).toDays(),
-                    listOf(26, 27, 28, 29, 30, 31, 1).map { CalendarDay(it) },
-                    listOf(2..8).toDays(),
-                )
-            )
         }
     }
 

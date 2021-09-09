@@ -18,57 +18,46 @@ internal class CalendarViewModel @Inject constructor(
     private val calendarDaysCalculator: CalendarDaysCalculator
 ) : ViewModel() {
 
+    companion object {
+        const val NUMBER_OF_MONTHS = 50
+        const val CURRENT_MONTH_INDEX = 40
+    }
+
     private var currentMonth = DateTime.fromUnix(timestampProvider.getMilliseconds().value)
 
     private val mutableViewState = MutableStateFlow(
         CalendarViewState(
-            previousMonth = MonthViewState(
-                monthName = getMonthName(currentMonth.minus(MonthSpan(1))),
-            ),
-            currentMonth = MonthViewState(
-                monthName = getMonthName(currentMonth),
-                calendarDayRows = getMonthDays(currentMonth),
-            ),
-            nextMonth = MonthViewState(
-                monthName = getMonthName(currentMonth.plus(MonthSpan(1))),
-            )
+            months = createMonthList()
         )
     )
+
     val viewState: StateFlow<CalendarViewState> = mutableViewState
 
-    fun changeToNextMonth() {
-        val newCurrentMonth = currentMonth.plus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.calculateNewState(
-            previousMonth = currentMonth,
-            currentMonth = newCurrentMonth,
-            nextMonth = newCurrentMonth.plus(MonthSpan(1))
-        )
-        currentMonth = newCurrentMonth
+    private fun createMonthList(): List<MonthViewState> {
+        val mutableList = mutableListOf<MonthViewState>()
+
+        (0 until NUMBER_OF_MONTHS).forEach { index ->
+            val monthOffset = CURRENT_MONTH_INDEX * -1 + index
+            val month = currentMonth + MonthSpan(monthOffset)
+            mutableList.add(
+                MonthViewState(
+                    monthName = getMonthName(month),
+                    calendarDayRows = getMonthDays(month)
+                )
+            )
+        }
+
+        return mutableList
     }
 
-    fun changeToPreviousMonth() {
-        val newCurrentMonth = currentMonth.minus(MonthSpan(1))
-        mutableViewState.value = mutableViewState.value.calculateNewState(
-            previousMonth = newCurrentMonth.minus(MonthSpan(1)),
-            currentMonth = newCurrentMonth,
-            nextMonth = currentMonth
-        )
-        currentMonth = newCurrentMonth
+    private fun getMonthName(dateTime: DateTime): String {
+        val currentYear = currentMonth.year
+        return if (dateTime.year != currentYear) {
+            "${dateTime.month.localName} ${dateTime.year.year}"
+        } else {
+            dateTime.month.localName
+        }
     }
-
-    private fun CalendarViewState.calculateNewState(
-        previousMonth: DateTime,
-        currentMonth: DateTime,
-        nextMonth: DateTime
-    ): CalendarViewState {
-        return copy(
-            previousMonth = MonthViewState(monthName = getMonthName(previousMonth)),
-            currentMonth = MonthViewState(monthName = getMonthName(currentMonth)),
-            nextMonth = MonthViewState(monthName = getMonthName(nextMonth)),
-        )
-    }
-
-    private fun getMonthName(dateTime: DateTime): String = dateTime.month.localName
 
     private fun getMonthDays(currentMonth: DateTime): List<List<CalendarDay>> { // TODO on background thread
         return calendarDaysCalculator.calculate(currentMonth)
