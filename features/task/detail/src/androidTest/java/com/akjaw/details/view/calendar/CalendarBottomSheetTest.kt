@@ -1,9 +1,10 @@
 package com.akjaw.details.view.calendar
 
-import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performGesture
@@ -54,7 +55,7 @@ class CalendarBottomSheetTest {
     }
 
     @Test
-    fun swipingRightChangesToThePreviousMonth() {
+    fun swipingRightChangesTheNamesToPreviousMonth() {
         composeTestRule.onRoot().performGesture {
             swipeRight()
         }
@@ -63,9 +64,22 @@ class CalendarBottomSheetTest {
     }
 
     private fun assertDaysDisplayed(days: List<Int>) {
-        val daysCountMap = days.groupingBy { it }.eachCount()
-        daysCountMap.forEach { (day, count) ->
-            composeTestRule.onAllNodesWithText("$day").assertCountEquals(count)
+        // val daysCountMap = days.groupingBy { it }.eachCount()
+        val currentMonthDays = composeTestRule
+            .onNodeWithTag("CalendarMonth-${CalendarViewModel.CURRENT_MONTH_INDEX}")
+            .onChildren()
+            .fetchSemanticsNodes()
+            .mapNotNull { semanticsNode ->
+                val semanticTextProperty = semanticsNode.config[SemanticsProperties.Text]
+                val text = semanticTextProperty[0].text
+                text.toIntOrNull()
+            }
+        assert(days.sorted() == currentMonthDays.sorted()) {
+            """
+                Current month days are incorrect
+                Expected: $days
+                Actual: $currentMonthDays
+            """.trimIndent()
         }
     }
 

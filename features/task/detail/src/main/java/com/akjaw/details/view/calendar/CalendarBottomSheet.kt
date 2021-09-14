@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.akjaw.details.presenter.calendar.CalendarDay
@@ -22,16 +23,32 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
     val months = calendarViewModel.viewState.value.months
-    val pagerState = rememberPagerState(pageCount = 50, initialPage = 40)
+    val pagerState = rememberPagerState(
+        pageCount = CalendarViewModel.NUMBER_OF_MONTHS,
+        initialPage = CalendarViewModel.CURRENT_MONTH_INDEX
+    )
 
     HorizontalPager(state = pagerState) { page ->
-        CalendarMonth(months[page].monthName, months[page].calendarDayRows)
+        CalendarMonth(
+            months[page].monthName,
+            months[page].calendarDayRows,
+            modifier = Modifier.testTag("CalendarMonth-$page")
+        )
     }
 }
 
 @Composable
-private fun CalendarMonth(monthName: String, days: List<List<CalendarDay>>) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
+private fun CalendarMonth(
+    monthName: String,
+    days: List<List<CalendarDay>>,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxWidth()
+            .then(modifier)
+    ) {
         Text(text = monthName)
         days.forEach { row ->
             Row(
