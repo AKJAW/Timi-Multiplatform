@@ -1,6 +1,9 @@
 package com.akjaw.details.view.calendar
 
+import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onChildAt
@@ -94,21 +97,23 @@ class CalendarBottomSheetTest {
         assertDaysDisplayed(days)
     }
 
+    @Test
+    fun clickingOnADayHighlightsIt() {
+        getDayNodesOfCurrentMonth().first().config[SemanticsActions.OnClick].action?.invoke()
+
+        composeTestRule.mainClock.advanceTimeBy(12000)
+        val toggleState = getDayNodesOfCurrentMonth().first().config[SemanticsProperties.ToggleableState]
+        assert(toggleState == ToggleableState.On) {
+            "Expected that day is toggled but is $toggleState"
+        }
+    }
+
     private fun assertDaysDisplayed(days: List<Int>) {
-        val currentMonthDays = composeTestRule
-            .onNodeWithTag("CalendarPager")
-            .onChildAt(1)
-            .onChildren()
-            .fetchSemanticsNodes()
+        val currentMonthDays = getDayNodesOfCurrentMonth()
             .mapNotNull { semanticsNode ->
-                val textNode = semanticsNode.children.firstOrNull()
-                if (textNode != null) {
-                    val semanticTextProperty = textNode.config[SemanticsProperties.Text]
-                    val text = semanticTextProperty.first().text
-                    text.toIntOrNull()
-                } else {
-                    null
-                }
+                val semanticTextProperty = semanticsNode.config[SemanticsProperties.Text]
+                val text = semanticTextProperty.first().text
+                text.toIntOrNull()
             }
         assert(days.sorted() == currentMonthDays.sorted()) {
             """
@@ -117,6 +122,18 @@ class CalendarBottomSheetTest {
                 Actual: $currentMonthDays
             """.trimIndent()
         }
+    }
+
+    private fun getDayNodesOfCurrentMonth(): List<SemanticsNode> {
+        return composeTestRule
+            .onNodeWithTag("CalendarPager")
+            .onChildAt(1)
+            .onChildren()
+            .fetchSemanticsNodes()
+            .filter { semanticsNode ->
+                val text = semanticsNode.config[SemanticsProperties.Text].first().text
+                text.toIntOrNull() != null
+            }
     }
 
     private fun givenCurrentMonthIs(monthNumber: Int) {

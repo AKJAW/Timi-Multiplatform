@@ -1,6 +1,7 @@
 package com.akjaw.details.view.calendar
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,10 +10,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -77,22 +84,31 @@ private fun CalendarMonth(
 
 @Composable
 private fun CalendarDayCard(calendarDay: CalendarDay) {
+    var isClicked by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
-            .size(25.dp),
+            .size(25.dp)
+            .toggleable(
+                isClicked,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(bounded = false, radius = 12.dp)
+            ) {
+                isClicked = !isClicked
+            },
         elevation = 0.dp,
         shape = RoundedCornerShape(50.dp),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Transparent),
+                .background(if (isClicked) Color.Cyan else Color.Transparent),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = calendarDay.day.toString(),
                 textAlign = TextAlign.Center,
-                fontSize = 13.sp
+                fontSize = 13.sp,
             )
         }
     }
