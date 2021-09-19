@@ -3,11 +3,13 @@ package com.akjaw.details.view.calendar
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onChildAt
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performGesture
+import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
@@ -55,7 +57,7 @@ class CalendarBottomSheetTest {
     }
 
     @Test
-    fun swipingRightChangesTheNamesToPreviousMonth() {
+    fun swipingRightChangesTheNameToPreviousMonth() {
         composeTestRule.onRoot().performGesture {
             swipeRight()
         }
@@ -63,10 +65,39 @@ class CalendarBottomSheetTest {
         composeTestRule.onNodeWithText("May").assertIsDisplayed()
     }
 
+    @Test
+    fun swipingRightChangesTheDaysToPreviousMonth() {
+        composeTestRule.onRoot().performGesture {
+            swipeRight()
+        }
+
+        val days = (26..30) + (1..31) + (1..6)
+        assertDaysDisplayed(days)
+    }
+
+    @Test
+    fun swipingLeftChangesTheNameToNextMonth() {
+        composeTestRule.onRoot().performGesture {
+            swipeLeft()
+        }
+
+        composeTestRule.onNodeWithText("July").assertIsDisplayed()
+    }
+
+    @Test
+    fun swipingLeftChangesTheDaysToNextMonth() {
+        composeTestRule.onRoot().performGesture {
+            swipeLeft()
+        }
+
+        val days = (28..30) + (1..31) + (1..8)
+        assertDaysDisplayed(days)
+    }
+
     private fun assertDaysDisplayed(days: List<Int>) {
-        // val daysCountMap = days.groupingBy { it }.eachCount()
         val currentMonthDays = composeTestRule
-            .onNodeWithTag("CalendarMonth-${CalendarViewModel.CURRENT_MONTH_INDEX}")
+            .onNodeWithTag("CalendarPager")
+            .onChildAt(1)
             .onChildren()
             .fetchSemanticsNodes()
             .mapNotNull { semanticsNode ->

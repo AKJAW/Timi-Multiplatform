@@ -28,7 +28,7 @@ internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltView
         initialPage = CalendarViewModel.CURRENT_MONTH_INDEX
     )
 
-    HorizontalPager(state = pagerState) { page ->
+    HorizontalPager(state = pagerState, modifier = Modifier.testTag("CalendarPager")) { page ->
         CalendarMonth(
             months[page].monthName,
             months[page].calendarDayRows,
