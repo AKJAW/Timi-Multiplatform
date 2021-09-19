@@ -101,9 +101,14 @@ class CalendarBottomSheetTest {
             .onChildren()
             .fetchSemanticsNodes()
             .mapNotNull { semanticsNode ->
-                val semanticTextProperty = semanticsNode.config[SemanticsProperties.Text]
-                val text = semanticTextProperty[0].text
-                text.toIntOrNull()
+                val textNode = semanticsNode.children.firstOrNull()
+                if (textNode != null) {
+                    val semanticTextProperty = textNode.config[SemanticsProperties.Text]
+                    val text = semanticTextProperty.first().text
+                    text.toIntOrNull()
+                } else {
+                    null
+                }
             }
         assert(days.sorted() == currentMonthDays.sorted()) {
             """
