@@ -32,6 +32,7 @@ internal class CalendarViewModel @Inject constructor(
         )
     )
     val viewState: StateFlow<CalendarViewState> = mutableViewState
+    val initialDays = mutableViewState.value.months
 
     private fun createMonthList(): List<MonthViewState> {
         val mutableList = mutableListOf<MonthViewState>()
@@ -75,29 +76,43 @@ internal class CalendarViewModel @Inject constructor(
 
     fun selectDay(dayViewStateToSelect: DayViewState) {
         val currentValue = mutableViewState.value
-        val mutableMonthViewStates = currentValue.months.toMutableList()
-        val newMonths = mutableMonthViewStates[CURRENT_MONTH_INDEX].calendarDayRows.map { row ->
-            row.map { day ->
-                if (areDatesTheSame(day, dayViewStateToSelect)) {
-                    day.copy(isSelected = day.isSelected.not())
-                } else {
-                    day.copy(isSelected = false)
-                }
+        val selectedMonthIndex = currentValue.getMonthIndexForSelectedDay(dayViewStateToSelect)
+        val monthContainingSelectedDay = currentValue.months[selectedMonthIndex]
+        val newMonth = monthContainingSelectedDay
+            .createMonthListWithSelectedDay(dayViewStateToSelect)
+
+        val mutableInitialDays = initialDays.toMutableList()
+        mutableInitialDays[selectedMonthIndex] =
+            mutableInitialDays[selectedMonthIndex].copy(calendarDayRows = newMonth)
+
+        mutableViewState.value = currentValue.copy(months = mutableInitialDays)
+    }
+
+    private fun MonthViewState.createMonthListWithSelectedDay(
+        dayViewStateToSelect: DayViewState
+    ): List<List<DayViewState>> = calendarDayRows.map { row ->
+        row.map { day ->
+            if (areDatesTheSame(day, dayViewStateToSelect)) {
+                day.copy(isSelected = day.isSelected.not())
+            } else {
+                day.copy(isSelected = false)
             }
         }
-        mutableMonthViewStates[CURRENT_MONTH_INDEX] =
-            mutableMonthViewStates[CURRENT_MONTH_INDEX].copy(
-                calendarDayRows = newMonths
-            )
-        mutableViewState.value = currentValue.copy(
-            months = mutableMonthViewStates
-        )
+    }
+
+    private fun CalendarViewState.getMonthIndexForSelectedDay(
+        dayViewStateToSelect: DayViewState
+    ): Int = months.indexOfFirst { viewState ->
+        val middleRow = viewState.calendarDayRows[2]
+        val dayOfCurrentMonth = middleRow.first()
+        dayOfCurrentMonth.month == dayViewStateToSelect.month &&
+            dayOfCurrentMonth.year == dayViewStateToSelect.year
     }
 
     private fun areDatesTheSame(
         day: DayViewState,
         dayViewStateToSelect: DayViewState
-    ) = day.day == dayViewStateToSelect.day &&
+    ): Boolean = day.day == dayViewStateToSelect.day &&
         day.month == dayViewStateToSelect.month &&
         day.year == dayViewStateToSelect.year
 }

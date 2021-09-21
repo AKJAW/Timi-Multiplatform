@@ -27,6 +27,7 @@ class ViewModelDaySelectionTest {
         )
 
         private const val CURRENT_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX
+        private const val PREVIOUS_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX - 1
     }
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
@@ -85,6 +86,41 @@ class ViewModelDaySelectionTest {
 
             expectThat(selectedDays).hasSize(1)
             expectThat(selectedDays.first()).isEqualTo(
+                lastSelectedDay.copy(isSelected = true)
+            )
+        }
+    }
+
+    @Test
+    fun `Selecting a day in the previous month works`() = runBlocking {
+        val dayViewStateToSelect = DayViewState(21, 8, 2021)
+
+        systemUnderTest.selectDay(dayViewStateToSelect)
+
+        systemUnderTest.viewState.test {
+            val resultingDay = expectItem().findDay(PREVIOUS_MONTH_INDEX, dayViewStateToSelect)
+
+            expectThat(resultingDay).isEqualTo(
+                dayViewStateToSelect.copy(isSelected = true)
+            )
+        }
+    }
+
+    @Test
+    fun `Selecting two days in different months only marks the last one`() = runBlocking {
+        val lastSelectedDay = DayViewState(21, 9, 2021)
+        systemUnderTest.selectDay(DayViewState(20, 8, 2021))
+
+        systemUnderTest.selectDay(lastSelectedDay)
+
+        systemUnderTest.viewState.test {
+            val allRows = expectItem().months.flatMap { it.calendarDayRows }
+            val allSelectedDays = allRows.flatMap { row ->
+                row.filter { day -> day.isSelected }
+            }
+
+            expectThat(allSelectedDays).hasSize(1)
+            expectThat(allSelectedDays.first()).isEqualTo(
                 lastSelectedDay.copy(isSelected = true)
             )
         }
