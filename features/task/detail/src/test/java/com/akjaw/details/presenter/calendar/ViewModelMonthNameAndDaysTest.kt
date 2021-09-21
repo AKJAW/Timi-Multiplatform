@@ -1,15 +1,11 @@
 package com.akjaw.details.presenter.calendar
 
 import app.cash.turbine.test
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.details.domain.calendar.CalendarDay
-import com.akjaw.details.domain.calendar.CalendarDaysCalculator
 import com.akjaw.details.helper.TimestampProviderStub
 import com.akjaw.details.presentation.calendar.CalendarViewModel
 import com.akjaw.details.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
@@ -21,7 +17,7 @@ import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-internal class ViewModelMonthNameChangeTest {
+internal class ViewModelMonthNameAndDaysTest {
 
     companion object {
         private val JULY_DATE_TIME = DateTime.createAdjusted(
@@ -29,6 +25,8 @@ internal class ViewModelMonthNameChangeTest {
             month = 7,
             day = 5
         )
+
+        private const val CURRENT_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX
     }
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
@@ -48,7 +46,7 @@ internal class ViewModelMonthNameChangeTest {
         @Test
         fun `The current month name is at the 40th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[40].monthName).isEqualTo("July")
+                expectThat(expectItem().months[CURRENT_MONTH_INDEX].monthName).isEqualTo("July")
             }
         }
 
@@ -88,7 +86,7 @@ internal class ViewModelMonthNameChangeTest {
         fun `The current month first day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
                 expect {
-                    val rows = expectItem().months[40].calendarDayRows
+                    val rows = expectItem().months[CURRENT_MONTH_INDEX].calendarDayRows
                     val firstDay = rows.first().first()
                     that(firstDay).isEqualTo(DayViewState(28, 6, 2021))
                 }
@@ -99,23 +97,11 @@ internal class ViewModelMonthNameChangeTest {
         fun `The current month last day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
                 expect {
-                    val rows = expectItem().months[40].calendarDayRows
+                    val rows = expectItem().months[CURRENT_MONTH_INDEX].calendarDayRows
                     val firstDay = rows.last().last()
                     that(firstDay).isEqualTo(DayViewState(8, 8, 2021))
                 }
             }
         }
     }
-
-    private fun createCalendarViewModel(
-        backgroundDispatcher: CoroutineDispatcher,
-        timestampProvider: TimestampProvider,
-    ) = CalendarViewModel(
-        backgroundDispatcher = backgroundDispatcher,
-        timestampProvider = timestampProvider,
-        calendarDaysCalculator = CalendarDaysCalculator()
-    )
-
-    private fun List<Iterable<Int>>.toDays(): List<CalendarDay> =
-        this.flatMap { range -> range.map { number -> CalendarDay(number) } }
 }

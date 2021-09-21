@@ -31,7 +31,6 @@ internal class CalendarViewModel @Inject constructor(
             months = createMonthList()
         )
     )
-
     val viewState: StateFlow<CalendarViewState> = mutableViewState
 
     private fun createMonthList(): List<MonthViewState> {
@@ -73,4 +72,32 @@ internal class CalendarViewModel @Inject constructor(
                 }
             }
     }
+
+    fun selectDay(dayViewStateToSelect: DayViewState) {
+        val currentValue = mutableViewState.value
+        val mutableMonthViewStates = currentValue.months.toMutableList()
+        val newMonths = mutableMonthViewStates[CURRENT_MONTH_INDEX].calendarDayRows.map { row ->
+            row.map { day ->
+                if (areDatesTheSame(day, dayViewStateToSelect)) {
+                    day.copy(isSelected = day.isSelected.not())
+                } else {
+                    day.copy(isSelected = false)
+                }
+            }
+        }
+        mutableMonthViewStates[CURRENT_MONTH_INDEX] =
+            mutableMonthViewStates[CURRENT_MONTH_INDEX].copy(
+                calendarDayRows = newMonths
+            )
+        mutableViewState.value = currentValue.copy(
+            months = mutableMonthViewStates
+        )
+    }
+
+    private fun areDatesTheSame(
+        day: DayViewState,
+        dayViewStateToSelect: DayViewState
+    ) = day.day == dayViewStateToSelect.day &&
+        day.month == dayViewStateToSelect.month &&
+        day.year == dayViewStateToSelect.year
 }
