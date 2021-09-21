@@ -3,7 +3,11 @@ package com.akjaw.details.presenter.calendar
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.akjaw.details.domain.calendar.CalendarDay
+import com.akjaw.details.domain.calendar.CalendarDaysCalculator
 import com.akjaw.details.helper.TimestampProviderStub
+import com.akjaw.details.presentation.calendar.CalendarViewModel
+import com.akjaw.details.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
@@ -86,7 +90,7 @@ internal class ViewModelMonthNameChangeTest {
                 expect {
                     val rows = expectItem().months[40].calendarDayRows
                     val firstDay = rows.first().first()
-                    that(firstDay).isEqualTo(CalendarDay(28, 6, 2021))
+                    that(firstDay).isEqualTo(DayViewState(28, 6, 2021))
                 }
             }
         }
@@ -97,7 +101,7 @@ internal class ViewModelMonthNameChangeTest {
                 expect {
                     val rows = expectItem().months[40].calendarDayRows
                     val firstDay = rows.last().last()
-                    that(firstDay).isEqualTo(CalendarDay(8, 8, 2021))
+                    that(firstDay).isEqualTo(DayViewState(8, 8, 2021))
                 }
             }
         }

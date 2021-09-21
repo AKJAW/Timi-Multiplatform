@@ -1,4 +1,4 @@
-package com.akjaw.details.presenter.calendar
+package com.akjaw.details.domain.calendar
 
 data class CalendarDay( // TODO renmae
     val day: Int,

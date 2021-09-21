@@ -1,4 +1,4 @@
-package com.akjaw.details.presenter.calendar
+package com.akjaw.details.domain.calendar
 
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan

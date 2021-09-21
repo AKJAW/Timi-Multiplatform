@@ -1,8 +1,9 @@
-package com.akjaw.details.presenter.calendar
+package com.akjaw.details.presentation.calendar
 
 import androidx.lifecycle.ViewModel
 import com.akjaw.core.common.composition.BackgroundDispatcherQualifier
 import com.akjaw.core.common.domain.TimestampProvider
+import com.akjaw.details.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -59,7 +60,17 @@ internal class CalendarViewModel @Inject constructor(
         }
     }
 
-    private fun getMonthDays(currentMonth: DateTime): List<List<CalendarDay>> { // TODO on background thread
-        return calendarDaysCalculator.calculate(currentMonth)
+    private fun getMonthDays(currentMonth: DateTime): List<List<DayViewState>> { // TODO on background thread
+        return calendarDaysCalculator
+            .calculate(currentMonth)
+            .map { row ->
+                row.map { calendarDay ->
+                    DayViewState(
+                        calendarDay.day,
+                        calendarDay.month,
+                        calendarDay.year,
+                    )
+                }
+            }
     }
 }

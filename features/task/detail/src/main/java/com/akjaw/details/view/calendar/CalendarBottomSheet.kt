@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.details.presenter.calendar.CalendarDay
-import com.akjaw.details.presenter.calendar.CalendarViewModel
+import com.akjaw.details.presentation.calendar.CalendarViewModel
+import com.akjaw.details.presentation.calendar.DayViewState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -57,7 +57,7 @@ internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltView
 @Composable
 private fun CalendarMonth(
     monthName: String,
-    days: List<List<CalendarDay>>,
+    days: List<List<DayViewState>>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -83,7 +83,7 @@ private fun CalendarMonth(
 }
 
 @Composable
-private fun CalendarDayCard(calendarDay: CalendarDay) {
+private fun CalendarDayCard(dayViewState: DayViewState) {
     var isClicked by remember { mutableStateOf(false) }
 
     Card(
@@ -106,7 +106,7 @@ private fun CalendarDayCard(calendarDay: CalendarDay) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = calendarDay.day.toString(),
+                text = dayViewState.day.toString(),
                 textAlign = TextAlign.Center,
                 fontSize = 13.sp,
             )
@@ -128,59 +128,59 @@ fun CalendarMonthPreviewDark() {
     }
 }
 
-private val augustDays: List<List<CalendarDay>> = listOf(
+private val augustDays: List<List<DayViewState>> = listOf(
     listOf(
-        CalendarDay(day = 26, month = 7, year = 2021),
-        CalendarDay(day = 27, month = 7, year = 2021),
-        CalendarDay(day = 28, month = 7, year = 2021),
-        CalendarDay(day = 29, month = 7, year = 2021),
-        CalendarDay(day = 30, month = 7, year = 2021),
-        CalendarDay(day = 31, month = 7, year = 2021),
-        CalendarDay(day = 1, month = 8, year = 2021),
+        DayViewState(day = 26, month = 7, year = 2021),
+        DayViewState(day = 27, month = 7, year = 2021),
+        DayViewState(day = 28, month = 7, year = 2021),
+        DayViewState(day = 29, month = 7, year = 2021),
+        DayViewState(day = 30, month = 7, year = 2021),
+        DayViewState(day = 31, month = 7, year = 2021),
+        DayViewState(day = 1, month = 8, year = 2021),
     ),
     listOf(
-        CalendarDay(day = 2, month = 8, year = 2021),
-        CalendarDay(day = 3, month = 8, year = 2021),
-        CalendarDay(day = 4, month = 8, year = 2021),
-        CalendarDay(day = 5, month = 8, year = 2021),
-        CalendarDay(day = 6, month = 8, year = 2021),
-        CalendarDay(day = 7, month = 8, year = 2021),
-        CalendarDay(day = 8, month = 8, year = 2021),
+        DayViewState(day = 2, month = 8, year = 2021),
+        DayViewState(day = 3, month = 8, year = 2021),
+        DayViewState(day = 4, month = 8, year = 2021),
+        DayViewState(day = 5, month = 8, year = 2021),
+        DayViewState(day = 6, month = 8, year = 2021),
+        DayViewState(day = 7, month = 8, year = 2021),
+        DayViewState(day = 8, month = 8, year = 2021),
     ),
     listOf(
-        CalendarDay(day = 9, month = 8, year = 2021),
-        CalendarDay(day = 10, month = 8, year = 2021),
-        CalendarDay(day = 11, month = 8, year = 2021),
-        CalendarDay(day = 12, month = 8, year = 2021),
-        CalendarDay(day = 13, month = 8, year = 2021),
-        CalendarDay(day = 14, month = 8, year = 2021),
-        CalendarDay(day = 15, month = 8, year = 2021),
+        DayViewState(day = 9, month = 8, year = 2021),
+        DayViewState(day = 10, month = 8, year = 2021),
+        DayViewState(day = 11, month = 8, year = 2021),
+        DayViewState(day = 12, month = 8, year = 2021),
+        DayViewState(day = 13, month = 8, year = 2021),
+        DayViewState(day = 14, month = 8, year = 2021),
+        DayViewState(day = 15, month = 8, year = 2021),
     ),
     listOf(
-        CalendarDay(day = 16, month = 8, year = 2021),
-        CalendarDay(day = 17, month = 8, year = 2021),
-        CalendarDay(day = 18, month = 8, year = 2021),
-        CalendarDay(day = 19, month = 8, year = 2021),
-        CalendarDay(day = 20, month = 8, year = 2021),
-        CalendarDay(day = 21, month = 8, year = 2021),
-        CalendarDay(day = 22, month = 8, year = 2021),
+        DayViewState(day = 16, month = 8, year = 2021),
+        DayViewState(day = 17, month = 8, year = 2021),
+        DayViewState(day = 18, month = 8, year = 2021),
+        DayViewState(day = 19, month = 8, year = 2021),
+        DayViewState(day = 20, month = 8, year = 2021),
+        DayViewState(day = 21, month = 8, year = 2021),
+        DayViewState(day = 22, month = 8, year = 2021),
     ),
     listOf(
-        CalendarDay(day = 23, month = 8, year = 2021),
-        CalendarDay(day = 24, month = 8, year = 2021),
-        CalendarDay(day = 25, month = 8, year = 2021),
-        CalendarDay(day = 26, month = 8, year = 2021),
-        CalendarDay(day = 27, month = 8, year = 2021),
-        CalendarDay(day = 28, month = 8, year = 2021),
-        CalendarDay(day = 29, month = 8, year = 2021),
+        DayViewState(day = 23, month = 8, year = 2021),
+        DayViewState(day = 24, month = 8, year = 2021),
+        DayViewState(day = 25, month = 8, year = 2021),
+        DayViewState(day = 26, month = 8, year = 2021),
+        DayViewState(day = 27, month = 8, year = 2021),
+        DayViewState(day = 28, month = 8, year = 2021),
+        DayViewState(day = 29, month = 8, year = 2021),
     ),
     listOf(
-        CalendarDay(day = 30, month = 8, year = 2021),
-        CalendarDay(day = 31, month = 8, year = 2021),
-        CalendarDay(day = 1, month = 9, year = 2021),
-        CalendarDay(day = 2, month = 9, year = 2021),
-        CalendarDay(day = 3, month = 9, year = 2021),
-        CalendarDay(day = 4, month = 9, year = 2021),
-        CalendarDay(day = 5, month = 9, year = 2021),
+        DayViewState(day = 30, month = 8, year = 2021),
+        DayViewState(day = 31, month = 8, year = 2021),
+        DayViewState(day = 1, month = 9, year = 2021),
+        DayViewState(day = 2, month = 9, year = 2021),
+        DayViewState(day = 3, month = 9, year = 2021),
+        DayViewState(day = 4, month = 9, year = 2021),
+        DayViewState(day = 5, month = 9, year = 2021),
     ),
 )

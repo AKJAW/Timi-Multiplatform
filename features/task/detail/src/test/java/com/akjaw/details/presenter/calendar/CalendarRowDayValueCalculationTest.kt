@@ -1,5 +1,7 @@
 package com.akjaw.details.presenter.calendar
 
+import com.akjaw.details.domain.calendar.CalendarDay
+import com.akjaw.details.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested

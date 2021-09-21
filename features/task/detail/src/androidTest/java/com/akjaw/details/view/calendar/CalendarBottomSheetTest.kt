@@ -17,8 +17,8 @@ import androidx.compose.ui.test.swipeRight
 import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.details.presenter.calendar.CalendarDaysCalculator
-import com.akjaw.details.presenter.calendar.CalendarViewModel
+import com.akjaw.details.domain.calendar.CalendarDaysCalculator
+import com.akjaw.details.presentation.calendar.CalendarViewModel
 import com.soywiz.klock.DateTime
 import kotlinx.coroutines.Dispatchers
 import org.junit.Before
