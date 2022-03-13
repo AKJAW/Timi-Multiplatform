@@ -1,0 +1,11 @@
+- [ ] Add KMP module
+- [ ] Add iOS Project
+- [ ] Add Basic KMP logic
+- [ ] Move stopwatch module to KMP
+- [ ] Add Basic Swift UI for the stopwatch screen 
+- [ ] Move Android modules to android folder
+- [ ] Update GitHub Actions
+- [ ] Add refresh versions
+- [ ] Clean up package names
+- [ ] Clean up AndroidManifest in KMP
+- [ ] Extract Config / Precompiled plugin for gradle modules
