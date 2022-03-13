@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 internal class TaskDetailScreenCreatorImpl @Inject constructor() : TaskDetailScreenCreator {
 
-    @ExperimentalMaterialApi
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     override fun Create(navigationHolder: NavigationHolder) {
         TaskDetailScreen(navigationHolder.controller)

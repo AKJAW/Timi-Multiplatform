@@ -46,35 +46,35 @@ internal class ViewModelMonthNameAndDaysTest {
         @Test
         fun `The current month name is at the 40th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[CURRENT_MONTH_INDEX].monthName).isEqualTo("July")
+                expectThat(awaitItem().months[CURRENT_MONTH_INDEX].monthName).isEqualTo("July")
             }
         }
 
         @Test
         fun `The previous month name is at the 39th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[39].monthName).isEqualTo("June")
+                expectThat(awaitItem().months[39].monthName).isEqualTo("June")
             }
         }
 
         @Test
         fun `The next month name is at the 41th index`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[41].monthName).isEqualTo("August")
+                expectThat(awaitItem().months[41].monthName).isEqualTo("August")
             }
         }
 
         @Test
         fun `The next year month name the year number in it`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[46].monthName).isEqualTo("January 2022")
+                expectThat(awaitItem().months[46].monthName).isEqualTo("January 2022")
             }
         }
 
         @Test
         fun `The previous year month name the year number in it`() = runBlocking {
             systemUnderTest.viewState.test {
-                expectThat(expectItem().months[33].monthName).isEqualTo("December 2020")
+                expectThat(awaitItem().months[33].monthName).isEqualTo("December 2020")
             }
         }
     }
@@ -86,7 +86,7 @@ internal class ViewModelMonthNameAndDaysTest {
         fun `The current month first day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
                 expect {
-                    val rows = expectItem().months[CURRENT_MONTH_INDEX].calendarDayRows
+                    val rows = awaitItem().months[CURRENT_MONTH_INDEX].calendarDayRows
                     val firstDay = rows.first().first()
                     that(firstDay).isEqualTo(DayViewState(28, 6, 2021))
                 }
@@ -97,7 +97,7 @@ internal class ViewModelMonthNameAndDaysTest {
         fun `The current month last day is correct`() = runBlocking {
             systemUnderTest.viewState.test {
                 expect {
-                    val rows = expectItem().months[CURRENT_MONTH_INDEX].calendarDayRows
+                    val rows = awaitItem().months[CURRENT_MONTH_INDEX].calendarDayRows
                     val firstDay = rows.last().last()
                     that(firstDay).isEqualTo(DayViewState(8, 8, 2021))
                 }

@@ -52,7 +52,7 @@ class ViewModelDaySelectionTest {
             systemUnderTest.selectDay(dayViewStateToSelect)
 
             systemUnderTest.viewState.test {
-                val resultingDay = expectItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToSelect)
+                val resultingDay = awaitItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToSelect)
 
                 expectThat(resultingDay).isEqualTo(
                     dayViewStateToSelect.copy(isSelected = true)
@@ -68,7 +68,7 @@ class ViewModelDaySelectionTest {
             systemUnderTest.selectDay(dayViewStateToUnselect)
 
             systemUnderTest.viewState.test {
-                val resultingDay = expectItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToUnselect)
+                val resultingDay = awaitItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToUnselect)
 
                 expectThat(resultingDay).isEqualTo(
                     dayViewStateToUnselect.copy(isSelected = false)
@@ -85,7 +85,7 @@ class ViewModelDaySelectionTest {
             systemUnderTest.selectDay(lastSelectedDay)
 
             systemUnderTest.viewState.test {
-                val currentMonthRows = expectItem().months[CURRENT_MONTH_INDEX].calendarDayRows
+                val currentMonthRows = awaitItem().months[CURRENT_MONTH_INDEX].calendarDayRows
                 val selectedDays = currentMonthRows.flatten().filter { it.isSelected }
 
                 expectThat(selectedDays).hasSize(1)
@@ -102,7 +102,7 @@ class ViewModelDaySelectionTest {
             systemUnderTest.selectDay(dayViewStateToSelect)
 
             systemUnderTest.viewState.test {
-                val resultingDay = expectItem().findDay(PREVIOUS_MONTH_INDEX, dayViewStateToSelect)
+                val resultingDay = awaitItem().findDay(PREVIOUS_MONTH_INDEX, dayViewStateToSelect)
 
                 expectThat(resultingDay).isEqualTo(
                     dayViewStateToSelect.copy(isSelected = true)
@@ -118,7 +118,7 @@ class ViewModelDaySelectionTest {
             systemUnderTest.selectDay(lastSelectedDay)
 
             systemUnderTest.viewState.test {
-                val allRows = expectItem().months.flatMap { it.calendarDayRows }
+                val allRows = awaitItem().months.flatMap { it.calendarDayRows }
                 val allSelectedDays = allRows.flatMap { row ->
                     row.filter { day -> day.isSelected }
                 }

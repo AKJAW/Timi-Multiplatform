@@ -41,11 +41,14 @@ import com.google.accompanist.pager.rememberPagerState
 internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
     val months = calendarViewModel.viewState.value.months
     val pagerState = rememberPagerState(
-        pageCount = CalendarViewModel.NUMBER_OF_MONTHS,
         initialPage = CalendarViewModel.CURRENT_MONTH_INDEX
     )
 
-    HorizontalPager(state = pagerState, modifier = Modifier.testTag("CalendarPager")) { page ->
+    HorizontalPager(
+        count = CalendarViewModel.NUMBER_OF_MONTHS,
+        state = pagerState,
+        modifier = Modifier.testTag("CalendarPager")
+    ) { page ->
         CalendarMonth(
             months[page].monthName,
             months[page].calendarDayRows,
