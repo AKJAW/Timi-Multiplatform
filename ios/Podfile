@@ -5,7 +5,7 @@ platform :ios, '15.0'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'KaMPKitiOS' do
-    pod 'shared', :path => '../shared/'
+    pod 'shared', :path => '../common/shared/'
     pod 'SwiftLint'
     pod 'KMPNativeCoroutinesCombine'
 end
