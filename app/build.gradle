@@ -1,3 +1,5 @@
+import static de.fayard.refreshVersions.core.Versions.versionFor
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -37,7 +39,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion versions.compose
+        kotlinCompilerExtensionVersion versionFor(AndroidX.compose.ui)
     }
     packagingOptions {
         exclude 'META-INF/AL2.0'
@@ -53,26 +55,26 @@ dependencies {
     implementation project(':features:task:task_api')
     implementation project(':features:settings')
 
-    implementation androidxDependencies.appCompat
-    implementation androidxDependencies.lifecycleRuntimeKtx
-    implementation composeDependencies.ui
-    implementation composeDependencies.material
-    implementation composeDependencies.navigation
-    implementation composeDependencies.activity
+    implementation("androidx.appcompat:appcompat:_")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:_")
+    implementation("androidx.compose.ui:ui:_")
+    implementation("androidx.compose.material:material:_")
+    implementation("androidx.navigation:navigation-compose:_")
+    implementation("androidx.activity:activity-compose:_")
 
-    implementation hiltDependencies.android
-    kapt hiltDependencies.compiler
+    implementation("com.google.dagger:hilt-android:_")
+    kapt("com.google.dagger:hilt-compiler:_")
 
-    testImplementation testingDependencies.jupiterApi
-    testRuntimeOnly testingDependencies.jupiterRuntimeEngine
+    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 
-    androidTestImplementation androidTestingDependencies.composeJunit
-    androidTestImplementation androidTestingDependencies.espressoCore
-    androidTestImplementation hiltDependencies.testing
-    androidTestImplementation otherDependencies.sqldelight
-    androidTestImplementation otherDependencies.klock
-    debugImplementation androidTestingDependencies.composeTestManifest
-    kaptAndroidTest hiltDependencies.compiler
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
+    androidTestImplementation("androidx.test.espresso:espresso-core:_")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
+    androidTestImplementation("com.squareup.sqldelight:android-driver:_")
+    androidTestImplementation("com.soywiz.korlibs.klock:klock:_")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:_")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
 }
 
 kotlin {

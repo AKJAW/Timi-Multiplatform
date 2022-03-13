@@ -1,6 +1,5 @@
 
 buildscript {
-    apply from: "dependencies.gradle"
     repositories {
         google()
         mavenCentral()
@@ -18,7 +17,6 @@ buildscript {
 }
 
 allprojects {
-    apply from: rootProject.file("dependencies.gradle")
     apply plugin: "org.jlleitschuh.gradle.ktlint"
     tasks.withType(Test) {
         useJUnitPlatform()

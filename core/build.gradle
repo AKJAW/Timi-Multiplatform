@@ -1,3 +1,5 @@
+import static de.fayard.refreshVersions.core.Versions.versionFor
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -34,25 +36,25 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion versions.compose
+        kotlinCompilerExtensionVersion versionFor(AndroidX.compose.ui)
     }
 }
 
 dependencies {
 
-    implementation androidxDependencies.appCompat
-    implementation androidxDependencies.material
-    implementation composeDependencies.ui
-    implementation composeDependencies.material
-    implementation composeDependencies.tooling
-    implementation composeDependencies.materialIcons
-    implementation composeDependencies.navigation
-    implementation kotlinDependencies.coroutines
-    implementation otherDependencies.klock
+    implementation("androidx.appcompat:appcompat:_")
+    implementation("com.google.android.material:material:_")
+    implementation("androidx.compose.ui:ui:_")
+    implementation("androidx.compose.material:material:_")
+    implementation("androidx.compose.ui:ui-tooling:_")
+    implementation("androidx.compose.material:material-icons-extended:_")
+    implementation("androidx.navigation:navigation-compose:_")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+    implementation("com.soywiz.korlibs.klock:klock:_")
 
-    implementation hiltDependencies.android
-    kapt hiltDependencies.compiler
+    implementation("com.google.dagger:hilt-android:_")
+    kapt("com.google.dagger:hilt-compiler:_")
 
-    testImplementation testingDependencies.jupiterApi
-    testRuntimeOnly testingDependencies.jupiterRuntimeEngine
+    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 }

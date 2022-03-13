@@ -1,3 +1,5 @@
+import static de.fayard.refreshVersions.core.Versions.versionFor
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -36,7 +38,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion versions.compose
+        kotlinCompilerExtensionVersion versionFor(AndroidX.compose.ui)
     }
     packagingOptions {
         exclude 'META-INF/AL2.0'
@@ -48,33 +50,33 @@ dependencies {
     implementation project(":core")
     implementation project(':features:task:task_api')
 
-    implementation androidxDependencies.coreKtx
-    implementation androidxDependencies.appCompat
-    implementation androidxDependencies.material
-    implementation composeDependencies.ui
-    implementation composeDependencies.material
-    implementation composeDependencies.tooling
-    implementation composeDependencies.materialIcons
-    implementation composeDependencies.navigation
-    implementation composeDependencies.viewModel
-    implementation composeDependencies.accompanistPager
-    implementation otherDependencies.klock
+    implementation("androidx.core:core-ktx:_")
+    implementation("androidx.appcompat:appcompat:_")
+    implementation("com.google.android.material:material:_")
+    implementation("androidx.compose.ui:ui:_")
+    implementation("androidx.compose.material:material:_")
+    implementation("androidx.compose.ui:ui-tooling:_")
+    implementation("androidx.compose.material:material-icons-extended:_")
+    implementation("androidx.navigation:navigation-compose:_")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:_")
+    implementation("com.google.accompanist:accompanist-pager:_")
+    implementation("com.soywiz.korlibs.klock:klock:_")
 
-    implementation hiltDependencies.android
-    implementation hiltDependencies.navigationCompose
-    kapt hiltDependencies.compiler
+    implementation("com.google.dagger:hilt-android:_")
+    implementation("androidx.hilt:hilt-navigation-compose:_")
+    kapt("com.google.dagger:hilt-compiler:_")
 
-    testImplementation testingDependencies.jupiterApi
-    testImplementation testingDependencies.jupiterParams
-    testImplementation testingDependencies.strikt
-    testImplementation testingDependencies.mock
-    testImplementation testingDependencies.coroutinesTest
-    testImplementation testingDependencies.turbine
-    testRuntimeOnly testingDependencies.jupiterRuntimeEngine
+    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:_")
+    testImplementation("io.strikt:strikt-core:_")
+    testImplementation("io.mockk:mockk:_")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+    testImplementation("app.cash.turbine:turbine:_")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 
-    androidTestImplementation androidTestingDependencies.composeJunit
-    debugImplementation androidTestingDependencies.composeTestManifest
-    androidTestImplementation androidTestingDependencies.espressoCore
-    androidTestImplementation hiltDependencies.testing
-    kaptAndroidTest hiltDependencies.compiler
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:_")
+    androidTestImplementation("androidx.test.espresso:espresso-core:_")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
 }
