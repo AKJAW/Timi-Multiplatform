@@ -57,7 +57,10 @@ dependencies {
     implementation(project(":features:task:detail"))
     implementation(project(":features:task:task_api"))
     implementation(project(":features:settings"))
+    implementation(project(":kmp:shared"))
 
+    implementation("io.insert-koin:koin-android:_")
+    implementation("io.insert-koin:koin-androidx-compose:_")
     implementation("androidx.appcompat:appcompat:_")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:_")
     implementation("androidx.compose.ui:ui:_")
