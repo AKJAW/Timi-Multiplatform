@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
                 
 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':common:shared',
+        'KOTLIN_PROJECT_PATH' => ':kmp:shared',
         'PRODUCT_MODULE_NAME' => 'shared',
     }
 

@@ -7,7 +7,7 @@ PODS:
 
 DEPENDENCIES:
   - KMPNativeCoroutinesCombine
-  - shared (from `../common/shared/`)
+  - shared (from `../kmp/shared/`)
   - SwiftLint
 
 SPEC REPOS:
@@ -18,14 +18,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   shared:
-    :path: "../common/shared/"
+    :path: "../kmp/shared/"
 
 SPEC CHECKSUMS:
   KMPNativeCoroutinesCombine: eb605c5d8315a2f3d046767c3b733887009cc5de
   KMPNativeCoroutinesCore: 28d42a3a801ce4d5be75e01a7f227462c529a127
-  shared: e7be5a9340adadd76c2a399198c63b54755270ac
+  shared: c389f867adedbac371cd71463e23a92330596362
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
 
-PODFILE CHECKSUM: 89d05af8beb136f9da7797807e91cf9c0507e887
+PODFILE CHECKSUM: 1d1a2790d4fedd38a1a97b5cdf9bbda655f97a23
 
 COCOAPODS: 1.11.2
