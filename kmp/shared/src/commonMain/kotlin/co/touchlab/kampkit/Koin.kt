@@ -1,7 +1,5 @@
 package co.touchlab.kampkit
 
-import co.touchlab.kampkit.ktor.DogApi
-import co.touchlab.kampkit.ktor.DogApiImpl
 import co.touchlab.kampkit.timer.Timer
 import co.touchlab.kampkit.timer.TimerViewModel
 import co.touchlab.kermit.Logger
@@ -10,7 +8,6 @@ import co.touchlab.kermit.platformLogWriter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.datetime.Clock
 import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -24,42 +21,13 @@ fun initKoin(appModule: Module): KoinApplication {
     val koinApplication = startKoin {
         modules(
             appModule,
-            platformModule,
             coreModule
         )
     }
-
-    // Dummy initialization logic, making use of appModule declarations for demonstration purposes.
-    val koin = koinApplication.koin
-    // doOnStartup is a lambda which is implemented in Swift on iOS side
-    val doOnStartup = koin.get<() -> Unit>()
-    doOnStartup.invoke()
-
-    val kermit = koin.get<Logger> { parametersOf(null) }
-    // AppInfo is a Kotlin interface with separate Android and iOS implementations
-    val appInfo = koin.get<AppInfo>()
-    kermit.v { "App Id ${appInfo.appId}" }
-
     return koinApplication
 }
 
 private val coreModule = module {
-    single {
-        DatabaseHelper(
-            get(),
-            getWith("DatabaseHelper"),
-            Dispatchers.Default
-        )
-    }
-    single<DogApi> {
-        DogApiImpl(
-            getWith("DogApiImpl"),
-            get()
-        )
-    }
-    single<Clock> {
-        Clock.System
-    }
     factory { Timer(scope = CoroutineScope(Dispatchers.Default + SupervisorJob())) }
     factory { TimerViewModel(timer = get()) }
 
@@ -77,5 +45,3 @@ internal inline fun <reified T> Scope.getWith(vararg params: Any?): T {
 
 // Simple function to clean up the syntax a bit
 fun KoinComponent.injectLogger(tag: String): Lazy<Logger> = inject { parametersOf(tag) }
-
-expect val platformModule: Module

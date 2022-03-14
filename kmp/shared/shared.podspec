@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'shared'
-    spec.version                  = '1.1'
-    spec.homepage                 = 'https://github.com/touchlab/KaMPKit'
+    spec.version                  = '1.0'
+    spec.homepage                 = 'https://github.com/AKJAW/Timi-Compose'
     spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Common library for the KaMP starter kit'
+    spec.summary                  = 'The shared entry point module for Timi'
 
     spec.vendored_frameworks      = "build/cocoapods/framework/shared.framework"
     spec.libraries                = "c++"
