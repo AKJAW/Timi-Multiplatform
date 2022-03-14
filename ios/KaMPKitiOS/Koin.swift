@@ -16,25 +16,13 @@ func startKoin() {
     // Kotlin is more difficult, or where they're also used in
     // iOS-specific code.
 
-    let userDefaults = UserDefaults(suiteName: "KAMPSTARTER_SETTINGS")!
-    let iosAppInfo = IosAppInfo()
-    let doOnStartup = { NSLog("Hello from iOS/Swift!") }
-
-    let koinApplication = KoinIOSKt.doInitKoinIos(
-        userDefaults: userDefaults,
-        appInfo: iosAppInfo,
-        doOnStartup: doOnStartup
-    )
+    let koinApplication = KoinIOSKt.doInitKoinIos()
     _koin = koinApplication.koin
 }
 
 private var _koin: Koin_coreKoin?
 var koin: Koin_coreKoin {
     return _koin!
-}
-
-class IosAppInfo: AppInfo {
-    let appId: String = Bundle.main.bundleIdentifier!
 }
 
 // swiftlint:disable force_cast
