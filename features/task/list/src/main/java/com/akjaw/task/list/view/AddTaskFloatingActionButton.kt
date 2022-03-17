@@ -1,5 +1,6 @@
 package com.akjaw.task.list.view
 
+import android.graphics.Color.toArgb
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector4D
@@ -11,9 +12,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.FloatingActionButton
@@ -36,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -225,11 +229,10 @@ private fun ColorPicker(
     taskColor: Animatable<Color, AnimationVector4D>,
     textColor: Animatable<Color, AnimationVector4D>,
 ) {
-    if (isColorPickerShown) {
+//    if (isColorPickerShown) {
         ColorPicker(
             colors = taskColors,
-            onColorClicked =
-            { targetColor ->
+            onColorClicked = { targetColor ->
                 // Two parallel animations don't work together so well
                 composableScope.launch {
                     taskColor.animateTo(targetColor)
@@ -239,7 +242,7 @@ private fun ColorPicker(
                 }
             }
         )
-    }
+//    }
 }
 
 @Composable
@@ -249,17 +252,17 @@ private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
             .padding(vertical = 8.dp)
             .testTag("ColorPicker")
     ) {
-        colors.forEach { color ->
-            item {
-                Box(
-                    modifier = Modifier
-                        .clickable { onColorClicked(color) }
-                        .background(color)
-                        .border(width = 1.dp, color = MaterialTheme.colors.background)
-                        .size(50.dp)
-                )
-            }
+        items(colors, key = { it.toArgb() }) { color ->
+//        colors.forEach { color ->
+            Box(
+                modifier = Modifier
+                    .clickable { onColorClicked(color) }
+                    .background(color)
+                    .border(width = 1.dp, color = MaterialTheme.colors.background)
+                    .size(50.dp)
+            )
         }
+//        }
     }
 }
 

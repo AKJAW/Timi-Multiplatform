@@ -1,6 +1,6 @@
-- [ ] Add KMP module
-- [ ] Add iOS Project
-- [ ] Add Basic KMP logic
+- [x] Add KMP module
+- [x] Add iOS Project
+- [x] Add Basic KMP logic
 - [ ] Move stopwatch module to KMP
 - [ ] Add Basic Swift UI for the stopwatch screen 
 - [ ] Move Android modules to android folder
