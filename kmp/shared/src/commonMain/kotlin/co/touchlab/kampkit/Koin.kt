@@ -5,6 +5,7 @@ import co.touchlab.kampkit.timer.TimerViewModel
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
+import com.akjaw.timi.kmp.core.shared.composition.koinModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -21,7 +22,8 @@ fun initKoin(appModule: Module): KoinApplication {
     val koinApplication = startKoin {
         modules(
             appModule,
-            coreModule
+            coreModule,
+            koinModule,
         )
     }
     return koinApplication

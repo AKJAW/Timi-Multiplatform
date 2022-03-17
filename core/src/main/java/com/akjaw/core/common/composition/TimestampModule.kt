@@ -1,18 +1,19 @@
 package com.akjaw.core.common.composition
 
-import com.akjaw.core.common.domain.KlockTimestampProvider
-import com.akjaw.core.common.domain.TimestampProvider
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.koin.core.Koin
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class TimestampModule {
+object TimestampModule: KoinComponent {
 
-    @Binds
-    internal abstract fun bindTimestampProvider(
-        klockTimestampProvider: KlockTimestampProvider
-    ): TimestampProvider
+    @Provides
+    internal fun provideTimestampProvider(): TimestampProvider = get()
 }

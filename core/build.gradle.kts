@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":kmp:core:core-shared"))
 
     implementation("androidx.appcompat:appcompat:_")
     implementation("com.google.android.material:material:_")
@@ -56,6 +57,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
     implementation("com.soywiz.korlibs.klock:klock:_")
 
+    implementation("io.insert-koin:koin-android:_")
     implementation("com.google.dagger:hilt-android:_")
     kapt("com.google.dagger:hilt-compiler:_")
 

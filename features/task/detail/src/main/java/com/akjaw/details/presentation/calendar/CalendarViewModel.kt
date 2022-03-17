@@ -2,8 +2,8 @@ package com.akjaw.details.presentation.calendar
 
 import androidx.lifecycle.ViewModel
 import com.akjaw.core.common.composition.BackgroundDispatcherQualifier
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.details.domain.calendar.CalendarDaysCalculator
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
 import dagger.hilt.android.lifecycle.HiltViewModel

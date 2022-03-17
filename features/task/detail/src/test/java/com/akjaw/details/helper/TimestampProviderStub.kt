@@ -1,8 +1,8 @@
 package com.akjaw.details.helper
 
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 
 class TimestampProviderStub : TimestampProvider {
 

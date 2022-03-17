@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":features:task:task_api"))
+    implementation(project(":kmp:core:core-shared"))
 
     implementation("androidx.core:core-ktx:_")
     implementation("androidx.appcompat:appcompat:_")
