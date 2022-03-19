@@ -18,7 +18,9 @@ buildscript {
 allprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     tasks.withType<Test> {
-        useJUnitPlatform()
+        if (project.path.contains("kmp").not()) {
+            useJUnitPlatform()
+        }
         testLogging {
             events("passed", "failed", "skipped", "standardOut", "standardError")
         }
