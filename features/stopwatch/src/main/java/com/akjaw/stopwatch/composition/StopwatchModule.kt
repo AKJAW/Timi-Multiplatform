@@ -1,11 +1,8 @@
 package com.akjaw.stopwatch.composition
 
-import com.akjaw.core.common.composition.BackgroundDispatcherQualifier
-import com.akjaw.stopwatch.domain.StopwatchListOrchestrator
-import com.akjaw.stopwatch.domain.StopwatchStateHolderFactory
 import com.akjaw.stopwatch.view.StopwatchScreenCreator
 import com.akjaw.stopwatch.view.StopwatchScreenCreatorImpl
-import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
+import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchListOrchestrator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import dagger.Binds
 import dagger.Module
@@ -30,19 +27,7 @@ internal abstract class StopwatchModule {
 
         @Provides
         @Singleton
-        fun provideStopwatchListOrchestrator(
-            stopwatchStateHolderFactory: StopwatchStateHolderFactory,
-            @BackgroundDispatcherQualifier dispatcher: CoroutineDispatcher
-        ): StopwatchListOrchestrator {
-            return StopwatchListOrchestrator(
-                stopwatchStateHolderFactory = stopwatchStateHolderFactory,
-                scope = CoroutineScope(SupervisorJob() + dispatcher)
-            )
-        }
-
-        @Provides
-        @Singleton
-        fun provideElapsedTimeCalculator(): ElapsedTimeCalculator = get()
+        fun provideStopwatchListOrchestrator(): StopwatchListOrchestrator = get()
 
         @Provides
         @Singleton

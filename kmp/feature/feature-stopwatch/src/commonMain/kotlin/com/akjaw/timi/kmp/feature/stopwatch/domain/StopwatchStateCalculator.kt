@@ -1,11 +1,11 @@
-package com.akjaw.stopwatch.domain
+package com.akjaw.timi.kmp.feature.stopwatch.domain
 
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
-import javax.inject.Inject
 
-internal class StopwatchStateCalculator @Inject constructor(
+// TODO make internal?
+class StopwatchStateCalculator(
     private val timestampProvider: TimestampProvider,
     private val elapsedTimeCalculator: ElapsedTimeCalculator,
 ) {

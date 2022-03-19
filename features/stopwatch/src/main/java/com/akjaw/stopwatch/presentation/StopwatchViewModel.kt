@@ -1,7 +1,7 @@
 package com.akjaw.stopwatch.presentation
 
 import androidx.lifecycle.ViewModel
-import com.akjaw.stopwatch.domain.StopwatchListOrchestrator
+import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchListOrchestrator
 import com.akjaw.timi.kmp.feature.task.domain.GetTasks
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combineTransform
 import javax.inject.Inject
 
+// TODO move out to kmm?
 @HiltViewModel
 internal class StopwatchViewModel @Inject constructor(
     private val getTasks: GetTasks,

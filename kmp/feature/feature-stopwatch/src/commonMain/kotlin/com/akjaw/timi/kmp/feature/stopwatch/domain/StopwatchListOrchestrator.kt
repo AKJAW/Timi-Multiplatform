@@ -1,4 +1,4 @@
-package com.akjaw.stopwatch.domain
+package com.akjaw.timi.kmp.feature.stopwatch.domain
 
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
@@ -10,10 +10,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-// Move to kmp
-internal class StopwatchListOrchestrator @Inject constructor(
+// TODO make internal?
+class StopwatchListOrchestrator(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,
 ) {

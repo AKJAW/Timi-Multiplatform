@@ -2,7 +2,6 @@ package com.akjaw.timi.kmp.feature.stopwatch.domain.utilities
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 
-// TODO make internal?
 class TimestampMillisecondsFormatter {
 
     companion object {
