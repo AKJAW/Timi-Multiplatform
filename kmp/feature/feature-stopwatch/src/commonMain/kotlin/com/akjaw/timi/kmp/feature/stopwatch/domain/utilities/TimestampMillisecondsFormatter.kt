@@ -1,9 +1,9 @@
-package com.akjaw.stopwatch.domain.utilities
+package com.akjaw.timi.kmp.feature.stopwatch.domain.utilities
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import javax.inject.Inject
 
-internal class TimestampMillisecondsFormatter @Inject constructor() {
+// TODO make internal?
+class TimestampMillisecondsFormatter {
 
     companion object {
         const val DEFAULT_TIME = "00:00:000"

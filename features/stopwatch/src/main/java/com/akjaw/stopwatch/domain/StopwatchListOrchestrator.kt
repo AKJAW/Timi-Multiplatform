@@ -1,7 +1,7 @@
 package com.akjaw.stopwatch.domain
 
-import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
@@ -10,15 +10,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
+// Move to kmp
 internal class StopwatchListOrchestrator @Inject constructor(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,
 ) {
     private var job: Job? = null
-    private var stopwatchStateHolders = ConcurrentHashMap<Task, StopwatchStateHolder>()
+    // TODO was ConcurrentHashMap
+    private var stopwatchStateHolders = mutableMapOf<Task, StopwatchStateHolder>()
     private val mutableTicker = MutableStateFlow<Map<Task, String>>(mapOf())
     val ticker: StateFlow<Map<Task, String>> = mutableTicker
 

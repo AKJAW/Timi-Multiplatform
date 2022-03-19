@@ -2,8 +2,8 @@ package com.akjaw.stopwatch.domain
 
 import androidx.compose.ui.graphics.Color
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.stopwatch.domain.model.StopwatchState
 import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope

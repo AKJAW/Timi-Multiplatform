@@ -2,9 +2,9 @@ package com.akjaw.stopwatch.domain
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.stopwatch.domain.model.StopwatchState
-import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
+import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach

@@ -1,7 +1,7 @@
 package com.akjaw.stopwatch.domain
 
-import com.akjaw.stopwatch.domain.utilities.ElapsedTimeCalculator
-import com.akjaw.stopwatch.domain.utilities.TimestampMillisecondsFormatter
+import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
+import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import javax.inject.Inject
 
 internal class StopwatchStateHolderFactory @Inject constructor(
