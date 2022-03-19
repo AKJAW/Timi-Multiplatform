@@ -1,8 +1,8 @@
 package com.akjaw.task.list.composition
 
-import com.akjaw.task.api.data.AddTask
-import com.akjaw.task.api.data.DeleteTasks
-import com.akjaw.task.api.data.GetTasks
+import com.akjaw.timi.kmp.feature.task.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.domain.DeleteTasks
+import com.akjaw.timi.kmp.feature.task.domain.GetTasks
 import com.akjaw.task.list.data.AddTaskToDatabase
 import com.akjaw.task.list.data.DeleteTasksFromDatabase
 import com.akjaw.task.list.data.GetTasksFromDatabase

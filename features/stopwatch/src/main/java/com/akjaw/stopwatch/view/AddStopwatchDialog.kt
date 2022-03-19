@@ -26,7 +26,7 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.stopwatch.R
-import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.task.api.view.tasksPreview
 import com.akjaw.task.api.view.toComposeColor
 

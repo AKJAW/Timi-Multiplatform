@@ -1,7 +1,7 @@
 package com.akjaw.stopwatch.domain
 
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import io.mockk.every
 import io.mockk.mockk

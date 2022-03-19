@@ -1,9 +1,9 @@
 package com.akjaw.task.list.data
 
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.task.api.data.GetTasks
-import com.akjaw.task.api.domain.Task
-import com.akjaw.task.api.domain.TaskColor
+import com.akjaw.timi.kmp.feature.task.domain.GetTasks
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow

@@ -1,8 +1,8 @@
 package com.akjaw.task.list.data
 
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.task.api.data.AddTask
-import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.task.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import javax.inject.Inject
 
 internal class AddTaskToDatabase @Inject constructor(

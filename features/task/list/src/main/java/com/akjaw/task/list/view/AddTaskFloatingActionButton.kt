@@ -48,8 +48,8 @@ import androidx.compose.ui.window.Dialog
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskColors
 import com.akjaw.core.common.view.theme.taskTextColorFor
-import com.akjaw.task.api.domain.Task
-import com.akjaw.task.api.domain.TaskColor
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.akjaw.task.list.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

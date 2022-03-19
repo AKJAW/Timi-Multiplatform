@@ -1,4 +1,4 @@
-package com.akjaw.task.api.domain
+package com.akjaw.timi.kmp.feature.task.domain.model
 
 data class Task(
     val id: Long = 0,
@@ -7,6 +7,3 @@ data class Task(
     val isSelected: Boolean = false,
 )
 
-data class TaskColor(
-    val argb: Int = -1
-)

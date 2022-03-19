@@ -3,10 +3,10 @@ package com.akjaw.task.list.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akjaw.core.common.composition.IoDispatcherQualifier
-import com.akjaw.task.api.data.AddTask
-import com.akjaw.task.api.data.DeleteTasks
-import com.akjaw.task.api.data.GetTasks
-import com.akjaw.task.api.domain.Task
+import com.akjaw.timi.kmp.feature.task.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.domain.DeleteTasks
+import com.akjaw.timi.kmp.feature.task.domain.GetTasks
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.task.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
