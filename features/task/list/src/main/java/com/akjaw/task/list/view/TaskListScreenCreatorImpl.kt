@@ -2,7 +2,6 @@ package com.akjaw.task.list.view
 
 import androidx.compose.runtime.Composable
 import com.akjaw.core.common.view.NavigationHolder
-import com.akjaw.task.api.view.TaskListScreenCreator
 import javax.inject.Inject
 
 internal class TaskListScreenCreatorImpl @Inject constructor() : TaskListScreenCreator {

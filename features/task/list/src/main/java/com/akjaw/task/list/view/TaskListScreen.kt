@@ -42,14 +42,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
+import com.akjaw.core.common.view.tasksPreview
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.task.api.view.tasksPreview
-import com.akjaw.task.api.view.toComposeColor
+import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
 import com.akjaw.task.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 
 @Composable
 internal fun TaskListScreen(navController: NavHostController) {

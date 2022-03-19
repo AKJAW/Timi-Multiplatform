@@ -38,15 +38,15 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
+import com.akjaw.core.common.view.tasksPreview
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.stopwatch.R
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.task.api.view.tasksPreview
-import com.akjaw.task.api.view.toComposeColor
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 
 @Composable
 internal fun StopwatchScreen(

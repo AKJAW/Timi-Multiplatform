@@ -46,7 +46,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":features:task:task_api"))
     implementation(project(":kmp:core:core-shared"))
     implementation(project(":kmp:feature:feature-task"))
 

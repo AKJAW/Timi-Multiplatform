@@ -55,7 +55,6 @@ dependencies {
     implementation(project(":features:stopwatch"))
     implementation(project(":features:task:list"))
     implementation(project(":features:task:detail"))
-    implementation(project(":features:task:task_api"))
     implementation(project(":features:settings"))
     implementation(project(":kmp:shared"))
 

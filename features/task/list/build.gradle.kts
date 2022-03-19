@@ -47,7 +47,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":features:task:task_api"))
     implementation(project(":kmp:feature:feature-task"))
 
     implementation("androidx.core:core-ktx:_")
