@@ -28,6 +28,7 @@ import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.stopwatch.R
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.api.view.tasksPreview
+import com.akjaw.task.api.view.toComposeColor
 
 @Composable
 internal fun AddStopwatchDialog(
@@ -100,7 +101,7 @@ private fun AddStopwatchTaskItem(
             .fillMaxWidth()
             .testTag("AddStopwatchTaskItem"),
         elevation = 0.dp,
-        backgroundColor = task.backgroundColor,
+        backgroundColor = task.backgroundColor.toComposeColor(),
         shape = taskShape,
     ) {
         Box(
@@ -113,7 +114,7 @@ private fun AddStopwatchTaskItem(
             Text(
                 modifier = Modifier.padding(horizontal = 8.dp),
                 style = MaterialTheme.typography.body1.copy(
-                    color = taskTextColorFor(task.backgroundColor),
+                    color = taskTextColorFor(task.backgroundColor.toComposeColor()),
                     fontSize = 22.sp,
                 ),
                 text = task.name,

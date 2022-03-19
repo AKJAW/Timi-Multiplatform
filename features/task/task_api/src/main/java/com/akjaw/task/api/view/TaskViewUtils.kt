@@ -1,10 +1,27 @@
 package com.akjaw.task.api.view
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.domain.TaskColor
 
 val tasksPreview = listOf(
-    Task(name = "Task 1", backgroundColor = Color(132, 212, 240), isSelected = false),
-    Task(name = "Task 2", backgroundColor = Color(230, 240, 132), isSelected = false),
-    Task(name = "Task 3", backgroundColor = Color(132, 240, 161), isSelected = false),
+    Task(
+        name = "Task 1",
+        backgroundColor = TaskColor(Color(132, 212, 240).toArgb()),
+        isSelected = false
+    ),
+    Task(
+        name = "Task 2",
+        backgroundColor = TaskColor(Color(230, 240, 132).toArgb()),
+        isSelected = false
+    ),
+    Task(
+        name = "Task 3",
+        backgroundColor = TaskColor(Color(132, 240, 161).toArgb()),
+        isSelected = false
+    ),
 )
+
+@Deprecated("View and Presentation layer should have its own data structure")
+fun TaskColor.toComposeColor() = Color(this.argb)

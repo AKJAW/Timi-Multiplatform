@@ -47,6 +47,7 @@ import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.api.view.tasksPreview
+import com.akjaw.task.api.view.toComposeColor
 import com.akjaw.task.list.R
 import com.akjaw.task.list.presentation.TaskListViewModel
 
@@ -95,7 +96,7 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
             .fillMaxWidth()
             .height(50.dp),
         shape = taskShape,
-        backgroundColor = task.backgroundColor,
+        backgroundColor = task.backgroundColor.toComposeColor(),
         elevation = 0.dp,
     ) {
         val buttonWidth = remember { 50.dp }
@@ -111,7 +112,7 @@ private fun TaskItem(task: Task, onTaskClicked: (Task) -> Unit, modifier: Modifi
                 modifier = Modifier.padding(start = 8.dp, end = buttonWidth),
                 text = task.name,
                 style = MaterialTheme.typography.h6.copy(
-                    color = taskTextColorFor(task.backgroundColor)
+                    color = taskTextColorFor(task.backgroundColor.toComposeColor())
                 ),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis

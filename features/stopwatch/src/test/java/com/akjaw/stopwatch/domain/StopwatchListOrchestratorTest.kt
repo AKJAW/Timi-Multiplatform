@@ -1,6 +1,5 @@
 package com.akjaw.stopwatch.domain
 
-import androidx.compose.ui.graphics.Color
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.task.api.domain.Task
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
@@ -29,13 +28,11 @@ internal class StopwatchListOrchestratorTest {
         private val TASK1 = Task(
             id = 1,
             name = "First task",
-            backgroundColor = Color.White,
             isSelected = false
         )
         private val TASK2 = Task(
             id = 2,
             name = "Second the cooler task",
-            backgroundColor = Color.White,
             isSelected = false
         )
     }

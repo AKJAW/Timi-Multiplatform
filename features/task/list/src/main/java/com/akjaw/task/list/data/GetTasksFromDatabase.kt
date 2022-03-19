@@ -1,9 +1,9 @@
 package com.akjaw.task.list.data
 
-import androidx.compose.ui.graphics.Color
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.api.data.GetTasks
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.domain.TaskColor
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +19,11 @@ internal class GetTasksFromDatabase @Inject constructor(
             position: Long,
             name: String,
             color: Int ->
-            Task(id, name, Color(color), false)
+            Task(
+                id = id,
+                name = name,
+                backgroundColor = TaskColor(argb = color),
+                isSelected = false
+            )
         }.asFlow().mapToList()
 }

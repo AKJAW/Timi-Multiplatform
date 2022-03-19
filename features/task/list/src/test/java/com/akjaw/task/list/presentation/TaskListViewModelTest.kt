@@ -1,9 +1,8 @@
 package com.akjaw.task.list.presentation
 
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.domain.TaskColor
 import com.akjaw.task.list.Database
 import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
@@ -22,13 +21,13 @@ internal class TaskListViewModelTest {
         val TASK1 = Task(
             id = 0,
             name = "name",
-            backgroundColor = Color.White,
+            backgroundColor = TaskColor(22),
             isSelected = false,
         )
         val TASK2 = Task(
             id = 1,
             name = "name2",
-            backgroundColor = Color.White,
+            backgroundColor = TaskColor(33),
             isSelected = false,
         )
     }
@@ -76,7 +75,12 @@ internal class TaskListViewModelTest {
 
     private fun givenTasks(vararg task: Task) {
         task.forEach {
-            taskEntityQueries.insertTask(it.id, 0, it.name, it.backgroundColor.toArgb())
+            taskEntityQueries.insertTask(
+                id = it.id,
+                position = 0,
+                name = it.name,
+                color = it.backgroundColor.argb
+            )
         }
     }
 }

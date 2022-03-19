@@ -1,22 +1,22 @@
 package com.akjaw.task.list.data
 
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.domain.TaskColor
 import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import strikt.assertions.isNotNull
 
 internal class AddTaskToDatabaseTest {
 
     companion object {
-        private val TASK1 = Task(1, "name", Color.White)
-        private val TASK2 = Task(-1, "name2", Color.Black)
+        private val TASK1 = Task(0, "name", backgroundColor = TaskColor(22))
+        private val TASK2 = Task(-1, "name2", backgroundColor = TaskColor(2))
     }
 
     private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()
@@ -33,24 +33,25 @@ internal class AddTaskToDatabaseTest {
     fun `Inserting a task correctly adds it to the database`() = runBlockingTest {
         systemUnderTest.execute(TASK1)
 
-        val result = queries.selectTaskById(1).executeAsOne()
+        val result = queries.selectAllTasks().executeAsList().firstOrNull()
         expectThat(result).isEqualTo(
             TaskEntity(
                 id = 1,
                 position = 0,
                 name = "name",
-                color = Color.White.toArgb()
+                color = 22
             )
         )
     }
 
     @Test
-    fun `After inserting the task has the correct id`() = runBlockingTest {
+    fun `The identifier is auto incremented`() = runBlockingTest {
         systemUnderTest.execute(TASK1)
 
         systemUnderTest.execute(TASK2)
 
-        val result = queries.selectTaskById(2).executeAsOne()
-        expectThat(result.name).isEqualTo("name2")
+        val result = queries.selectAllTasks().executeAsList()
+        val taskWithCorrectId = result.find { it.id == 2L }
+        expectThat(taskWithCorrectId).isNotNull()
     }
 }

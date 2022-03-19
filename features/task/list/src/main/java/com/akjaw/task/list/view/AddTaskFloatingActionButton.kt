@@ -1,6 +1,5 @@
 package com.akjaw.task.list.view
 
-import android.graphics.Color.toArgb
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector4D
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -51,6 +49,7 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskColors
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.task.api.domain.Task
+import com.akjaw.task.api.domain.TaskColor
 import com.akjaw.task.list.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -113,7 +112,7 @@ private fun AddTaskDialogContent(
             if (taskName.isNotBlank()) {
                 val task = Task(
                     name = taskName,
-                    backgroundColor = taskColor.value,
+                    backgroundColor = TaskColor(taskColor.value.toArgb()),
                     isSelected = false
                 )
                 onAddTaskClicked(task)

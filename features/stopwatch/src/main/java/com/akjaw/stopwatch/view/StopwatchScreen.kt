@@ -45,6 +45,7 @@ import com.akjaw.stopwatch.R
 import com.akjaw.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.task.api.domain.Task
 import com.akjaw.task.api.view.tasksPreview
+import com.akjaw.task.api.view.toComposeColor
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 
 @Composable
@@ -149,19 +150,19 @@ private fun StopwatchItem(
                 StopwatchButton(
                     imageVector = Icons.Filled.PlayArrow,
                     contentDescription = stringResource(R.string.stopwatch_screen_start),
-                    color = task.backgroundColor,
+                    color = task.backgroundColor.toComposeColor(),
                     onClick = onStartClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Pause,
                     contentDescription = stringResource(R.string.stopwatch_screen_pause),
-                    color = task.backgroundColor,
+                    color = task.backgroundColor.toComposeColor(),
                     onClick = onPauseClicked,
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Stop,
                     contentDescription = stringResource(R.string.stopwatch_screen_stop),
-                    color = task.backgroundColor,
+                    color = task.backgroundColor.toComposeColor(),
                     onClick = onStoppedClicked,
                 )
             }
