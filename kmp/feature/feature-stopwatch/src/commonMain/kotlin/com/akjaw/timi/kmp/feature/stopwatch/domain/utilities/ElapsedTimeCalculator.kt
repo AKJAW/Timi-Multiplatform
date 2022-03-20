@@ -10,6 +10,7 @@ class ElapsedTimeCalculator(
     private val timestampProvider: TimestampProvider,
 ) {
 
+    // TODO pass in the timestamp?
     fun calculate(state: StopwatchState.Running): TimestampMilliseconds {
         val currentTimestamp = timestampProvider.getMilliseconds()
         val timePassedSinceStart = if (currentTimestamp.value > state.startTime.value) {

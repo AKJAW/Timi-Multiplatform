@@ -24,6 +24,8 @@ class StopwatchStateHolder(
         currentState = stopwatchStateCalculator.calculatePausedState(currentState)
     }
 
+    // TODO move this out?
+    //  it uses elapsedTimeCalculator which is also used in the StopwatchStateCalculator
     fun getStringTimeRepresentation(): String {
         val elapsedTime = when (val currentState = currentState) {
             is StopwatchState.Paused -> currentState.elapsedTime

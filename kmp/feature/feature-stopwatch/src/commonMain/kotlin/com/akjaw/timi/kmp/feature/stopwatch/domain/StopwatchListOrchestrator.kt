@@ -18,6 +18,7 @@ class StopwatchListOrchestrator(
 ) {
     private var job: Job? = null
     // TODO was ConcurrentHashMap
+    // TODO extract this to a separate class?
     private var stopwatchStateHolders = mutableMapOf<Task, StopwatchStateHolder>()
     private val mutableTicker = MutableStateFlow<Map<Task, String>>(mapOf())
     val ticker: StateFlow<Map<Task, String>> = mutableTicker
