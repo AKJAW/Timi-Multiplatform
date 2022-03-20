@@ -69,7 +69,7 @@ internal class StopwatchRunningStateCalculationTest {
     ) {
         fakeTimestampProvider.givenTimePassed(currentTimestamp)
 
-        val result = systemUnderTest.calculatePausedState(oldState)
+        val result = systemUnderTest.calculateRunningState(oldState)
 
         result shouldBe expectedState
     }
