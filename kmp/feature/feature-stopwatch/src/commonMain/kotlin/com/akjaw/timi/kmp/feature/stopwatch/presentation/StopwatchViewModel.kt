@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combineTransform
 
-class StopwatchViewModel(
+class StopwatchViewModel internal constructor(
     private val getTasks: GetTasks,
     private val stopwatchListOrchestrator: StopwatchListOrchestrator,
 ) {

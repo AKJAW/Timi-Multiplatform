@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain
 
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-// TODO make internal?
-class StopwatchListOrchestrator(
+internal class StopwatchListOrchestrator(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
     private val scope: CoroutineScope,
 ) {

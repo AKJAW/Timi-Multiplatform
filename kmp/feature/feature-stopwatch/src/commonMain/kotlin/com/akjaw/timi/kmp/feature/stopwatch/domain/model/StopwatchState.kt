@@ -2,8 +2,7 @@ package com.akjaw.timi.kmp.feature.stopwatch.domain.model
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 
-// TODO make internal?
-sealed class StopwatchState {
+internal sealed class StopwatchState {
     data class Running(
         val startTime: TimestampMilliseconds,
         val elapsedTime: TimestampMilliseconds

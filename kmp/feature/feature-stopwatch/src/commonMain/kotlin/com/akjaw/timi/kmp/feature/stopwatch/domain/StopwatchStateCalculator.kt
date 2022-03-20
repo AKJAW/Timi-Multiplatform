@@ -4,8 +4,7 @@ import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 
-// TODO make internal?
-class StopwatchStateCalculator(
+internal class StopwatchStateCalculator(
     private val timestampProvider: TimestampProvider,
     private val elapsedTimeCalculator: ElapsedTimeCalculator,
 ) {
