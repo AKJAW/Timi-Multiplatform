@@ -62,6 +62,7 @@ dependencies {
     implementation("com.squareup.sqldelight:android-driver:_")
     implementation("com.squareup.sqldelight:coroutines-extensions-jvm:_")
 
+    implementation("io.insert-koin:koin-android:_")
     implementation("com.google.dagger:hilt-android:_")
     implementation("androidx.hilt:hilt-navigation-compose:_")
     kapt("com.google.dagger:hilt-compiler:_")

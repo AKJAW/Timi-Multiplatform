@@ -11,7 +11,7 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 
 fun initKoinIos(): KoinApplication = initKoin(
-    module {}
+    listOf(module {})
 )
 
 // Access from Swift to create a logger

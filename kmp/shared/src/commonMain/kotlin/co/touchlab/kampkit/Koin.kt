@@ -19,10 +19,10 @@ import org.koin.core.parameter.parametersOf
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
-fun initKoin(appModule: Module): KoinApplication {
+fun initKoin(appModules: List<Module>): KoinApplication {
     val koinApplication = startKoin {
         modules(
-            appModule,
+            *appModules.toTypedArray(),
             coreModule,
             coreSharedModule,
             stopwatchModule,

@@ -62,6 +62,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
 
     implementation("io.insert-koin:koin-android:_")
+    implementation("io.insert-koin:koin-androidx-compose:_")
     implementation("com.google.dagger:hilt-android:_")
     implementation("androidx.hilt:hilt-navigation-compose:_")
     kapt("com.google.dagger:hilt-compiler:_")
