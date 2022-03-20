@@ -74,15 +74,3 @@ internal class StopwatchStateHolderTest {
     }
 }
 
-// TODO move out to core-test?
-class FakeTimestampProvider : TimestampProvider {
-
-    private var value: Long = 0
-
-    fun givenTimePassed(amount: Long = 0) {
-        value = amount
-    }
-
-    override fun getMilliseconds(): TimestampMilliseconds =
-        value.toTimestampMilliseconds()
-}
