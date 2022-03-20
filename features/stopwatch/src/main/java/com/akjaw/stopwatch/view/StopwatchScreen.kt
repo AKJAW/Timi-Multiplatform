@@ -44,17 +44,18 @@ import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.stopwatch.R
-import com.akjaw.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
+import com.akjaw.timi.kmp.feature.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import org.koin.androidx.compose.get
 
 @Composable
 internal fun StopwatchScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: StopwatchViewModel = get(),
 ) {
-    val stopwatchViewModel = hiltViewModel<StopwatchViewModel>()
-    val availableTasks = stopwatchViewModel.availableTasks.collectAsState(emptyList())
-    val stopwatches = stopwatchViewModel.stopwatches.collectAsState()
+    val availableTasks = viewModel.availableTasks.collectAsState(emptyList())
+    val stopwatches = viewModel.stopwatches.collectAsState()
     val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = stringResource(R.string.stopwatch_screen_title)) }) },
@@ -64,15 +65,15 @@ internal fun StopwatchScreen(
             StopwatchContent(
                 stopwatches = stopwatches.value,
                 onAddStopwatchClicked = { setIsDialogOpen(true) },
-                onStartClicked = { task -> stopwatchViewModel.start(task) },
-                onPauseClicked = { task -> stopwatchViewModel.pause(task) },
-                onStoppedClicked = { task -> stopwatchViewModel.stop(task) },
+                onStartClicked = { task -> viewModel.start(task) },
+                onPauseClicked = { task -> viewModel.pause(task) },
+                onStoppedClicked = { task -> viewModel.stop(task) },
             )
             AddStopwatchDialog(
                 isDialogOpen = isDialogOpen,
                 closeDialog = { setIsDialogOpen(false) },
                 availableTasks = availableTasks.value,
-                onAddStopwatchClicked = { task -> stopwatchViewModel.start(task) }
+                onAddStopwatchClicked = { task -> viewModel.start(task) }
             )
         }
     }
