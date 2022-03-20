@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.stopwatch.domain
+package com.akjaw.timi.kmp.feature.stopwatch.domain.helpers
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds

@@ -1,8 +1,6 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.feature.stopwatch.domain.helpers.FakeTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import io.kotest.matchers.shouldBe
