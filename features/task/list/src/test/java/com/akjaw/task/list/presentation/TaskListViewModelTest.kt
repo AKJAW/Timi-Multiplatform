@@ -1,20 +1,22 @@
 package com.akjaw.task.list.presentation
 
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.akjaw.task.list.Database
 import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class TaskListViewModelTest {
 
     companion object {
@@ -34,7 +36,7 @@ internal class TaskListViewModelTest {
 
     private lateinit var taskEntityQueries: TaskEntityQueries
     private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
-    private val testCoroutineDispatcher = TestCoroutineDispatcher()
+    private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var systemUnderTest: TaskListViewModel
 
     @BeforeEach

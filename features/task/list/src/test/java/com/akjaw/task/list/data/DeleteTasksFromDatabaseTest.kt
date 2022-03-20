@@ -2,15 +2,17 @@ package com.akjaw.task.list.data
 
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
-import kotlinx.coroutines.test.runBlockingTest
+import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expect
 import strikt.assertions.hasSize
 import strikt.assertions.isEqualTo
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class DeleteTasksFromDatabaseTest {
 
     companion object {
@@ -29,7 +31,7 @@ internal class DeleteTasksFromDatabaseTest {
     }
 
     @Test
-    fun `Deleting a task removes it from the database`() = runBlockingTest {
+    fun `Deleting a task removes it from the database`() = runTest {
         givenTasksExists(TASK1, TASK2)
 
         systemUnderTest.execute(listOf(TASK2))

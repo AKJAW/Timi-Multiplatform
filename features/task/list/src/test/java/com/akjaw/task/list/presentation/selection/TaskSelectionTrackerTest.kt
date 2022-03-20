@@ -1,15 +1,17 @@
 package com.akjaw.task.list.presentation.selection
 
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.hasSize
 import strikt.assertions.isEqualTo
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class TaskSelectionTrackerTest {
 
     companion object {
@@ -27,7 +29,7 @@ internal class TaskSelectionTrackerTest {
     }
 
     @Test
-    fun `Selecting a task from the original flow sets the correct flag`() = runBlockingTest {
+    fun `Selecting a task from the original flow sets the correct flag`() = runTest {
         givenTasks(TASK1, TASK2)
 
         systemUnderTest.toggleTask(TASK1)
@@ -38,7 +40,7 @@ internal class TaskSelectionTrackerTest {
     }
 
     @Test
-    fun `Unselecting a task from the original flow sets the correct flag`() = runBlockingTest {
+    fun `Unselecting a task from the original flow sets the correct flag`() = runTest {
         val task = TASK2.copy(isSelected = true)
         givenTasks(TASK1, task)
 
@@ -49,7 +51,7 @@ internal class TaskSelectionTrackerTest {
     }
 
     @Test
-    fun `Task list change is reflected`() = runBlockingTest {
+    fun `Task list change is reflected`() = runTest {
         givenTasks(TASK1, TASK2)
         systemUnderTest.toggleTask(TASK2)
         givenTasks(TASK1)

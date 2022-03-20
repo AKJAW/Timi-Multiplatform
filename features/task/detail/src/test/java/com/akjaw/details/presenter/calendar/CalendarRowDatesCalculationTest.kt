@@ -12,7 +12,7 @@ import strikt.assertions.get
 import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
-@ExperimentalTime
+@OptIn(ExperimentalTime::class)
 class CalendarRowDatesCalculationTest {
 
     private data class RowDateAssertionPayload(

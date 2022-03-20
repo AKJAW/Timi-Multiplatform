@@ -1,9 +1,10 @@
 package com.akjaw.task.list.data
 
 import com.akjaw.task.TaskEntityQueries
+import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
-import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
@@ -12,6 +13,7 @@ import strikt.api.expect
 import strikt.assertions.hasSize
 import strikt.assertions.isEqualTo
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class GetTasksFromDatabaseTest {
 
     private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()

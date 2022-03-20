@@ -13,7 +13,7 @@ import strikt.assertions.isEqualTo
 import strikt.assertions.map
 import kotlin.time.ExperimentalTime
 
-@ExperimentalTime
+@OptIn(ExperimentalTime::class)
 class CalendarRowDayValueCalculationTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator

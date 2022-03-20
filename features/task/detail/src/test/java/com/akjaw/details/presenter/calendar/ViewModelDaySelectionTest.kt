@@ -7,8 +7,9 @@ import com.akjaw.details.presentation.calendar.CalendarViewModel
 import com.akjaw.details.presentation.calendar.CalendarViewState
 import com.akjaw.details.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -17,7 +18,7 @@ import strikt.assertions.hasSize
 import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
-@ExperimentalTime
+@OptIn(ExperimentalCoroutinesApi::class, ExperimentalTime::class)
 class ViewModelDaySelectionTest {
 
     companion object {
@@ -31,7 +32,7 @@ class ViewModelDaySelectionTest {
         private const val PREVIOUS_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX - 1
     }
 
-    private val testCoroutineDispatcher = TestCoroutineDispatcher()
+    private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var timestampProviderStub: TimestampProviderStub
     private lateinit var systemUnderTest: CalendarViewModel
 

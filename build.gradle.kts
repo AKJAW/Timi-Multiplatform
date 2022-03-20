@@ -25,6 +25,11 @@ allprojects {
             events("passed", "failed", "skipped", "standardOut", "standardError")
         }
     }
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
 }
 
 subprojects {
