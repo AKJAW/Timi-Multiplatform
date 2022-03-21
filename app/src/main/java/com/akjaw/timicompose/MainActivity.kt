@@ -19,7 +19,7 @@ import com.akjaw.core.common.view.NavigationHolder
 import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.settings.view.SettingsScreenCreator
-import com.akjaw.stopwatch.view.StopwatchScreenCreator
+import com.akjaw.stopwatch.view.StopwatchScreen
 import com.akjaw.task.list.view.TaskListScreenCreator
 import dagger.hilt.android.AndroidEntryPoint
 import org.koin.core.component.KoinComponent
@@ -31,9 +31,6 @@ class MainActivity : ComponentActivity(), KoinComponent {
 
     @Inject
     lateinit var taskListScreenCreator: TaskListScreenCreator
-
-    @Inject
-    lateinit var stopwatchScreenCreator: StopwatchScreenCreator
 
     @Inject
     lateinit var settingsScreenCreator: SettingsScreenCreator
@@ -66,9 +63,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                         )
                     }
                     composable(BottomBarScreen.Stopwatch.route) {
-                        stopwatchScreenCreator.Create(
-                            navigationHolder = NavigationHolder(navController)
-                        )
+                        StopwatchScreen(navController = navController)
                     }
                     composable(BottomBarScreen.Settings.route) {
                         Scaffold(

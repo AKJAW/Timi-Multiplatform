@@ -2,7 +2,7 @@ package com.akjaw.timi.kmp.feature.stopwatch.domain.utilities
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 
-class TimestampMillisecondsFormatter {
+internal class TimestampMillisecondsFormatter {
 
     companion object {
         const val DEFAULT_TIME = "00:00:000"
