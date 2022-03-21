@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 rootProject.name = "Timi Compose"
 include ':app'
 include ':features'
-include ':features:stopwatch'
+include ':features:stopwatch-ui'
 include ':core'
 include ':features:task'
 include ':features:task:list'

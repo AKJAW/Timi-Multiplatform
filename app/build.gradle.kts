@@ -52,7 +52,7 @@ kapt {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":features:stopwatch"))
+    implementation(project(":features:stopwatch-ui"))
     implementation(project(":features:task:list"))
     implementation(project(":features:task:detail"))
     implementation(project(":features:settings"))

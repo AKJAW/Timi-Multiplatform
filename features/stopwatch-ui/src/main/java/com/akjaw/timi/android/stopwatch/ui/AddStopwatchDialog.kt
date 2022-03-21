@@ -1,4 +1,4 @@
-package com.akjaw.stopwatch.view
+package com.akjaw.timi.android.stopwatch.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +27,6 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.toComposeColor
-import com.akjaw.stopwatch.R
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 
 @Composable

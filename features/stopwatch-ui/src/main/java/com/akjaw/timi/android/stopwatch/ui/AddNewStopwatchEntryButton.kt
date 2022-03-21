@@ -1,4 +1,4 @@
-package com.akjaw.stopwatch.view
+package com.akjaw.timi.android.stopwatch.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
@@ -18,10 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
-import com.akjaw.stopwatch.R
 
 @Composable
-fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
+internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

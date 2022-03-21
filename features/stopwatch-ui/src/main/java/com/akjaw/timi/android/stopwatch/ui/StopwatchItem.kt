@@ -1,4 +1,4 @@
-package com.akjaw.stopwatch.view
+package com.akjaw.timi.android.stopwatch.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -32,11 +32,10 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.stopwatchBorder
 import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.toComposeColor
-import com.akjaw.stopwatch.R
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 
 @Composable
-fun StopwatchItem(
+internal fun StopwatchItem(
     task: Task,
     timeString: String,
     onStartClicked: () -> Unit = {},

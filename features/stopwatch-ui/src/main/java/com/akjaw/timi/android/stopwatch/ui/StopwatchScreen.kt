@@ -1,4 +1,4 @@
-package com.akjaw.stopwatch.view
+package com.akjaw.timi.android.stopwatch.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,6 @@ import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.tasksPreview
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.stopwatch.R
 import com.akjaw.timi.kmp.feature.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import org.koin.androidx.compose.get
