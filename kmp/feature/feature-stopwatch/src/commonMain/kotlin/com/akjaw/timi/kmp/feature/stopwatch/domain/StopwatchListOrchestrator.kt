@@ -33,8 +33,11 @@ internal class StopwatchListOrchestrator(
     private fun startJob() {
         job = scope.launch {
             while (isActive) {
+                stopwatchStateHolders
                 val newValues = stopwatchStateHolders
-                    .toSortedMap(compareBy { task -> task.id })
+                        // TODO bring back sorting / order the items
+//                    .toMap()
+//                    .toSortedMap(compareBy { task -> task.id })
                     .map { (task, stateHolder) ->
                         task to stateHolder.getStringTimeRepresentation()
                     }

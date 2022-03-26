@@ -10,7 +10,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Timi Compose"
+rootProject.name = "Timi-Compose"
 include ':app'
 include ':features'
 include ':features:stopwatch-ui'

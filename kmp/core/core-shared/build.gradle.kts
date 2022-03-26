@@ -24,7 +24,6 @@ version = "1.0"
 kotlin {
     android()
     ios()
-    iosSimulatorArm64()
 
     sourceSets {
         all {
