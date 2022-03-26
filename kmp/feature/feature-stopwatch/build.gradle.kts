@@ -42,9 +42,7 @@ kotlin {
 
                 implementation("io.insert-koin:koin-core:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
-                implementation("co.touchlab:stately-common:_")
                 implementation("com.soywiz.korlibs.klock:klock:_")
-                api("co.touchlab:kermit:_")
             }
 
             val commonTest by getting {
