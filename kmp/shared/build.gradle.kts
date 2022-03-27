@@ -40,6 +40,7 @@ kotlin {
             dependencies {
                 api(project(":kmp:core:core-shared"))
                 api(project(":kmp:feature:feature-stopwatch"))
+                api(project(":kmp:feature:feature-task"))
                 implementation("io.insert-koin:koin-core:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
                 implementation("co.touchlab:stately-common:_")
@@ -88,6 +89,8 @@ kotlin {
         framework {
             isStatic = false // SwiftUI preview requires dynamic framework
             export(project(":kmp:core:core-shared"))
+            export(project(":kmp:feature:feature-stopwatch"))
+            export(project(":kmp:feature:feature-task"))
         }
         ios.deploymentTarget = "15.0"
         podfile = project.file("../../ios/Podfile")
