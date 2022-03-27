@@ -13,22 +13,15 @@
 		AE90345F27DB6E710091A381 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90345E27DB6E710091A381 /* TimerScreen.swift */; };
 		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
 		AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */; };
+		AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */; };
 		F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */; };
 		F1465F0A23AA94BF0055F7C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0923AA94BF0055F7C3 /* Assets.xcassets */; };
 		F1465F0D23AA94BF0055F7C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0B23AA94BF0055F7C3 /* LaunchScreen.storyboard */; };
 		F1465F1823AA94C00055F7C3 /* KaMPKitiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F1723AA94C00055F7C3 /* KaMPKitiOSTests.swift */; };
-		F1465F2323AA94C00055F7C3 /* KaMPKitiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F2223AA94C00055F7C3 /* KaMPKitiOSUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		F1465F1423AA94C00055F7C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1465EF523AA94BF0055F7C3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F1465EFC23AA94BF0055F7C3;
-			remoteInfo = KaMPKitiOS;
-		};
-		F1465F1F23AA94C00055F7C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F1465EF523AA94BF0055F7C3 /* Project object */;
 			proxyType = 1;
@@ -45,6 +38,7 @@
 		7B64C2C3741964ACB2AA7DE4 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ABD332BE05C45D3FAAC37D96 /* Pods-TimiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimiIOS/Pods-TimiIOS.release.xcconfig"; sourceTree = "<group>"; };
 		AE90345E27DB6E710091A381 /* TimerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerScreen.swift; sourceTree = "<group>"; };
+		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
 		D8B7F9876998130D9787465F /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1F782AF3705197012D0C33 /* Pods-KaMPKitiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPKitiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPKitiOS/Pods-KaMPKitiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimiIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,9 +49,6 @@
 		F1465F1323AA94C00055F7C3 /* TimiIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimiIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1465F1723AA94C00055F7C3 /* KaMPKitiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaMPKitiOSTests.swift; sourceTree = "<group>"; };
 		F1465F1923AA94C00055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1465F1E23AA94C00055F7C3 /* TimiIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimiIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1465F2223AA94C00055F7C3 /* KaMPKitiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaMPKitiOSUITests.swift; sourceTree = "<group>"; };
-		F1465F2423AA94C00055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9C259C83C689DF8F4602F38 /* Pods-KaMPKitiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPKitiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPKitiOS/Pods-KaMPKitiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,13 +70,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1465F1B23AA94C00055F7C3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +79,22 @@
 				D8B7F9876998130D9787465F /* Pods_TimiIOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AEE5961927F039BC000B7648 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AEE5961C27F03B1E000B7648 /* Stopwatch */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AEE5961C27F03B1E000B7648 /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */,
+			);
+			path = Stopwatch;
 			sourceTree = "<group>";
 		};
 		DF9BBECBCD175B90105DA8D9 /* Pods */ = {
@@ -115,7 +115,6 @@
 			children = (
 				F1465EFF23AA94BF0055F7C3 /* TimiIOS */,
 				F1465F1623AA94C00055F7C3 /* TimiIOSTests */,
-				F1465F2123AA94C00055F7C3 /* TimiIOSUITests */,
 				F1465EFE23AA94BF0055F7C3 /* Products */,
 				DF9BBECBCD175B90105DA8D9 /* Pods */,
 				6278498AD96A4D949D39BF44 /* Frameworks */,
@@ -127,7 +126,6 @@
 			children = (
 				F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */,
 				F1465F1323AA94C00055F7C3 /* TimiIOSTests.xctest */,
-				F1465F1E23AA94C00055F7C3 /* TimiIOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +133,7 @@
 		F1465EFF23AA94BF0055F7C3 /* TimiIOS */ = {
 			isa = PBXGroup;
 			children = (
+				AEE5961927F039BC000B7648 /* View */,
 				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
 				46A5B60626B04920002EFEAA /* Main.storyboard */,
 				46B5284C249C5CF400A7725D /* Koin.swift */,
@@ -153,15 +152,6 @@
 				F1465F1923AA94C00055F7C3 /* Info.plist */,
 			);
 			path = TimiIOSTests;
-			sourceTree = "<group>";
-		};
-		F1465F2123AA94C00055F7C3 /* TimiIOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F1465F2223AA94C00055F7C3 /* KaMPKitiOSUITests.swift */,
-				F1465F2423AA94C00055F7C3 /* Info.plist */,
-			);
-			path = TimiIOSUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,24 +199,6 @@
 			productReference = F1465F1323AA94C00055F7C3 /* TimiIOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F1465F1D23AA94C00055F7C3 /* TimiIOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1465F2D23AA94C00055F7C3 /* Build configuration list for PBXNativeTarget "TimiIOSUITests" */;
-			buildPhases = (
-				F1465F1A23AA94C00055F7C3 /* Sources */,
-				F1465F1B23AA94C00055F7C3 /* Frameworks */,
-				F1465F1C23AA94C00055F7C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1465F2023AA94C00055F7C3 /* PBXTargetDependency */,
-			);
-			name = TimiIOSUITests;
-			productName = KaMPKitiOSUITests;
-			productReference = F1465F1E23AA94C00055F7C3 /* TimiIOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -244,10 +216,6 @@
 						CreatedOnToolsVersion = 11.2.1;
 						TestTargetID = F1465EFC23AA94BF0055F7C3;
 					};
-					F1465F1D23AA94C00055F7C3 = {
-						CreatedOnToolsVersion = 11.2.1;
-						TestTargetID = F1465EFC23AA94BF0055F7C3;
-					};
 				};
 			};
 			buildConfigurationList = F1465EF823AA94BF0055F7C3 /* Build configuration list for PBXProject "TimiIOS" */;
@@ -260,7 +228,7 @@
 			);
 			mainGroup = F1465EF423AA94BF0055F7C3;
 			packageReferences = (
-				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */,
+				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
 			);
 			productRefGroup = F1465EFE23AA94BF0055F7C3 /* Products */;
 			projectDirPath = "";
@@ -268,7 +236,6 @@
 			targets = (
 				F1465EFC23AA94BF0055F7C3 /* TimiIOS */,
 				F1465F1223AA94C00055F7C3 /* TimiIOSTests */,
-				F1465F1D23AA94C00055F7C3 /* TimiIOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,13 +252,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F1465F1123AA94C00055F7C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1465F1C23AA94C00055F7C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -366,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46B5284D249C5CF400A7725D /* Koin.swift in Sources */,
+				AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */,
 				AE90345F27DB6E710091A381 /* TimerScreen.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
 			);
@@ -379,14 +340,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1465F1A23AA94C00055F7C3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1465F2323AA94C00055F7C3 /* KaMPKitiOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -394,11 +347,6 @@
 			isa = PBXTargetDependency;
 			target = F1465EFC23AA94BF0055F7C3 /* TimiIOS */;
 			targetProxy = F1465F1423AA94C00055F7C3 /* PBXContainerItemProxy */;
-		};
-		F1465F2023AA94C00055F7C3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F1465EFC23AA94BF0055F7C3 /* TimiIOS */;
-			targetProxy = F1465F1F23AA94C00055F7C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -640,44 +588,6 @@
 			};
 			name = Release;
 		};
-		F1465F2E23AA94C00055F7C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KaMPKitiOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = touchlab.KaMPKitiOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KaMPKitiOS;
-			};
-			name = Debug;
-		};
-		F1465F2F23AA94C00055F7C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KaMPKitiOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = touchlab.KaMPKitiOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KaMPKitiOS;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,19 +618,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1465F2D23AA94C00055F7C3 /* Build configuration list for PBXNativeTarget "TimiIOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1465F2E23AA94C00055F7C3 /* Debug */,
-				F1465F2F23AA94C00055F7C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */ = {
+		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
 			requirement = {
@@ -733,12 +634,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesCombine;
 		};
 		AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesCore;
 		};
 /* End XCSwiftPackageProductDependency section */

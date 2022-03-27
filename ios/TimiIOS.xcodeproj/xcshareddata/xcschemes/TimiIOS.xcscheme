@@ -37,6 +37,11 @@
                BlueprintName = "TimiIOSTests"
                ReferencedContainer = "container:TimiIOS.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "KaMPKitiOSTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         startKoin()
 
-        let viewController = UIHostingController(rootView: TimerScreen())
+        let viewController = UIHostingController(rootView: StopwatchListScreen())
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = viewController

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import KaMPKitiOS
+@testable import TimiIOS
 
 class KaMPKitiOSTests: XCTestCase {
 
