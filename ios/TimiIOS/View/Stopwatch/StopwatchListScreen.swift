@@ -6,8 +6,8 @@ import KMPNativeCoroutinesCombine
 class StopwatchListPublisher: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     let timerViewModel: StopwatchViewModel =
-        KoinWrapper.get(type: StopwatchViewModel.self)
-
+    KoinWrapper.get(type: StopwatchViewModel.self)
+    
     @Published
     var availableTasks: [Task] = []
     
@@ -46,7 +46,10 @@ struct StopwatchListScreen: View {
     
     var body: some View {
         List {
-            ForEach(Array(publisher.stopwatches.keys), id: \.self) { task in
+            ForEach(
+                Array(publisher.stopwatches.keys).sorted { $0.id < $1.id },
+                id: \.self
+            ) { task in
                 StopwatchItem(task: task, time: publisher.stopwatches[task]!)
             }
             Text("Add stopwatch")
@@ -68,7 +71,7 @@ struct StopwatchItem: View {
         }
     }
 }
-    
+
 
 struct StopwatchListScreen_Previews: PreviewProvider {
     static var previews: some View {
