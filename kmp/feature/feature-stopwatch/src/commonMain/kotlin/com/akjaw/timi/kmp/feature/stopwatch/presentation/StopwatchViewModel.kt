@@ -12,6 +12,8 @@ class StopwatchViewModel internal constructor(
     private val stopwatchListOrchestrator: StopwatchListOrchestrator,
 ) {
 
+    // TODO remake the data structure so it's easier to use from platforms
+    //  maybe a list?
     val stopwatches: StateFlow<Map<Task, String>> = stopwatchListOrchestrator.ticker
 
     val availableTasks: Flow<List<Task>> = combineTransform(

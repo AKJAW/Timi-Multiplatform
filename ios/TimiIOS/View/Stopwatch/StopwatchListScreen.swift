@@ -5,7 +5,7 @@ import KMPNativeCoroutinesCombine
 
 class StopwatchListPublisher: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    let timerViewModel: StopwatchViewModel =
+    let viewModel: StopwatchViewModel =
     KoinWrapper.get(type: StopwatchViewModel.self)
     
     @Published
@@ -15,8 +15,9 @@ class StopwatchListPublisher: ObservableObject {
     var stopwatches: [Task : String] = [:]
     
     init() {
-        stopwatches = timerViewModel.stopwatchesNativeValue
-        createPublisher(for: timerViewModel.availableTasksNative)
+        stopwatches = viewModel.stopwatchesNativeValue
+        createPublisher(for: viewModel.availableTasksNative)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 print("Received completion availableTasksNative: \(completion)")
             } receiveValue: { tasks in
@@ -24,7 +25,8 @@ class StopwatchListPublisher: ObservableObject {
             }
             .store(in: &cancellables)
         
-        createPublisher(for: timerViewModel.stopwatchesNative)
+        createPublisher(for: viewModel.stopwatchesNative)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 print("Received completion stopwatchesNative: \(completion)")
             } receiveValue: { stopwatches in
@@ -36,7 +38,7 @@ class StopwatchListPublisher: ObservableObject {
     func addStopwatch() {
         guard let task = availableTasks.first else { return }
         print("Adding: \(task)")
-        timerViewModel.start(task: task)
+        viewModel.start(task: task)
     }
 }
 
@@ -50,12 +52,23 @@ struct StopwatchListScreen: View {
                 Array(publisher.stopwatches.keys).sorted { $0.id < $1.id },
                 id: \.self
             ) { task in
-                StopwatchItem(task: task, time: publisher.stopwatches[task]!)
+                StopwatchItem(
+                    task: task,
+                    time: publisher.stopwatches[task]!,
+                    onStart: { publisher.viewModel.start(task: task) },
+                    onPause: { publisher.viewModel.pause(task: task) },
+                    onStop: { publisher.viewModel.stop(task: task) }
+                )
             }
-            Text("Add stopwatch")
-                .onTapGesture {
-                    publisher.addStopwatch()
-                }
+            // TODO is this really the way?
+            HStack {
+                Spacer()
+                Text("Add stopwatch")
+                    .onTapGesture {
+                        publisher.addStopwatch()
+                    }
+                Spacer()
+            }
         }
     }
 }
@@ -63,15 +76,55 @@ struct StopwatchListScreen: View {
 struct StopwatchItem: View {
     var task: Task
     var time: String
+    var onStart: () -> Void
+    var onPause: () -> Void
+    var onStop: () -> Void
     
     var body: some View {
-        HStack {
-            Text(task.name)
-            Text(time)
+        VStack(spacing: 0) {
+            HStack {
+                Text(task.name)
+                Spacer()
+                Text(time)
+            }
+            .padding(8)
+            HStack {
+                Spacer()
+                StopwatchAction(
+                    iconName: "play.fill",
+                    onClick: onStart
+                )
+                StopwatchAction(
+                    iconName: "pause.fill",
+                    onClick: onPause
+                )
+                StopwatchAction(
+                    iconName: "stop.fill",
+                    onClick: onStop
+                )
+            }
         }
     }
 }
 
+struct StopwatchAction: View {
+    var iconName: String
+    // TODO color
+    var onClick: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Image(systemName: iconName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+        }
+        .padding(8)
+        .onTapGesture {
+            onClick()
+        }
+    }
+}
 
 struct StopwatchListScreen_Previews: PreviewProvider {
     static var previews: some View {
