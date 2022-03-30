@@ -92,14 +92,17 @@ struct StopwatchItem: View {
                 Spacer()
                 StopwatchAction(
                     iconName: "play.fill",
+                    taskColor: task.backgroundColor,
                     onClick: onStart
                 )
                 StopwatchAction(
                     iconName: "pause.fill",
+                    taskColor: task.backgroundColor,
                     onClick: onPause
                 )
                 StopwatchAction(
                     iconName: "stop.fill",
+                    taskColor: task.backgroundColor,
                     onClick: onStop
                 )
             }
@@ -109,7 +112,7 @@ struct StopwatchItem: View {
 
 struct StopwatchAction: View {
     var iconName: String
-    // TODO color
+    var taskColor: TaskColor
     var onClick: () -> Void
     
     var body: some View {
@@ -118,6 +121,7 @@ struct StopwatchAction: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 20, height: 20)
+                .foregroundColor(taskColor.toSwiftColor())
         }
         .padding(8)
         .onTapGesture {
@@ -125,6 +129,13 @@ struct StopwatchAction: View {
         }
     }
 }
+
+extension TaskColor {
+    func toSwiftColor() -> Color {
+        return Color(red: Double(self.red), green: Double(self.green), blue: Double(self.blue))
+    }
+}
+
 
 struct StopwatchListScreen_Previews: PreviewProvider {
     static var previews: some View {
