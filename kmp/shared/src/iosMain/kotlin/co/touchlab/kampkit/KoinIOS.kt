@@ -3,6 +3,7 @@ package co.touchlab.kampkit
 import co.touchlab.kermit.Logger
 import com.akjaw.timi.kmp.feature.task.domain.GetTasks
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass
@@ -25,9 +26,21 @@ fun initKoinIos(): KoinApplication = initKoin(
 class FakeGetTasks : GetTasks {
 
     private val defaultTasks = listOf(
-        Task(1, "First task"),
-        Task(2, "Second task"),
-        Task(3, "Third task"),
+        Task(
+            id = 1,
+            name = "First task",
+            backgroundColor = TaskColor(132 / 255f, 212 / 255f, 240 / 255f)
+        ),
+        Task(
+            id = 2,
+            name = "Second task",
+            backgroundColor = TaskColor(230 / 255f, 240 / 255f, 132 / 255f)
+        ),
+        Task(
+            id = 3,
+            name = "Third task",
+            backgroundColor = TaskColor(132 / 255f, 240 / 255f, 161 / 255f)
+        ),
     )
     val tasks: MutableStateFlow<List<Task>> = MutableStateFlow(defaultTasks)
 
