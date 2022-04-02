@@ -5,6 +5,7 @@ import com.akjaw.task.list.Database
 import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.data.taskColorAdapter
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
+import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
@@ -51,7 +52,7 @@ internal class TaskListViewModelTest {
             getTasks = factory.createGetTasks(),
             deleteTasks = factory.createDeleteTasks(),
             addTask = factory.createAddTask(),
-            dispatcher = testCoroutineDispatcher,
+            dispatcherProvider = TestDispatcherProvider(testCoroutineDispatcher),
             taskSelectionTrackerFactory = taskSelectionTrackerFactory,
         )
     }

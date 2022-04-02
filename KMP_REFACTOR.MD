@@ -6,7 +6,8 @@
 - [x] Clean up internal stopwatch classes
 - [x] Add Basic Swift UI for the stopwatch screen
 - [x] Remove old poc classes
-- [ ] Add abstraction for Dispatcher Provider
+- [x] Add abstraction for Dispatcher Provider
+- [ ] Fix UI tests
 - [ ] Replace Hilt with Koin
 - [ ] Add saved state handling to stopwatch?
 - [ ] Move Android modules to android folder

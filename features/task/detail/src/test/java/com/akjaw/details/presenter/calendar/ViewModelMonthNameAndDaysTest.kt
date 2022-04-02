@@ -30,7 +30,6 @@ internal class ViewModelMonthNameAndDaysTest {
         private const val CURRENT_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX
     }
 
-    private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var timestampProviderStub: TimestampProviderStub
     private lateinit var systemUnderTest: CalendarViewModel
 
@@ -38,7 +37,7 @@ internal class ViewModelMonthNameAndDaysTest {
     fun setUp() {
         timestampProviderStub = TimestampProviderStub()
         timestampProviderStub.value = JULY_DATE_TIME.unixMillisLong.toTimestampMilliseconds()
-        systemUnderTest = createCalendarViewModel(testCoroutineDispatcher, timestampProviderStub)
+        systemUnderTest = createCalendarViewModel(timestampProviderStub)
     }
 
     @Nested

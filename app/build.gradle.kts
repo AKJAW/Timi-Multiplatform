@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":features:task:detail"))
     implementation(project(":features:settings"))
     implementation(project(":kmp:shared"))
+    implementation(project(":kmp:core:core-shared"))
 
     implementation("io.insert-koin:koin-android:_")
     implementation("io.insert-koin:koin-androidx-compose:_")
