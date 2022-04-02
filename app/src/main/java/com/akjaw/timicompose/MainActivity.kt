@@ -28,8 +28,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), KoinComponent {
 
-    @Inject
-    lateinit var taskListScreenCreator: TaskListScreenCreator
+    private val taskListScreenCreator: TaskListScreenCreator  by inject()
 
     private val settingsScreenCreator: SettingsScreenCreator by inject()
 

@@ -3,9 +3,8 @@ package com.akjaw.task.list.data
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.domain.AddTask
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import javax.inject.Inject
 
-internal class AddTaskToDatabase @Inject constructor(
+internal class AddTaskToDatabase (
     private val taskEntityQueries: TaskEntityQueries
 ) : AddTask {
 

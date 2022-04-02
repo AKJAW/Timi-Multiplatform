@@ -7,9 +7,8 @@ import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-internal class GetTasksFromDatabase @Inject constructor(
+internal class GetTasksFromDatabase (
     private val taskEntityQueries: TaskEntityQueries,
 ) : GetTasks {
 

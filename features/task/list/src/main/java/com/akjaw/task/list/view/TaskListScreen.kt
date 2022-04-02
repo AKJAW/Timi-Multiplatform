@@ -39,7 +39,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.tasksPreview
@@ -50,10 +49,13 @@ import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
 import com.akjaw.task.list.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-internal fun TaskListScreen(navController: NavHostController) {
-    val taskListViewModel = hiltViewModel<TaskListViewModel>()
+internal fun TaskListScreen(
+    navController: NavHostController,
+    taskListViewModel: TaskListViewModel = getViewModel(),
+) {
     val tasks = taskListViewModel.tasks.collectAsState(emptyList())
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
