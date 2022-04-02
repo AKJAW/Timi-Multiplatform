@@ -11,17 +11,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
+import org.koin.core.context.startKoin
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 
-fun initKoinIos(): KoinApplication = initKoin(
-    listOf(
+fun initKoinIos(): KoinApplication = startKoin {
+    modules(
+        *kmmModules.toTypedArray(),
         module {
             factory<GetTasks> { FakeGetTasks() }
         }
     )
-)
+}
 
 class FakeGetTasks : GetTasks {
 
