@@ -4,10 +4,6 @@ import com.akjaw.core.common.domain.model.TimestampMilliseconds
 
 internal class TimestampMillisecondsFormatter {
 
-    companion object {
-        const val DEFAULT_TIME = "00:00:000"
-    }
-
     fun format(timestamp: TimestampMilliseconds): String {
         val millisecondsLong = timestamp.value
         val millisecondsFormatted = (millisecondsLong % 1000).pad(3)
