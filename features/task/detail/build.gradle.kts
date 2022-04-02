@@ -3,8 +3,6 @@ import de.fayard.refreshVersions.core.versionFor
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -61,9 +59,8 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:_")
     implementation("com.soywiz.korlibs.klock:klock:_")
 
-    implementation("com.google.dagger:hilt-android:_")
-    implementation("androidx.hilt:hilt-navigation-compose:_")
-    kapt("com.google.dagger:hilt-compiler:_")
+    implementation("io.insert-koin:koin-android:_")
+    implementation("io.insert-koin:koin-androidx-compose:_")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testImplementation("org.junit.jupiter:junit-jupiter-params:_")
@@ -76,6 +73,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
     debugImplementation("androidx.compose.ui:ui-test-manifest:_")
     androidTestImplementation("androidx.test.espresso:espresso-core:_")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
-    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
+//    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
+//    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
 }

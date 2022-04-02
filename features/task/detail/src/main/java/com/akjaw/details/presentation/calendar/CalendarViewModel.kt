@@ -2,18 +2,13 @@ package com.akjaw.details.presentation.calendar
 
 import androidx.lifecycle.ViewModel
 import com.akjaw.details.domain.calendar.CalendarDaysCalculator
-import com.akjaw.timi.kmp.core.shared.coroutines.DispatcherProvider
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 
-@HiltViewModel
-internal class CalendarViewModel @Inject constructor(
+internal class CalendarViewModel(
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator
 ) : ViewModel() {

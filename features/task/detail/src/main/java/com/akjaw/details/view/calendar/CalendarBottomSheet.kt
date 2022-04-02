@@ -16,6 +16,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,18 +29,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.details.presentation.calendar.CalendarViewModel
 import com.akjaw.details.presentation.calendar.DayViewState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = hiltViewModel()) {
-    val months = calendarViewModel.viewState.value.months
+internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = getViewModel()) {
+    val months = calendarViewModel.viewState.collectAsState().value.months
     val pagerState = rememberPagerState(
         initialPage = CalendarViewModel.CURRENT_MONTH_INDEX
     )
