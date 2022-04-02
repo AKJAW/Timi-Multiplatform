@@ -14,7 +14,7 @@ internal class AddTaskToDatabase @Inject constructor(
             id = null,
             position = 0,
             name = task.name,
-            color = task.backgroundColor.argb,
+            color = task.backgroundColor,
         )
     }
 }

@@ -3,6 +3,7 @@ package com.akjaw.task.list.presentation
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.list.Database
 import com.akjaw.task.list.DatabaseInteractorFactory
+import com.akjaw.task.list.data.taskColorAdapter
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
@@ -23,13 +24,13 @@ internal class TaskListViewModelTest {
         val TASK1 = Task(
             id = 0,
             name = "name",
-            backgroundColor = TaskColor(22),
+            backgroundColor = TaskColor(22f, 22f, 22f),
             isSelected = false,
         )
         val TASK2 = Task(
             id = 1,
             name = "name2",
-            backgroundColor = TaskColor(33),
+            backgroundColor = TaskColor(33f, 33f, 33f),
             isSelected = false,
         )
     }
@@ -44,7 +45,7 @@ internal class TaskListViewModelTest {
         val inMemorySqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).apply {
             Database.Schema.create(this)
         }
-        taskEntityQueries = Database(inMemorySqlDriver).taskEntityQueries
+        taskEntityQueries = Database(inMemorySqlDriver, taskColorAdapter).taskEntityQueries
         val factory = DatabaseInteractorFactory(taskEntityQueries)
         systemUnderTest = TaskListViewModel(
             getTasks = factory.createGetTasks(),
@@ -81,7 +82,7 @@ internal class TaskListViewModelTest {
                 id = it.id,
                 position = 0,
                 name = it.name,
-                color = it.backgroundColor.argb
+                color = it.backgroundColor
             )
         }
     }

@@ -18,11 +18,11 @@ internal class GetTasksFromDatabase @Inject constructor(
             id: Long,
             position: Long,
             name: String,
-            color: Int ->
+            color: TaskColor ->
             Task(
                 id = id,
                 name = name,
-                backgroundColor = TaskColor(argb = color),
+                backgroundColor = color,
                 isSelected = false
             )
         }.asFlow().mapToList()

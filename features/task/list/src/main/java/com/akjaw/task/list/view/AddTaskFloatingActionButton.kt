@@ -112,7 +112,11 @@ private fun AddTaskDialogContent(
             if (taskName.isNotBlank()) {
                 val task = Task(
                     name = taskName,
-                    backgroundColor = TaskColor(taskColor.value.toArgb()),
+                    backgroundColor = TaskColor(
+                        red = taskColor.value.red,
+                        green = taskColor.value.green,
+                        blue = taskColor.value.blue
+                    ),
                     isSelected = false
                 )
                 onAddTaskClicked(task)
@@ -229,18 +233,18 @@ private fun ColorPicker(
     textColor: Animatable<Color, AnimationVector4D>,
 ) {
 //    if (isColorPickerShown) {
-        ColorPicker(
-            colors = taskColors,
-            onColorClicked = { targetColor ->
-                // Two parallel animations don't work together so well
-                composableScope.launch {
-                    taskColor.animateTo(targetColor)
-                }
-                composableScope.launch {
-                    textColor.animateTo(taskTextColorFor(targetColor))
-                }
+    ColorPicker(
+        colors = taskColors,
+        onColorClicked = { targetColor ->
+            // Two parallel animations don't work together so well
+            composableScope.launch {
+                taskColor.animateTo(targetColor)
             }
-        )
+            composableScope.launch {
+                textColor.animateTo(taskTextColorFor(targetColor))
+            }
+        }
+    )
 //    }
 }
 

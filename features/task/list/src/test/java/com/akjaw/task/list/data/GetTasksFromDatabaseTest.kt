@@ -28,8 +28,8 @@ internal class GetTasksFromDatabaseTest {
 
     @Test
     fun `The task is correctly mapped from the database`(): Unit = runBlocking {
-        queries.insertTask(id = 1, position = 0, name = "name", color = 22)
-        queries.insertTask(id = 2, position = 0, name = "name2", color = 33)
+        queries.insertTask(id = 1, position = 0, name = "name", color = TaskColor(22f, 22f, 22f))
+        queries.insertTask(id = 2, position = 0, name = "name2", color = TaskColor(33f, 33f, 33f))
 
         val result = systemUnderTest.execute().first()
 
@@ -39,7 +39,7 @@ internal class GetTasksFromDatabaseTest {
                 Task(
                     id = 1,
                     name = "name",
-                    backgroundColor = TaskColor(22),
+                    backgroundColor = TaskColor(22f, 22f, 22f),
                     isSelected = false
                 )
             )
@@ -47,7 +47,7 @@ internal class GetTasksFromDatabaseTest {
                 Task(
                     id = 2,
                     name = "name2",
-                    backgroundColor = TaskColor(33),
+                    backgroundColor = TaskColor(33f, 33f, 33f),
                     isSelected = false
                 )
             )

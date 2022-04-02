@@ -8,20 +8,20 @@ import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 val tasksPreview = listOf(
     Task(
         name = "Task 1",
-        backgroundColor = TaskColor(Color(132, 212, 240).toArgb()),
+        backgroundColor = TaskColor(132 / 255f, 212 / 255f, 240 / 255f),
         isSelected = false
     ),
     Task(
         name = "Task 2",
-        backgroundColor = TaskColor(Color(230, 240, 132).toArgb()),
+        backgroundColor = TaskColor(230 / 255f, 240 / 255f, 132 / 255f),
         isSelected = false
     ),
     Task(
         name = "Task 3",
-        backgroundColor = TaskColor(Color(132, 240, 161).toArgb()),
+        backgroundColor = TaskColor(132 / 255f, 240 / 255f, 161 / 255f),
         isSelected = false
     ),
 )
 
 @Deprecated("View and Presentation layer should have its own data structure")
-fun TaskColor.toComposeColor() = Color(this.argb)
+fun TaskColor.toComposeColor() = Color(this.red, this.green, this.blue)

@@ -18,8 +18,8 @@ import strikt.assertions.isNotNull
 internal class AddTaskToDatabaseTest {
 
     companion object {
-        private val TASK1 = Task(0, "name", backgroundColor = TaskColor(22))
-        private val TASK2 = Task(-1, "name2", backgroundColor = TaskColor(2))
+        private val TASK1 = Task(0, "name", backgroundColor = TaskColor(22f, 22f, 22f))
+        private val TASK2 = Task(-1, "name2", backgroundColor = TaskColor(0f, 0f, 0f))
     }
 
     private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()
@@ -42,7 +42,7 @@ internal class AddTaskToDatabaseTest {
                 id = 1,
                 position = 0,
                 name = "name",
-                color = 22
+                color = TaskColor(22f, 22f, 22f)
             )
         )
     }

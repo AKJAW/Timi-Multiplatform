@@ -2,6 +2,7 @@ package com.akjaw.task.list
 
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
@@ -11,8 +12,27 @@ import strikt.assertions.isEqualTo
 class TaskDatabaseTest {
 
     companion object {
-        private val TASK1 = TaskEntity(1, 0, "name", 123)
-        private val TASK2 = TaskEntity(-1, 0, "name2", 123)
+        private val TASK1 = TaskEntity(
+            id = 1,
+            position = 0,
+            name = "name",
+            color = TaskColor(
+                red = 123 / 255f,
+                green = 123 / 255f,
+                blue = 123 / 255f
+            )
+        )
+        private val TASK2 =
+            TaskEntity(
+                id = -1,
+                position = 0,
+                name = "name2",
+                color = TaskColor(
+                    red = 123 / 255f,
+                    green = 123 / 255f,
+                    blue = 123 / 255f
+                )
+            )
     }
 
     private val inMemoryTaskEntityQueriesFactory = InMemoryTaskEntityQueriesFactory()

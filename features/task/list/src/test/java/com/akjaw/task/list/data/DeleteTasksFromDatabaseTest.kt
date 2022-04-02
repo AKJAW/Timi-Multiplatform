@@ -4,6 +4,7 @@ import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
@@ -47,7 +48,7 @@ internal class DeleteTasksFromDatabaseTest {
 
     private fun givenTasksExists(vararg tasks: Task) {
         tasks.forEach { task ->
-            queries.insertTask(task.id, 0, task.name, 0)
+            queries.insertTask(task.id, 0, task.name, TaskColor(0f, 0f, 0f))
         }
     }
 }
