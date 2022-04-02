@@ -6,7 +6,6 @@
 - [x] Clean up internal stopwatch classes
 - [x] Add Basic Swift UI for the stopwatch screen
 - [x] Remove old poc classes
-- [ ] Clean up internal implementation of stopwatch????
 - [ ] Add abstraction for Dispatcher Provider
 - [ ] Replace Hilt with Koin
 - [ ] Add saved state handling to stopwatch?
@@ -17,3 +16,4 @@
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
 - [ ] Extract Config / Precompiled plugin for gradle modules
+- [ ] Clean up internal implementation of stopwatch????
