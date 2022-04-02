@@ -14,17 +14,18 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.details.domain.calendar.CalendarDaysCalculator
 import com.akjaw.details.presentation.calendar.CalendarViewModel
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.soywiz.klock.DateTime
 import kotlinx.coroutines.Dispatchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+// TODO move to app?
 // TODO change injection after Refactor from hilt to koin
 class CalendarBottomSheetTest {
 
@@ -39,7 +40,6 @@ class CalendarBottomSheetTest {
         timestampProviderStub = TimestampProviderStub()
         givenCurrentMonthIs(6)
         viewModel = CalendarViewModel(
-            Dispatchers.Unconfined,
             timestampProviderStub,
             CalendarDaysCalculator()
         )

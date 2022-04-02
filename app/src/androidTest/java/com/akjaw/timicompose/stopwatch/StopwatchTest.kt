@@ -3,7 +3,9 @@ package com.akjaw.timicompose.stopwatch
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.akjaw.core.common.view.toTaskColor
 import com.akjaw.task.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
 import com.akjaw.timicompose.composition.TimestampProviderStub
@@ -25,9 +27,9 @@ class StopwatchTest {
 
     companion object {
         private const val FIRST_TASK_NAME = "Existing"
-        private val FIRST_TASK_COLOR = Color.Magenta.toArgb()
+        private val FIRST_TASK_COLOR = Color.Magenta.toTaskColor()
         private const val SECOND_TASK_NAME = "Newer"
-        private val SECOND_TASK_COLOR = Color.Blue.toArgb()
+        private val SECOND_TASK_COLOR = Color.Blue.toTaskColor()
     }
 
     var hiltRule = HiltAndroidRule(this)
@@ -210,7 +212,7 @@ class StopwatchTest {
         stopwatchScreenVerifier.confirmStopwatchForTaskDoesNotExists(taskName = FIRST_TASK_NAME)
     }
 
-    private fun addTask(name: String, color: Int) {
+    private fun addTask(name: String, color: TaskColor) {
         taskEntityQueries.insertTask(id = null, position = 0, name = name, color = color)
     }
 }

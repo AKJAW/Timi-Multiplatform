@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.akjaw.core.common.view.toTaskColor
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
@@ -83,7 +84,12 @@ class TaskListTest {
 
     @Test
     fun deletingATaskRemovesItFromTheList() {
-        taskEntityQueries.insertTask(id = null, position = 0, name = "Existing", color = 0)
+        taskEntityQueries.insertTask(
+            id = null,
+            position = 0,
+            name = "Existing",
+            color = Color.Magenta.toTaskColor()
+        )
         taskListScreenRobot.selectTaskWithName("Existing")
         taskListScreenRobot.clickDeleteIcon()
 
@@ -94,7 +100,12 @@ class TaskListTest {
 
     @Test
     fun cancellingTheTaskRemovalDoesNotModifyTheList() {
-        taskEntityQueries.insertTask(id = null, position = 0, name = "Existing", color = 0)
+        taskEntityQueries.insertTask(
+            id = null,
+            position = 0,
+            name = "Existing",
+            color = Color.Magenta.toTaskColor()
+        )
         taskListScreenRobot.selectTaskWithName("Existing")
         taskListScreenRobot.clickDeleteIcon()
 
@@ -109,7 +120,7 @@ class TaskListTest {
             id = null,
             position = 0,
             name = "Existing",
-            color = Color.Magenta.toArgb()
+            color = Color.Magenta.toTaskColor()
         )
 
         taskListScreenRobot.selectTaskWithName("Existing")

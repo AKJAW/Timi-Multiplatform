@@ -23,5 +23,6 @@ val tasksPreview = listOf(
     ),
 )
 
-@Deprecated("View and Presentation layer should have its own data structure")
-fun TaskColor.toComposeColor() = Color(this.red, this.green, this.blue)
+fun TaskColor.toComposeColor() = Color(red, green, blue)
+
+fun Color.toTaskColor(): TaskColor = TaskColor(red, green, blue)

@@ -1,9 +1,9 @@
 package com.akjaw.timicompose.composition
 
 import com.akjaw.core.common.composition.TimestampModule
-import com.akjaw.core.common.domain.TimestampProvider
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.components.SingletonComponent

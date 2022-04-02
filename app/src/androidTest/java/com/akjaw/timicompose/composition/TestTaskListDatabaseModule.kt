@@ -4,6 +4,7 @@ import android.content.Context
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.list.Database
 import com.akjaw.task.list.composition.TaskListDatabaseModule
+import com.akjaw.task.list.data.taskColorAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module
@@ -34,7 +35,8 @@ object TestTaskListDatabaseModule {
         sqlDriver: SqlDriver
     ): Database {
         return Database(
-            driver = sqlDriver
+            driver = sqlDriver,
+            TaskEntityAdapter = taskColorAdapter
         )
     }
 
