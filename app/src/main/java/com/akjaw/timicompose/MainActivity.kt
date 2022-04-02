@@ -31,8 +31,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
     @Inject
     lateinit var taskListScreenCreator: TaskListScreenCreator
 
-    @Inject
-    lateinit var settingsScreenCreator: SettingsScreenCreator
+    private val settingsScreenCreator: SettingsScreenCreator by inject()
 
     @Inject
     lateinit var initializers: Set<@JvmSuppressWildcards ActivityInitializer>

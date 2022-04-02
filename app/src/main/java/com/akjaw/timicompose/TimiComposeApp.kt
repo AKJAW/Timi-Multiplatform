@@ -3,6 +3,7 @@ package com.akjaw.timicompose
 import android.app.Application
 import android.content.Context
 import co.touchlab.kampkit.initKoin
+import com.akjaw.settings.composition.settingsModule
 import com.akjaw.task.list.composition.taskListModule
 import dagger.hilt.android.HiltAndroidApp
 import org.koin.dsl.module
@@ -16,6 +17,7 @@ class TimiComposeApp : Application() {
         initKoin(
             listOf(
                 taskListModule,
+                settingsModule,
                 module {
                     single<Context> { this@TimiComposeApp.applicationContext }
                 }

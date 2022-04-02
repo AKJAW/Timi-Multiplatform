@@ -1,9 +1,8 @@
 package com.akjaw.settings.data
 
 import com.akjaw.settings.domain.BooleanSettingsOption
-import javax.inject.Inject
 
-internal class InitialSettingsOptionsProvider @Inject constructor(
+internal class InitialSettingsOptionsProvider(
     private val settingsRepository: SettingsRepository
 ) {
 

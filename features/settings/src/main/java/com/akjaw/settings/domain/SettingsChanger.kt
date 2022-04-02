@@ -4,9 +4,8 @@ import com.akjaw.settings.data.InitialSettingsOptionsProvider
 import com.akjaw.settings.data.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 
-internal class SettingsChanger @Inject constructor(
+internal class SettingsChanger (
     private val settingsRepository: SettingsRepository,
     initialSettingsOptionsProvider: InitialSettingsOptionsProvider,
 ) {

@@ -3,8 +3,6 @@ import de.fayard.refreshVersions.core.versionFor
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -57,9 +55,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:_")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:_")
 
-    implementation("com.google.dagger:hilt-android:_")
-    implementation("androidx.hilt:hilt-navigation-compose:_")
-    kapt("com.google.dagger:hilt-compiler:_")
+    implementation("io.insert-koin:koin-android:_")
+    implementation("io.insert-koin:koin-androidx-compose:_")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testImplementation("io.strikt:strikt-core:_")

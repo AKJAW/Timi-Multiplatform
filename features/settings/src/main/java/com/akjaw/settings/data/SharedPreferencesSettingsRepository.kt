@@ -2,9 +2,8 @@ package com.akjaw.settings.data
 
 import android.content.SharedPreferences
 import com.akjaw.settings.domain.BooleanSettingsOption
-import javax.inject.Inject
 
-internal class SharedPreferencesSettingsRepository @Inject constructor(
+internal class SharedPreferencesSettingsRepository (
     private val sharedPreferences: SharedPreferences
 ) : SettingsRepository {
 

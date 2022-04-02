@@ -25,15 +25,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.settings.R
 import com.akjaw.settings.domain.BooleanSettingsOption
 import com.akjaw.settings.presentation.SettingsViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-internal fun SettingsScreen() {
-    val settingsViewModel = hiltViewModel<SettingsViewModel>()
+internal fun SettingsScreen(settingsViewModel: SettingsViewModel = getViewModel()) {
     SettingsScreen(
         booleanOptions = settingsViewModel.booleanOptionsFlow.collectAsState().value,
         onSwitchClicked = settingsViewModel::onSwitchValueChange
