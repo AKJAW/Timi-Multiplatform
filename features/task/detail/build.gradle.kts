@@ -73,6 +73,4 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
     debugImplementation("androidx.compose.ui:ui-test-manifest:_")
     androidTestImplementation("androidx.test.espresso:espresso-core:_")
-//    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
-//    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
 }

@@ -8,7 +8,6 @@ buildscript {
     dependencies {
         classpath(Android.tools.build.gradlePlugin)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:_")
         classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:_")
         classpath(Square.sqlDelight.gradlePlugin)
         classpath("org.jlleitschuh.gradle:ktlint-gradle:_")

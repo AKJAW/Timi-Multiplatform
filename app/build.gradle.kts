@@ -3,8 +3,6 @@ import de.fayard.refreshVersions.core.versionFor
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -18,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "com.akjaw.timicompose.HiltTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -46,10 +44,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
     implementation(project(":core"))
     implementation(project(":features:stopwatch-ui"))
@@ -68,32 +62,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:_")
     implementation("androidx.activity:activity-compose:_")
 
-//    implementation("com.google.dagger:hilt-android:_")
-//    kapt("com.google.dagger:hilt-android-compiler:_")
-//    kapt("androidx.hilt:hilt-compiler:_")
-
-    // Dagger Core
-    implementation("com.google.dagger:dagger:_")
-    kapt("com.google.dagger:dagger-compiler:_")
-
-// Dagger Android
-    api("com.google.dagger:dagger-android:_")
-    api("com.google.dagger:dagger-android-support:_")
-    kapt("com.google.dagger:dagger-android-processor:_")
-
-// Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:_")
-    kapt("com.google.dagger:hilt-android-compiler:_")
-
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
     androidTestImplementation("androidx.test.espresso:espresso-core:_")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:_")
     androidTestImplementation("com.squareup.sqldelight:android-driver:_")
     androidTestImplementation("com.soywiz.korlibs.klock:klock:_")
     debugImplementation("androidx.compose.ui:ui-test-manifest:_")
-    kaptAndroidTest("com.google.dagger:hilt-compiler:_")
 }

@@ -3,8 +3,6 @@ import de.fayard.refreshVersions.core.versionFor
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -59,8 +57,6 @@ dependencies {
     implementation("com.soywiz.korlibs.klock:klock:_")
 
     implementation("io.insert-koin:koin-android:_")
-    implementation("com.google.dagger:hilt-android:_")
-    kapt("com.google.dagger:hilt-compiler:_")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
