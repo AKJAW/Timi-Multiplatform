@@ -10,7 +10,6 @@
 		46A5B60826B04921002EFEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A5B60626B04920002EFEAA /* Main.storyboard */; };
 		46B5284D249C5CF400A7725D /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5284C249C5CF400A7725D /* Koin.swift */; };
 		690FEBAAC4E76EA5BAA3B846 /* Pods_TimiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B7F9876998130D9787465F /* Pods_TimiIOS.framework */; };
-		AE90345F27DB6E710091A381 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90345E27DB6E710091A381 /* TimerScreen.swift */; };
 		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
 		AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */; };
 		AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */; };
@@ -26,7 +25,6 @@
 		46B5284C249C5CF400A7725D /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		7B64C2C3741964ACB2AA7DE4 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ABD332BE05C45D3FAAC37D96 /* Pods-TimiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimiIOS/Pods-TimiIOS.release.xcconfig"; sourceTree = "<group>"; };
-		AE90345E27DB6E710091A381 /* TimerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerScreen.swift; sourceTree = "<group>"; };
 		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
 		D8B7F9876998130D9787465F /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1F782AF3705197012D0C33 /* Pods-KaMPKitiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPKitiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPKitiOS/Pods-KaMPKitiOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				F1465F0923AA94BF0055F7C3 /* Assets.xcassets */,
 				F1465F0B23AA94BF0055F7C3 /* LaunchScreen.storyboard */,
 				F1465F0E23AA94BF0055F7C3 /* Info.plist */,
-				AE90345E27DB6E710091A381 /* TimerScreen.swift */,
 			);
 			path = TimiIOS;
 			sourceTree = "<group>";
@@ -265,7 +262,6 @@
 			files = (
 				46B5284D249C5CF400A7725D /* Koin.swift in Sources */,
 				AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */,
-				AE90345F27DB6E710091A381 /* TimerScreen.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

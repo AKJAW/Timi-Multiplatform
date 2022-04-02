@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import co.touchlab.kampkit.timer.TimerViewModel
 import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.core.common.presentation.BottomBarScreen
 import com.akjaw.core.common.presentation.TimiBottomBar
@@ -38,18 +37,10 @@ class MainActivity : ComponentActivity(), KoinComponent {
     @Inject
     lateinit var initializers: Set<@JvmSuppressWildcards ActivityInitializer>
 
-    private val timerViewModel: TimerViewModel by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializers.forEach { it.initialize() }
 
-        lifecycleScope.launchWhenResumed {
-            timerViewModel.toggle()
-            timerViewModel.timeString.collect {
-                Log.d("TimerTest", it)
-            }
-        }
         setContent {
             val navController = rememberNavController()
             TimiComposeTheme(darkTheme = ThemeState.isDarkTheme.value) {

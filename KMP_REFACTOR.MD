@@ -4,8 +4,8 @@
 - [x] Move stopwatch module to KMP
 - [x] Refactor to use new coroutine test
 - [x] Clean up internal stopwatch classes
-- [ ] Add Basic Swift UI for the stopwatch screen
-- [ ] Remove old poc classes
+- [x] Add Basic Swift UI for the stopwatch screen
+- [x] Remove old poc classes
 - [ ] Clean up internal implementation of stopwatch????
 - [ ] Add abstraction for Dispatcher Provider
 - [ ] Replace Hilt with Koin

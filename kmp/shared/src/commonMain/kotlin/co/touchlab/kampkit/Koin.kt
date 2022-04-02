@@ -1,7 +1,5 @@
 package co.touchlab.kampkit
 
-import co.touchlab.kampkit.timer.Timer
-import co.touchlab.kampkit.timer.TimerViewModel
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
@@ -33,9 +31,6 @@ fun initKoin(appModules: List<Module>): KoinApplication {
 
 // TODO rename
 private val coreModule = module {
-    factory { Timer(scope = CoroutineScope(Dispatchers.Default + SupervisorJob())) }
-    factory { TimerViewModel(timer = get()) }
-
     // platformLogWriter() is a relatively simple config option, useful for local debugging. For production
     // uses you *may* want to have a more robust configuration from the native platform. In KaMP Kit,
     // that would likely go into platformModule expect/actual.
