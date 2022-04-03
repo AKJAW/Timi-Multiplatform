@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":android:core"))
     implementation(project(":kmp:core:core-shared"))
     implementation(project(":kmp:feature:feature-stopwatch"))
     implementation(project(":kmp:feature:feature-task"))

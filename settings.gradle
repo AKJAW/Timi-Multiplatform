@@ -12,7 +12,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Timi-Compose"
 include ':android:app'
-include ':core'
+include ':android:core'
 include ':android:features:settings'
 include ':android:features:task'
 include ':android:features:task:list'

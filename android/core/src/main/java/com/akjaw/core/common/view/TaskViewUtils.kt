@@ -1,7 +1,6 @@
 package com.akjaw.core.common.view
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import com.akjaw.timi.kmp.feature.task.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 
