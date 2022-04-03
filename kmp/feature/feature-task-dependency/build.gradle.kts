@@ -53,9 +53,27 @@ kotlin {
             }
         }
 
+        val commonTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test-common:_")
+                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:_")
+                implementation("app.cash.turbine:turbine:_")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+                implementation("io.kotest:kotest-assertions-core:_")
+            }
+        }
+
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:_")
+                implementation("com.squareup.sqldelight:sqlite-driver:_")
+            }
+        }
+
+        val androidTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:_")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:_")
             }
         }
 

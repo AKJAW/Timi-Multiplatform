@@ -12,6 +12,10 @@
 - [x] Replace Hilt with Koin
 - [x] Fix app UI tests
 - [x] Move Android modules to android folder
+- [x] Move task list data domain to kmp
+- [ ] Move task list data domain tests to kmp
+- [ ] Move task list presentation to kmp
+- [ ] Move task list presentation tests to kmp
 - [ ] Move task list module to kmp
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
