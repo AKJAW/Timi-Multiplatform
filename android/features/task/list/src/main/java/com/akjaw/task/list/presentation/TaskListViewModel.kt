@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.akjaw.task.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.timi.kmp.core.shared.coroutines.DispatcherProvider
-import com.akjaw.timi.kmp.feature.task.domain.AddTask
-import com.akjaw.timi.kmp.feature.task.domain.DeleteTasks
-import com.akjaw.timi.kmp.feature.task.domain.GetTasks
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.AddTask
+import com.akjaw.timi.kmp.feature.task.api.DeleteTasks
+import com.akjaw.timi.kmp.feature.task.api.GetTasks
+import com.akjaw.timi.kmp.feature.task.api.model.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 

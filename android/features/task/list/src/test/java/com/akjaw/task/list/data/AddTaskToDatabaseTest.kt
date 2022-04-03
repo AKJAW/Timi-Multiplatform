@@ -3,8 +3,8 @@ package com.akjaw.task.list.data
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach

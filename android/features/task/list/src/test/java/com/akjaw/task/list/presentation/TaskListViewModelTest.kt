@@ -6,8 +6,8 @@ import com.akjaw.task.list.DatabaseInteractorFactory
 import com.akjaw.task.list.data.taskColorAdapter
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

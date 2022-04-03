@@ -1,9 +1,9 @@
 package co.touchlab.kampkit
 
 import co.touchlab.kermit.Logger
-import com.akjaw.timi.kmp.feature.task.domain.GetTasks
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.GetTasks
+import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass

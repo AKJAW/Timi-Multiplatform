@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.core.common.view.toTaskColor
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
 import com.akjaw.timicompose.allKoinModules

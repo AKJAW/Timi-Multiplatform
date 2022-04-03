@@ -38,7 +38,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":kmp:core:core-shared"))
-                implementation(project(":kmp:feature:feature-task"))
+                implementation(project(":kmp:feature:feature-task-api"))
 
                 implementation("io.insert-koin:koin-core:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")

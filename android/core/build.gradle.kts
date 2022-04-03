@@ -44,7 +44,7 @@ android {
 
 dependencies {
     implementation(project(":kmp:core:core-shared"))
-    implementation(project(":kmp:feature:feature-task"))
+    implementation(project(":kmp:feature:feature-task-api"))
 
     implementation("androidx.appcompat:appcompat:_")
     implementation("com.google.android.material:material:_")

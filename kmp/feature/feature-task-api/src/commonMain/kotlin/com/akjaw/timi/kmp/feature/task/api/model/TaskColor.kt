@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.domain.model
+package com.akjaw.timi.kmp.feature.task.api.model
 
 data class TaskColor(
     val red: Float = 0f,

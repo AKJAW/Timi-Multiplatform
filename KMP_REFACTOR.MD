@@ -11,7 +11,8 @@
 - [x] Fix UI tests compilation
 - [x] Replace Hilt with Koin
 - [x] Fix app UI tests
-- [ ] Move Android modules to android folder
+- [x] Move Android modules to android folder
+- [ ] Move task list module to kmp
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
 - [ ] Update GitHub Actions

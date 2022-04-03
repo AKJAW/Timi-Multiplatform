@@ -1,8 +1,8 @@
 package com.akjaw.task.list.data
 
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.domain.AddTask
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.AddTask
+import com.akjaw.timi.kmp.feature.task.api.model.Task
 
 internal class AddTaskToDatabase (
     private val taskEntityQueries: TaskEntityQueries

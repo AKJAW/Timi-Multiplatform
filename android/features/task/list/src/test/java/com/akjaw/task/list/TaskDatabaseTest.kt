@@ -2,7 +2,7 @@ package com.akjaw.task.list
 
 import com.akjaw.task.TaskEntity
 import com.akjaw.task.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat

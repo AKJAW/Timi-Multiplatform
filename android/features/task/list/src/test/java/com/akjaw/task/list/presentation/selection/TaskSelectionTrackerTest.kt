@@ -1,6 +1,6 @@
 package com.akjaw.task.list.presentation.selection
 
-import com.akjaw.timi.kmp.feature.task.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.model.Task
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
