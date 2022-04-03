@@ -10,7 +10,7 @@
 - [x] Add abstraction for Dispatcher Provider
 - [x] Fix UI tests compilation
 - [x] Replace Hilt with Koin
-- [ ] Fix app UI tests
+- [x] Fix app UI tests
 - [ ] Move Android modules to android folder
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP

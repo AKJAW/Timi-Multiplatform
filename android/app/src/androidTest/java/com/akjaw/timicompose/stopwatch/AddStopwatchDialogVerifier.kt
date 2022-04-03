@@ -1,6 +1,5 @@
 package com.akjaw.timicompose.stopwatch
 
-import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.onAllNodesWithTag
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.utils.assertDescendantDoesNotContainText

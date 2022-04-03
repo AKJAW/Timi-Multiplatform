@@ -11,7 +11,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Timi-Compose"
-include ':app'
+include ':android:app'
 include ':features'
 include ':features:stopwatch-ui'
 include ':core'
