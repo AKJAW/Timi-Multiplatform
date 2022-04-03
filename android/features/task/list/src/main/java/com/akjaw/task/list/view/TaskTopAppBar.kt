@@ -20,7 +20,7 @@ import com.akjaw.core.common.view.PaddedAlertDialog
 import com.akjaw.core.common.view.pluralStringResource
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.task.list.R
-import com.akjaw.task.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
 
 @Composable
 internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {

@@ -1,4 +1,4 @@
-package com.akjaw.task.list.presentation.selection
+package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import kotlinx.coroutines.flow.Flow

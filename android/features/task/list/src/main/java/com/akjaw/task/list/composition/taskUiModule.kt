@@ -2,17 +2,17 @@
 
 package com.akjaw.task.list.composition
 
-import com.akjaw.task.list.presentation.TaskListViewModel
-import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.task.list.view.TaskListScreenCreator
 import com.akjaw.task.list.view.TaskListScreenCreatorImpl
-import org.koin.androidx.viewmodel.dsl.viewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import org.koin.dsl.module
 
 val taskUiModule = module {
     factory<TaskListScreenCreator> { TaskListScreenCreatorImpl() }
     factory { TaskSelectionTrackerFactory() }
-    viewModel {
+    factory {
+        // TODO create scope?
         TaskListViewModel(get(), get(), get(), get(), get())
     }
 }

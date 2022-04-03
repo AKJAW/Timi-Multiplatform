@@ -1,6 +1,5 @@
 package com.akjaw.task.list.presentation
 
-import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
@@ -8,6 +7,8 @@ import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.dependency.database.TimiDatabase
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -49,7 +50,6 @@ internal class TaskListViewModelTest : KoinComponent {
     private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
     private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var systemUnderTest: TaskListViewModel
-
 
     @BeforeEach
     fun setUp() {

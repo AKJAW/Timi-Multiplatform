@@ -47,14 +47,14 @@ import com.akjaw.core.common.view.theme.taskShape
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
-import com.akjaw.task.list.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.api.model.Task
-import org.koin.androidx.compose.getViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
+import org.koin.androidx.compose.get
 
 @Composable
 internal fun TaskListScreen(
     navController: NavHostController,
-    taskListViewModel: TaskListViewModel = getViewModel(),
+    taskListViewModel: TaskListViewModel = get(),
 ) {
     val tasks = taskListViewModel.tasks.collectAsState(emptyList())
     Scaffold(
