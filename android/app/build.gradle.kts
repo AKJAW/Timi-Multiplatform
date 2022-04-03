@@ -46,10 +46,10 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":features:stopwatch-ui"))
-    implementation(project(":features:task:list"))
-    implementation(project(":features:task:detail"))
-    implementation(project(":features:settings"))
+    implementation(project(":android:features:stopwatch-ui"))
+    implementation(project(":android:features:task:list"))
+    implementation(project(":android:features:task:detail"))
+    implementation(project(":android:features:settings"))
     implementation(project(":kmp:shared"))
     implementation(project(":kmp:core:core-shared"))
 
