@@ -1,16 +1,15 @@
-package com.akjaw.task.list.presentation.selection
+package com.akjaw.timi.kmp.feature.task.dependency.presentation.selection
 
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTracker
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import strikt.api.expectThat
-import strikt.assertions.hasSize
-import strikt.assertions.isEqualTo
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class TaskSelectionTrackerTest {
@@ -23,7 +22,7 @@ internal class TaskSelectionTrackerTest {
     private lateinit var originalFlow: MutableStateFlow<List<Task>>
     private lateinit var systemUnderTest: TaskSelectionTracker
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         originalFlow = MutableStateFlow(emptyList())
         systemUnderTest = TaskSelectionTracker(originalFlow)
@@ -37,7 +36,7 @@ internal class TaskSelectionTrackerTest {
 
         val result = systemUnderTest.tasksWithSelection.first()
         val task = result.first()
-        expectThat(task).isEqualTo(TASK1.copy(isSelected = true))
+        task shouldBe TASK1.copy(isSelected = true)
     }
 
     @Test
@@ -48,7 +47,7 @@ internal class TaskSelectionTrackerTest {
         systemUnderTest.toggleTask(task)
 
         val result = systemUnderTest.tasksWithSelection.first().last()
-        expectThat(result).isEqualTo(TASK2)
+        result shouldBe TASK2
     }
 
     @Test
@@ -58,7 +57,7 @@ internal class TaskSelectionTrackerTest {
         givenTasks(TASK1)
 
         val result = systemUnderTest.tasksWithSelection.first()
-        expectThat(result).hasSize(1)
+        result shouldHaveSize 1
     }
 
     private fun givenTasks(vararg tasks: Task) {

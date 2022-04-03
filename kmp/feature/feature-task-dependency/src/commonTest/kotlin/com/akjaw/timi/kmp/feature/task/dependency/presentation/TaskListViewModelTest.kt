@@ -1,31 +1,29 @@
-package com.akjaw.task.list.presentation
+package com.akjaw.timi.kmp.feature.task.dependency.presentation
 
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.dependency.database.TimiDatabase
+import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
-import strikt.api.expectThat
-import strikt.assertions.isEqualTo
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 // TODO refactor?
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -51,18 +49,14 @@ internal class TaskListViewModelTest : KoinComponent {
     private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var systemUnderTest: TaskListViewModel
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         startKoin {
             modules(
                 databaseModule,
                 taskListModule,
                 module {
-                    single<SqlDriver> {
-                        JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).apply {
-                            TimiDatabase.Schema.create(this)
-                        }
-                    }
+                    single<SqlDriver> { createTestSqlDriver() }
                 }
             )
         }
@@ -75,7 +69,7 @@ internal class TaskListViewModelTest : KoinComponent {
         )
     }
 
-    @AfterEach
+    @AfterTest
     fun tearDown() {
         stopKoin()
     }
@@ -87,7 +81,7 @@ internal class TaskListViewModelTest : KoinComponent {
         systemUnderTest.addTask(TASK2)
 
         val result = systemUnderTest.tasks.first()
-        expectThat(result).isEqualTo(listOf(TASK1, TASK2))
+        result shouldBe listOf(TASK1, TASK2)
     }
 
     @Test
@@ -97,7 +91,7 @@ internal class TaskListViewModelTest : KoinComponent {
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))
 
         val result = systemUnderTest.tasks.first()
-        expectThat(result).isEqualTo(emptyList())
+        result shouldBe emptyList()
     }
 
     private fun givenTasks(vararg task: Task) {
