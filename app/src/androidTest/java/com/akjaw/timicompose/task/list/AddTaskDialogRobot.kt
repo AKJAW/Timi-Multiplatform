@@ -46,7 +46,5 @@ class AddTaskDialogRobot(
     // TODO revise when additional Compose API will be added
     fun cancel() {
         Espresso.pressBack()
-        Espresso.pressBack()
-        Espresso.pressBack()
     }
 }

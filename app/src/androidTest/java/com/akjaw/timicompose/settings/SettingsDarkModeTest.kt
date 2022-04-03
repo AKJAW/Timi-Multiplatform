@@ -1,31 +1,32 @@
 package com.akjaw.timicompose.settings
 
-import android.content.Context
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
 import com.akjaw.settings.R
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
+import com.akjaw.timicompose.allKoinModules
+import com.akjaw.timicompose.composition.testModule
 import com.akjaw.timicompose.createBaseTestRule
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
-@HiltAndroidTest
+@Ignore
 class SettingsDarkModeTest {
 
-    var hiltRule = HiltAndroidRule(this)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
 
-    @get:Rule(order = 0)
-    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
+    @get:Rule
+    val baseRule = createBaseTestRule(
+        composeTestRule,
+        *allKoinModules.toTypedArray(),
+        testModule,
+    )
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var settingsScreenRobot: SettingsScreenRobot
@@ -40,15 +41,6 @@ class SettingsDarkModeTest {
         bottomNavRobot = BottomNavRobot(composeTestRule)
         settingsScreenRobot = SettingsScreenRobot(composeTestRule)
         settingsScreenVerifier = SettingsScreenVerifier(composeTestRule)
-    }
-
-    @After
-    fun tearDown() {
-        val preferencesKey = SharedPreferencesKeys.settings
-        composeTestRule.activity.applicationContext.getSharedPreferences(
-            preferencesKey,
-            Context.MODE_PRIVATE
-        ).edit().clear().commit()
     }
 
     @Test

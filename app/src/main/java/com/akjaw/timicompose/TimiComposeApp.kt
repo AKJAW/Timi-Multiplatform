@@ -1,8 +1,7 @@
 package com.akjaw.timicompose
 
 import android.app.Application
-import android.content.Context
-import co.touchlab.kampkit.kmmModules
+import co.touchlab.kampkit.kmmKoinModules
 import com.akjaw.core.common.composition.androidCoreModule
 import com.akjaw.details.composition.taskDetailsModule
 import com.akjaw.settings.composition.settingsModule
@@ -24,7 +23,7 @@ class TimiComposeApp : Application() {
 }
 
 val allKoinModules: List<Module> = listOf(
-    *kmmModules.toTypedArray(),
+    *kmmKoinModules.toTypedArray(),
     androidCoreModule,
     taskListModule,
     taskDetailsModule,

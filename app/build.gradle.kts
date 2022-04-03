@@ -69,5 +69,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:_")
     androidTestImplementation("com.squareup.sqldelight:android-driver:_")
     androidTestImplementation("com.soywiz.korlibs.klock:klock:_")
+    androidTestImplementation("com.adevinta.android:barista:_")
+    androidTestImplementation("io.insert-koin:koin-test:_")
     debugImplementation("androidx.compose.ui:ui-test-manifest:_")
 }

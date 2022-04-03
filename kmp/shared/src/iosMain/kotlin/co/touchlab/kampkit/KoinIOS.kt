@@ -18,7 +18,7 @@ import org.koin.dsl.module
 
 fun initKoinIos(): KoinApplication = startKoin {
     modules(
-        *kmmModules.toTypedArray(),
+        *kmmKoinModules.toTypedArray(),
         module {
             factory<GetTasks> { FakeGetTasks() }
         }

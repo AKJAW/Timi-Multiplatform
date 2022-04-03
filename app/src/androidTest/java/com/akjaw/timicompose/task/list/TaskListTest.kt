@@ -1,34 +1,33 @@
 package com.akjaw.timicompose.task.list
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.core.common.view.toTaskColor
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier
+import com.akjaw.timicompose.allKoinModules
+import com.akjaw.timicompose.composition.testModule
 import com.akjaw.timicompose.createBaseTestRule
-import com.akjaw.timicompose.utils.clearDatabase
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
+import org.koin.test.KoinTest
+import org.koin.test.inject
 
-@HiltAndroidTest
-class TaskListTest {
+class TaskListTest : KoinTest {
 
-    var hiltRule = HiltAndroidRule(this)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
 
-    @get:Rule(order = 0)
-    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
+    @get:Rule
+    val baseRule = createBaseTestRule(
+        composeTestRule,
+        *allKoinModules.toTypedArray(),
+        testModule,
+    )
 
-    @Inject
-    lateinit var taskEntityQueries: TaskEntityQueries
+    private val taskEntityQueries: TaskEntityQueries by inject()
 
     private lateinit var bottomNavVerifier: BottomNavVerifier
     private lateinit var addTaskDialogRobot: AddTaskDialogRobot
@@ -45,23 +44,18 @@ class TaskListTest {
         taskListScreenVerifier = TaskListScreenVerifier(composeTestRule)
     }
 
-    @After
-    fun tearDown() {
-        taskEntityQueries.clearDatabase()
-    }
-
     @ExperimentalTestApi
     @Test
     fun addedTaskIsPresentInTheList() {
         taskListScreenRobot.clickOnFab()
         addTaskDialogRobot.enterTaskName("Example")
         addTaskDialogRobot.clickColorToggle()
-        addTaskDialogRobot.selectAColorAt(8)
+        addTaskDialogRobot.selectAColorAt(4)
 
         addTaskDialogRobot.confirm()
 
         taskListScreenVerifier.confirmTaskWithNameExists("Example")
-        taskListScreenVerifier.confirmTaskWithNameHasTheCorrectColor("Example", "ff84efd4")
+        taskListScreenVerifier.confirmTaskWithNameHasTheCorrectColor("Example", "ff84a2ef")
     }
 
     @ExperimentalTestApi

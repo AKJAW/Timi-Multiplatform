@@ -1,29 +1,26 @@
 package com.akjaw.timicompose.stopwatch
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.core.common.view.toTaskColor
 import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.domain.model.TaskColor
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavRobot
+import com.akjaw.timicompose.allKoinModules
 import com.akjaw.timicompose.composition.TimestampProviderStub
+import com.akjaw.timicompose.composition.testModule
 import com.akjaw.timicompose.createBaseTestRule
 import com.akjaw.timicompose.task.list.DeleteTaskDialogRobot
 import com.akjaw.timicompose.task.list.TaskListScreenRobot
-import com.akjaw.timicompose.utils.clearDatabase
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
+import org.koin.test.KoinTest
+import org.koin.test.inject
 
-@HiltAndroidTest
-class StopwatchTest {
+class StopwatchTest : KoinTest {
 
     companion object {
         private const val FIRST_TASK_NAME = "Existing"
@@ -32,17 +29,18 @@ class StopwatchTest {
         private val SECOND_TASK_COLOR = Color.Blue.toTaskColor()
     }
 
-    var hiltRule = HiltAndroidRule(this)
     val composeTestRule: ActivityComposeTestRule = createAndroidComposeRule()
 
-    @get:Rule(order = 0)
-    val baseRule = createBaseTestRule(hiltRule, composeTestRule)
+    @get:Rule
+    val baseRule = createBaseTestRule(
+        composeTestRule,
+        *allKoinModules.toTypedArray(),
+        testModule,
+    )
 
-    @Inject
-    lateinit var taskEntityQueries: TaskEntityQueries
+    private val taskEntityQueries: TaskEntityQueries by inject()
 
-    @Inject
-    lateinit var timestampProviderStub: TimestampProviderStub
+    private val timestampProviderStub: TimestampProviderStub by inject()
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var stopwatchScreenRobot: StopwatchScreenRobot
@@ -60,11 +58,6 @@ class StopwatchTest {
 
         addTask(name = FIRST_TASK_NAME, color = FIRST_TASK_COLOR)
         addTask(name = SECOND_TASK_NAME, color = SECOND_TASK_COLOR)
-    }
-
-    @After
-    fun tearDown() {
-        taskEntityQueries.clearDatabase()
     }
 
     @Test

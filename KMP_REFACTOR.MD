@@ -1,6 +1,7 @@
 - [x] Add KMP module
 - [x] Add iOS Project
 - [x] Add Basic KMP logic
+- [x] Add refresh versions
 - [x] Move stopwatch module to KMP
 - [x] Refactor to use new coroutine test
 - [x] Clean up internal stopwatch classes
@@ -8,13 +9,13 @@
 - [x] Remove old poc classes
 - [x] Add abstraction for Dispatcher Provider
 - [x] Fix UI tests compilation
-- [ ] Replace Hilt with Koin
-- [ ] Add saved state handling to stopwatch?
+- [x] Replace Hilt with Koin
+- [ ] Fix app UI tests
 - [ ] Move Android modules to android folder
-- [ ] Update GitHub Actions
-- [ ] Add refresh versions
-- [ ] Clean up gradle dependencies
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
+- [ ] Update GitHub Actions
+- [ ] Add saved state handling to stopwatch?
+- [ ] Clean up gradle dependencies
 - [ ] Extract Config / Precompiled plugin for gradle modules
 - [ ] Clean up internal implementation of stopwatch????
