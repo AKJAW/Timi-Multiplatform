@@ -1,8 +1,8 @@
 package com.akjaw.task.list
 
-import com.akjaw.task.TaskEntity
-import com.akjaw.task.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntity
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat

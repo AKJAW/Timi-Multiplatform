@@ -1,9 +1,10 @@
 package com.akjaw.task.list.data
 
-import com.akjaw.task.TaskEntityQueries
 import com.akjaw.task.list.InMemoryTaskEntityQueriesFactory
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.dependency.list.domain.GetTasksFromDatabase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking

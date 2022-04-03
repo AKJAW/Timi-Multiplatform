@@ -41,6 +41,7 @@ kotlin {
                 api(project(":kmp:core:core-shared"))
                 api(project(":kmp:feature:feature-stopwatch"))
                 api(project(":kmp:feature:feature-task-api"))
+                implementation(project(":kmp:feature:feature-task-dependency"))
                 implementation("io.insert-koin:koin-core:_")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
                 implementation("co.touchlab:stately-common:_")

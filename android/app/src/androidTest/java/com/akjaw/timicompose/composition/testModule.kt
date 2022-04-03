@@ -1,9 +1,9 @@
 package com.akjaw.timicompose.composition
 
-import com.akjaw.task.TaskEntityQueries
-import com.akjaw.task.list.Database
-import com.akjaw.task.list.data.taskColorAdapter
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.dependency.database.TimiDatabase
+import com.akjaw.timi.kmp.feature.task.dependency.list.data.taskColorAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import org.koin.android.ext.koin.androidContext
@@ -13,12 +13,12 @@ val testModule = module {
     single { TimestampProviderStub() }
     single<TimestampProvider> { get<TimestampProviderStub>() }
     // TODO datbase in memory?
-    single<SqlDriver> { AndroidSqliteDriver(Database.Schema, androidContext(), "test-task.db") }
-    single<Database> {
-        Database(
+    single<SqlDriver> { AndroidSqliteDriver(TimiDatabase.Schema, androidContext(), "test-task.db") }
+    single<TimiDatabase> {
+        TimiDatabase(
             driver = get(),
             TaskEntityAdapter = taskColorAdapter
         )
     }
-    single<TaskEntityQueries> { get<Database>().taskEntityQueries }
+    single<TaskEntityQueries> { get<TimiDatabase>().taskEntityQueries }
 }

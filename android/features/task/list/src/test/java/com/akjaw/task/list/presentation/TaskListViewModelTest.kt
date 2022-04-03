@@ -1,13 +1,13 @@
 package com.akjaw.task.list.presentation
 
-import com.akjaw.task.TaskEntityQueries
-import com.akjaw.task.list.Database
 import com.akjaw.task.list.DatabaseInteractorFactory
-import com.akjaw.task.list.data.taskColorAdapter
 import com.akjaw.task.list.presentation.selection.TaskSelectionTrackerFactory
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.dependency.database.TimiDatabase
+import com.akjaw.timi.kmp.feature.task.dependency.list.data.taskColorAdapter
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -44,9 +44,12 @@ internal class TaskListViewModelTest {
     @BeforeEach
     fun setUp() {
         val inMemorySqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).apply {
-            Database.Schema.create(this)
+            TimiDatabase.Schema.create(this)
         }
-        taskEntityQueries = Database(inMemorySqlDriver, taskColorAdapter).taskEntityQueries
+        taskEntityQueries = TimiDatabase(
+            inMemorySqlDriver,
+            taskColorAdapter
+        ).taskEntityQueries
         val factory = DatabaseInteractorFactory(taskEntityQueries)
         systemUnderTest = TaskListViewModel(
             getTasks = factory.createGetTasks(),

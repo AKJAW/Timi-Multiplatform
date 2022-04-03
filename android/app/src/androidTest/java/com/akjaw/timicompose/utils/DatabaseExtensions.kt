@@ -1,6 +1,6 @@
 package com.akjaw.timicompose.utils
 
-import com.akjaw.task.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 
 fun TaskEntityQueries.clearDatabase() {
     transaction {

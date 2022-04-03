@@ -1,18 +1,21 @@
 package com.akjaw.task.list
 
-import com.akjaw.task.TaskEntityQueries
-import com.akjaw.task.list.data.AddTaskToDatabase
-import com.akjaw.task.list.data.DeleteTasksFromDatabase
-import com.akjaw.task.list.data.GetTasksFromDatabase
 import com.akjaw.timi.kmp.feature.task.api.AddTask
 import com.akjaw.timi.kmp.feature.task.api.DeleteTasks
 import com.akjaw.timi.kmp.feature.task.api.GetTasks
+import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.task.dependency.list.domain.AddTaskToDatabase
+import com.akjaw.timi.kmp.feature.task.dependency.list.domain.DeleteTasksFromDatabase
+import com.akjaw.timi.kmp.feature.task.dependency.list.domain.GetTasksFromDatabase
 
 class DatabaseInteractorFactory(private val queries: TaskEntityQueries) {
 
-    fun createGetTasks(): GetTasks = GetTasksFromDatabase(queries)
+    fun createGetTasks(): GetTasks =
+        GetTasksFromDatabase(queries)
 
-    fun createAddTask(): AddTask = AddTaskToDatabase(queries)
+    fun createAddTask(): AddTask =
+        AddTaskToDatabase(queries)
 
-    fun createDeleteTasks(): DeleteTasks = DeleteTasksFromDatabase(queries)
+    fun createDeleteTasks(): DeleteTasks =
+        DeleteTasksFromDatabase(queries)
 }
