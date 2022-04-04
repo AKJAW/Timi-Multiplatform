@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("com.rickclephas.kmp.nativecoroutines")
+    id("com.squareup.sqldelight")
 }
 
 android {
