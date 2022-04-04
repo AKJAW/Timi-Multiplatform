@@ -18,6 +18,7 @@
 - [x] Move task list presentation tests to kmp
 - [x] Move task list module to kmp
 - [ ] Create iOS UI for task list
+- [ ] Clean up feature-task-api packaging
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
 - [ ] Update GitHub Actions

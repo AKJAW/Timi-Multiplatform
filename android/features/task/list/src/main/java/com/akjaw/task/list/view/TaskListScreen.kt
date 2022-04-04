@@ -48,7 +48,7 @@ import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
 import com.akjaw.timi.kmp.feature.task.api.model.Task
-import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import org.koin.androidx.compose.get
 
 @Composable

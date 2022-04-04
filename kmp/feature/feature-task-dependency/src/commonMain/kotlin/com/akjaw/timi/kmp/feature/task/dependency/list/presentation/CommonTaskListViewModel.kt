@@ -5,6 +5,7 @@ import com.akjaw.timi.kmp.feature.task.api.AddTask
 import com.akjaw.timi.kmp.feature.task.api.DeleteTasks
 import com.akjaw.timi.kmp.feature.task.api.GetTasks
 import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import kotlinx.coroutines.CoroutineScope
@@ -12,31 +13,31 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-// TODO make internal
-class TaskListViewModel(
+internal class CommonTaskListViewModel(
     private val getTasks: GetTasks,
     private val deleteTasks: DeleteTasks,
     private val addTask: AddTask,
     private val dispatcherProvider: DispatcherProvider,
     taskSelectionTrackerFactory: TaskSelectionTrackerFactory,
-) {
+) : TaskListViewModel {
 
     // TODO extract?
     private val viewModelScope = CoroutineScope(SupervisorJob() + dispatcherProvider.main)
 
     private val selectionTracker: TaskSelectionTracker =
         taskSelectionTrackerFactory.create(originalTaskFlow = getTasks.execute())
-    val tasks: Flow<List<Task>> = selectionTracker.tasksWithSelection
+    override val tasks: Flow<List<Task>> = selectionTracker.tasksWithSelection
 
-    fun toggleTask(toggledTask: Task) {
+    override fun toggleTask(toggledTask: Task) {
         selectionTracker.toggleTask(toggledTask)
     }
 
-    fun deleteTasks(tasksToBeDeleted: List<Task>) = viewModelScope.launch(dispatcherProvider.io) {
-        deleteTasks.execute(tasksToBeDeleted)
-    }
+    override fun deleteTasks(tasksToBeDeleted: List<Task>) =
+        viewModelScope.launch(dispatcherProvider.io) {
+            deleteTasks.execute(tasksToBeDeleted)
+        }
 
-    fun addTask(taskToBeAdded: Task) = viewModelScope.launch(dispatcherProvider.io) {
+    override fun addTask(taskToBeAdded: Task) = viewModelScope.launch(dispatcherProvider.io) {
         addTask.execute(taskToBeAdded)
     }
 }
