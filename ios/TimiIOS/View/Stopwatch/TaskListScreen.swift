@@ -32,8 +32,14 @@ struct TaskListScreen: View {
     var body: some View {
         NavigationView {
             List(publisher.tasks, id: \.id) { task in
-                Text(task.name)
+                TaskListItem(
+                    task: task,
+                    onClick: {
+                        publisher.viewModel.toggleTask(toggledTask: task)
+                    }
+                )
             }
+            .listStyle(GroupedListStyle())
             .toolbar {
                 ZStack {
                     Image(systemName: "plus")
@@ -54,6 +60,39 @@ struct TaskListScreen: View {
                     )
                 }
             }
+        }
+    }
+}
+
+
+struct TaskListItem: View {
+    
+    let task: Task
+    let onClick: () -> Void
+    
+    var body: some View {
+        HStack {
+            Text(task.name)
+                .padding(8)
+                .frame(maxWidth: .infinity)
+            Spacer()
+            let checkmarkBackground = task.isSelected ? task.backgroundColor.toSwiftColor() : Color.white
+            let checkmarkColor = task.isSelected ? Color.black : Color.black.opacity(0.1)
+            Image(systemName: "checkmark")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: .infinity)
+                .frame(width: 15)
+                .padding([.vertical], 8)
+                .padding([.horizontal], 16)
+                .background(checkmarkBackground)
+                .foregroundColor(checkmarkColor)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+        .background(task.backgroundColor.toSwiftColor())
+        .cornerRadius(8)
+        .onTapGesture {
+            onClick()
         }
     }
 }
