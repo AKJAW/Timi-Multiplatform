@@ -25,6 +25,7 @@ class TaskListPublisher: ObservableObject {
 
 struct TaskListScreen: View {
     
+    @State private var isDialogShown = false
     @State private var count = 0
     
     @ObservedObject private var publisher = TaskListPublisher()
@@ -39,27 +40,31 @@ struct TaskListScreen: View {
                     }
                 )
             }
-            .listStyle(GroupedListStyle())
+            .listStyle(PlainListStyle())
+            .addTaskDialog(
+                isShowing: $isDialogShown,
+                addTask: { taskName, taskColor in
+                    publisher.viewModel.addTask(
+                        taskToBeAdded: Task(
+                            id: 0,
+                            name: taskName,
+                            backgroundColor: taskColor,
+                            isSelected: false
+                        )
+                    )
+                }
+            )
             .toolbar {
                 ZStack {
                     Image(systemName: "plus")
                 }
                 .onTapGesture {
                     count = self.count + 1
-                    publisher.viewModel.addTask(
-                        taskToBeAdded: Task(
-                            id: 0,
-                            name: "Task \(count)",
-                            backgroundColor: TaskColor(
-                                red: Float.random(in: 0..<1),
-                                green: Float.random(in: 0..<1),
-                                blue: Float.random(in: 0..<1)
-                            ),
-                            isSelected: false
-                        )
-                    )
+                    isDialogShown = true
                 }
             }
+            .navigationTitle(Text("Tasks"))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
