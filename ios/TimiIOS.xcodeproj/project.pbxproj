@@ -62,9 +62,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AE2F89EF27FDFE38003CF168 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		AEE5961927F039BC000B7648 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE2F89EF27FDFE38003CF168 /* Task */,
 				AEE5961C27F03B1E000B7648 /* Stopwatch */,
 				AE12A1BC27FB64F00020C35A /* ContentView.swift */,
 			);
@@ -75,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */,
-				AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */,
 			);
 			path = Stopwatch;
 			sourceTree = "<group>";
