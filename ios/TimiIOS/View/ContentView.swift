@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            Text("Tasks")
+            TaskListScreen()
                 .tabItem {
                     Label("Tasks", systemImage: "list.dash")
                 }

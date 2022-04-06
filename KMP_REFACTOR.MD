@@ -17,6 +17,7 @@
 - [x] Move task list presentation to kmp
 - [x] Move task list presentation tests to kmp
 - [x] Move task list module to kmp
+- [x] Add kotlin debugging and source files
 - [ ] Create iOS UI for task list
 - [ ] Clean up feature-task-api packaging
 - [ ] Clean up package names for old modules
