@@ -9,4 +9,3 @@ import org.koin.dsl.module
 val taskUiModule = module {
     factory<TaskListScreenCreator> { TaskListScreenCreatorImpl() }
 }
-

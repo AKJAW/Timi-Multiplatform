@@ -6,4 +6,3 @@ data class Task(
     val backgroundColor: TaskColor = TaskColor(),
     val isSelected: Boolean = false,
 )
-

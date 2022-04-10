@@ -35,7 +35,6 @@ internal class StopwatchListOrchestratorTest {
         )
     }
 
-
     private val fakeTimestampProvider = FakeTimestampProvider()
     private val elapsedTimeCalculator = ElapsedTimeCalculator(fakeTimestampProvider)
     private val stopwatchStateHolderFactory = StopwatchStateHolderFactory(

@@ -35,7 +35,7 @@ internal class StopwatchListOrchestrator(
             while (isActive) {
                 stopwatchStateHolders
                 val newValues = stopwatchStateHolders
-                        // TODO bring back sorting / order the items
+                    // TODO bring back sorting / order the items
 //                    .toMap()
 //                    .toSortedMap(compareBy { task -> task.id })
                     .map { (task, stateHolder) ->

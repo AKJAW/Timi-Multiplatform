@@ -71,4 +71,3 @@ internal class StopwatchStateHolderTest {
         result shouldBe "00:59:999"
     }
 }
-

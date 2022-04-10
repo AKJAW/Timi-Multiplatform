@@ -20,7 +20,7 @@ jobs:
 
       - name: Run ktlint
         run: |
-          ktlint "\!src/**/generated/**" --reporter=html,output=build/reports/ktlint-results.html
+          ktlint --reporter=html,output=build/reports/ktlint-results.html
         continue-on-error: false
 
       - name: Upload ktlint results

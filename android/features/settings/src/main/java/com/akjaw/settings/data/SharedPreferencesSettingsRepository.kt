@@ -3,7 +3,7 @@ package com.akjaw.settings.data
 import android.content.SharedPreferences
 import com.akjaw.settings.domain.BooleanSettingsOption
 
-internal class SharedPreferencesSettingsRepository (
+internal class SharedPreferencesSettingsRepository(
     private val sharedPreferences: SharedPreferences
 ) : SettingsRepository {
 

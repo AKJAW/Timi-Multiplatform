@@ -5,7 +5,7 @@ import com.akjaw.settings.data.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-internal class SettingsChanger (
+internal class SettingsChanger(
     private val settingsRepository: SettingsRepository,
     initialSettingsOptionsProvider: InitialSettingsOptionsProvider,
 ) {

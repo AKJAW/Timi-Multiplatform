@@ -23,7 +23,7 @@ import org.koin.core.component.inject
 
 class MainActivity : ComponentActivity(), KoinComponent {
 
-    private val taskListScreenCreator: TaskListScreenCreator  by inject()
+    private val taskListScreenCreator: TaskListScreenCreator by inject()
 
     private val settingsScreenCreator: SettingsScreenCreator by inject()
 

@@ -3,7 +3,7 @@ package com.akjaw.settings.data
 import android.content.Context
 import android.content.res.Configuration
 
-class ResourcesSystemDarkModeProvider (
+class ResourcesSystemDarkModeProvider(
     private val applicationContext: Context
 ) : SystemDarkModeProvider {
 

@@ -14,9 +14,9 @@ internal class GetTasksFromDatabase(
 
     override fun execute(): Flow<List<Task>> =
         taskEntityQueries.selectAllTasks { id: Long,
-                                           position: Long,
-                                           name: String,
-                                           color: TaskColor ->
+            position: Long,
+            name: String,
+            color: TaskColor ->
             Task(
                 id = id,
                 name = name,
