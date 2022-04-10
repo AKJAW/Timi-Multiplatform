@@ -1,7 +1,7 @@
 package com.akjaw.timicompose
 
 import android.app.Application
-import co.touchlab.kampkit.kmmKoinModules
+import com.akjaw.common.shared.kmmKoinModules
 import com.akjaw.core.common.composition.androidCoreModule
 import com.akjaw.details.composition.taskDetailsModule
 import com.akjaw.settings.composition.settingsModule

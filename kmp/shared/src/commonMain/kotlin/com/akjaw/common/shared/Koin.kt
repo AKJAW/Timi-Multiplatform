@@ -1,4 +1,4 @@
-package co.touchlab.kampkit
+package com.akjaw.common.shared
 
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
