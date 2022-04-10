@@ -1,6 +1,6 @@
 name: Tests
 
-on: [push]
+on: [ push ]
 
 jobs:
   Android:
@@ -17,7 +17,7 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Test
         with:
-          arguments: clean testDebug -p android/
+          arguments: :android:app:assemble
 
   KMP:
     runs-on: macos-latest
@@ -33,4 +33,25 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Test
         with:
-          arguments: clean check -p kmp/
+          arguments: :kmp:shared:assemble
+
+  iOS:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - name: Build
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          workspace: ios/TimiIOS.xcworkspace
+          scheme: TimiIOS
+          destination: name=iPhone 8
+          sdk: iphoneos
+          configuration: Debug
+          action: build
