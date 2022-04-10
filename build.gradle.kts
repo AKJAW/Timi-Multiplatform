@@ -15,6 +15,10 @@ buildscript {
 }
 
 allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     tasks.withType<Test> {
         if (project.path.contains("kmp").not()) {
