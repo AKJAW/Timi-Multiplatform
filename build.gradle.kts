@@ -1,4 +1,3 @@
-
 buildscript {
     repositories {
         google()
@@ -10,7 +9,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
         classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:_")
         classpath(Square.sqlDelight.gradlePlugin)
-//        classpath("org.jlleitschuh.gradle:ktlint-gradle:_")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:_")
     }
 }
 
@@ -19,7 +18,7 @@ allprojects {
         google()
         mavenCentral()
     }
-//    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     tasks.withType<Test> {
         if (project.path.contains("kmp").not()) {
             useJUnitPlatform()
@@ -33,11 +32,10 @@ allprojects {
             freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         }
     }
-}
-
-subprojects {
-    repositories {
-        mavenCentral()
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        filter {
+            exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
+        }
     }
 }
 

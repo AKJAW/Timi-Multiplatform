@@ -180,7 +180,7 @@
 			);
 			mainGroup = F1465EF423AA94BF0055F7C3;
 			packageReferences = (
-				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */,
 			);
 			productRefGroup = F1465EFE23AA94BF0055F7C3 /* Products */;
 			projectDirPath = "";
@@ -211,11 +211,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"",
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"",
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -500,7 +500,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
 			requirement = {
@@ -513,12 +513,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
 			productName = KMPNativeCoroutinesCombine;
 		};
 		AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
 			productName = KMPNativeCoroutinesCore;
 		};
 /* End XCSwiftPackageProductDependency section */
