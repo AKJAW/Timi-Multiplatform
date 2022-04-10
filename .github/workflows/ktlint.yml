@@ -6,8 +6,27 @@ jobs:
   check:
     runs-on: ubuntu-latest
 
+    name: Run ktlint on the project
     steps:
       - uses: actions/checkout@v2
-#      - uses: eskatos/gradle-command-action@v1
-#        with:
-#          arguments: ktlintCheck
+
+      - run: |
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.45.2/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - name: Run ktlint
+        run: |
+          ktlint "\!src/**/generated/**" --reporter=html,output=build/reports/ktlint-results.html
+        continue-on-error: false
+
+      - name: Upload ktlint results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: "ktlint-results"
+          path: "build/reports/ktlint-results.html"
+          if-no-files-found: ignore
