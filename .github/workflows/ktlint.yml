@@ -1,6 +1,6 @@
 name: Linting check
 
-on: [push]
+on: [ push ]
 
 jobs:
   check:
@@ -8,6 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: eskatos/gradle-command-action@v1
-        with:
-          arguments: ktlintCheck
+#      - uses: eskatos/gradle-command-action@v1
+#        with:
+#          arguments: ktlintCheck

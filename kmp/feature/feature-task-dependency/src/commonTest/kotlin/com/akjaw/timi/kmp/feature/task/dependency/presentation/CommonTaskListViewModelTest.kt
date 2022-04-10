@@ -7,7 +7,7 @@ import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
-import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.CommonTaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.matchers.shouldBe
@@ -27,7 +27,7 @@ import kotlin.test.Test
 
 // TODO refactor?
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class TaskListViewModelTest : KoinComponent {
+internal class CommonTaskListViewModelTest : KoinComponent {
 
     companion object {
         val TASK1 = Task(
@@ -47,7 +47,7 @@ internal class TaskListViewModelTest : KoinComponent {
     private val taskEntityQueries: TaskEntityQueries by inject()
     private val taskSelectionTrackerFactory = TaskSelectionTrackerFactory()
     private val testCoroutineDispatcher = UnconfinedTestDispatcher()
-    private lateinit var systemUnderTest: TaskListViewModel
+    private lateinit var systemUnderTest: CommonTaskListViewModel
 
     @BeforeTest
     fun setUp() {
@@ -60,7 +60,7 @@ internal class TaskListViewModelTest : KoinComponent {
                 }
             )
         }
-        systemUnderTest = TaskListViewModel(
+        systemUnderTest = CommonTaskListViewModel(
             getTasks = get(),
             deleteTasks = get(),
             addTask = get(),
