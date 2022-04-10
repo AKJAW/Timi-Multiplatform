@@ -10,6 +10,7 @@ import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModul
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
+// TODO rename package
 val kmmKoinModules: List<Module> = listOf(
     module {
         // platformLogWriter() is a relatively simple config option, useful for local debugging. For production

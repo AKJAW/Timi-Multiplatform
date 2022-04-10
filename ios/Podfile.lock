@@ -3,7 +3,7 @@ PODS:
     - KMPNativeCoroutinesCore (= 0.11.3)
   - KMPNativeCoroutinesCore (0.11.3)
   - shared (1.0)
-  - SwiftLint (0.41.0)
+  - SwiftLint (0.46.5)
 
 DEPENDENCIES:
   - KMPNativeCoroutinesCombine
@@ -24,7 +24,7 @@ SPEC CHECKSUMS:
   KMPNativeCoroutinesCombine: eb605c5d8315a2f3d046767c3b733887009cc5de
   KMPNativeCoroutinesCore: 28d42a3a801ce4d5be75e01a7f227462c529a127
   shared: e27df6fd96830fbc762818c4daa52dc0f6c63bfe
-  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
+  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
 
 PODFILE CHECKSUM: 798f387499526872bc403f352ce3b79511dd8f28
 
