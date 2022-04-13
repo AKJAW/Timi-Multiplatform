@@ -51,6 +51,8 @@ struct AddTaskDialog: ViewModifier {
             taskName,
             selectedColor
         )
+        taskName = ""
+        selectedColor = TaskColor(red: 255, green: 255, blue: 255)
     }
 }
 
