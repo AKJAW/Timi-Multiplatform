@@ -6,6 +6,7 @@ struct AddTaskDialog: ViewModifier {
     @Binding var isShowing: Bool
     var addTask: (String, TaskColor) -> Void
     @State private var taskName: String = ""
+    @State private var selectedColor: TaskColor = TaskColor(red: 255, green: 255, blue: 255)
     
     init(isShowing: Binding<Bool>, addTask: @escaping (String, TaskColor) -> Void) {
         _isShowing = isShowing
@@ -21,12 +22,15 @@ struct AddTaskDialog: ViewModifier {
                     .onTapGesture {
                         isShowing = false
                     }
-                VStack {
+                VStack(spacing: 16) {
                     TextField(
                         "Task name",
                         text: $taskName
                     )
                         .onSubmit { onSubmit() }
+                    ColorPicker { color in
+                        selectedColor = color
+                    }
                     HStack {
                         Button("Add", action: { onSubmit() })
                     }
@@ -34,7 +38,7 @@ struct AddTaskDialog: ViewModifier {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.white))
+                        .foregroundColor(selectedColor.toSwiftColor()))
                 .onTapGesture {}
                 .padding(40)
             }
@@ -46,12 +50,30 @@ struct AddTaskDialog: ViewModifier {
         isShowing = false
         addTask(
             taskName,
-            TaskColor(
-                red: Float.random(in: 0..<1),
-                green: Float.random(in: 0..<1),
-                blue: Float.random(in: 0..<1)
-            )
+            selectedColor
         )
+    }
+}
+
+
+struct ColorPicker: View {
+    
+    var onColorClick: (TaskColor) -> Void
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHStack(spacing: 0) {
+                ForEach(AvailableColorsKt.availableTaskColors, id: \.self) { taskColor in
+                    Text("")
+                        .frame(width: 50, height: 50)
+                        .background(taskColor.toSwiftColor())
+                        .border(.white, width: 1)
+                        .onTapGesture {
+                            onColorClick(taskColor)
+                        }
+                }
+            }
+        }.frame(height: 50)
     }
 }
 
