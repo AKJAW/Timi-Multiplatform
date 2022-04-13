@@ -46,11 +46,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.core.common.view.theme.taskColors
 import com.akjaw.core.common.view.theme.taskTextColorFor
+import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
 import com.akjaw.timi.kmp.feature.task.api.model.Task
 import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.model.availableTaskColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -234,7 +235,7 @@ private fun ColorPicker(
 ) {
 //    if (isColorPickerShown) {
     ColorPicker(
-        colors = taskColors,
+        colors = availableTaskColorsCompose,
         onColorClicked = { targetColor ->
             // Two parallel animations don't work together so well
             composableScope.launch {
@@ -269,11 +270,14 @@ private fun ColorPicker(colors: List<Color>, onColorClicked: (Color) -> Unit) {
     }
 }
 
+private val availableTaskColorsCompose =
+    availableTaskColors.map { it.toComposeColor() }
+
 @Preview
 @Composable
 private fun ColorPickerPreview() {
     TimiComposeTheme {
-        ColorPicker(colors = taskColors, onColorClicked = {})
+        ColorPicker(colors = availableTaskColorsCompose, onColorClicked = {})
     }
 }
 
@@ -281,7 +285,7 @@ private fun ColorPickerPreview() {
 @Composable
 private fun DarkColorPickerPreview() {
     TimiComposeTheme(darkTheme = true) {
-        ColorPicker(colors = taskColors, onColorClicked = {})
+        ColorPicker(colors = availableTaskColorsCompose, onColorClicked = {})
     }
 }
 
