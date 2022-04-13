@@ -77,12 +77,14 @@ struct TaskListItem: View {
     
     var body: some View {
         HStack {
+            let fontColor = accessibleFontColor(taskColor: task.backgroundColor)
             Text(task.name)
                 .padding(8)
                 .frame(maxWidth: .infinity)
+                .foregroundColor(fontColor)
             Spacer()
             let checkmarkBackground = task.isSelected ? task.backgroundColor.toSwiftColor() : Color.white
-            let checkmarkColor = task.isSelected ? Color.black : Color.black.opacity(0.1)
+            let checkmarkColor = task.isSelected ? fontColor : Color.black.opacity(0.1)
             Image(systemName: "checkmark")
                 .resizable()
                 .scaledToFit()

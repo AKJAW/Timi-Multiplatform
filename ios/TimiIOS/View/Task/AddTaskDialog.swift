@@ -17,7 +17,6 @@ struct AddTaskDialog: ViewModifier {
         ZStack {
             content
             if isShowing {
-                // the semi-transparent overlay
                 Rectangle().foregroundColor(Color.black.opacity(0.6))
                     .onTapGesture {
                         isShowing = false

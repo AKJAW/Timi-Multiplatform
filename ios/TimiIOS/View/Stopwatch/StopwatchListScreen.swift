@@ -130,13 +130,6 @@ struct StopwatchAction: View {
     }
 }
 
-extension TaskColor {
-    func toSwiftColor() -> Color {
-        return Color(red: Double(self.red), green: Double(self.green), blue: Double(self.blue))
-    }
-}
-
-
 struct StopwatchListScreen_Previews: PreviewProvider {
     static var previews: some View {
         StopwatchListScreen()

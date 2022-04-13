@@ -19,6 +19,7 @@
 - [x] Move task list module to kmp
 - [x] Add kotlin debugging and source files
 - [x] Move available task colors to KMM
+- [x] Add white text for dark color
 - [ ] Create iOS UI for task list
 - [ ] Clean up feature-task-api packaging
 - [ ] Clean up package names for old modules
