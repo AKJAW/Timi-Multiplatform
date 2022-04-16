@@ -9,13 +9,13 @@ import androidx.compose.material.TopAppBar
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.akjaw.settings.view.SettingsScreenCreator
 import com.akjaw.timi.android.core.domain.ActivityInitializerHolder
 import com.akjaw.timi.android.core.presentation.BottomBarScreen
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.NavigationHolder
 import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreator
 import com.akjaw.timi.android.stopwatch.ui.StopwatchScreen
 import com.akjaw.timi.android.task.list.ui.view.TaskListScreenCreator
 import org.koin.core.component.KoinComponent
