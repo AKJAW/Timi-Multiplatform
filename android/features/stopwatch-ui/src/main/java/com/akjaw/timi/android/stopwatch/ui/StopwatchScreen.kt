@@ -22,7 +22,7 @@ import com.akjaw.core.common.presentation.TimiBottomBar
 import com.akjaw.core.common.view.tasksPreview
 import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.timi.kmp.feature.stopwatch.presentation.StopwatchViewModel
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import org.koin.androidx.compose.get
 
 @Composable

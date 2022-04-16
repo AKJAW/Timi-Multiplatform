@@ -49,9 +49,9 @@ import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.core.common.view.theme.taskTextColorFor
 import com.akjaw.core.common.view.toComposeColor
 import com.akjaw.task.list.R
-import com.akjaw.timi.kmp.feature.task.api.model.Task
-import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
-import com.akjaw.timi.kmp.feature.task.api.model.availableTaskColors
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.presentation.availableTaskColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

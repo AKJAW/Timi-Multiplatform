@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine

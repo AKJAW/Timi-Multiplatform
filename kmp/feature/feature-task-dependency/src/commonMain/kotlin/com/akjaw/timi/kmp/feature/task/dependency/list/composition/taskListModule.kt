@@ -1,8 +1,8 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.composition
 
-import com.akjaw.timi.kmp.feature.task.api.AddTask
-import com.akjaw.timi.kmp.feature.task.api.DeleteTasks
-import com.akjaw.timi.kmp.feature.task.api.GetTasks
+import com.akjaw.timi.kmp.feature.task.api.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.api.domain.DeleteTasks
+import com.akjaw.timi.kmp.feature.task.api.domain.GetTasks
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.domain.AddTaskToDatabase
 import com.akjaw.timi.kmp.feature.task.dependency.list.domain.DeleteTasksFromDatabase

@@ -18,13 +18,14 @@
 - [x] Move task list presentation tests to kmp
 - [x] Move task list module to kmp
 - [x] Add kotlin debugging and source files
+- [x] Update GitHub Actions
 - [x] Move available task colors to KMM
 - [x] Add white text for dark color
-- [ ] Create iOS UI for task list
-- [ ] Clean up feature-task-api packaging
+- [x] Create iOS UI for task list
+- [x] Clean up feature-task-api packaging
+- [ ] Clean up old module names
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
-- [ ] Update GitHub Actions
 - [ ] Add saved state handling to stopwatch?
 - [ ] Clean up gradle dependencies
 - [ ] Extract Config / Precompiled plugin for gradle modules

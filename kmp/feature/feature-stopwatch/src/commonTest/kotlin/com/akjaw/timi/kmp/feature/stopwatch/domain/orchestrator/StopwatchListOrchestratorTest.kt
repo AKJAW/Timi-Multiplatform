@@ -6,7 +6,7 @@ import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchStateHolderFactory
 import com.akjaw.timi.kmp.feature.stopwatch.domain.helpers.FakeTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.maps.shouldBeEmpty
 import io.kotest.matchers.maps.shouldHaveSize

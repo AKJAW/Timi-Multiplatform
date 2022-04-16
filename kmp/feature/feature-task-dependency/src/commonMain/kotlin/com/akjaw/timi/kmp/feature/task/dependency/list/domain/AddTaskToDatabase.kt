@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
-import com.akjaw.timi.kmp.feature.task.api.AddTask
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 
 internal class AddTaskToDatabase(

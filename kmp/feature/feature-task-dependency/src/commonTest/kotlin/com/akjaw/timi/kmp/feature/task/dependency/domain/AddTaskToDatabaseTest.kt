@@ -1,8 +1,8 @@
 package com.akjaw.timi.kmp.feature.task.dependency.domain
 
-import com.akjaw.timi.kmp.feature.task.api.AddTask
-import com.akjaw.timi.kmp.feature.task.api.model.Task
-import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntity
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries

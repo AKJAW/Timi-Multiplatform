@@ -1,10 +1,10 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation
 
 import com.akjaw.timi.kmp.core.shared.coroutines.DispatcherProvider
-import com.akjaw.timi.kmp.feature.task.api.AddTask
-import com.akjaw.timi.kmp.feature.task.api.DeleteTasks
-import com.akjaw.timi.kmp.feature.task.api.GetTasks
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.api.domain.DeleteTasks
+import com.akjaw.timi.kmp.feature.task.api.domain.GetTasks
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory

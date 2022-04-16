@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.database
 
-import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.matchers.collections.shouldBeEmpty

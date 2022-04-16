@@ -1,8 +1,8 @@
 package com.akjaw.timi.kmp.feature.task.dependency.presentation
 
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
-import com.akjaw.timi.kmp.feature.task.api.model.Task
-import com.akjaw.timi.kmp.feature.task.api.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver

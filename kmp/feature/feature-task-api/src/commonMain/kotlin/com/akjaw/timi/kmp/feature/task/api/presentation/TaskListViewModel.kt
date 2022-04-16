@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.api.presentation
 
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 

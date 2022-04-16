@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain
 
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
-import com.akjaw.timi.kmp.feature.task.api.model.Task
+import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
