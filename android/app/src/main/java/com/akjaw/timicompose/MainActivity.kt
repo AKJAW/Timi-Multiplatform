@@ -16,7 +16,7 @@ import com.akjaw.timi.android.core.view.NavigationHolder
 import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreator
-import com.akjaw.timi.android.stopwatch.ui.StopwatchScreen
+import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
 import com.akjaw.timi.android.task.list.ui.view.TaskListScreenCreator
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

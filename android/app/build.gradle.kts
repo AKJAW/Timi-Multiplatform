@@ -49,7 +49,7 @@ android {
 
 dependencies {
     implementation(project(":android:android-core"))
-    implementation(project(":android:feature:stopwatch-ui"))
+    implementation(project(":android:feature:feature-stopwatch-ui"))
     implementation(project(":android:feature:feature-task-list-ui"))
     implementation(project(":android:feature:feature-task-detail-ui"))
     implementation(project(":android:feature:feature-settings-ui"))

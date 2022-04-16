@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.stopwatch.ui
+package com.akjaw.timi.android.feature.stopwatch.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
