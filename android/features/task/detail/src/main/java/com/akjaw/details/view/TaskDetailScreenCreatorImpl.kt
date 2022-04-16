@@ -2,7 +2,7 @@ package com.akjaw.details.view
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import com.akjaw.core.common.view.NavigationHolder
+import com.akjaw.timi.android.core.view.NavigationHolder
 
 internal class TaskDetailScreenCreatorImpl() : TaskDetailScreenCreator {
 

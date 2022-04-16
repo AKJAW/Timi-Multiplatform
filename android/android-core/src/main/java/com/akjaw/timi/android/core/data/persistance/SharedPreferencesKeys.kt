@@ -1,4 +1,4 @@
-package com.akjaw.core.common.data.persistance
+package com.akjaw.timi.android.core.data.persistance
 
 object SharedPreferencesKeys {
 

@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":android:core"))
+    implementation(project(":android:android-core"))
     implementation(project(":android:features:stopwatch-ui"))
     implementation(project(":android:features:task:list"))
     implementation(project(":android:features:task:detail"))

@@ -1,4 +1,4 @@
-package com.akjaw.core.common.view
+package com.akjaw.timi.android.core.view
 
 import androidx.compose.ui.graphics.Color
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task

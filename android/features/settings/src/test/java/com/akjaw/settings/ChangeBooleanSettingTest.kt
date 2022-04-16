@@ -1,6 +1,5 @@
 package com.akjaw.settings
 
-import com.akjaw.core.common.view.theme.ThemeState
 import com.akjaw.settings.data.InMemorySettingsRepository
 import com.akjaw.settings.data.InitialSettingsOptionsProvider
 import com.akjaw.settings.data.SettingsRepository
@@ -8,6 +7,7 @@ import com.akjaw.settings.domain.BooleanSettingsOption
 import com.akjaw.settings.domain.SettingsChanger
 import com.akjaw.settings.presentation.DarkModeThemeStateUpdater
 import com.akjaw.settings.presentation.SettingsViewModel
+import com.akjaw.timi.android.core.view.theme.ThemeState
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Test

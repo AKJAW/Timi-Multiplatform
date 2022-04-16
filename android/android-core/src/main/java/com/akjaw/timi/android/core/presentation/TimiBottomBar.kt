@@ -1,4 +1,4 @@
-package com.akjaw.core.common.presentation
+package com.akjaw.timi.android.core.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.BottomNavigation
@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 
 private val values = listOf(
     BottomBarScreen.Home,

@@ -1,7 +1,7 @@
-package com.akjaw.core.common.composition
+package com.akjaw.timi.android.core.composition
 
-import com.akjaw.core.common.domain.ActivityInitializer
-import com.akjaw.core.common.domain.ActivityInitializerHolder
+import com.akjaw.timi.android.core.domain.ActivityInitializer
+import com.akjaw.timi.android.core.domain.ActivityInitializerHolder
 import org.koin.dsl.module
 
 val androidCoreModule = module {

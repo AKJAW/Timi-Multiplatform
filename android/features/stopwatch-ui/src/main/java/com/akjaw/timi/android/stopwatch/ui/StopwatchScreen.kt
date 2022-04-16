@@ -18,9 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.akjaw.core.common.presentation.TimiBottomBar
-import com.akjaw.core.common.view.tasksPreview
-import com.akjaw.core.common.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.core.presentation.TimiBottomBar
+import com.akjaw.timi.android.core.view.tasksPreview
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.kmp.feature.stopwatch.presentation.StopwatchViewModel
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import org.koin.androidx.compose.get

@@ -1,9 +1,9 @@
 package com.akjaw.settings.domain
 
-import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.settings.data.SettingsRepository
 import com.akjaw.settings.data.SystemDarkModeProvider
 import com.akjaw.settings.presentation.DarkModeThemeStateUpdater
+import com.akjaw.timi.android.core.domain.ActivityInitializer
 
 class DarkThemeInitializer(
     private val settingsRepository: SettingsRepository,

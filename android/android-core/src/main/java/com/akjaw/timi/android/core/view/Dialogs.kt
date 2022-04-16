@@ -1,4 +1,4 @@
-package com.akjaw.core.common.view
+package com.akjaw.timi.android.core.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AlertDialog

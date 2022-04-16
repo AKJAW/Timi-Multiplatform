@@ -2,8 +2,6 @@ package com.akjaw.settings.composition
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.akjaw.core.common.data.persistance.SharedPreferencesKeys
-import com.akjaw.core.common.domain.ActivityInitializer
 import com.akjaw.settings.data.InitialSettingsOptionsProvider
 import com.akjaw.settings.data.ResourcesSystemDarkModeProvider
 import com.akjaw.settings.data.SettingsRepository
@@ -15,6 +13,8 @@ import com.akjaw.settings.presentation.DarkModeThemeStateUpdater
 import com.akjaw.settings.presentation.SettingsViewModel
 import com.akjaw.settings.view.SettingsScreenCreator
 import com.akjaw.settings.view.SettingsScreenCreatorImpl
+import com.akjaw.timi.android.core.data.persistance.SharedPreferencesKeys
+import com.akjaw.timi.android.core.domain.ActivityInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind

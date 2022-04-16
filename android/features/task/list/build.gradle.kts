@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":android:core"))
+    implementation(project(":android:android-core"))
     implementation(project(":kmp:core:core-shared"))
     implementation(project(":kmp:feature:feature-task-api"))
     implementation(project(":kmp:feature:feature-task-dependency")) // TODO remove later

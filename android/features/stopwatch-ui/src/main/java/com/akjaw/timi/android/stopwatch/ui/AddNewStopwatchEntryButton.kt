@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.core.common.view.theme.stopwatchBorder
-import com.akjaw.core.common.view.theme.taskShape
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.core.view.theme.stopwatchBorder
+import com.akjaw.timi.android.core.view.theme.taskShape
 
 @Composable
 internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {

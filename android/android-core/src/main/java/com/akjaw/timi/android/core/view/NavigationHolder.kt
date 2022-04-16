@@ -1,4 +1,4 @@
-package com.akjaw.core.common.view
+package com.akjaw.timi.android.core.view
 
 import androidx.navigation.NavHostController
 

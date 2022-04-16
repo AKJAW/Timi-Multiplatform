@@ -3,7 +3,7 @@ package com.akjaw.timicompose.task.list
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.akjaw.core.common.view.toTaskColor
+import com.akjaw.timi.android.core.view.toTaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timicompose.ActivityComposeTestRule
 import com.akjaw.timicompose.BottomNavVerifier

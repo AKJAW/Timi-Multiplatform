@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.details.presentation.calendar.CalendarViewModel
 import com.akjaw.details.presentation.calendar.DayViewState
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState

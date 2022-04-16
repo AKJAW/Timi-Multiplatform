@@ -1,4 +1,4 @@
-package com.akjaw.core.common.view.theme
+package com.akjaw.timi.android.core.view.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

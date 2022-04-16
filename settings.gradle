@@ -5,7 +5,7 @@ plugins {
 
 rootProject.name = "Timi-Compose"
 include ':android:app'
-include ':android:core'
+include ':android:android-core'
 include ':android:features:settings'
 include ':android:features:task'
 include ':android:features:task:list'

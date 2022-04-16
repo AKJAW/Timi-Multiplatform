@@ -27,11 +27,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.akjaw.core.common.view.tasksPreview
-import com.akjaw.core.common.view.theme.TimiComposeTheme
-import com.akjaw.core.common.view.theme.stopwatchBorder
-import com.akjaw.core.common.view.theme.taskShape
-import com.akjaw.core.common.view.toComposeColor
+import com.akjaw.timi.android.core.view.tasksPreview
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.core.view.theme.stopwatchBorder
+import com.akjaw.timi.android.core.view.theme.taskShape
+import com.akjaw.timi.android.core.view.toComposeColor
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 
 @Composable

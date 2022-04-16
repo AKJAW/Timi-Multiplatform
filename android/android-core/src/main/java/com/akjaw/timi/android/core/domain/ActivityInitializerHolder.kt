@@ -1,4 +1,4 @@
-package com.akjaw.core.common.domain
+package com.akjaw.timi.android.core.domain
 
 data class ActivityInitializerHolder(
     val initializers: List<ActivityInitializer>

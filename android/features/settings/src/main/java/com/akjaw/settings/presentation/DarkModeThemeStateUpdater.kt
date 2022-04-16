@@ -1,6 +1,6 @@
 package com.akjaw.settings.presentation
 
-import com.akjaw.core.common.view.theme.ThemeState
+import com.akjaw.timi.android.core.view.theme.ThemeState
 
 class DarkModeThemeStateUpdater {
 

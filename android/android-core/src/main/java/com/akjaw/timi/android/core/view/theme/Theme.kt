@@ -1,4 +1,4 @@
-package com.akjaw.core.common.view.theme
+package com.akjaw.timi.android.core.view.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

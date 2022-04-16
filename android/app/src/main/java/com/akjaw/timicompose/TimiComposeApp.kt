@@ -2,10 +2,10 @@ package com.akjaw.timicompose
 
 import android.app.Application
 import com.akjaw.common.shared.kmmKoinModules
-import com.akjaw.core.common.composition.androidCoreModule
 import com.akjaw.details.composition.taskDetailsModule
 import com.akjaw.settings.composition.settingsModule
 import com.akjaw.task.list.composition.taskUiModule
+import com.akjaw.timi.android.core.composition.androidCoreModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module

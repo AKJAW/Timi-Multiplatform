@@ -25,10 +25,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.akjaw.core.common.view.theme.TimiComposeTheme
 import com.akjaw.settings.R
 import com.akjaw.settings.domain.BooleanSettingsOption
 import com.akjaw.settings.presentation.SettingsViewModel
+import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import org.koin.androidx.compose.getViewModel
 
 @Composable

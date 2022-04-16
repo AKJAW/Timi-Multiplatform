@@ -26,6 +26,7 @@
 - [ ] Clean up old module names
 - [ ] Clean up package names for old modules
 - [ ] Clean up AndroidManifest in KMP
+- [ ] Move settings to KMM?
 - [ ] Add saved state handling to stopwatch?
 - [ ] Clean up gradle dependencies
 - [ ] Extract Config / Precompiled plugin for gradle modules
