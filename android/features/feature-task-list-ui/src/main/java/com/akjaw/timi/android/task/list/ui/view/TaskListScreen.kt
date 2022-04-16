@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.task.list.view
+package com.akjaw.timi.android.task.list.ui.view
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring

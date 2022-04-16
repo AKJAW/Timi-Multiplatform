@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.task.list.view
+package com.akjaw.timi.android.task.list.ui.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
