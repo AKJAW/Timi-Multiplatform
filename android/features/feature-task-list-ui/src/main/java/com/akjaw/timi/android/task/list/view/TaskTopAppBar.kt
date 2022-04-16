@@ -1,4 +1,4 @@
-package com.akjaw.task.list.view
+package com.akjaw.timi.android.task.list.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
@@ -16,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.akjaw.task.list.R
 import com.akjaw.timi.android.core.view.PaddedAlertDialog
 import com.akjaw.timi.android.core.view.pluralStringResource
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
+import com.akjaw.timi.android.task.list.ui.R
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 
 @Composable

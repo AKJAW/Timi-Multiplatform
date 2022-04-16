@@ -1,4 +1,4 @@
-package com.akjaw.task.list.view
+package com.akjaw.timi.android.task.list.view
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -40,13 +40,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.akjaw.task.list.R
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.tasksPreview
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.core.view.theme.taskShape
 import com.akjaw.timi.android.core.view.theme.taskTextColorFor
 import com.akjaw.timi.android.core.view.toComposeColor
+import com.akjaw.timi.android.task.list.ui.R
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import org.koin.androidx.compose.get
