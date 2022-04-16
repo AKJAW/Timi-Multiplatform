@@ -1,7 +1,7 @@
 package com.akjaw.details.presenter.calendar
 
-import com.akjaw.timi.android.task.detail.ui.domain.calendar.CalendarDay
-import com.akjaw.timi.android.task.detail.ui.domain.calendar.CalendarDaysCalculator
+import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDay
+import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
