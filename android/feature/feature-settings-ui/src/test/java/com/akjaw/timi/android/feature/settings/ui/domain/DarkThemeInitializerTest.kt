@@ -1,9 +1,7 @@
-package com.akjaw.settings.domain
+package com.akjaw.timi.android.feature.settings.ui.domain
 
-import com.akjaw.settings.data.InMemorySettingsRepository
+import com.akjaw.timi.android.feature.settings.ui.data.InMemorySettingsRepository
 import com.akjaw.timi.android.feature.settings.ui.data.SystemDarkModeProvider
-import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption
-import com.akjaw.timi.android.feature.settings.ui.domain.DarkThemeInitializer
 import com.akjaw.timi.android.feature.settings.ui.presentation.DarkModeThemeStateUpdater
 import io.mockk.every
 import io.mockk.mockk

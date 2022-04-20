@@ -1,7 +1,7 @@
-package com.akjaw.settings
+package com.akjaw.timi.android.feature.settings.ui
 
-import com.akjaw.settings.data.InMemorySettingsRepository
 import com.akjaw.timi.android.core.view.theme.ThemeState
+import com.akjaw.timi.android.feature.settings.ui.data.InMemorySettingsRepository
 import com.akjaw.timi.android.feature.settings.ui.data.InitialSettingsOptionsProvider
 import com.akjaw.timi.android.feature.settings.ui.data.SettingsRepository
 import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption

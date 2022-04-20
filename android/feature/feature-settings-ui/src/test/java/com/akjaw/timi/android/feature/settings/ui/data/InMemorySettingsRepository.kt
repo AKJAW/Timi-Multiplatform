@@ -1,6 +1,5 @@
-package com.akjaw.settings.data
+package com.akjaw.timi.android.feature.settings.ui.data
 
-import com.akjaw.timi.android.feature.settings.ui.data.SettingsRepository
 import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption
 
 internal class InMemorySettingsRepository : SettingsRepository {

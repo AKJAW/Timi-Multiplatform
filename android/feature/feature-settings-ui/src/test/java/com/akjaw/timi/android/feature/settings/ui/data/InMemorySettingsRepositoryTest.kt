@@ -1,31 +1,23 @@
-package com.akjaw.settings.data
+package com.akjaw.timi.android.feature.settings.ui.data
 
-import android.content.SharedPreferences
-import com.akjaw.timi.android.feature.settings.ui.data.SharedPreferencesSettingsRepository
 import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isFalse
 import strikt.assertions.isTrue
 
-internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContractTest() {
+internal class InMemorySettingsRepositoryTest : SettingsRepositoryContractTest() {
 
-    private val sharedPreferences: SharedPreferences = mockk(relaxed = true)
-    private lateinit var systemUnderTest: SharedPreferencesSettingsRepository
+    private lateinit var systemUnderTest: InMemorySettingsRepository
 
     @BeforeEach
     fun setUp() {
-        systemUnderTest = SharedPreferencesSettingsRepository(sharedPreferences)
+        systemUnderTest = InMemorySettingsRepository()
     }
 
     @Test
     override fun `Given the value is not persisted the repository does not contain the value`() {
-        every { sharedPreferences.contains(BooleanSettingsOption.DARK_MODE.key) } returns false
-
         val result = systemUnderTest.containsOption(BooleanSettingsOption.DARK_MODE)
 
         expectThat(result).isFalse()
@@ -33,7 +25,7 @@ internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContr
 
     @Test
     override fun `Given the value is persisted the repository contains the value`() {
-        every { sharedPreferences.contains(BooleanSettingsOption.DARK_MODE.key) } returns true
+        systemUnderTest.setBoolean(BooleanSettingsOption.DARK_MODE, true)
 
         val result = systemUnderTest.containsOption(BooleanSettingsOption.DARK_MODE)
 
@@ -42,8 +34,6 @@ internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContr
 
     @Test
     override fun `The default value is false`() {
-        every { sharedPreferences.getBoolean(BooleanSettingsOption.DARK_MODE.key, false) } returns false
-
         val result = systemUnderTest.getBoolean(BooleanSettingsOption.DARK_MODE)
 
         expectThat(result).isFalse()
@@ -53,6 +43,8 @@ internal class SharedPreferencesSettingsRepositoryTest : SettingsRepositoryContr
     override fun `The saved setting is persisted`() {
         systemUnderTest.setBoolean(BooleanSettingsOption.DARK_MODE, true)
 
-        verify { sharedPreferences.edit().putBoolean(BooleanSettingsOption.DARK_MODE.key, true).apply() }
+        val result = systemUnderTest.getBoolean(BooleanSettingsOption.DARK_MODE)
+
+        expectThat(result).isTrue()
     }
 }

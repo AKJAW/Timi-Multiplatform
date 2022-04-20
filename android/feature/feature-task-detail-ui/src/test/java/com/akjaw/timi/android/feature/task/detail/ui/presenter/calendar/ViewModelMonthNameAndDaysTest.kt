@@ -1,8 +1,8 @@
-package com.akjaw.details.presenter.calendar
+package com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar
 
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.details.helper.TimestampProviderStub
+import com.akjaw.timi.android.feature.task.detail.ui.helper.TimestampProviderStub
 import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime

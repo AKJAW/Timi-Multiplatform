@@ -1,4 +1,4 @@
-package com.akjaw.details.presenter.calendar
+package com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar
 
 import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDay
 import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDaysCalculator

@@ -1,4 +1,4 @@
-package com.akjaw.settings.data
+package com.akjaw.timi.android.feature.settings.ui.data
 
 import org.junit.jupiter.api.Test
 

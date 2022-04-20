@@ -1,9 +1,7 @@
-package com.akjaw.settings.presentation
+package com.akjaw.timi.android.feature.settings.ui.presentation
 
 import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption
 import com.akjaw.timi.android.feature.settings.ui.domain.SettingsChanger
-import com.akjaw.timi.android.feature.settings.ui.presentation.DarkModeThemeStateUpdater
-import com.akjaw.timi.android.feature.settings.ui.presentation.SettingsViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

@@ -1,4 +1,4 @@
-package com.akjaw.details.helper
+package com.akjaw.timi.android.feature.task.detail.ui.helper
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
