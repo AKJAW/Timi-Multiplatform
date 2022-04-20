@@ -1,4 +1,4 @@
-package com.akjaw.common.shared
+package com.akjaw.timi.kmp.shared
 
 import co.touchlab.kermit.Logger
 import kotlinx.cinterop.ObjCClass

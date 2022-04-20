@@ -1,11 +1,11 @@
 package com.akjaw.timicompose
 
 import android.app.Application
-import com.akjaw.common.shared.kmmKoinModules
 import com.akjaw.timi.android.core.composition.androidCoreModule
 import com.akjaw.timi.android.feature.settings.ui.composition.settingsModule
 import com.akjaw.timi.android.feature.task.detail.ui.composition.taskDetailsModule
 import com.akjaw.timi.android.feature.task.list.ui.composition.taskUiModule
+import com.akjaw.timi.kmp.shared.kmmKoinModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
