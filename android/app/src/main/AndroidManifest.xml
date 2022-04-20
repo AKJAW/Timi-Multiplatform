@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.akjaw.timicompose">
+    package="com.akjaw.timi.android.app">
 
     <application
-        android:name="com.akjaw.timicompose.TimiComposeApp"
+        android:name=".TimiComposeApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TimiCompose">
         <activity
-            android:name="com.akjaw.timicompose.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TimiCompose.NoActionBar">
