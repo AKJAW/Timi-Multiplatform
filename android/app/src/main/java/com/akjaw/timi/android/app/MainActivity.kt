@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.akjaw.timi.android.core.domain.ActivityInitializerHolder
 import com.akjaw.timi.android.core.presentation.SettingsDestinations
 import com.akjaw.timi.android.core.presentation.StopwatchDestinations
@@ -41,8 +43,17 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     composable(TaskDestinations.List.route) {
                         TaskListScreen(navController = navController)
                     }
-                    composable(TaskDestinations.Details.route) {
-                        TaskDetailScreen(navController = navController)
+                    composable(
+                        TaskDestinations.Details.route,
+                        arguments = listOf(navArgument("taskId") { type = NavType.LongType })
+                    ) { backStackEntry ->
+                        val taskId = backStackEntry.arguments?.getLong("taskId")
+                        Scaffold(
+                            topBar = { TopAppBar(title = { Text(text = "Task $taskId") }) },
+                            bottomBar = { TimiBottomBar(navController) },
+                        ) {
+                            TaskDetailScreen()
+                        }
                     }
                     composable(StopwatchDestinations.List.route) {
                         StopwatchScreen(navController = navController)

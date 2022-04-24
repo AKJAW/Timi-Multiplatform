@@ -32,7 +32,11 @@ object TaskDestinations {
     }
 
     object Details {
-        val route = "task_details"
+        val route = "task_details/{taskId}"
+
+        fun destination(taskId: Long): String {
+            return "task_details/$taskId"
+        }
     }
 }
 
