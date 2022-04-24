@@ -5,7 +5,7 @@ import com.akjaw.timi.android.feature.settings.ui.domain.BooleanSettingsOption
 import com.akjaw.timi.android.feature.settings.ui.domain.SettingsChanger
 import kotlinx.coroutines.flow.StateFlow
 
-internal class SettingsViewModel(
+class SettingsViewModel internal constructor(
     private val settingsChanger: SettingsChanger,
     private val darkModeThemeStateUpdater: DarkModeThemeStateUpdater
 ) : ViewModel() {

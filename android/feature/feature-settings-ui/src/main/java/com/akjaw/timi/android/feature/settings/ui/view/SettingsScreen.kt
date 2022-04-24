@@ -32,7 +32,7 @@ import com.akjaw.timi.android.feature.settings.ui.presentation.SettingsViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-internal fun SettingsScreen(settingsViewModel: SettingsViewModel = getViewModel()) {
+fun SettingsScreen(settingsViewModel: SettingsViewModel = getViewModel()) {
     SettingsScreen(
         booleanOptions = settingsViewModel.booleanOptionsFlow.collectAsState().value,
         onSwitchClicked = settingsViewModel::onSwitchValueChange
@@ -113,7 +113,7 @@ fun SettingsSwitch(
 
 @Preview
 @Composable
-fun SettingsScreenPreview() {
+private fun SettingsScreenPreview() {
     TimiComposeTheme {
         SettingsScreen(
             booleanOptions = previewOptions,
@@ -124,7 +124,7 @@ fun SettingsScreenPreview() {
 
 @Preview
 @Composable
-fun DarkSettingsScreenPreview() {
+private fun DarkSettingsScreenPreview() {
     TimiComposeTheme(darkTheme = true) {
         SettingsScreen(
             booleanOptions = previewOptions,

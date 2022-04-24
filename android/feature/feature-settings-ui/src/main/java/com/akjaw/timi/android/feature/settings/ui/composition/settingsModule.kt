@@ -13,8 +13,6 @@ import com.akjaw.timi.android.feature.settings.ui.domain.DarkThemeInitializer
 import com.akjaw.timi.android.feature.settings.ui.domain.SettingsChanger
 import com.akjaw.timi.android.feature.settings.ui.presentation.DarkModeThemeStateUpdater
 import com.akjaw.timi.android.feature.settings.ui.presentation.SettingsViewModel
-import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreator
-import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreatorImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
@@ -30,7 +28,6 @@ val settingsModule = module {
     factory<SettingsRepository> { SharedPreferencesSettingsRepository(get()) }
     factory { DarkThemeInitializer(get(), get(), get()) } bind ActivityInitializer::class
     factory<SystemDarkModeProvider> { ResourcesSystemDarkModeProvider(androidContext()) }
-    factory<SettingsScreenCreator> { SettingsScreenCreatorImpl() }
     factory { InitialSettingsOptionsProvider(get()) }
     factory { SettingsChanger(get(), get()) }
     factory { DarkModeThemeStateUpdater() }

@@ -52,7 +52,7 @@ import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import org.koin.androidx.compose.get
 
 @Composable
-internal fun TaskListScreen(
+fun TaskListScreen(
     navController: NavHostController,
     taskListViewModel: TaskListViewModel = get(),
 ) {

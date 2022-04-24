@@ -14,21 +14,16 @@ import com.akjaw.timi.android.core.presentation.SettingsDestinations
 import com.akjaw.timi.android.core.presentation.StopwatchDestinations
 import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
-import com.akjaw.timi.android.core.view.NavigationHolder
 import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
-import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreator
+import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreen
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
 import com.akjaw.timi.android.feature.task.detail.ui.view.TaskDetailScreen
-import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreenCreator
+import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class MainActivity : ComponentActivity(), KoinComponent {
-
-    private val taskListScreenCreator: TaskListScreenCreator by inject()
-
-    private val settingsScreenCreator: SettingsScreenCreator by inject()
 
     private val activityInitializerHolder: ActivityInitializerHolder by inject()
 
@@ -44,9 +39,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     startDestination = TaskDestinations.List.route
                 ) {
                     composable(TaskDestinations.List.route) {
-                        taskListScreenCreator.Create(
-                            navigationHolder = NavigationHolder(navController)
-                        )
+                        TaskListScreen(navController = navController)
                     }
                     composable(TaskDestinations.Details.route) {
                         TaskDetailScreen(navController = navController)
@@ -59,7 +52,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                             topBar = { TopAppBar(title = { Text(text = "Settings") }) },
                             bottomBar = { TimiBottomBar(navController) },
                         ) {
-                            settingsScreenCreator.Create()
+                            SettingsScreen()
                         }
                     }
                 }
