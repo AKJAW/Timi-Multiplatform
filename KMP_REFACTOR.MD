@@ -23,9 +23,9 @@
 - [x] Add white text for dark color
 - [x] Create iOS UI for task list
 - [x] Clean up feature-task-api packaging
-- [ ] Clean up old module names
-- [ ] Clean up package names for old modules
-- [ ] Clean up AndroidManifest in KMP
+- [x] Clean up old module names
+- [x] Clean up package names for old modules
+- [x] Clean up AndroidManifest in KMP
 - [ ] Move settings to KMM?
 - [ ] Add saved state handling to stopwatch?
 - [ ] Clean up gradle dependencies

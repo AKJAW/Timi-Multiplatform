@@ -27,16 +27,6 @@ class CalendarRowDayValueCalculationTest {
     inner class FirstRow {
 
         @Test
-        fun `Correctly calculates when current month first day is on tuesday`() {
-            val monthUnderTest = DateTime.createAdjusted(2021, 7, 1)
-
-            val result = systemUnderTest.calculate(monthUnderTest)
-
-            val expectedDays = listOf(28, 29, 30, 1, 2, 3, 4)
-            expectThat(result).firstRowDaysEqual(expectedDays)
-        }
-
-        @Test
         fun `Correctly calculates when current month first day is on monday`() {
             val monthUnderTest = DateTime.createAdjusted(2021, 2, 1)
 
@@ -88,16 +78,16 @@ class CalendarRowDayValueCalculationTest {
         }
 
         @Test
-        fun `Correctly calculates when the middle row ends on the current month`() {
-            val monthUnderTest = DateTime.createAdjusted(2022, 5, 1)
+        fun `Correctly calculates when the middle row ends exactly one day before end of month`() {
+            val monthUnderTest = DateTime.createAdjusted(2021, 5, 1)
 
             val result = systemUnderTest.calculate(monthUnderTest)
 
             expectThat(result) {
-                secondRowDaysEqual((2..8).toList())
-                thirdRowDaysEqual((9..15).toList())
-                fourthRowDaysEqual((16..22).toList())
-                fifthRowDaysEqual((23..29).toList())
+                secondRowDaysEqual((3..9).toList())
+                thirdRowDaysEqual((10..16).toList())
+                fourthRowDaysEqual((17..23).toList())
+                fifthRowDaysEqual((24..30).toList())
             }
         }
 

@@ -3,7 +3,7 @@ package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
 
-class CalendarDaysCalculator() {
+class CalendarDaysCalculator {
 
     companion object {
         private const val MONDAY_START_OF_WEEK_OFFSET = 1
