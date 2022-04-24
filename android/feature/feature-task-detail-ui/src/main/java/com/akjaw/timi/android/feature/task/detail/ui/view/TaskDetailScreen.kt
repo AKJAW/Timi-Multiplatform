@@ -5,6 +5,6 @@ import androidx.navigation.NavHostController
 import com.akjaw.timi.android.feature.task.detail.ui.view.calendar.CalendarBottomSheet
 
 @Composable
-internal fun TaskDetailScreen(navController: NavHostController) {
+fun TaskDetailScreen(navController: NavHostController) {
     CalendarBottomSheet()
 }

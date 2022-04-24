@@ -26,13 +26,35 @@ private val values = listOf(
     BottomBarScreen.Settings
 )
 
+object TaskDestinations {
+    object List {
+        val route = "task_list"
+    }
+
+    object Details {
+        val route = "task_details"
+    }
+}
+
+object StopwatchDestinations {
+    object List {
+        val route = "stopwatch_list"
+    }
+}
+
+object SettingsDestinations {
+    object Home {
+        val route = "settings"
+    }
+}
+
 sealed class BottomBarScreen(
     val imageVector: ImageVector,
     val route: String,
 ) {
-    object Home : BottomBarScreen(Icons.Filled.Home, "Tasks")
-    object Stopwatch : BottomBarScreen(Icons.Filled.Timer, "Stopwatch")
-    object Settings : BottomBarScreen(Icons.Filled.Settings, "Settings")
+    object Home : BottomBarScreen(Icons.Filled.Home, TaskDestinations.List.route)
+    object Stopwatch : BottomBarScreen(Icons.Filled.Timer, StopwatchDestinations.List.route)
+    object Settings : BottomBarScreen(Icons.Filled.Settings, SettingsDestinations.Home.route)
 }
 
 @Composable
@@ -89,7 +111,7 @@ private fun BottomNavIcon(
 @Composable
 private fun TimiBottomBarPreview() {
     TimiComposeTheme {
-        TimiBottomBar(currentRoute = BottomBarScreen.Home.route, onClick = { })
+        TimiBottomBar(currentRoute = TaskDestinations.List.route, onClick = { })
     }
 }
 
@@ -97,6 +119,6 @@ private fun TimiBottomBarPreview() {
 @Composable
 private fun TimiBottomBarPreviewDark() {
     TimiComposeTheme(darkTheme = true) {
-        TimiBottomBar(currentRoute = BottomBarScreen.Home.route, onClick = { })
+        TimiBottomBar(currentRoute = TaskDestinations.List.route, onClick = { })
     }
 }

@@ -10,13 +10,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.akjaw.timi.android.core.domain.ActivityInitializerHolder
-import com.akjaw.timi.android.core.presentation.BottomBarScreen
+import com.akjaw.timi.android.core.presentation.SettingsDestinations
+import com.akjaw.timi.android.core.presentation.StopwatchDestinations
+import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.NavigationHolder
 import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreenCreator
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
+import com.akjaw.timi.android.feature.task.detail.ui.view.TaskDetailScreen
 import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreenCreator
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -38,17 +41,20 @@ class MainActivity : ComponentActivity(), KoinComponent {
             TimiComposeTheme(darkTheme = ThemeState.isDarkTheme.value) {
                 NavHost(
                     navController = navController,
-                    startDestination = BottomBarScreen.Home.route
+                    startDestination = TaskDestinations.List.route
                 ) {
-                    composable(BottomBarScreen.Home.route) {
+                    composable(TaskDestinations.List.route) {
                         taskListScreenCreator.Create(
                             navigationHolder = NavigationHolder(navController)
                         )
                     }
-                    composable(BottomBarScreen.Stopwatch.route) {
+                    composable(TaskDestinations.Details.route) {
+                        TaskDetailScreen(navController = navController)
+                    }
+                    composable(StopwatchDestinations.List.route) {
                         StopwatchScreen(navController = navController)
                     }
-                    composable(BottomBarScreen.Settings.route) {
+                    composable(SettingsDestinations.Home.route) {
                         Scaffold(
                             topBar = { TopAppBar(title = { Text(text = "Settings") }) },
                             bottomBar = { TimiBottomBar(navController) },
