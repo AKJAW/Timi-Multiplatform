@@ -1,6 +1,5 @@
-package com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar
+package com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar
 
-import androidx.lifecycle.ViewModel
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
@@ -8,10 +7,10 @@ import com.soywiz.klock.MonthSpan
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-internal class CalendarViewModel(
+class CalendarViewModel(
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator
-) : ViewModel() {
+) {
 
     companion object {
         const val NUMBER_OF_MONTHS = 50

@@ -3,9 +3,9 @@ package com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.timi.android.feature.task.detail.ui.helper.TimestampProviderStub
-import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.CalendarViewModel
-import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.CalendarViewState
-import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.DayViewState
+import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewState
+import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

@@ -16,9 +16,10 @@ import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.android.feature.task.detail.ui.view.calendar.CalendarBottomSheet
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
+import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.soywiz.klock.DateTime
 import org.junit.Before
 import org.junit.Rule
@@ -40,7 +41,7 @@ class CalendarBottomSheetTest {
         givenCurrentMonthIs(6)
         viewModel = CalendarViewModel(
             timestampProviderStub,
-            com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator()
+            CalendarDaysCalculator()
         )
         composeTestRule.setContent {
             CalendarBottomSheet(viewModel)

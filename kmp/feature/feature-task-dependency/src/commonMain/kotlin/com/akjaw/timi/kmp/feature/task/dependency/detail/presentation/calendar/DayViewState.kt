@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.task.detail.ui.presentation.calendar
+package com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar
 
 data class DayViewState(
     val day: Int,
