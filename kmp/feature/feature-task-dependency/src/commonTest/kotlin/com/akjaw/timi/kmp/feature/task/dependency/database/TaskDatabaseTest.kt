@@ -81,11 +81,16 @@ class TaskDatabaseTest : KoinComponent {
 
     @Test
     fun `Selecting task by id works as expected`() {
-        givenTaskExists(TASK1)
+        try {
+            givenTaskExists(TASK1)
 
-        val result = taskEntityQueries.selectTaskById(1).executeAsOne()
+            val result = taskEntityQueries.selectTaskById(1).executeAsOne()
 
-        result shouldBe TASK1
+            result shouldBe TASK1
+        } catch (e: Exception) {
+            println(e)
+            e
+        }
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar
+package com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar
 
 data class CalendarDay( // TODO renmae
     val day: Int,

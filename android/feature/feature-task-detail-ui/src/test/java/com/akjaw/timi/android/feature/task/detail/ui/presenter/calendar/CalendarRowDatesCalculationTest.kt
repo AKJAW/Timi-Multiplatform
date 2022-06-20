@@ -1,7 +1,5 @@
 package com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar
 
-import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDay
-import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
@@ -15,11 +13,12 @@ import kotlin.time.ExperimentalTime
 @OptIn(ExperimentalTime::class)
 class CalendarRowDatesCalculationTest {
 
-    private lateinit var systemUnderTest: CalendarDaysCalculator
+    private lateinit var systemUnderTest: com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 
     @BeforeEach
     fun setUp() {
-        systemUnderTest = CalendarDaysCalculator()
+        systemUnderTest =
+            com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator()
     }
 
     @Nested
@@ -211,7 +210,7 @@ class CalendarRowDatesCalculationTest {
         }
     }
 
-    private fun Assertion.Builder<List<CalendarDay>>.rowWithOneMonthHasCorrectDates(
+    private fun Assertion.Builder<List<com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay>>.rowWithOneMonthHasCorrectDates(
         month: Int,
         year: Int
     ) {
@@ -224,7 +223,7 @@ class CalendarRowDatesCalculationTest {
         get(6).hasCorrectDate(month, year)
     }
 
-    private fun Assertion.Builder<List<CalendarDay>>.rowWithTwoMonthsHasCorrectDates(
+    private fun Assertion.Builder<List<com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay>>.rowWithTwoMonthsHasCorrectDates(
         monthsAndYears: List<Pair<Int, Int>>
     ) {
         get(0).hasCorrectDate(monthsAndYears[0].first, monthsAndYears[0].second)
@@ -236,7 +235,7 @@ class CalendarRowDatesCalculationTest {
         get(6).hasCorrectDate(monthsAndYears[6].first, monthsAndYears[6].second)
     }
 
-    private fun Assertion.Builder<CalendarDay>.hasCorrectDate(
+    private fun Assertion.Builder<com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay>.hasCorrectDate(
         month: Int,
         year: Int,
     ) {

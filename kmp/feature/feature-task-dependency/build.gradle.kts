@@ -51,6 +51,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
                 implementation("com.squareup.sqldelight:runtime:_")
                 implementation("com.squareup.sqldelight:coroutines-extensions:_")
+                implementation("com.soywiz.korlibs.klock:klock:_")
             }
         }
 
