@@ -1,6 +1,6 @@
-package com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar.row.days
+package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.row.days
 
-import com.akjaw.timi.android.feature.task.detail.ui.presenter.calendar.rowDaysEqual
+import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.rowDaysEqual
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
