@@ -7,6 +7,7 @@ import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.C
 import strikt.api.Assertion
 import strikt.assertions.get
 import strikt.assertions.isEqualTo
+import strikt.assertions.map
 
 internal fun createCalendarViewModel(
     timestampProvider: TimestampProvider,
@@ -46,4 +47,12 @@ fun Assertion.Builder<CalendarDay>.hasCorrectDate(
 ) {
     get { this.month }.isEqualTo(month)
     get { this.year }.isEqualTo(year)
+}
+
+fun Assertion.Builder<List<List<CalendarDay>>>.rowDaysEqual(
+    rowIndex: Int,
+    expectedDays: List<Int>,
+) {
+    val rowDays = this[rowIndex].map { it.day }
+    rowDays.isEqualTo(expectedDays)
 }
