@@ -1,17 +1,17 @@
-package com.akjaw.timi.android.feature.task.detail.ui.presenter
+package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter
 
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.timi.android.feature.task.detail.ui.createCalendarViewModel
-import com.akjaw.timi.android.feature.task.detail.ui.helper.TimestampProviderStub
+import com.akjaw.timi.kmp.feature.task.dependency.detail.TimestampProviderStub
+import com.akjaw.timi.kmp.feature.task.dependency.detail.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalTime::class)
@@ -30,7 +30,7 @@ internal class ViewModelMonthNameAndDaysTest {
     private lateinit var timestampProviderStub: TimestampProviderStub
     private lateinit var systemUnderTest: CalendarViewModel
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         timestampProviderStub = TimestampProviderStub()
         timestampProviderStub.value = JULY_DATE_TIME.unixMillisLong.toTimestampMilliseconds()

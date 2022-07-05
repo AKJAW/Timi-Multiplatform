@@ -1,11 +1,11 @@
-package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.row.days
+package com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.row.days
 
-import com.akjaw.timi.android.feature.task.detail.ui.rowDaysEqual
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
+import com.akjaw.timi.kmp.feature.task.dependency.detail.rowDaysEqual
 import com.soywiz.klock.DateTime
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -13,7 +13,7 @@ class CalendarFirstRowDayValueCalculationTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         systemUnderTest = CalendarDaysCalculator()
     }

@@ -1,12 +1,12 @@
-package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.row.dates
+package com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.row.dates
 
-import com.akjaw.timi.android.feature.task.detail.ui.rowWithOneMonthHasCorrectDates
-import com.akjaw.timi.android.feature.task.detail.ui.rowWithTwoMonthsHasCorrectDates
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
+import com.akjaw.timi.kmp.feature.task.dependency.detail.rowWithOneMonthHasCorrectDates
+import com.akjaw.timi.kmp.feature.task.dependency.detail.rowWithTwoMonthsHasCorrectDates
 import com.soywiz.klock.DateTime
 import io.kotest.assertions.assertSoftly
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -14,7 +14,7 @@ class CalendarMiddleRowsDatesCalculationTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         systemUnderTest = CalendarDaysCalculator()
     }
