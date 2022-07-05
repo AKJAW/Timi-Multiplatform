@@ -1,7 +1,6 @@
-package com.akjaw.timi.kmp.feature.task.dependency.presentation.selection
+package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTracker
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,15 +1,15 @@
-package com.akjaw.timi.kmp.feature.task.dependency.domain
+package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
-import com.akjaw.timi.kmp.feature.task.api.domain.AddTask
+import com.akjaw.timi.kmp.feature.task.api.domain.DeleteTasks
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntity
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
 import com.squareup.sqldelight.db.SqlDriver
-import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.assertions.assertSoftly
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -23,15 +23,15 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class AddTaskToDatabaseTest : KoinComponent {
+internal class DeleteTasksFromDatabaseTest : KoinComponent {
 
     companion object {
-        private val TASK1 = Task(0, "name", backgroundColor = TaskColor(22f, 22f, 22f))
-        private val TASK2 = Task(-1, "name2", backgroundColor = TaskColor(0f, 0f, 0f))
+        private val TASK1 = Task(1, "name")
+        private val TASK2 = Task(2, "name2")
     }
 
     private val taskEntityQueries: TaskEntityQueries by inject()
-    private val systemUnderTest: AddTask by inject()
+    private val systemUnderTest: DeleteTasks by inject()
 
     @BeforeTest
     fun setUp() {
@@ -52,26 +52,23 @@ internal class AddTaskToDatabaseTest : KoinComponent {
     }
 
     @Test
-    fun `Inserting a task correctly adds it to the database`() = runTest {
-        systemUnderTest.execute(TASK1)
+    fun `Deleting a task removes it from the database`() = runTest {
+        givenTasksExists(TASK1, TASK2)
 
-        val result = taskEntityQueries.selectAllTasks().executeAsList().firstOrNull()
-        result shouldBe TaskEntity(
-            id = 1,
-            position = 0,
-            name = "name",
-            color = TaskColor(22f, 22f, 22f)
-        )
-    }
-
-    @Test
-    fun `The identifier is auto incremented`() = runTest {
-        systemUnderTest.execute(TASK1)
-
-        systemUnderTest.execute(TASK2)
+        systemUnderTest.execute(listOf(TASK2))
 
         val result = taskEntityQueries.selectAllTasks().executeAsList()
-        val taskWithCorrectId = result.find { it.id == 2L }
-        taskWithCorrectId.shouldNotBeNull()
+        assertSoftly {
+            result shouldHaveSize 1
+            val task = result.first()
+            task.id shouldBe 1
+            task.name shouldBe "name"
+        }
+    }
+
+    private fun givenTasksExists(vararg tasks: Task) {
+        tasks.forEach { task ->
+            taskEntityQueries.insertTask(task.id, 0, task.name, TaskColor(0f, 0f, 0f))
+        }
     }
 }

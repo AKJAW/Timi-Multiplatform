@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.dependency.presentation
+package com.akjaw.timi.kmp.feature.task.dependency.list.presentation
 
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
@@ -7,7 +7,6 @@ import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
-import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.CommonTaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.matchers.shouldBe

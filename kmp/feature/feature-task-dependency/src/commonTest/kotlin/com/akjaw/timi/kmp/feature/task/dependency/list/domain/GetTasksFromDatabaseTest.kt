@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.dependency.domain
+package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
 import com.akjaw.timi.kmp.feature.task.api.domain.GetTasks
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
