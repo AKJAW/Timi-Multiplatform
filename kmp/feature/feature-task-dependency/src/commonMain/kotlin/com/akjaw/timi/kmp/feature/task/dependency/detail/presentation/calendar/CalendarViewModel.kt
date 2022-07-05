@@ -25,7 +25,7 @@ class CalendarViewModel(
         )
     )
     val viewState: StateFlow<CalendarViewState> = mutableViewState
-    val initialDays = mutableViewState.value.months
+    private val initialDays = mutableViewState.value.months
 
     private fun createMonthList(): List<MonthViewState> {
         val mutableList = mutableListOf<MonthViewState>()
@@ -53,9 +53,9 @@ class CalendarViewModel(
         }
     }
 
-    private fun getMonthDays(currentMonth: DateTime): List<List<DayViewState>> { // TODO on background thread
+    private fun getMonthDays(month: DateTime): List<List<DayViewState>> { // TODO on background thread
         return calendarDaysCalculator
-            .calculate(currentMonth)
+            .calculate(month)
             .map { row ->
                 row.map { calendarDay ->
                     DayViewState(
