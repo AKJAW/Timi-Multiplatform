@@ -11,7 +11,7 @@ import strikt.assertions.get
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
-class CalendarRowDatesCalculationMiddleRowsTest {
+class CalendarMiddleRowsDatesCalculationTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 

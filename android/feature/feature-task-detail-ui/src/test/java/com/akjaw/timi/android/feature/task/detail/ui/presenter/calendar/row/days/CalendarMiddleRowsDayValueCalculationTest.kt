@@ -11,7 +11,7 @@ import strikt.api.expectThat
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
-class CalendarRowDayValueCalculationMiddleRowsTest {
+class CalendarMiddleRowsDayValueCalculationTest {
 
     private lateinit var systemUnderTest: CalendarDaysCalculator
 
