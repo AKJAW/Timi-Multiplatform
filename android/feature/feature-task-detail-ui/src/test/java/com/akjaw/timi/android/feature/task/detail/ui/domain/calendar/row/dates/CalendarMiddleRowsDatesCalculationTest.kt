@@ -1,7 +1,7 @@
 package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.row.dates
 
-import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.rowWithOneMonthHasCorrectDates
-import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.rowWithTwoMonthsHasCorrectDates
+import com.akjaw.timi.android.feature.task.detail.ui.rowWithOneMonthHasCorrectDates
+import com.akjaw.timi.android.feature.task.detail.ui.rowWithTwoMonthsHasCorrectDates
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach

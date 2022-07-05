@@ -2,7 +2,7 @@ package com.akjaw.timi.android.feature.task.detail.ui.presenter
 
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.model.toTimestampMilliseconds
-import com.akjaw.timi.android.feature.task.detail.ui.domain.calendar.createCalendarViewModel
+import com.akjaw.timi.android.feature.task.detail.ui.createCalendarViewModel
 import com.akjaw.timi.android.feature.task.detail.ui.helper.TimestampProviderStub
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewState

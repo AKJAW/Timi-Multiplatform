@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.task.detail.ui.domain.calendar
+package com.akjaw.timi.android.feature.task.detail.ui
 
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
