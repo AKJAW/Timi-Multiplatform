@@ -68,7 +68,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testImplementation("org.junit.jupiter:junit-jupiter-params:_")
-    testImplementation("io.strikt:strikt-core:_")
+    testImplementation("io.kotest:kotest-assertions-core:_")
     testImplementation("io.mockk:mockk:_")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
     testImplementation("app.cash.turbine:turbine:_")

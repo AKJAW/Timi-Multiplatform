@@ -4,10 +4,9 @@ import com.akjaw.timi.android.feature.task.detail.ui.rowWithOneMonthHasCorrectDa
 import com.akjaw.timi.android.feature.task.detail.ui.rowWithTwoMonthsHasCorrectDates
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
+import io.kotest.assertions.assertSoftly
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import strikt.api.expectThat
-import strikt.assertions.get
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -26,7 +25,7 @@ class CalendarMiddleRowsDatesCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             this[1].rowWithOneMonthHasCorrectDates(month = 5, year = 2022)
             this[2].rowWithOneMonthHasCorrectDates(month = 5, year = 2022)
             this[3].rowWithOneMonthHasCorrectDates(month = 5, year = 2022)
@@ -50,7 +49,7 @@ class CalendarMiddleRowsDatesCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             this[1].rowWithOneMonthHasCorrectDates(month = 11, year = 2021)
             this[2].rowWithOneMonthHasCorrectDates(month = 11, year = 2021)
             this[3].rowWithOneMonthHasCorrectDates(month = 11, year = 2021)
@@ -74,7 +73,7 @@ class CalendarMiddleRowsDatesCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             this[1].rowWithOneMonthHasCorrectDates(month = 12, year = 2020)
             this[2].rowWithOneMonthHasCorrectDates(month = 12, year = 2020)
             this[3].rowWithOneMonthHasCorrectDates(month = 12, year = 2020)

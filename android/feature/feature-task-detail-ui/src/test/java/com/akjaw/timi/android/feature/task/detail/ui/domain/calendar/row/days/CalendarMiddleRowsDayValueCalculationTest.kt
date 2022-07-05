@@ -4,10 +4,9 @@ import com.akjaw.timi.android.feature.task.detail.ui.rowDaysEqual
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
+import io.kotest.assertions.assertSoftly
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import strikt.api.Assertion
-import strikt.api.expectThat
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -26,7 +25,7 @@ class CalendarMiddleRowsDayValueCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             secondRowDaysEqual((8..14).toList())
             thirdRowDaysEqual((15..21).toList())
             fourthRowDaysEqual((22..28).toList())
@@ -40,7 +39,7 @@ class CalendarMiddleRowsDayValueCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             secondRowDaysEqual((3..9).toList())
             thirdRowDaysEqual((10..16).toList())
             fourthRowDaysEqual((17..23).toList())
@@ -54,7 +53,7 @@ class CalendarMiddleRowsDayValueCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             secondRowDaysEqual((4..10).toList())
             thirdRowDaysEqual((11..17).toList())
             fourthRowDaysEqual((18..24).toList())
@@ -68,7 +67,7 @@ class CalendarMiddleRowsDayValueCalculationTest {
 
         val result = systemUnderTest.calculate(monthUnderTest)
 
-        expectThat(result) {
+        assertSoftly(result) {
             secondRowDaysEqual((8..14).toList())
             thirdRowDaysEqual((15..21).toList())
             fourthRowDaysEqual((22..28).toList())
@@ -76,22 +75,22 @@ class CalendarMiddleRowsDayValueCalculationTest {
         }
     }
 
-    private fun Assertion.Builder<List<List<CalendarDay>>>.secondRowDaysEqual(
+    private fun List<List<CalendarDay>>.secondRowDaysEqual(
         expectedDays: List<Int>
     ) =
         rowDaysEqual(rowIndex = 1, expectedDays = expectedDays)
 
-    private fun Assertion.Builder<List<List<CalendarDay>>>.thirdRowDaysEqual(
+    private fun List<List<CalendarDay>>.thirdRowDaysEqual(
         expectedDays: List<Int>
     ) =
         rowDaysEqual(rowIndex = 2, expectedDays = expectedDays)
 
-    private fun Assertion.Builder<List<List<CalendarDay>>>.fourthRowDaysEqual(
+    private fun List<List<CalendarDay>>.fourthRowDaysEqual(
         expectedDays: List<Int>
     ) =
         rowDaysEqual(rowIndex = 3, expectedDays = expectedDays)
 
-    private fun Assertion.Builder<List<List<CalendarDay>>>.fifthRowDaysEqual(
+    private fun List<List<CalendarDay>>.fifthRowDaysEqual(
         expectedDays: List<Int>
     ) =
         rowDaysEqual(rowIndex = 4, expectedDays = expectedDays)

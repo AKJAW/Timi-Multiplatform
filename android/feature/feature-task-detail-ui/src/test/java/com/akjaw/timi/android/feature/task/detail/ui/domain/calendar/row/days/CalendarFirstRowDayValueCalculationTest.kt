@@ -6,8 +6,6 @@ import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.Calenda
 import com.soywiz.klock.DateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import strikt.api.Assertion
-import strikt.api.expectThat
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -27,7 +25,7 @@ class CalendarFirstRowDayValueCalculationTest {
         val result = systemUnderTest.calculate(monthUnderTest)
 
         val expectedDays = listOf(1, 2, 3, 4, 5, 6, 7)
-        expectThat(result).firstRowDaysEqual(expectedDays)
+        result.firstRowDaysEqual(expectedDays)
     }
 
     @Test
@@ -37,7 +35,7 @@ class CalendarFirstRowDayValueCalculationTest {
         val result = systemUnderTest.calculate(monthUnderTest)
 
         val expectedDays = listOf(26, 27, 28, 29, 30, 31, 1)
-        expectThat(result).firstRowDaysEqual(expectedDays)
+        result.firstRowDaysEqual(expectedDays)
     }
 
     @Test
@@ -47,10 +45,10 @@ class CalendarFirstRowDayValueCalculationTest {
         val result = systemUnderTest.calculate(monthUnderTest)
 
         val expectedDays = listOf(24, 25, 26, 27, 28, 29, 1)
-        expectThat(result).firstRowDaysEqual(expectedDays)
+        result.firstRowDaysEqual(expectedDays)
     }
 
-    private fun Assertion.Builder<List<List<CalendarDay>>>.firstRowDaysEqual(
+    private fun List<List<CalendarDay>>.firstRowDaysEqual(
         expectedDays: List<Int>
     ) =
         rowDaysEqual(rowIndex = 0, expectedDays = expectedDays)

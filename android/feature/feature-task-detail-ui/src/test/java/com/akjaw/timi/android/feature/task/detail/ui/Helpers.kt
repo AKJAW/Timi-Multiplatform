@@ -4,10 +4,7 @@ import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
-import strikt.api.Assertion
-import strikt.assertions.get
-import strikt.assertions.isEqualTo
-import strikt.assertions.map
+import io.kotest.matchers.shouldBe
 
 internal fun createCalendarViewModel(
     timestampProvider: TimestampProvider,
@@ -16,7 +13,7 @@ internal fun createCalendarViewModel(
     calendarDaysCalculator = CalendarDaysCalculator()
 )
 
-fun Assertion.Builder<List<CalendarDay>>.rowWithOneMonthHasCorrectDates(
+fun List<CalendarDay>.rowWithOneMonthHasCorrectDates(
     month: Int,
     year: Int
 ) {
@@ -29,7 +26,7 @@ fun Assertion.Builder<List<CalendarDay>>.rowWithOneMonthHasCorrectDates(
     get(6).hasCorrectDate(month, year)
 }
 
-fun Assertion.Builder<List<CalendarDay>>.rowWithTwoMonthsHasCorrectDates(
+fun List<CalendarDay>.rowWithTwoMonthsHasCorrectDates(
     monthsAndYears: List<Pair<Int, Int>>
 ) {
     get(0).hasCorrectDate(monthsAndYears[0].first, monthsAndYears[0].second)
@@ -41,18 +38,18 @@ fun Assertion.Builder<List<CalendarDay>>.rowWithTwoMonthsHasCorrectDates(
     get(6).hasCorrectDate(monthsAndYears[6].first, monthsAndYears[6].second)
 }
 
-fun Assertion.Builder<CalendarDay>.hasCorrectDate(
+fun CalendarDay.hasCorrectDate(
     month: Int,
     year: Int,
 ) {
-    get { this.month }.isEqualTo(month)
-    get { this.year }.isEqualTo(year)
+    this.month shouldBe month
+    this.year shouldBe year
 }
 
-fun Assertion.Builder<List<List<CalendarDay>>>.rowDaysEqual(
+fun List<List<CalendarDay>>.rowDaysEqual(
     rowIndex: Int,
     expectedDays: List<Int>,
 ) {
     val rowDays = this[rowIndex].map { it.day }
-    rowDays.isEqualTo(expectedDays)
+    rowDays shouldBe expectedDays
 }

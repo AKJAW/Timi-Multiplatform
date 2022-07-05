@@ -8,13 +8,13 @@ import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.C
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewState
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
+import io.kotest.assertions.assertSoftly
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import strikt.api.expectThat
-import strikt.assertions.hasSize
-import strikt.assertions.isEqualTo
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalTime::class)
@@ -50,9 +50,7 @@ class ViewModelDaySelectionTest {
         systemUnderTest.viewState.test {
             val resultingDay = awaitItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToSelect)
 
-            expectThat(resultingDay).isEqualTo(
-                dayViewStateToSelect.copy(isSelected = true)
-            )
+            resultingDay shouldBe dayViewStateToSelect.copy(isSelected = true)
         }
     }
 
@@ -66,9 +64,7 @@ class ViewModelDaySelectionTest {
         systemUnderTest.viewState.test {
             val resultingDay = awaitItem().findDay(CURRENT_MONTH_INDEX, dayViewStateToUnselect)
 
-            expectThat(resultingDay).isEqualTo(
-                dayViewStateToUnselect.copy(isSelected = false)
-            )
+            resultingDay shouldBe dayViewStateToUnselect.copy(isSelected = false)
         }
     }
 
@@ -84,10 +80,10 @@ class ViewModelDaySelectionTest {
             val currentMonthRows = awaitItem().months[CURRENT_MONTH_INDEX].calendarDayRows
             val selectedDays = currentMonthRows.flatten().filter { it.isSelected }
 
-            expectThat(selectedDays).hasSize(1)
-            expectThat(selectedDays.first()).isEqualTo(
-                lastSelectedDay.copy(isSelected = true)
-            )
+            assertSoftly {
+                selectedDays shouldHaveSize 1
+                selectedDays.first() shouldBe lastSelectedDay.copy(isSelected = true)
+            }
         }
     }
 
@@ -100,9 +96,7 @@ class ViewModelDaySelectionTest {
         systemUnderTest.viewState.test {
             val resultingDay = awaitItem().findDay(PREVIOUS_MONTH_INDEX, dayViewStateToSelect)
 
-            expectThat(resultingDay).isEqualTo(
-                dayViewStateToSelect.copy(isSelected = true)
-            )
+            resultingDay shouldBe dayViewStateToSelect.copy(isSelected = true)
         }
     }
 
@@ -119,10 +113,10 @@ class ViewModelDaySelectionTest {
                 row.filter { day -> day.isSelected }
             }
 
-            expectThat(allSelectedDays).hasSize(1)
-            expectThat(allSelectedDays.first()).isEqualTo(
-                lastSelectedDay.copy(isSelected = true)
-            )
+            assertSoftly {
+                allSelectedDays shouldHaveSize 1
+                allSelectedDays.first() shouldBe lastSelectedDay.copy(isSelected = true)
+            }
         }
     }
 
