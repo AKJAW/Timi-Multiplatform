@@ -1,0 +1,59 @@
+name: Build
+
+on: [ push ]
+
+jobs:
+  Android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - uses: burrunan/gradle-cache-action@v1
+        name: Test
+        with:
+          arguments: :android:app:assemble
+
+  KMP:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - uses: burrunan/gradle-cache-action@v1
+        name: Test
+        with:
+          arguments: :kmp:shared:assemble
+
+  iOS:
+    if: ${{ false }}
+
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - name: Build
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          workspace: ios/TimiIOS.xcworkspace
+          scheme: TimiIOS
+          destination: name=iPhone 8
+          sdk: iphoneos
+          configuration: Debug
+          action: build

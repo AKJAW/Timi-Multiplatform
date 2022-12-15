@@ -1,0 +1,33 @@
+- [x] Add KMP module
+- [x] Add iOS Project
+- [x] Add Basic KMP logic
+- [x] Add refresh versions
+- [x] Move stopwatch module to KMP
+- [x] Refactor to use new coroutine test
+- [x] Clean up internal stopwatch classes
+- [x] Add Basic Swift UI for the stopwatch screen
+- [x] Remove old poc classes
+- [x] Add abstraction for Dispatcher Provider
+- [x] Fix UI tests compilation
+- [x] Replace Hilt with Koin
+- [x] Fix app UI tests
+- [x] Move Android modules to android folder
+- [x] Move task list data domain to kmp
+- [x] Move task list data domain tests to kmp
+- [x] Move task list presentation to kmp
+- [x] Move task list presentation tests to kmp
+- [x] Move task list module to kmp
+- [x] Add kotlin debugging and source files
+- [x] Update GitHub Actions
+- [x] Move available task colors to KMM
+- [x] Add white text for dark color
+- [x] Create iOS UI for task list
+- [x] Clean up feature-task-api packaging
+- [x] Clean up old module names
+- [x] Clean up package names for old modules
+- [x] Clean up AndroidManifest in KMP
+- [ ] Move settings to KMM?
+- [ ] Add saved state handling to stopwatch?
+- [ ] Clean up gradle dependencies
+- [ ] Extract Config / Precompiled plugin for gradle modules
+- [ ] Clean up internal implementation of stopwatch????

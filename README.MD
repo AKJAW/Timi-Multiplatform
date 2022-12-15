@@ -26,7 +26,7 @@ Freelancing etc.)
 
 - Jetpack Compose
 - Kotlin Coroutines
-- Dagger 2 Hilt <- might be replaced with Koin
+- Koin
 - SQLDelight
 
 ## What's in this project:
@@ -34,3 +34,31 @@ Freelancing etc.)
 - Compose and Compose UI tests
 - JUnit5 Unit tests
 - Gradle modularization
+
+## What's next
+
+### Low priority:
+
+#### Settings
+- Move logic to KMM
+- Move tests to KMM
+- Add settings to iOS
+- Add Maestro tests
+- Improve the UI for both o the Apps
+- Add charts for the time spent
+- Add Android stopwatch notification Service
+- Add iOS notification with the stopwatch somehow :)
+
+### Medium priority:
+- Replace Dagger with Koin
+- Update dependencies
+- Fix the Calendar
+- Remove light mode and settings for the time being?
+
+### High priority:
+- Merge to latest branch to main
+- Remove stale branches
+- Synchronize the Android and iOS features so they're up to date
+- Add iOS stopwatch dialog
+- Add Stopwatch time database table with relations
+- Think of what to do next

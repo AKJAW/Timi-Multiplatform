@@ -1,0 +1,31 @@
+PODS:
+  - KMPNativeCoroutinesCombine (0.11.3):
+    - KMPNativeCoroutinesCore (= 0.11.3)
+  - KMPNativeCoroutinesCore (0.11.3)
+  - shared (1.0)
+  - SwiftLint (0.46.5)
+
+DEPENDENCIES:
+  - KMPNativeCoroutinesCombine
+  - shared (from `../kmp/shared/`)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - KMPNativeCoroutinesCombine
+    - KMPNativeCoroutinesCore
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  shared:
+    :path: "../kmp/shared/"
+
+SPEC CHECKSUMS:
+  KMPNativeCoroutinesCombine: eb605c5d8315a2f3d046767c3b733887009cc5de
+  KMPNativeCoroutinesCore: 28d42a3a801ce4d5be75e01a7f227462c529a127
+  shared: e27df6fd96830fbc762818c4daa52dc0f6c63bfe
+  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+
+PODFILE CHECKSUM: 3004ece04bdb9ea0f895b3cef2de2d56af0b070e
+
+COCOAPODS: 1.11.3

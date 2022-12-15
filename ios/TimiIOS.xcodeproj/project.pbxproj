@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46A5B60826B04921002EFEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A5B60626B04920002EFEAA /* Main.storyboard */; };
+		46B5284D249C5CF400A7725D /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5284C249C5CF400A7725D /* Koin.swift */; };
+		8CE839EB85ABE7B227698827 /* Pods_TimiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */; };
+		AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BC27FB64F00020C35A /* ContentView.swift */; };
+		AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */; };
+		AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */; };
+		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
+		AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */; };
+		AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */; };
+		AEFA437E280756A600188ABB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFA437D280756A600188ABB /* Color.swift */; };
+		F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */; };
+		F1465F0A23AA94BF0055F7C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0923AA94BF0055F7C3 /* Assets.xcassets */; };
+		F1465F0D23AA94BF0055F7C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0B23AA94BF0055F7C3 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.release.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.release.xcconfig"; sourceTree = "<group>"; };
+		46A5B60726B04920002EFEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		46B5284C249C5CF400A7725D /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
+		AE12A1BC27FB64F00020C35A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
+		AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskDialog.swift; sourceTree = "<group>"; };
+		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
+		AEFA437D280756A600188ABB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimiIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F1465F0923AA94BF0055F7C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F1465F0C23AA94BF0055F7C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F1465F0E23AA94BF0055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1465EFA23AA94BF0055F7C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */,
+				AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */,
+				8CE839EB85ABE7B227698827 /* Pods_TimiIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7FA0926A5A256B7D9B5274B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */,
+				071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE2F89EF27FDFE38003CF168 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */,
+				AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		AEE5961927F039BC000B7648 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AEFA437C2807569600188ABB /* Util */,
+				AE2F89EF27FDFE38003CF168 /* Task */,
+				AEE5961C27F03B1E000B7648 /* Stopwatch */,
+				AE12A1BC27FB64F00020C35A /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AEE5961C27F03B1E000B7648 /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */,
+			);
+			path = Stopwatch;
+			sourceTree = "<group>";
+		};
+		AEFA437C2807569600188ABB /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AEFA437D280756A600188ABB /* Color.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		E313520E97EC84EF62D9A71B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1465EF423AA94BF0055F7C3 = {
+			isa = PBXGroup;
+			children = (
+				F1465EFF23AA94BF0055F7C3 /* TimiIOS */,
+				F1465EFE23AA94BF0055F7C3 /* Products */,
+				7FA0926A5A256B7D9B5274B7 /* Pods */,
+				E313520E97EC84EF62D9A71B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F1465EFE23AA94BF0055F7C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1465EFF23AA94BF0055F7C3 /* TimiIOS */ = {
+			isa = PBXGroup;
+			children = (
+				AEE5961927F039BC000B7648 /* View */,
+				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
+				46A5B60626B04920002EFEAA /* Main.storyboard */,
+				46B5284C249C5CF400A7725D /* Koin.swift */,
+				F1465F0923AA94BF0055F7C3 /* Assets.xcassets */,
+				F1465F0B23AA94BF0055F7C3 /* LaunchScreen.storyboard */,
+				F1465F0E23AA94BF0055F7C3 /* Info.plist */,
+			);
+			path = TimiIOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1465EFC23AA94BF0055F7C3 /* TimiIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1465F2723AA94C00055F7C3 /* Build configuration list for PBXNativeTarget "TimiIOS" */;
+			buildPhases = (
+				B9797AC953B00530F1C7C10E /* [CP] Check Pods Manifest.lock */,
+				F1465EF923AA94BF0055F7C3 /* Sources */,
+				451A87F626D69EA40013D7F8 /* SwiftLint */,
+				F1465EFA23AA94BF0055F7C3 /* Frameworks */,
+				F1465EFB23AA94BF0055F7C3 /* Resources */,
+				3494B804BCE40017629B2FD2 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimiIOS;
+			packageProductDependencies = (
+				AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */,
+				AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */,
+			);
+			productName = KaMPKitiOS;
+			productReference = F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1465EF523AA94BF0055F7C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1220;
+				ORGANIZATIONNAME = Touchlab;
+				TargetAttributes = {
+					F1465EFC23AA94BF0055F7C3 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = F1465EF823AA94BF0055F7C3 /* Build configuration list for PBXProject "TimiIOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F1465EF423AA94BF0055F7C3;
+			packageReferences = (
+				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+			);
+			productRefGroup = F1465EFE23AA94BF0055F7C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1465EFC23AA94BF0055F7C3 /* TimiIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1465EFB23AA94BF0055F7C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46A5B60826B04921002EFEAA /* Main.storyboard in Resources */,
+				F1465F0D23AA94BF0055F7C3 /* LaunchScreen.storyboard in Resources */,
+				F1465F0A23AA94BF0055F7C3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3494B804BCE40017629B2FD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		451A87F626D69EA40013D7F8 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# For reference: https://github.com/realm/SwiftLint\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		B9797AC953B00530F1C7C10E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimiIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1465EF923AA94BF0055F7C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */,
+				46B5284D249C5CF400A7725D /* Koin.swift in Sources */,
+				AEFA437E280756A600188ABB /* Color.swift in Sources */,
+				AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */,
+				AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */,
+				AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */,
+				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		46A5B60626B04920002EFEAA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46A5B60726B04920002EFEAA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F1465F0B23AA94BF0055F7C3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1465F0C23AA94BF0055F7C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F1465F2523AA94C00055F7C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: brady.aiello@gmail.com (94U525PPDD)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6A5MWU525T;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F1465F2623AA94C00055F7C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: brady.aiello@gmail.com (94U525PPDD)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6A5MWU525T;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F1465F2823AA94C00055F7C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TimiIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.akjaw.timi.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F1465F2923AA94C00055F7C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TimiIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.akjaw.timi.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1465EF823AA94BF0055F7C3 /* Build configuration list for PBXProject "TimiIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1465F2523AA94C00055F7C3 /* Debug */,
+				F1465F2623AA94C00055F7C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1465F2723AA94C00055F7C3 /* Build configuration list for PBXNativeTarget "TimiIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1465F2823AA94C00055F7C3 /* Debug */,
+				F1465F2923AA94C00055F7C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			productName = KMPNativeCoroutinesCombine;
+		};
+		AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			productName = KMPNativeCoroutinesCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F1465EF523AA94BF0055F7C3 /* Project object */;
+}

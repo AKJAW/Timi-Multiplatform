@@ -1,16 +1,17 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+plugins {
+    // See https://jmfayard.github.io/refreshVersions
+    id 'de.fayard.refreshVersions' version '0.40.1'
 }
-rootProject.name = "Timi Compose"
-include ':app'
-include ':features'
-include ':features:stopwatch'
-include ':core'
-include ':features:task'
-include ':features:task:list'
-include ':features:task:task_api'
-include ':features:settings'
+
+rootProject.name = "Timi-Compose"
+include ':android:app'
+include ':android:android-core'
+include ':android:feature:feature-settings-ui'
+include ':android:feature:feature-task-list-ui'
+include ':android:feature:feature-task-detail-ui'
+include ':android:feature:feature-stopwatch-ui'
+include ':kmp:shared'
+include ':kmp:core:core-shared'
+include ':kmp:feature:feature-stopwatch'
+include ':kmp:feature:feature-task-api'
+include ':kmp:feature:feature-task-dependency'
