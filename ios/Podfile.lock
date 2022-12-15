@@ -11,7 +11,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - KMPNativeCoroutinesCombine
     - KMPNativeCoroutinesCore
     - SwiftLint
@@ -26,6 +26,6 @@ SPEC CHECKSUMS:
   shared: e27df6fd96830fbc762818c4daa52dc0f6c63bfe
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
 
-PODFILE CHECKSUM: 798f387499526872bc403f352ce3b79511dd8f28
+PODFILE CHECKSUM: 3004ece04bdb9ea0f895b3cef2de2d56af0b070e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
