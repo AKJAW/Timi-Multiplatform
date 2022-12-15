@@ -1,6 +1,13 @@
 [![Tests](https://github.com/AKJAW/Timi-Compose/actions/workflows/test.yml/badge.svg)](https://github.com/AKJAW/Timi-Compose/actions/workflows/test.yml)
 [![Linting check](https://github.com/AKJAW/Timi-Compose/actions/workflows/ktlint.yml/badge.svg)](https://github.com/AKJAW/Timi-Compose/actions/workflows/ktlint.yml)
 
+<a href="https://androidweekly.net/issues/issue-468">
+<img src="https://androidweekly.net/issues/issue-468/badge">
+</a>
+<a href="https://androidweekly.net/issues/issue-514">
+<img src="https://androidweekly.net/issues/issue-514/badge">
+</a>
+
 # What this project is
 
 It's a rewrite of my first Android application and also a way for me to learn Compose. This app
