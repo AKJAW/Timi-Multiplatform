@@ -18,7 +18,6 @@ import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
-import com.akjaw.timi.android.feature.settings.ui.view.SettingsScreen
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
 import com.akjaw.timi.android.feature.task.detail.ui.view.TaskDetailScreen
 import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreen
@@ -35,7 +34,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
 
         setContent {
             val navController = rememberNavController()
-            TimiComposeTheme(darkTheme = ThemeState.isDarkTheme.value) {
+            TimiComposeTheme(/* darkTheme = ThemeState.isDarkTheme.value */) {
                 NavHost(
                     navController = navController,
                     startDestination = TaskDestinations.List.route
@@ -63,7 +62,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                             topBar = { TopAppBar(title = { Text(text = "Settings") }) },
                             bottomBar = { TimiBottomBar(navController) },
                         ) {
-                            SettingsScreen()
+                            // SettingsScreen()
                         }
                     }
                 }

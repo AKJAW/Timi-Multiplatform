@@ -29,11 +29,6 @@ struct ContentView: View {
                     Label("Timer", systemImage: "stopwatch")
                 }
                 .tag(Tab.stopwatch)
-            Text("Settings")
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
-                .tag(Tab.settings)
         }
     }
 }

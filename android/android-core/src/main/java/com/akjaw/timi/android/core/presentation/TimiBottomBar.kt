@@ -23,7 +23,7 @@ import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 private val values = listOf(
     BottomBarScreen.Home,
     BottomBarScreen.Stopwatch,
-    BottomBarScreen.Settings
+    // BottomBarScreen.Settings
 )
 
 object TaskDestinations {
@@ -58,7 +58,7 @@ sealed class BottomBarScreen(
 ) {
     object Home : BottomBarScreen(Icons.Filled.Home, TaskDestinations.List.route)
     object Stopwatch : BottomBarScreen(Icons.Filled.Timer, StopwatchDestinations.List.route)
-    object Settings : BottomBarScreen(Icons.Filled.Settings, SettingsDestinations.Home.route)
+    // object Settings : BottomBarScreen(Icons.Filled.Settings, SettingsDestinations.Home.route)
 }
 
 @Composable

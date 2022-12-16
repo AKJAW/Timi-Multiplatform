@@ -62,7 +62,7 @@ Freelancing etc.)
 - ~~Merge to latest branch to main~~
 - ~~Remove stale branches~~
 - ~~Update dependencies~~
-- Remove light mode and settings for the time being
+- ~~Remove light mode and settings for the time being~~
 - Disable calendar for now
 - Synchronize the Android and iOS features so they're up to date
   - iOS missing stopwatch dialog
