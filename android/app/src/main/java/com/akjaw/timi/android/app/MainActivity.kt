@@ -16,7 +16,6 @@ import com.akjaw.timi.android.core.presentation.SettingsDestinations
 import com.akjaw.timi.android.core.presentation.StopwatchDestinations
 import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
-import com.akjaw.timi.android.core.view.theme.ThemeState
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
 import com.akjaw.timi.android.feature.task.detail.ui.view.TaskDetailScreen
@@ -51,7 +50,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                             topBar = { TopAppBar(title = { Text(text = "Task $taskId") }) },
                             bottomBar = { TimiBottomBar(navController) },
                         ) {
-                            TaskDetailScreen()
+                            TaskDetailScreen(taskId)
                         }
                     }
                     composable(StopwatchDestinations.List.route) {
