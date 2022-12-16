@@ -51,12 +51,7 @@ Freelancing etc.)
 
 ### Medium priority:
 - ~~Replace Dagger with Koin~~
-- Make GHA run only on PRs not on every push
-- Figure out GitHub status requirements before merging
 - Add Stopwatch time database table with relations
-- Synchronize the Android and iOS features so they're up to date
-  - iOS missing stopwatch dialog
-  - iOS missing detail screen
 
 ### High priority:
 - ~~Merge to latest branch to main~~
@@ -64,10 +59,11 @@ Freelancing etc.)
 - ~~Update dependencies~~
 - ~~Remove light mode and settings for the time being~~
 - ~~Disable calendar for now~~
-- Synchronize the Android and iOS features so they're up to date
+- ~~Synchronize the Android and iOS features so they're up to date~~
   - ~~iOS Basic navigation to detail screen~~
-  - iOS missing stopwatch dialog
-  - iOS missing detail screen
+  - ~~iOS missing stopwatch dialog~~
+- Make GHA run only on PRs not on every push
+- Figure out GitHub status requirements before merging
 
 ### Brain storming
 - Animations

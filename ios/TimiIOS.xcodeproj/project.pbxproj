@@ -13,6 +13,7 @@
 		AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BC27FB64F00020C35A /* ContentView.swift */; };
 		AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */; };
 		AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */; };
+		AE5509A0294CB25400BC7A9C /* AddStopwatchDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */; };
 		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
 		AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */; };
 		AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */; };
@@ -29,6 +30,7 @@
 		AE12A1BC27FB64F00020C35A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
 		AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskDialog.swift; sourceTree = "<group>"; };
+		AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStopwatchDialog.swift; sourceTree = "<group>"; };
 		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
 		AEFA437D280756A600188ABB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 		AEE5961C27F03B1E000B7648 /* Stopwatch */ = {
 			isa = PBXGroup;
 			children = (
+				AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */,
 				AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */,
 			);
 			path = Stopwatch;
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */,
+				AE5509A0294CB25400BC7A9C /* AddStopwatchDialog.swift in Sources */,
 				46B5284D249C5CF400A7725D /* Koin.swift in Sources */,
 				AEFA437E280756A600188ABB /* Color.swift in Sources */,
 				AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */,

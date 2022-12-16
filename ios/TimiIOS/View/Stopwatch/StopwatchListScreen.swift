@@ -10,7 +10,6 @@ class StopwatchListPublisher: ObservableObject {
     
     @Published
     var availableTasks: [Task] = []
-    
     @Published
     var stopwatches: [Task : String] = [:]
     
@@ -21,6 +20,7 @@ class StopwatchListPublisher: ObservableObject {
             .sink { completion in
                 print("Received completion availableTasksNative: \(completion)")
             } receiveValue: { tasks in
+                print("Received availableTasksNative: \(tasks)")
                 self.availableTasks = tasks
             }
             .store(in: &cancellables)
@@ -30,13 +30,13 @@ class StopwatchListPublisher: ObservableObject {
             .sink { completion in
                 print("Received completion stopwatchesNative: \(completion)")
             } receiveValue: { stopwatches in
+                print("Received stopwatchesNative: \(stopwatches)")
                 self.stopwatches = stopwatches
             }
             .store(in: &cancellables)
     }
     
-    func addStopwatch() {
-        guard let task = availableTasks.first else { return }
+    func addStopwatch(task: Task) {
         print("Adding: \(task)")
         viewModel.start(task: task)
     }
@@ -45,6 +45,7 @@ class StopwatchListPublisher: ObservableObject {
 struct StopwatchListScreen: View {
     
     @ObservedObject private var publisher = StopwatchListPublisher()
+    @State private var isDialogShown = false
     
     var body: some View {
         List {
@@ -60,16 +61,20 @@ struct StopwatchListScreen: View {
                     onStop: { publisher.viewModel.stop(task: task) }
                 )
             }
-            // TODO is this really the way?
             HStack {
                 Spacer()
                 Text("Add stopwatch")
                     .onTapGesture {
-                        publisher.addStopwatch()
+                        isDialogShown = true
                     }
                 Spacer()
             }
         }
+        .addStopwatchDialog(
+            isShowing: $isDialogShown,
+            tasks: $publisher.availableTasks,
+            addStopwatch: publisher.addStopwatch
+        )
     }
 }
 
