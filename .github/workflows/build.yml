@@ -56,6 +56,11 @@ jobs:
         with:
           podfile-path: ios/Podfile.lock
 
+      - name: Install Dependencies
+        run: |
+          cd ios
+          pod install
+
       - name: Build
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
