@@ -54,27 +54,29 @@ jobs:
           distribution: "adopt"
           java-version: "11"
 
-      - name: Set up cocoapods
-        uses: maxim-lobanov/setup-cocoapods@v1
-        with:
-          podfile-path: ios/Podfile.lock
+#      - name: Set up cocoapods
+#        uses: maxim-lobanov/setup-cocoapods@v1
+#        with:
+#          podfile-path: ios/Podfile.lock
 
-      - uses: burrunan/gradle-cache-action@v1
-        name: Test
-        with:
-          arguments: :kmp:app:compileKotlinIosX64
+      - run: xcodebuild -workspace ios/TimiIOS.xcworkspace -configuration Debug -scheme TimiIOS -sdk iphoneos -destination name='iPhone 12' build
 
-      - name: Install Dependencies
-        run: |
-          cd ios
-          pod install --verbose
-
-      - name: Build
-        uses: sersoft-gmbh/xcodebuild-action@v2
-        with:
-          workspace: ios/TimiIOS.xcworkspace
-          scheme: TimiIOS
-          destination: name=iPhone 12
-          sdk: iphoneos
-          configuration: Debug
-          action: build
+#      - uses: burrunan/gradle-cache-action@v1
+#        name: Test
+#        with:
+#          arguments: :kmp:app:compileKotlinIosX64
+#
+#      - name: Install Dependencies
+#        run: |
+#          cd ios
+#          pod install --verbose
+#
+#      - name: Build
+#        uses: sersoft-gmbh/xcodebuild-action@v2
+#        with:
+#          workspace: ios/TimiIOS.xcworkspace
+#          scheme: TimiIOS
+#          destination: name=iPhone 12
+#          sdk: iphoneos
+#          configuration: Debug
+#          action: build
