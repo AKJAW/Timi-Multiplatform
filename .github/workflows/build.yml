@@ -51,6 +51,11 @@ jobs:
           distribution: "adopt"
           java-version: "11"
 
+      - name: Set up cocoapods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: ios/Podfile.lock
+
       - name: Build
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
