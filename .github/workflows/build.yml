@@ -1,9 +1,10 @@
 name: Build
 
-on: [ pull_request ]
+on: [ opened, ready_for_review ]
 
 jobs:
   Android:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false)) }}
     runs-on: ubuntu-latest
 
     steps:
@@ -25,6 +26,7 @@ jobs:
           arguments: :android:app:assemble
 
   KMP:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false)) }}
     runs-on: macos-12
 
     steps:
@@ -41,6 +43,7 @@ jobs:
           arguments: :kmp:shared:assemble
 
   iOS:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false)) }}
     runs-on: macos-12
 
     steps:
@@ -59,7 +62,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd ios
-          pod install
+          pod install --verbose
 
       - name: Build
         uses: sersoft-gmbh/xcodebuild-action@v2
