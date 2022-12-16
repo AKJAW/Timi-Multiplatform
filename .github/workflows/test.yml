@@ -25,7 +25,7 @@ jobs:
           arguments: clean testDebug -p android/
 
   KMP:
-    runs-on: macos-latest
+    runs-on: macos-12
 
     steps:
       - uses: actions/checkout@v2
