@@ -1,4 +1,5 @@
 import de.fayard.refreshVersions.core.versionFor
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
     kotlin("multiplatform")
@@ -26,6 +27,9 @@ version = "1.0"
 kotlin {
     android()
     ios()
+    iosSimulatorArm64()
+    sourceSets["iosSimulatorArm64Main"].dependsOn(sourceSets["iosMain"])
+    sourceSets["iosSimulatorArm64Test"].dependsOn(sourceSets["iosTest"])
 
     sourceSets {
         all {
@@ -96,5 +100,8 @@ kotlin {
         }
         ios.deploymentTarget = "15.0"
         podfile = project.file("../../ios/Podfile")
+        xcodeConfigurationToNativeBuildType["Debug"] = NativeBuildType.DEBUG
+        xcodeConfigurationToNativeBuildType["Beta"]= NativeBuildType.RELEASE
+        xcodeConfigurationToNativeBuildType["Release"] = NativeBuildType.RELEASE
     }
 }
