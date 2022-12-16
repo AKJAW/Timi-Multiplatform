@@ -59,6 +59,11 @@ jobs:
         with:
           podfile-path: ios/Podfile.lock
 
+      - uses: burrunan/gradle-cache-action@v1
+        name: Test
+        with:
+          arguments: :kmp:app:compileKotlinIosX64
+
       - name: Install Dependencies
         run: |
           cd ios
