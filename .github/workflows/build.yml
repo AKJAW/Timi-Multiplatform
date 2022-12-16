@@ -36,8 +36,6 @@ jobs:
           arguments: :kmp:shared:assemble
 
   iOS:
-    if: ${{ false }}
-
     runs-on: macos-latest
 
     steps:
@@ -49,11 +47,11 @@ jobs:
           java-version: "11"
 
       - name: Build
-        uses: sersoft-gmbh/xcodebuild-action@v1
+        uses: sersoft-gmbh/xcodebuild-action@v2
         with:
           workspace: ios/TimiIOS.xcworkspace
           scheme: TimiIOS
-          destination: name=iPhone 8
+          destination: name=iPhone 12
           sdk: iphoneos
           configuration: Debug
           action: build
