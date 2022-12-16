@@ -61,9 +61,12 @@ Freelancing etc.)
 ### High priority:
 - ~~Merge to latest branch to main~~
 - ~~Remove stale branches~~
-- Update dependencies
+- ~~Update dependencies~~
 - Remove light mode and settings for the time being
 - Disable calendar for now
+- Synchronize the Android and iOS features so they're up to date
+  - iOS missing stopwatch dialog
+  - iOS missing detail screen
 
 ### Brain storming
 - Animations

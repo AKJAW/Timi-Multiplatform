@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   KMPNativeCoroutinesCombine: eb605c5d8315a2f3d046767c3b733887009cc5de
   KMPNativeCoroutinesCore: 28d42a3a801ce4d5be75e01a7f227462c529a127
-  shared: e27df6fd96830fbc762818c4daa52dc0f6c63bfe
+  shared: e632dd6468bdd973b0f65df4e9c6f28ac7ae5c12
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
 
 PODFILE CHECKSUM: 3004ece04bdb9ea0f895b3cef2de2d56af0b070e
