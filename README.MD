@@ -65,7 +65,7 @@ Freelancing etc.)
 - ~~Remove light mode and settings for the time being~~
 - ~~Disable calendar for now~~
 - Synchronize the Android and iOS features so they're up to date
-  - iOS Basic navigation to detail screen 
+  - ~~iOS Basic navigation to detail screen~~
   - iOS missing stopwatch dialog
   - iOS missing detail screen
 

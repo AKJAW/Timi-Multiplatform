@@ -94,13 +94,19 @@ struct TaskListItem: View {
                 .padding([.horizontal], 16)
                 .background(checkmarkBackground)
                 .foregroundColor(checkmarkColor)
+                .onTapGesture(perform: onClick)
         }
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         .background(task.backgroundColor.toSwiftColor())
         .cornerRadius(8)
-        .onTapGesture {
-            onClick()
-        }
+        .background(
+            NavigationLink(destination: Text("Detail for \(task.id)")) {
+                EmptyView()
+            }
+        )
+//        .simultaneousGesture(LongPressGesture().onEnded({ _ in
+//            onClick()
+//        }))
     }
 }
 
