@@ -63,6 +63,7 @@ Freelancing etc.)
   - ~~iOS Basic navigation to detail screen~~
   - ~~iOS missing stopwatch dialog~~
 - Make GHA run only on PRs not on every push
+- Fix iOS build GitHub job
 - Figure out GitHub status requirements before merging
 
 ### Brain storming
