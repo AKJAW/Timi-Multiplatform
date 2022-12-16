@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1921ECF5F030A630A935F3E3 /* Pods_TimiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEB3CE6C073B90E6272C0A7 /* Pods_TimiIOS.framework */; };
 		46A5B60826B04921002EFEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A5B60626B04920002EFEAA /* Main.storyboard */; };
 		46B5284D249C5CF400A7725D /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5284C249C5CF400A7725D /* Koin.swift */; };
-		8CE839EB85ABE7B227698827 /* Pods_TimiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */; };
 		AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BC27FB64F00020C35A /* ContentView.swift */; };
 		AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */; };
 		AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */; };
@@ -24,22 +24,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.release.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.release.xcconfig"; sourceTree = "<group>"; };
+		2DEB3CE6C073B90E6272C0A7 /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A5B60726B04920002EFEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46B5284C249C5CF400A7725D /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
+		889EB9FF3EA77E5BC858E7C1 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AE12A1BC27FB64F00020C35A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
 		AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskDialog.swift; sourceTree = "<group>"; };
 		AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStopwatchDialog.swift; sourceTree = "<group>"; };
 		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
 		AEFA437D280756A600188ABB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91C89AB28EC101D63DE8CD8 /* Pods-TimiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.release.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.release.xcconfig"; sourceTree = "<group>"; };
 		F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimiIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1465F0923AA94BF0055F7C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1465F0C23AA94BF0055F7C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1465F0E23AA94BF0055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,18 +49,26 @@
 			files = (
 				AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */,
 				AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */,
-				8CE839EB85ABE7B227698827 /* Pods_TimiIOS.framework in Frameworks */,
+				1921ECF5F030A630A935F3E3 /* Pods_TimiIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6949021F7AD164E899AED3EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DEB3CE6C073B90E6272C0A7 /* Pods_TimiIOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7FA0926A5A256B7D9B5274B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */,
-				071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */,
+				889EB9FF3EA77E5BC858E7C1 /* Pods-TimiIOS.debug.xcconfig */,
+				C91C89AB28EC101D63DE8CD8 /* Pods-TimiIOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -102,21 +110,13 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		E313520E97EC84EF62D9A71B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B5DBFE68098D34BCD5289B6E /* Pods_TimiIOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F1465EF423AA94BF0055F7C3 = {
 			isa = PBXGroup;
 			children = (
 				F1465EFF23AA94BF0055F7C3 /* TimiIOS */,
 				F1465EFE23AA94BF0055F7C3 /* Products */,
 				7FA0926A5A256B7D9B5274B7 /* Pods */,
-				E313520E97EC84EF62D9A71B /* Frameworks */,
+				6949021F7AD164E899AED3EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,12 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1465F2723AA94C00055F7C3 /* Build configuration list for PBXNativeTarget "TimiIOS" */;
 			buildPhases = (
-				B9797AC953B00530F1C7C10E /* [CP] Check Pods Manifest.lock */,
+				A07CE6D573BB554FBD06C36E /* [CP] Check Pods Manifest.lock */,
 				F1465EF923AA94BF0055F7C3 /* Sources */,
 				451A87F626D69EA40013D7F8 /* SwiftLint */,
 				F1465EFA23AA94BF0055F7C3 /* Frameworks */,
 				F1465EFB23AA94BF0055F7C3 /* Resources */,
-				3494B804BCE40017629B2FD2 /* [CP] Embed Pods Frameworks */,
+				5BB8A02C067F85575043FDC4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,7 +194,7 @@
 			);
 			mainGroup = F1465EF423AA94BF0055F7C3;
 			packageReferences = (
-				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */,
 			);
 			productRefGroup = F1465EFE23AA94BF0055F7C3 /* Products */;
 			projectDirPath = "";
@@ -219,23 +219,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3494B804BCE40017629B2FD2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		451A87F626D69EA40013D7F8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,7 +237,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# For reference: https://github.com/realm/SwiftLint\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
-		B9797AC953B00530F1C7C10E /* [CP] Check Pods Manifest.lock */ = {
+		5BB8A02C067F85575043FDC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimiIOS/Pods-TimiIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A07CE6D573BB554FBD06C36E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -440,7 +440,7 @@
 		};
 		F1465F2823AA94C00055F7C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F705ACE91F13A6054A612F64 /* Pods-TimiIOS.debug.xcconfig */;
+			baseConfigurationReference = 889EB9FF3EA77E5BC858E7C1 /* Pods-TimiIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -467,7 +467,7 @@
 		};
 		F1465F2923AA94C00055F7C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 071294AAD51D93D3221E0E62 /* Pods-TimiIOS.release.xcconfig */;
+			baseConfigurationReference = C91C89AB28EC101D63DE8CD8 /* Pods-TimiIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -516,7 +516,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
 			requirement = {
@@ -529,12 +529,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
 			productName = KMPNativeCoroutinesCombine;
 		};
 		AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
 			productName = KMPNativeCoroutinesCore;
 		};
 /* End XCSwiftPackageProductDependency section */

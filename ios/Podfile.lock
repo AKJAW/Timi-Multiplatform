@@ -1,9 +1,9 @@
 PODS:
-  - KMPNativeCoroutinesCombine (0.11.3):
-    - KMPNativeCoroutinesCore (= 0.11.3)
-  - KMPNativeCoroutinesCore (0.11.3)
+  - KMPNativeCoroutinesCombine (0.13.2):
+    - KMPNativeCoroutinesCore (= 0.13.2)
+  - KMPNativeCoroutinesCore (0.13.2)
   - shared (1.0)
-  - SwiftLint (0.46.5)
+  - SwiftLint (0.50.1)
 
 DEPENDENCIES:
   - KMPNativeCoroutinesCombine
@@ -21,10 +21,10 @@ EXTERNAL SOURCES:
     :path: "../kmp/shared/"
 
 SPEC CHECKSUMS:
-  KMPNativeCoroutinesCombine: eb605c5d8315a2f3d046767c3b733887009cc5de
-  KMPNativeCoroutinesCore: 28d42a3a801ce4d5be75e01a7f227462c529a127
+  KMPNativeCoroutinesCombine: 3977c36bdcd1d8ad94b8be19b2cdcd2a5a0e37bf
+  KMPNativeCoroutinesCore: a7b4a648dfb55ced49925455c94a4fd28c130308
   shared: e632dd6468bdd973b0f65df4e9c6f28ac7ae5c12
-  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+  SwiftLint: 6b0cf1f4d619808dbc16e4fab064ce6fc79f090b
 
 PODFILE CHECKSUM: 3004ece04bdb9ea0f895b3cef2de2d56af0b070e
 
