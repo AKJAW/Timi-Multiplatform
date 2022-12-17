@@ -51,6 +51,7 @@ Freelancing etc.)
 
 ### Medium priority:
 - ~~Replace Dagger with Koin~~
+- Clean up gradle files using conventional plugins
 - Add Stopwatch time database table with relations
 
 ### High priority:
@@ -64,7 +65,6 @@ Freelancing etc.)
   - ~~iOS missing stopwatch dialog~~
 - ~~Make GHA run only on PRs not on every push~~
 - ~~Fix iOS build GitHub job~~
-- Disable ktlint check from "check"?
 - Figure out GitHub status requirements before merging
 
 ### Brain storming

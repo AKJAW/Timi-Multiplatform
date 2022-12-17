@@ -24,7 +24,7 @@ internal class StopwatchRunningStateCalculationTest {
     }
 
     @Test
-    fun `Running state from Paused 0 is Running (start 0 and elapsed 0)`() {
+    fun `Running state from Paused 0 is Running - start 0 and elapsed 0`() {
         calculateRunningTestCase(
             currentTimestamp = 0,
             oldState = StopwatchState.Paused(elapsedTime = 0.toTimestampMilliseconds()),
