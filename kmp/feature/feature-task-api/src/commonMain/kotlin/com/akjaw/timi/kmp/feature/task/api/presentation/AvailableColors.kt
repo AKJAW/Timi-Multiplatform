@@ -14,5 +14,5 @@ val availableTaskColors = listOf(
     TaskColor(132 / 255f, 162 / 255f, 239 / 255f),
     TaskColor(164 / 255f, 132 / 255f, 239 / 255f),
     TaskColor(206 / 255f, 132 / 255f, 239 / 255f),
-    TaskColor(239 / 255f, 132 / 255f, 214 / 255f),
+    TaskColor(239 / 255f, 132 / 255f, 214 / 255f)
 )

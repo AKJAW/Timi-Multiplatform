@@ -31,7 +31,7 @@ internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
     ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.clickable { onClick() },
+            modifier = Modifier.clickable { onClick() }
         ) {
             Text(text = stringResource(R.string.stopwatch_screen_add_stopwatch))
         }

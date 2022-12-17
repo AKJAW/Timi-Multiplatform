@@ -27,5 +27,5 @@ val allKoinModules: List<Module> = listOf(
     androidCoreModule,
     taskUiModule,
     taskDetailsModule,
-    settingsModule,
+    settingsModule
 )

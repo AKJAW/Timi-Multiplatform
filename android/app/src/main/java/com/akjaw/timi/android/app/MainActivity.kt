@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                         val taskId = backStackEntry.arguments?.getLong("taskId")
                         Scaffold(
                             topBar = { TopAppBar(title = { Text(text = "Task $taskId") }) },
-                            bottomBar = { TimiBottomBar(navController) },
+                            bottomBar = { TimiBottomBar(navController) }
                         ) {
                             TaskDetailScreen(taskId)
                         }
@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     composable(SettingsDestinations.Home.route) {
                         Scaffold(
                             topBar = { TopAppBar(title = { Text(text = "Settings") }) },
-                            bottomBar = { TimiBottomBar(navController) },
+                            bottomBar = { TimiBottomBar(navController) }
                         ) {
                             // SettingsScreen()
                         }

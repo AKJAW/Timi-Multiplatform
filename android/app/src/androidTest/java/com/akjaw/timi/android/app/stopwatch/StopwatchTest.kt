@@ -35,7 +35,7 @@ class StopwatchTest : KoinTest {
     val baseRule = createBaseTestRule(
         composeTestRule,
         *allKoinModules.toTypedArray(),
-        testModule,
+        testModule
     )
 
     private val taskEntityQueries: TaskEntityQueries by inject()

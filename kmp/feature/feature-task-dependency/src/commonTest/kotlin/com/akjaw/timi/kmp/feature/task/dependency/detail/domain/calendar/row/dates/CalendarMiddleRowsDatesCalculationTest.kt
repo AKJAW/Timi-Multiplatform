@@ -37,7 +37,7 @@ class CalendarMiddleRowsDatesCalculationTest {
                     5 to 2022,
                     5 to 2022,
                     5 to 2022,
-                    5 to 2022,
+                    5 to 2022
                 )
             )
         }
@@ -61,7 +61,7 @@ class CalendarMiddleRowsDatesCalculationTest {
                     12 to 2021,
                     12 to 2021,
                     12 to 2021,
-                    12 to 2021,
+                    12 to 2021
                 )
             )
         }
@@ -85,7 +85,7 @@ class CalendarMiddleRowsDatesCalculationTest {
                     12 to 2020,
                     1 to 2021,
                     1 to 2021,
-                    1 to 2021,
+                    1 to 2021
                 )
             )
         }

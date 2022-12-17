@@ -62,7 +62,7 @@ internal fun SettingsScreen(
 private fun SettingsSection(items: @Composable ColumnScope.() -> Unit) {
     Card(
         modifier = Modifier.padding(all = 8.dp),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column(
             modifier = Modifier
@@ -79,13 +79,13 @@ fun SettingsSwitch(
     icon: ImageVector,
     title: String,
     currentValue: Boolean,
-    onClick: (Boolean) -> Unit,
+    onClick: (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick(currentValue.not()) },
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = icon,

@@ -9,7 +9,7 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 
 internal class GetTasksFromDatabase(
-    private val taskEntityQueries: TaskEntityQueries,
+    private val taskEntityQueries: TaskEntityQueries
 ) : GetTasks {
 
     override fun execute(): Flow<List<Task>> =

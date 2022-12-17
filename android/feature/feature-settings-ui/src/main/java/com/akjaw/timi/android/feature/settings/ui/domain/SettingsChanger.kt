@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 internal class SettingsChanger(
     private val settingsRepository: SettingsRepository,
-    initialSettingsOptionsProvider: InitialSettingsOptionsProvider,
+    initialSettingsOptionsProvider: InitialSettingsOptionsProvider
 ) {
 
     private val mutableSettings = MutableStateFlow(initialSettingsOptionsProvider.get())

@@ -13,9 +13,10 @@ import kotlinx.coroutines.launch
 
 internal class StopwatchListOrchestrator(
     private val stopwatchStateHolderFactory: StopwatchStateHolderFactory,
-    private val scope: CoroutineScope,
+    private val scope: CoroutineScope
 ) {
     private var job: Job? = null
+
     // TODO was ConcurrentHashMap
     // TODO extract this to a separate class?
     private var stopwatchStateHolders = mutableMapOf<Task, StopwatchStateHolder>()

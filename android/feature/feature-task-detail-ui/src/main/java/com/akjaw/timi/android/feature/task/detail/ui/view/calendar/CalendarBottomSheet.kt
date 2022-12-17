@@ -101,7 +101,7 @@ private fun CalendarDayCard(dayViewState: DayViewState) {
                 isClicked = !isClicked
             },
         elevation = 0.dp,
-        shape = RoundedCornerShape(50.dp),
+        shape = RoundedCornerShape(50.dp)
     ) {
         Box(
             modifier = Modifier
@@ -112,7 +112,7 @@ private fun CalendarDayCard(dayViewState: DayViewState) {
             Text(
                 text = dayViewState.day.toString(),
                 textAlign = TextAlign.Center,
-                fontSize = 13.sp,
+                fontSize = 13.sp
             )
         }
     }
@@ -140,7 +140,7 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 29, month = 7, year = 2021),
         DayViewState(day = 30, month = 7, year = 2021),
         DayViewState(day = 31, month = 7, year = 2021),
-        DayViewState(day = 1, month = 8, year = 2021),
+        DayViewState(day = 1, month = 8, year = 2021)
     ),
     listOf(
         DayViewState(day = 2, month = 8, year = 2021),
@@ -149,7 +149,7 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 5, month = 8, year = 2021),
         DayViewState(day = 6, month = 8, year = 2021),
         DayViewState(day = 7, month = 8, year = 2021),
-        DayViewState(day = 8, month = 8, year = 2021),
+        DayViewState(day = 8, month = 8, year = 2021)
     ),
     listOf(
         DayViewState(day = 9, month = 8, year = 2021),
@@ -158,7 +158,7 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 12, month = 8, year = 2021),
         DayViewState(day = 13, month = 8, year = 2021),
         DayViewState(day = 14, month = 8, year = 2021),
-        DayViewState(day = 15, month = 8, year = 2021),
+        DayViewState(day = 15, month = 8, year = 2021)
     ),
     listOf(
         DayViewState(day = 16, month = 8, year = 2021),
@@ -167,7 +167,7 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 19, month = 8, year = 2021),
         DayViewState(day = 20, month = 8, year = 2021),
         DayViewState(day = 21, month = 8, year = 2021),
-        DayViewState(day = 22, month = 8, year = 2021),
+        DayViewState(day = 22, month = 8, year = 2021)
     ),
     listOf(
         DayViewState(day = 23, month = 8, year = 2021),
@@ -176,7 +176,7 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 26, month = 8, year = 2021),
         DayViewState(day = 27, month = 8, year = 2021),
         DayViewState(day = 28, month = 8, year = 2021),
-        DayViewState(day = 29, month = 8, year = 2021),
+        DayViewState(day = 29, month = 8, year = 2021)
     ),
     listOf(
         DayViewState(day = 30, month = 8, year = 2021),
@@ -185,6 +185,6 @@ private val augustDays: List<List<DayViewState>> = listOf(
         DayViewState(day = 2, month = 9, year = 2021),
         DayViewState(day = 3, month = 9, year = 2021),
         DayViewState(day = 4, month = 9, year = 2021),
-        DayViewState(day = 5, month = 9, year = 2021),
-    ),
+        DayViewState(day = 5, month = 9, year = 2021)
+    )
 )

@@ -6,7 +6,7 @@ import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 
 internal class ElapsedTimeCalculator(
-    private val timestampProvider: TimestampProvider,
+    private val timestampProvider: TimestampProvider
 ) {
 
     // TODO pass in the timestamp?

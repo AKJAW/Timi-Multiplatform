@@ -28,14 +28,14 @@ import org.koin.androidx.compose.get
 @Composable
 fun StopwatchScreen(
     navController: NavHostController,
-    viewModel: StopwatchViewModel = get(),
+    viewModel: StopwatchViewModel = get()
 ) {
     val availableTasks = viewModel.availableTasks.collectAsState(emptyList())
     val stopwatches = viewModel.stopwatches.collectAsState()
     val (isDialogOpen, setIsDialogOpen) = remember { mutableStateOf(false) }
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = stringResource(R.string.stopwatch_screen_title)) }) },
-        bottomBar = { TimiBottomBar(navController) },
+        bottomBar = { TimiBottomBar(navController) }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             StopwatchContent(
@@ -43,7 +43,7 @@ fun StopwatchScreen(
                 onAddStopwatchClicked = { setIsDialogOpen(true) },
                 onStartClicked = { task -> viewModel.start(task) },
                 onPauseClicked = { task -> viewModel.pause(task) },
-                onStoppedClicked = { task -> viewModel.stop(task) },
+                onStoppedClicked = { task -> viewModel.stop(task) }
             )
             AddStopwatchDialog(
                 isDialogOpen = isDialogOpen,
@@ -61,7 +61,7 @@ private fun StopwatchContent(
     onAddStopwatchClicked: () -> Unit = {},
     onStartClicked: (Task) -> Unit = {},
     onPauseClicked: (Task) -> Unit = {},
-    onStoppedClicked: (Task) -> Unit = {},
+    onStoppedClicked: (Task) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier
@@ -76,7 +76,7 @@ private fun StopwatchContent(
                     timeString = timeString,
                     onStartClicked = { onStartClicked(task) },
                     onPauseClicked = { onPauseClicked(task) },
-                    onStoppedClicked = { onStoppedClicked(task) },
+                    onStoppedClicked = { onStoppedClicked(task) }
                 )
             }
         }

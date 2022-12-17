@@ -48,7 +48,7 @@ internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
                         imageVector = Icons.Filled.Delete,
                         contentDescription = stringResource(
                             R.string.task_list_top_bar_delete_description
-                        ),
+                        )
                     )
                 }
             }
@@ -61,7 +61,7 @@ internal fun TaskTopAppBar(taskListViewModel: TaskListViewModel) {
         selectedCount = selectedCount,
         onDeleteConfirm = {
             taskListViewModel.deleteTasks(selectedTasks)
-        },
+        }
     )
 }
 

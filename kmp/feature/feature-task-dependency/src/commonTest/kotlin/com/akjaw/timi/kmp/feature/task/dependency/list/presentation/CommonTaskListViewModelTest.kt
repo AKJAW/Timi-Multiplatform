@@ -33,13 +33,13 @@ internal class CommonTaskListViewModelTest : KoinComponent {
             id = 0,
             name = "name",
             backgroundColor = TaskColor(22f, 22f, 22f),
-            isSelected = false,
+            isSelected = false
         )
         val TASK2 = Task(
             id = 1,
             name = "name2",
             backgroundColor = TaskColor(33f, 33f, 33f),
-            isSelected = false,
+            isSelected = false
         )
     }
 
@@ -64,7 +64,7 @@ internal class CommonTaskListViewModelTest : KoinComponent {
             deleteTasks = get(),
             addTask = get(),
             dispatcherProvider = TestDispatcherProvider(testCoroutineDispatcher),
-            taskSelectionTrackerFactory = taskSelectionTrackerFactory,
+            taskSelectionTrackerFactory = taskSelectionTrackerFactory
         )
     }
 

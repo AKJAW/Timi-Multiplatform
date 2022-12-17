@@ -56,13 +56,13 @@ import org.koin.androidx.compose.get
 @Composable
 fun TaskListScreen(
     navController: NavHostController,
-    taskListViewModel: TaskListViewModel = get(),
+    taskListViewModel: TaskListViewModel = get()
 ) {
     val tasks = taskListViewModel.tasks.collectAsState(emptyList())
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
-        bottomBar = { TimiBottomBar(navController) },
+        bottomBar = { TimiBottomBar(navController) }
     ) { paddingValues ->
         TaskList(
             modifier = Modifier.padding(paddingValues),
@@ -73,7 +73,7 @@ fun TaskListScreen(
                     launchSingleTop = true
                 }
             },
-            onTaskLongClick = taskListViewModel::toggleTask,
+            onTaskLongClick = taskListViewModel::toggleTask
         )
     }
 }
@@ -83,7 +83,7 @@ private fun TaskList(
     modifier: Modifier = Modifier,
     tasks: List<Task>,
     onTaskClick: (Task) -> Unit = { },
-    onTaskLongClick: (Task) -> Unit = { },
+    onTaskLongClick: (Task) -> Unit = { }
 ) {
     LazyColumn(
         modifier = modifier
@@ -97,7 +97,7 @@ private fun TaskList(
                 TaskItem(
                     task = task,
                     onTaskClicked = onTaskClick,
-                    onTaskLongClick = onTaskLongClick,
+                    onTaskLongClick = onTaskLongClick
                 )
             }
         }
@@ -118,7 +118,7 @@ private fun TaskItem(
             .height(50.dp),
         shape = taskShape,
         backgroundColor = task.backgroundColor.toComposeColor(),
-        elevation = 0.dp,
+        elevation = 0.dp
     ) {
         val buttonWidth = remember { 50.dp }
         Box(
@@ -128,7 +128,7 @@ private fun TaskItem(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
                     onClick = { onTaskClicked(task) },
-                    onLongClick = { onTaskLongClick(task) },
+                    onLongClick = { onTaskLongClick(task) }
                 )
         ) {
             Text(

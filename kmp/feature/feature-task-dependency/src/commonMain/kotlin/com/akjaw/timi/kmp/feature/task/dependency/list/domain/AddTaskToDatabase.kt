@@ -13,7 +13,7 @@ internal class AddTaskToDatabase(
             id = null,
             position = 0,
             name = task.name,
-            color = task.backgroundColor,
+            color = task.backgroundColor
         )
     }
 }

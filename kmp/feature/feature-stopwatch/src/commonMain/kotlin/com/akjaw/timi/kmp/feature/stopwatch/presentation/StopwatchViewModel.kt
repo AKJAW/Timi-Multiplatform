@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.combineTransform
 
 class StopwatchViewModel internal constructor(
     private val getTasks: GetTasks,
-    private val stopwatchListOrchestrator: StopwatchListOrchestrator,
+    private val stopwatchListOrchestrator: StopwatchListOrchestrator
 ) {
 
     // TODO remake the data structure so it's easier to use from platforms
