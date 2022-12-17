@@ -25,7 +25,7 @@ jobs:
         with:
           arguments: clean testDebug -p android/
 
-  KMP:
+  KMP-Android:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false) }}
     runs-on: macos-12
 
@@ -40,4 +40,21 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Test
         with:
-          arguments: clean check -p kmp/
+          arguments: clean testDebug -p kmp/
+
+  KMP-iOS:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false) }}
+    runs-on: macos-12
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - uses: burrunan/gradle-cache-action@v1
+        name: Test
+        with:
+          arguments: clean allTests -p kmp/
