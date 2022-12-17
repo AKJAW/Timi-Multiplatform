@@ -51,8 +51,7 @@ Freelancing etc.)
 
 ### Medium priority:
 - ~~Replace Dagger with Koin~~
-- Clean up gradle files using conventional plugins
-- Add Stopwatch time database table with relations
+- Figure out GitHub status requirements before merging
 
 ### High priority:
 - ~~Merge to latest branch to main~~
@@ -65,7 +64,8 @@ Freelancing etc.)
   - ~~iOS missing stopwatch dialog~~
 - ~~Make GHA run only on PRs not on every push~~
 - ~~Fix iOS build GitHub job~~
-- Figure out GitHub status requirements before merging
+- ~~Clean up gradle files using conventional plugins~~
+- Add Stopwatch time database table with relations
 
 ### Brain storming
 - Animations
