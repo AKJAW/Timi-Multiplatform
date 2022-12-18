@@ -7,7 +7,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,8 +21,8 @@ import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 
 private val values = listOf(
     BottomBarScreen.Home,
-    BottomBarScreen.Stopwatch,
-    BottomBarScreen.Settings
+    BottomBarScreen.Stopwatch
+    // BottomBarScreen.Settings
 )
 
 object TaskDestinations {
@@ -54,11 +53,11 @@ object SettingsDestinations {
 
 sealed class BottomBarScreen(
     val imageVector: ImageVector,
-    val route: String,
+    val route: String
 ) {
     object Home : BottomBarScreen(Icons.Filled.Home, TaskDestinations.List.route)
     object Stopwatch : BottomBarScreen(Icons.Filled.Timer, StopwatchDestinations.List.route)
-    object Settings : BottomBarScreen(Icons.Filled.Settings, SettingsDestinations.Home.route)
+    // object Settings : BottomBarScreen(Icons.Filled.Settings, SettingsDestinations.Home.route)
 }
 
 @Composable
@@ -94,7 +93,7 @@ private fun TimiBottomBar(
                         imageVector = screen.imageVector,
                         text = screen.route
                     )
-                },
+                }
             )
         }
     }
@@ -103,7 +102,7 @@ private fun TimiBottomBar(
 @Composable
 private fun BottomNavIcon(
     imageVector: ImageVector,
-    text: String,
+    text: String
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Icon(imageVector = imageVector, contentDescription = text)

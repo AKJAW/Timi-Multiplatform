@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 33
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
         applicationId = "com.akjaw.timicompose"
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -39,7 +39,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.ui)
+        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.compiler)
     }
     packagingOptions {
         exclude("META-INF/AL2.0")

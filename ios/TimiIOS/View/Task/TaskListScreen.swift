@@ -26,8 +26,6 @@ class TaskListPublisher: ObservableObject {
 struct TaskListScreen: View {
     
     @State private var isDialogShown = false
-    @State private var count = 0
-    
     @ObservedObject private var publisher = TaskListPublisher()
     
     var body: some View {
@@ -59,7 +57,6 @@ struct TaskListScreen: View {
                     Image(systemName: "plus")
                 }
                 .onTapGesture {
-                    count = self.count + 1
                     isDialogShown = true
                 }
             }
@@ -94,13 +91,19 @@ struct TaskListItem: View {
                 .padding([.horizontal], 16)
                 .background(checkmarkBackground)
                 .foregroundColor(checkmarkColor)
+                .onTapGesture(perform: onClick)
         }
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         .background(task.backgroundColor.toSwiftColor())
         .cornerRadius(8)
-        .onTapGesture {
-            onClick()
-        }
+        .background(
+            NavigationLink(destination: Text("Detail for \(task.id)")) {
+                EmptyView()
+            }
+        )
+//        .simultaneousGesture(LongPressGesture().onEnded({ _ in
+//            onClick()
+//        }))
     }
 }
 

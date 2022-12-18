@@ -29,7 +29,7 @@ internal class StopwatchPausedStateCalculationTest {
             currentTimestamp = 1500,
             oldState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 0.toTimestampMilliseconds(),
+                elapsedTime = 0.toTimestampMilliseconds()
             ),
             expectedState = StopwatchState.Paused(
                 elapsedTime = (1500 - 1000).toTimestampMilliseconds()
@@ -43,7 +43,7 @@ internal class StopwatchPausedStateCalculationTest {
             currentTimestamp = 1500,
             oldState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 300.toTimestampMilliseconds(),
+                elapsedTime = 300.toTimestampMilliseconds()
             ),
             expectedState = StopwatchState.Paused(
                 elapsedTime = (1500 - 1000 + 300).toTimestampMilliseconds()
@@ -57,7 +57,7 @@ internal class StopwatchPausedStateCalculationTest {
             currentTimestamp = 500,
             oldState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 300.toTimestampMilliseconds(),
+                elapsedTime = 300.toTimestampMilliseconds()
             ),
             expectedState = StopwatchState.Paused(
                 elapsedTime = 300.toTimestampMilliseconds()
@@ -70,18 +70,18 @@ internal class StopwatchPausedStateCalculationTest {
         calculatePausedStateTestCase(
             currentTimestamp = 500,
             oldState = StopwatchState.Paused(
-                elapsedTime = 200.toTimestampMilliseconds(),
+                elapsedTime = 200.toTimestampMilliseconds()
             ),
             expectedState = StopwatchState.Paused(
-                elapsedTime = 200.toTimestampMilliseconds(),
-            ),
+                elapsedTime = 200.toTimestampMilliseconds()
+            )
         )
     }
 
     private fun calculatePausedStateTestCase(
         currentTimestamp: Long,
         oldState: StopwatchState,
-        expectedState: StopwatchState.Paused,
+        expectedState: StopwatchState.Paused
     ) {
         fakeTimestampProvider.givenTimePassed(currentTimestamp)
 

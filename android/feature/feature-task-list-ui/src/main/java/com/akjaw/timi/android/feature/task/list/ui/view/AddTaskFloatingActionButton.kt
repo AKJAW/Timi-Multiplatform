@@ -73,7 +73,7 @@ internal fun AddTaskFloatingActionButton(onAddTaskClicked: (Task) -> Unit) {
         AddTaskDialog(
             isAddTaskDialogOpen = isAddTaskDialogOpen,
             closeDialog = { setIsAddTaskDialogOpen(false) },
-            onAddTaskClicked = onAddTaskClicked,
+            onAddTaskClicked = onAddTaskClicked
         )
     }
 }
@@ -88,7 +88,7 @@ private fun AddTaskDialog(
         Dialog(onDismissRequest = closeDialog) {
             AddTaskDialogContent(
                 closeDialog = closeDialog,
-                onAddTaskClicked = onAddTaskClicked,
+                onAddTaskClicked = onAddTaskClicked
             )
         }
     }
@@ -99,7 +99,7 @@ private fun AddTaskDialogContent(
     closeDialog: () -> Unit,
     onAddTaskClicked: (Task) -> Unit,
     defaultBackgroundColor: Color = MaterialTheme.colors.background,
-    defaultTextColor: Color = contentColorFor(defaultBackgroundColor),
+    defaultTextColor: Color = contentColorFor(defaultBackgroundColor)
 ) {
     val composableScope = rememberCoroutineScope()
     val (taskName, setTaskName) = remember { mutableStateOf("") }
@@ -139,7 +139,7 @@ private fun AddTaskDialogContent(
         composableScope = composableScope,
         isColorPickerShown = isColorPickerShown,
         taskColor = taskColor,
-        textColor = textColor,
+        textColor = textColor
     )
 }
 
@@ -153,7 +153,7 @@ private fun AddTaskDialogContent(
     composableScope: CoroutineScope,
     isColorPickerShown: Boolean,
     taskColor: Animatable<Color, AnimationVector4D>,
-    textColor: Animatable<Color, AnimationVector4D>,
+    textColor: Animatable<Color, AnimationVector4D>
 ) {
     val focusRequester = remember { FocusRequester() } // TODO fix this
     Card(
@@ -175,7 +175,7 @@ private fun AddTaskDialogContent(
                     focusedLabelColor = textColor.value,
                     unfocusedBorderColor = textColor.value.copy(ContentAlpha.medium),
                     unfocusedLabelColor = textColor.value.copy(ContentAlpha.medium),
-                    placeholderColor = textColor.value.copy(ContentAlpha.medium),
+                    placeholderColor = textColor.value.copy(ContentAlpha.medium)
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -204,7 +204,7 @@ private fun AddTaskDialogContent(
                 composableScope = composableScope,
                 isColorPickerShown = isColorPickerShown,
                 taskColor = taskColor,
-                textColor = textColor,
+                textColor = textColor
             )
         }
     }
@@ -231,7 +231,7 @@ private fun ColorPicker(
     composableScope: CoroutineScope,
     isColorPickerShown: Boolean,
     taskColor: Animatable<Color, AnimationVector4D>,
-    textColor: Animatable<Color, AnimationVector4D>,
+    textColor: Animatable<Color, AnimationVector4D>
 ) {
 //    if (isColorPickerShown) {
     ColorPicker(
@@ -340,7 +340,7 @@ private fun SelectedDarkAddTaskDialogWithColorPickerPreview() {
 @Composable
 private fun TestAddTaskDialogWithColorPicker(
     backgroundColor: Color = MaterialTheme.colors.background,
-    defaultTextColor: Color = contentColorFor(backgroundColor),
+    defaultTextColor: Color = contentColorFor(backgroundColor)
 ) {
     val taskColor = remember { mutableStateOf(Animatable(backgroundColor)) }
     val textColor = remember { mutableStateOf(Animatable(defaultTextColor)) }
@@ -353,6 +353,6 @@ private fun TestAddTaskDialogWithColorPicker(
         composableScope = rememberCoroutineScope(),
         isColorPickerShown = true,
         taskColor = taskColor.value,
-        textColor = textColor.value,
+        textColor = textColor.value
     )
 }

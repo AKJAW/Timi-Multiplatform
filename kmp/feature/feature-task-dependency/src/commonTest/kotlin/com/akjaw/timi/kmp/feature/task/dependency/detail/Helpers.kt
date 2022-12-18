@@ -7,7 +7,7 @@ import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.C
 import io.kotest.matchers.shouldBe
 
 internal fun createCalendarViewModel(
-    timestampProvider: TimestampProvider,
+    timestampProvider: TimestampProvider
 ) = CalendarViewModel(
     timestampProvider = timestampProvider,
     calendarDaysCalculator = CalendarDaysCalculator()
@@ -40,7 +40,7 @@ fun List<CalendarDay>.rowWithTwoMonthsHasCorrectDates(
 
 fun CalendarDay.hasCorrectDate(
     month: Int,
-    year: Int,
+    year: Int
 ) {
     this.month shouldBe month
     this.year shouldBe year
@@ -48,7 +48,7 @@ fun CalendarDay.hasCorrectDate(
 
 fun List<List<CalendarDay>>.rowDaysEqual(
     rowIndex: Int,
-    expectedDays: List<Int>,
+    expectedDays: List<Int>
 ) {
     val rowDays = this[rowIndex].map { it.day }
     rowDays shouldBe expectedDays

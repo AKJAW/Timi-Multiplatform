@@ -14,7 +14,7 @@ class CalendarDaysCalculator {
         val second: List<CalendarDay>,
         val third: List<CalendarDay>,
         val fourth: List<CalendarDay>,
-        val fifth: List<CalendarDay>,
+        val fifth: List<CalendarDay>
     )
 
     fun calculate(currentMonth: DateTime): List<List<CalendarDay>> {
@@ -27,7 +27,7 @@ class CalendarDaysCalculator {
             middleRows.third,
             middleRows.fourth,
             middleRows.fifth,
-            lastRow,
+            lastRow
         )
     }
 
@@ -54,7 +54,7 @@ class CalendarDaysCalculator {
 
     private fun calculateMiddleRows(
         currentMonth: DateTime,
-        firstRow: List<CalendarDay>,
+        firstRow: List<CalendarDay>
     ): MiddleRows {
         val firstDayOfSecondRow = firstRow.last().day + 1
         val secondRowDayRange = (firstDayOfSecondRow until firstDayOfSecondRow + DAYS_IN_A_WEEK)
@@ -109,7 +109,7 @@ class CalendarDaysCalculator {
     private fun getDaysForMonthAndRemainingNextMonthDays(
         rowStartingDay: Int,
         numberOfDaysInMonth: Int,
-        monthDateTime: DateTime,
+        monthDateTime: DateTime
     ): List<CalendarDay> {
         val monthDayRange = rowStartingDay..numberOfDaysInMonth
         val monthDays = createFromDayRange(monthDayRange, monthDateTime)

@@ -39,26 +39,34 @@ Freelancing etc.)
 
 ### Low priority:
 
-#### Settings
-- Move logic to KMM
-- Move tests to KMM
+- Move settings logic with tests to KMM
 - Add settings to iOS
 - Add Maestro tests
 - Improve the UI for both o the Apps
 - Add charts for the time spent
 - Add Android stopwatch notification Service
 - Add iOS notification with the stopwatch somehow :)
+- Fix the Calendar
+- Add iOS Calendar
 
 ### Medium priority:
-- Replace Dagger with Koin
-- Update dependencies
-- Fix the Calendar
-- Remove light mode and settings for the time being?
+- ~~Replace Dagger with Koin~~
+- Figure out GitHub status requirements before merging
 
 ### High priority:
-- Merge to latest branch to main
-- Remove stale branches
-- Synchronize the Android and iOS features so they're up to date
-- Add iOS stopwatch dialog
+- ~~Merge to latest branch to main~~
+- ~~Remove stale branches~~
+- ~~Update dependencies~~
+- ~~Remove light mode and settings for the time being~~
+- ~~Disable calendar for now~~
+- ~~Synchronize the Android and iOS features so they're up to date~~
+  - ~~iOS Basic navigation to detail screen~~
+  - ~~iOS missing stopwatch dialog~~
+- ~~Make GHA run only on PRs not on every push~~
+- ~~Fix iOS build GitHub job~~
+- ~~Clean up gradle files using conventional plugins~~
 - Add Stopwatch time database table with relations
-- Think of what to do next
+
+### Brain storming
+- Animations
+- Compose different navigation library

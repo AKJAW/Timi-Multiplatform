@@ -6,7 +6,7 @@ import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecon
 internal class StopwatchStateHolderFactory(
     private val stopwatchStateCalculator: StopwatchStateCalculator,
     private val elapsedTimeCalculator: ElapsedTimeCalculator,
-    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,
+    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter
 ) {
 
     fun create(): StopwatchStateHolder {

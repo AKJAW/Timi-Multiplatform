@@ -15,7 +15,7 @@ class BottomNavVerifier(
     private enum class TAB(val text: String) {
         TASKS("Tasks"),
         STOPWATCH("Stopwatch"),
-        SETTINGS("Settings"),
+        SETTINGS("Settings")
     }
 
     fun confirmTasksSelected() {

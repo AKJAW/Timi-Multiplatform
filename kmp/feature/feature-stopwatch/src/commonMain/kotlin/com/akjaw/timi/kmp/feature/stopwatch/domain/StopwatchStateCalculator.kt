@@ -6,7 +6,7 @@ import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculat
 
 internal class StopwatchStateCalculator(
     private val timestampProvider: TimestampProvider,
-    private val elapsedTimeCalculator: ElapsedTimeCalculator,
+    private val elapsedTimeCalculator: ElapsedTimeCalculator
 ) {
 
     fun calculateRunningState(oldState: StopwatchState): StopwatchState.Running =

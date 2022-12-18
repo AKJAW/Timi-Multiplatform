@@ -42,7 +42,7 @@ internal fun AddStopwatchDialog(
                 modifier = modifier,
                 availableTasks = availableTasks,
                 onAddStopwatchClicked = onAddStopwatchClicked,
-                closeDialog = closeDialog,
+                closeDialog = closeDialog
             )
         }
     }
@@ -53,7 +53,7 @@ private fun AddStopwatchDialogContent(
     availableTasks: List<Task>,
     modifier: Modifier = Modifier,
     onAddStopwatchClicked: (Task) -> Unit = {},
-    closeDialog: () -> Unit = {},
+    closeDialog: () -> Unit = {}
 ) {
     Card(modifier = modifier.then(Modifier.heightIn(max = 300.dp))) {
         LazyColumn(
@@ -69,7 +69,7 @@ private fun AddStopwatchDialogContent(
                 ) {
                     Text(
                         style = MaterialTheme.typography.body1.copy(
-                            fontSize = 20.sp,
+                            fontSize = 20.sp
                         ),
                         text = stringResource(R.string.stopwatch_dialog_choose_task)
                     )
@@ -101,20 +101,20 @@ private fun AddStopwatchTaskItem(
             .testTag("AddStopwatchTaskItem"),
         elevation = 0.dp,
         backgroundColor = task.backgroundColor.toComposeColor(),
-        shape = taskShape,
+        shape = taskShape
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.clickable {
                 onAddStopwatchClicked(task)
                 closeDialog()
-            },
+            }
         ) {
             Text(
                 modifier = Modifier.padding(horizontal = 8.dp),
                 style = MaterialTheme.typography.body1.copy(
                     color = taskTextColorFor(task.backgroundColor.toComposeColor()),
-                    fontSize = 22.sp,
+                    fontSize = 22.sp
                 ),
                 text = task.name,
                 maxLines = 1,

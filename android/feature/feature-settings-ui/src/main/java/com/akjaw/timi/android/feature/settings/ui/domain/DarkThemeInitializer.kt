@@ -8,7 +8,7 @@ import com.akjaw.timi.android.feature.settings.ui.presentation.DarkModeThemeStat
 class DarkThemeInitializer(
     private val settingsRepository: SettingsRepository,
     private val systemDarkModeProvider: SystemDarkModeProvider,
-    private val darkModeThemeStateUpdater: DarkModeThemeStateUpdater,
+    private val darkModeThemeStateUpdater: DarkModeThemeStateUpdater
 ) : ActivityInitializer {
 
     override fun initialize() {

@@ -8,7 +8,7 @@ import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecon
 internal class StopwatchStateHolder(
     private val stopwatchStateCalculator: StopwatchStateCalculator,
     private val elapsedTimeCalculator: ElapsedTimeCalculator,
-    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,
+    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter
 ) {
 
     // TODO does this have to be thread-safe?

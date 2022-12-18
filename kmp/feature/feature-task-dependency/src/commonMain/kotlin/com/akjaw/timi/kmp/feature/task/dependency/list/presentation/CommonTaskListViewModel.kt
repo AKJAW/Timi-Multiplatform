@@ -18,7 +18,7 @@ internal class CommonTaskListViewModel(
     private val deleteTasks: DeleteTasks,
     private val addTask: AddTask,
     private val dispatcherProvider: DispatcherProvider,
-    taskSelectionTrackerFactory: TaskSelectionTrackerFactory,
+    taskSelectionTrackerFactory: TaskSelectionTrackerFactory
 ) : TaskListViewModel {
 
     // TODO extract?

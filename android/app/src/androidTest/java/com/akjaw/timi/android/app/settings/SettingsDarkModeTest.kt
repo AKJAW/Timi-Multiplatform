@@ -25,7 +25,7 @@ class SettingsDarkModeTest {
     val baseRule = createBaseTestRule(
         composeTestRule,
         *allKoinModules.toTypedArray(),
-        testModule,
+        testModule
     )
 
     private lateinit var bottomNavRobot: BottomNavRobot

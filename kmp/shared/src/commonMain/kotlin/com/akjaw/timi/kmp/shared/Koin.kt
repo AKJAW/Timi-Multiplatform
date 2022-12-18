@@ -26,5 +26,5 @@ val kmmKoinModules: List<Module> = listOf(
     coreSharedModule,
     stopwatchModule,
     databaseModule,
-    taskListModule,
+    taskListModule
 )

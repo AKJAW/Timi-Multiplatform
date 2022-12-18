@@ -19,7 +19,7 @@ val tasksPreview = listOf(
         name = "Task 3",
         backgroundColor = TaskColor(132 / 255f, 240 / 255f, 161 / 255f),
         isSelected = false
-    ),
+    )
 )
 
 fun TaskColor.toComposeColor() = Color(red, green, blue)

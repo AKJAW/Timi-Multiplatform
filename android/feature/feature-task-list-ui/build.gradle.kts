@@ -1,49 +1,7 @@
-import de.fayard.refreshVersions.core.versionFor
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("com.squareup.sqldelight")
-}
-
-android {
-    compileSdk = 31
-    buildToolsVersion = "30.0.3"
-
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 31
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.ui)
-    }
-    packagingOptions {
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
-    }
+    id("android-library-convention")
+    id("compose-library-convention")
 }
 
 dependencies {
@@ -62,8 +20,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:_")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:_")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
-    implementation("com.squareup.sqldelight:android-driver:_")
-    implementation("com.squareup.sqldelight:coroutines-extensions-jvm:_")
 
     implementation("io.insert-koin:koin-android:_")
     implementation("io.insert-koin:koin-androidx-compose:_")
@@ -73,6 +29,5 @@ dependencies {
     testImplementation("io.strikt:strikt-core:_")
     testImplementation("io.mockk:mockk:_")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
-    testImplementation("com.squareup.sqldelight:sqlite-driver:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 }

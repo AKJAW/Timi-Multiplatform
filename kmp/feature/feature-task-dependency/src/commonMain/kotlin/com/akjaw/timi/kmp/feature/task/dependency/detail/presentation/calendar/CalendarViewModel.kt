@@ -61,7 +61,7 @@ class CalendarViewModel(
                     DayViewState(
                         calendarDay.day,
                         calendarDay.month,
-                        calendarDay.year,
+                        calendarDay.year
                     )
                 }
             }

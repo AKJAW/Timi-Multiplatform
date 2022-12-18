@@ -40,7 +40,7 @@ internal fun StopwatchItem(
     timeString: String,
     onStartClicked: () -> Unit = {},
     onPauseClicked: () -> Unit = {},
-    onStoppedClicked: () -> Unit = {},
+    onStoppedClicked: () -> Unit = {}
 ) {
     Card(
         shape = taskShape,
@@ -76,19 +76,19 @@ internal fun StopwatchItem(
                     imageVector = Icons.Filled.PlayArrow,
                     contentDescription = stringResource(R.string.stopwatch_screen_start),
                     color = task.backgroundColor.toComposeColor(),
-                    onClick = onStartClicked,
+                    onClick = onStartClicked
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Pause,
                     contentDescription = stringResource(R.string.stopwatch_screen_pause),
                     color = task.backgroundColor.toComposeColor(),
-                    onClick = onPauseClicked,
+                    onClick = onPauseClicked
                 )
                 StopwatchButton(
                     imageVector = Icons.Filled.Stop,
                     contentDescription = stringResource(R.string.stopwatch_screen_stop),
                     color = task.backgroundColor.toComposeColor(),
-                    onClick = onStoppedClicked,
+                    onClick = onStoppedClicked
                 )
             }
         }
@@ -100,7 +100,7 @@ private fun StopwatchButton(
     imageVector: ImageVector,
     contentDescription: String?,
     color: Color,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier.padding(8.dp),
@@ -113,7 +113,7 @@ private fun StopwatchButton(
                 modifier = Modifier.size(40.dp),
                 imageVector = imageVector,
                 contentDescription = contentDescription,
-                tint = color,
+                tint = color
             )
         }
     }
@@ -126,7 +126,7 @@ private fun StopwatchItemPreview() {
     TimiComposeTheme {
         StopwatchItem(
             task = tasksPreview.first(),
-            timeString = "00:23:667",
+            timeString = "00:23:667"
         )
     }
 }

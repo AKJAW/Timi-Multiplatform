@@ -24,13 +24,13 @@ internal class StopwatchRunningStateCalculationTest {
     }
 
     @Test
-    fun `Running state from Paused 0 is Running (start 0 and elapsed 0)`() {
+    fun `Running state from Paused 0 is Running - start 0 and elapsed 0`() {
         calculateRunningTestCase(
             currentTimestamp = 0,
             oldState = StopwatchState.Paused(elapsedTime = 0.toTimestampMilliseconds()),
             expectedState = StopwatchState.Running(
                 startTime = 0.toTimestampMilliseconds(),
-                elapsedTime = 0.toTimestampMilliseconds(),
+                elapsedTime = 0.toTimestampMilliseconds()
             )
         )
     }
@@ -42,7 +42,7 @@ internal class StopwatchRunningStateCalculationTest {
             oldState = StopwatchState.Paused(elapsedTime = 200.toTimestampMilliseconds()),
             expectedState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 200.toTimestampMilliseconds(),
+                elapsedTime = 200.toTimestampMilliseconds()
             )
         )
     }
@@ -53,11 +53,11 @@ internal class StopwatchRunningStateCalculationTest {
             currentTimestamp = 0,
             oldState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 200.toTimestampMilliseconds(),
+                elapsedTime = 200.toTimestampMilliseconds()
             ),
             expectedState = StopwatchState.Running(
                 startTime = 1000.toTimestampMilliseconds(),
-                elapsedTime = 200.toTimestampMilliseconds(),
+                elapsedTime = 200.toTimestampMilliseconds()
             )
         )
     }
@@ -65,7 +65,7 @@ internal class StopwatchRunningStateCalculationTest {
     private fun calculateRunningTestCase(
         currentTimestamp: Long,
         oldState: StopwatchState,
-        expectedState: StopwatchState.Running,
+        expectedState: StopwatchState.Running
     ) {
         fakeTimestampProvider.givenTimePassed(currentTimestamp)
 

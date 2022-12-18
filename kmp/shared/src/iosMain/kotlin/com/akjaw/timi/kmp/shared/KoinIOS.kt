@@ -12,7 +12,7 @@ import org.koin.core.qualifier.Qualifier
 
 fun initKoinIos(): KoinApplication = startKoin {
     modules(
-        *kmmKoinModules.toTypedArray(),
+        *kmmKoinModules.toTypedArray()
     )
 }
 

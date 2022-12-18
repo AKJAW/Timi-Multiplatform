@@ -43,7 +43,7 @@ internal class StopwatchListOrchestratorTest {
             elapsedTimeCalculator
         ),
         elapsedTimeCalculator = elapsedTimeCalculator,
-        timestampMillisecondsFormatter = TimestampMillisecondsFormatter(),
+        timestampMillisecondsFormatter = TimestampMillisecondsFormatter()
     )
     private val coroutineDispatcher = StandardTestDispatcher()
     private val coroutineScope = CoroutineScope(SupervisorJob() + coroutineDispatcher)

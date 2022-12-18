@@ -33,7 +33,7 @@ class CalendarLastRowDatesCalculationTest {
                     8 to 2021,
                     8 to 2021,
                     8 to 2021,
-                    8 to 2021,
+                    8 to 2021
                 )
             )
         }
@@ -54,7 +54,7 @@ class CalendarLastRowDatesCalculationTest {
                     6 to 2021,
                     6 to 2021,
                     6 to 2021,
-                    6 to 2021,
+                    6 to 2021
                 )
             )
         }
@@ -75,7 +75,7 @@ class CalendarLastRowDatesCalculationTest {
                     1 to 2020,
                     1 to 2020,
                     1 to 2020,
-                    1 to 2020,
+                    1 to 2020
                 )
             )
         }
