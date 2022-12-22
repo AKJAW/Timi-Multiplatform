@@ -2,7 +2,6 @@ import de.fayard.refreshVersions.core.versionFor
 
 plugins {
     id("kmm-library-convention")
-    id("com.rickclephas.kmp.nativecoroutines")
     id("com.squareup.sqldelight")
 }
 

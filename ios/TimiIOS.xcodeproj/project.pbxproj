@@ -12,6 +12,9 @@
 		46B5284D249C5CF400A7725D /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5284C249C5CF400A7725D /* Koin.swift */; };
 		AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BC27FB64F00020C35A /* ContentView.swift */; };
 		AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */; };
+		AE23CFA029507CE100BFC1CB /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE23CF9F29507CE100BFC1CB /* KMMViewModelCore */; };
+		AE23CFA229507CE100BFC1CB /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AE23CFA129507CE100BFC1CB /* KMMViewModelSwiftUI */; };
+		AE23CFA529507D3400BFC1CB /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE23CFA429507D3400BFC1CB /* KMMViewModel.swift */; };
 		AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */; };
 		AE5509A0294CB25400BC7A9C /* AddStopwatchDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */; };
 		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
@@ -30,6 +33,7 @@
 		889EB9FF3EA77E5BC858E7C1 /* Pods-TimiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimiIOS.debug.xcconfig"; path = "Target Support Files/Pods-TimiIOS/Pods-TimiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AE12A1BC27FB64F00020C35A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
+		AE23CFA429507D3400BFC1CB /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
 		AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskDialog.swift; sourceTree = "<group>"; };
 		AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStopwatchDialog.swift; sourceTree = "<group>"; };
 		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 			files = (
 				AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */,
 				AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */,
+				AE23CFA029507CE100BFC1CB /* KMMViewModelCore in Frameworks */,
+				AE23CFA229507CE100BFC1CB /* KMMViewModelSwiftUI in Frameworks */,
 				1921ECF5F030A630A935F3E3 /* Pods_TimiIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +77,14 @@
 				C91C89AB28EC101D63DE8CD8 /* Pods-TimiIOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE23CFA329507D1A00BFC1CB /* KMM */ = {
+			isa = PBXGroup;
+			children = (
+				AE23CFA429507D3400BFC1CB /* KMMViewModel.swift */,
+			);
+			path = KMM;
 			sourceTree = "<group>";
 		};
 		AE2F89EF27FDFE38003CF168 /* Task */ = {
@@ -131,6 +145,7 @@
 		F1465EFF23AA94BF0055F7C3 /* TimiIOS */ = {
 			isa = PBXGroup;
 			children = (
+				AE23CFA329507D1A00BFC1CB /* KMM */,
 				AEE5961927F039BC000B7648 /* View */,
 				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
 				46A5B60626B04920002EFEAA /* Main.storyboard */,
@@ -164,6 +179,8 @@
 			packageProductDependencies = (
 				AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */,
 				AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */,
+				AE23CF9F29507CE100BFC1CB /* KMMViewModelCore */,
+				AE23CFA129507CE100BFC1CB /* KMMViewModelSwiftUI */,
 			);
 			productName = KaMPKitiOS;
 			productReference = F1465EFD23AA94BF0055F7C3 /* TimiIOS.app */;
@@ -194,7 +211,8 @@
 			);
 			mainGroup = F1465EF423AA94BF0055F7C3;
 			packageReferences = (
-				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */,
+				AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+				AE23CF9E29507CE100BFC1CB /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
 			);
 			productRefGroup = F1465EFE23AA94BF0055F7C3 /* Products */;
 			projectDirPath = "";
@@ -286,6 +304,7 @@
 				AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */,
 				AE5509A0294CB25400BC7A9C /* AddStopwatchDialog.swift in Sources */,
 				46B5284D249C5CF400A7725D /* Koin.swift in Sources */,
+				AE23CFA529507D3400BFC1CB /* KMMViewModel.swift in Sources */,
 				AEFA437E280756A600188ABB /* Color.swift in Sources */,
 				AEE5961B27F039F8000B7648 /* StopwatchListScreen.swift in Sources */,
 				AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */,
@@ -516,7 +535,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */ = {
+		AE23CF9E29507CE100BFC1CB /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
 			requirement = {
@@ -527,14 +554,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AE23CF9F29507CE100BFC1CB /* KMMViewModelCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE23CF9E29507CE100BFC1CB /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelCore;
+		};
+		AE23CFA129507CE100BFC1CB /* KMMViewModelSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE23CF9E29507CE100BFC1CB /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelSwiftUI;
+		};
 		AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesCombine;
 		};
 		AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines.git" */;
+			package = AE90346827DE4E0A0091A381 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesCore;
 		};
 /* End XCSwiftPackageProductDependency section */

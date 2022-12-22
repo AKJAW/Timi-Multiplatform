@@ -11,6 +11,11 @@ kotlin {
         sourceSets["commonMain"].dependencies {
             implementation("io.insert-koin:koin-core:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+            api("com.rickclephas.kmm:kmm-viewmodel-core:_")
+        }
+
+        sourceSets["androidMain"].dependencies {
+            api("androidx.lifecycle:lifecycle-viewmodel-ktx:_")
         }
 
         sourceSets["iosMain"].dependencies {

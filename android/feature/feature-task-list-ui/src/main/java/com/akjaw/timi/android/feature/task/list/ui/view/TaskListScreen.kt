@@ -12,6 +12,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
@@ -51,6 +53,7 @@ import com.akjaw.timi.android.core.view.toComposeColor
 import com.akjaw.timi.android.feature.task.list.ui.R
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
+import com.akjaw.timi.kmp.feature.task.api.presentation.TestViewModel
 import org.koin.androidx.compose.get
 
 @Composable
@@ -64,17 +67,24 @@ fun TaskListScreen(
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
         bottomBar = { TimiBottomBar(navController) }
     ) { paddingValues ->
-        TaskList(
-            modifier = Modifier.padding(paddingValues),
-            tasks = tasks.value,
-            onTaskClick = { task ->
-                val route = TaskDestinations.Details.destination(task.id)
-                navController.navigate(route) {
-                    launchSingleTop = true
-                }
-            },
-            onTaskLongClick = taskListViewModel::toggleTask
-        )
+        Column {
+            val viewModel = viewModel<TestViewModel>()
+            val vm = viewModel.intViewModelScopeFlow.collectAsState().value
+            Text("ViewModelScope $vm")
+            val normal = viewModel.intCoroutinesCopeFlow.collectAsState().value
+            Text("CoroutinesScope $normal")
+        }
+        // TaskList(
+        //     modifier = Modifier.padding(paddingValues),
+        //     tasks = tasks.value,
+        //     onTaskClick = { task ->
+        //         val route = TaskDestinations.Details.destination(task.id)
+        //         navController.navigate(route) {
+        //             launchSingleTop = true
+        //         }
+        //     },
+        //     onTaskLongClick = taskListViewModel::toggleTask
+        // )
     }
 }
 
