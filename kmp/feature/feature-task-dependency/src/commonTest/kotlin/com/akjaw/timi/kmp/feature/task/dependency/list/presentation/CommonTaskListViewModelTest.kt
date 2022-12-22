@@ -15,6 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.component.inject
@@ -74,8 +75,8 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         stopKoin()
     }
 
-    @Test // TODO has become flaky :(
-    fun `Adding a task changes the list`(): Unit = runBlocking(testCoroutineDispatcher) {
+    @Test
+    fun `Adding a task changes the list`() = runTest {
         givenTasks(TASK1)
 
         systemUnderTest.addTask(TASK2)
@@ -85,8 +86,8 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         }
     }
 
-    @Test // TODO has become flaky :(
-    fun `Deleting tasks changes the list`(): Unit = runBlocking(testCoroutineDispatcher) {
+    @Test
+    fun `Deleting tasks changes the list`() = runTest {
         givenTasks(TASK1, TASK2)
 
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))

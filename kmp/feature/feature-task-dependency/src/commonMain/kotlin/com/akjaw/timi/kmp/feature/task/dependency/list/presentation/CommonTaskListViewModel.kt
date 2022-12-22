@@ -11,6 +11,7 @@ import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.Ta
 import com.rickclephas.kmm.viewmodel.coroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 internal class CommonTaskListViewModel(
     private val getTasks: GetTasks,
@@ -21,7 +22,7 @@ internal class CommonTaskListViewModel(
 ) : TaskListViewModel() {
 
     private val selectionTracker: TaskSelectionTracker = taskSelectionTrackerFactory.create(
-        viewModelScope = viewModelScope,
+        viewModelScope = viewModelScope.coroutineScope + dispatcherProvider.io,
         originalTaskFlow = getTasks.execute(),
     )
     override val tasks: StateFlow<List<Task>> = selectionTracker.tasksWithSelection

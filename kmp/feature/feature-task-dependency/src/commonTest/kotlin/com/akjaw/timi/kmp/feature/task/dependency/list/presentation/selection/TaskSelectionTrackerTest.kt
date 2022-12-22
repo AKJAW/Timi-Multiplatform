@@ -1,12 +1,15 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
+import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.rickclephas.kmm.viewmodel.ViewModelScope
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -19,13 +22,14 @@ internal class TaskSelectionTrackerTest {
         val TASK2 = Task(id = 1, name = "two")
     }
 
+    private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var originalFlow: MutableStateFlow<List<Task>>
     private lateinit var systemUnderTest: TaskSelectionTracker
 
     @BeforeTest
     fun setUp() {
         originalFlow = MutableStateFlow(emptyList())
-        systemUnderTest = TaskSelectionTracker(FakeViewModelScope(), originalFlow)
+        systemUnderTest = TaskSelectionTracker(CoroutineScope(testCoroutineDispatcher), originalFlow)
     }
 
     @Test
