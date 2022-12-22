@@ -8,9 +8,8 @@ import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTracker
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.Flow
+import com.rickclephas.kmm.viewmodel.coroutineScope
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 internal class CommonTaskListViewModel(
@@ -19,25 +18,24 @@ internal class CommonTaskListViewModel(
     private val addTask: AddTask,
     private val dispatcherProvider: DispatcherProvider,
     taskSelectionTrackerFactory: TaskSelectionTrackerFactory
-) : TaskListViewModel {
+) : TaskListViewModel() {
 
-    // TODO extract?
-    private val viewModelScope = CoroutineScope(SupervisorJob() + dispatcherProvider.main)
-
-    private val selectionTracker: TaskSelectionTracker =
-        taskSelectionTrackerFactory.create(originalTaskFlow = getTasks.execute())
-    override val tasks: Flow<List<Task>> = selectionTracker.tasksWithSelection
+    private val selectionTracker: TaskSelectionTracker = taskSelectionTrackerFactory.create(
+        viewModelScope = viewModelScope,
+        originalTaskFlow = getTasks.execute(),
+    )
+    override val tasks: StateFlow<List<Task>> = selectionTracker.tasksWithSelection
 
     override fun toggleTask(toggledTask: Task) {
         selectionTracker.toggleTask(toggledTask)
     }
 
     override fun deleteTasks(tasksToBeDeleted: List<Task>) =
-        viewModelScope.launch(dispatcherProvider.io) {
+        viewModelScope.coroutineScope.launch(dispatcherProvider.io) {
             deleteTasks.execute(tasksToBeDeleted)
         }
 
-    override fun addTask(taskToBeAdded: Task) = viewModelScope.launch(dispatcherProvider.io) {
+    override fun addTask(taskToBeAdded: Task) = viewModelScope.coroutineScope.launch(dispatcherProvider.io) {
         addTask.execute(taskToBeAdded)
     }
 }

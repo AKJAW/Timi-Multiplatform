@@ -1,18 +1,26 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
+import com.akjaw.timi.kmp.core.shared.coroutines.DispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.rickclephas.kmm.viewmodel.ViewModelScope
+import com.rickclephas.kmm.viewmodel.stateIn
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 
-class TaskSelectionTracker(originalTaskFlow: Flow<List<Task>>) {
+class TaskSelectionTracker(
+    viewModelScope: ViewModelScope,
+    originalTaskFlow: Flow<List<Task>>,
+) {
 
     private val selections = MutableStateFlow<List<Long>>(emptyList())
-    val tasksWithSelection: Flow<List<Task>> = combine(
+    val tasksWithSelection: StateFlow<List<Task>> = combine(
         originalTaskFlow,
         selections,
         ::markSelectedTasks
-    )
+    ).stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     fun toggleTask(task: Task) {
         if (task.isSelected) {

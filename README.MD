@@ -65,6 +65,7 @@ Freelancing etc.)
 - ~~Make GHA run only on PRs not on every push~~
 - ~~Fix iOS build GitHub job~~
 - ~~Clean up gradle files using conventional plugins~~
+- Try out KMM view model
 - Add Stopwatch time database table with relations
 
 ### Brain storming

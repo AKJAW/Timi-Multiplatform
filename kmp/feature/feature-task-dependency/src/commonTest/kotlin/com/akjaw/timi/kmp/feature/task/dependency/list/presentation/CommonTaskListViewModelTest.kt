@@ -1,5 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation
 
+import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
@@ -73,24 +74,26 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         stopKoin()
     }
 
-    @Test
-    fun `Adding a task changes the list`(): Unit = runBlocking {
+    @Test // TODO has become flaky :(
+    fun `Adding a task changes the list`(): Unit = runBlocking(testCoroutineDispatcher) {
         givenTasks(TASK1)
 
         systemUnderTest.addTask(TASK2)
 
-        val result = systemUnderTest.tasks.first()
-        result shouldBe listOf(TASK1, TASK2)
+        systemUnderTest.tasks.test {
+            awaitItem() shouldBe listOf(TASK1, TASK2)
+        }
     }
 
-    @Test
-    fun `Deleting tasks changes the list`(): Unit = runBlocking {
+    @Test // TODO has become flaky :(
+    fun `Deleting tasks changes the list`(): Unit = runBlocking(testCoroutineDispatcher) {
         givenTasks(TASK1, TASK2)
 
         systemUnderTest.deleteTasks(listOf(TASK1, TASK2))
 
-        val result = systemUnderTest.tasks.first()
-        result shouldBe emptyList()
+        systemUnderTest.tasks.test {
+            awaitItem() shouldBe emptyList()
+        }
     }
 
     private fun givenTasks(vararg task: Task) {

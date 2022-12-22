@@ -1,6 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.rickclephas.kmm.viewmodel.ViewModelScope
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,7 +25,7 @@ internal class TaskSelectionTrackerTest {
     @BeforeTest
     fun setUp() {
         originalFlow = MutableStateFlow(emptyList())
-        systemUnderTest = TaskSelectionTracker(originalFlow)
+        systemUnderTest = TaskSelectionTracker(FakeViewModelScope(), originalFlow)
     }
 
     @Test
@@ -63,3 +64,5 @@ internal class TaskSelectionTrackerTest {
         originalFlow.value = listOf(*tasks)
     }
 }
+
+class FakeViewModelScope : ViewModelScope

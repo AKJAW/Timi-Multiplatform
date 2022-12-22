@@ -53,7 +53,6 @@ import com.akjaw.timi.android.core.view.toComposeColor
 import com.akjaw.timi.android.feature.task.list.ui.R
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.presentation.TaskListViewModel
-import com.akjaw.timi.kmp.feature.task.api.presentation.TestViewModel
 import org.koin.androidx.compose.get
 
 @Composable
@@ -61,30 +60,23 @@ fun TaskListScreen(
     navController: NavHostController,
     taskListViewModel: TaskListViewModel = get()
 ) {
-    val tasks = taskListViewModel.tasks.collectAsState(emptyList())
+    val tasks = taskListViewModel.tasks.collectAsState()
     Scaffold(
         topBar = { TaskTopAppBar(taskListViewModel = taskListViewModel) },
         floatingActionButton = { AddTaskFloatingActionButton(taskListViewModel::addTask) },
         bottomBar = { TimiBottomBar(navController) }
     ) { paddingValues ->
-        Column {
-            val viewModel = viewModel<TestViewModel>()
-            val vm = viewModel.intViewModelScopeFlow.collectAsState().value
-            Text("ViewModelScope $vm")
-            val normal = viewModel.intCoroutinesCopeFlow.collectAsState().value
-            Text("CoroutinesScope $normal")
-        }
-        // TaskList(
-        //     modifier = Modifier.padding(paddingValues),
-        //     tasks = tasks.value,
-        //     onTaskClick = { task ->
-        //         val route = TaskDestinations.Details.destination(task.id)
-        //         navController.navigate(route) {
-        //             launchSingleTop = true
-        //         }
-        //     },
-        //     onTaskLongClick = taskListViewModel::toggleTask
-        // )
+        TaskList(
+            modifier = Modifier.padding(paddingValues),
+            tasks = tasks.value,
+            onTaskClick = { task ->
+                val route = TaskDestinations.Details.destination(task.id)
+                navController.navigate(route) {
+                    launchSingleTop = true
+                }
+            },
+            onTaskLongClick = taskListViewModel::toggleTask
+        )
     }
 }
 
