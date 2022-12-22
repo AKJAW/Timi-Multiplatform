@@ -2,15 +2,20 @@ package com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection
 
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.rickclephas.kmm.viewmodel.KMMViewModel
 import com.rickclephas.kmm.viewmodel.ViewModelScope
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -28,8 +33,15 @@ internal class TaskSelectionTrackerTest {
 
     @BeforeTest
     fun setUp() {
+        Dispatchers.setMain(testCoroutineDispatcher)
         originalFlow = MutableStateFlow(emptyList())
-        systemUnderTest = TaskSelectionTracker(CoroutineScope(testCoroutineDispatcher), originalFlow)
+        val vm = object : KMMViewModel() {}
+        systemUnderTest = TaskSelectionTracker(vm.viewModelScope, originalFlow)
+    }
+
+    @AfterTest
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test

@@ -11,11 +11,14 @@ import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModul
 import com.akjaw.timi.kmp.feature.task.dependency.list.presentation.selection.TaskSelectionTrackerFactory
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.component.inject
@@ -52,6 +55,7 @@ internal class CommonTaskListViewModelTest : KoinComponent {
 
     @BeforeTest
     fun setUp() {
+        Dispatchers.setMain(testCoroutineDispatcher)
         startKoin {
             modules(
                 databaseModule,
@@ -72,10 +76,11 @@ internal class CommonTaskListViewModelTest : KoinComponent {
 
     @AfterTest
     fun tearDown() {
+        Dispatchers.resetMain()
         stopKoin()
     }
 
-    @Test
+    @Test // TODO still flaky but probably cause by StateFlow refactor
     fun `Adding a task changes the list`() = runTest {
         givenTasks(TASK1)
 
@@ -86,7 +91,7 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         }
     }
 
-    @Test
+    @Test // TODO still flaky but probably cause by StateFlow refactor
     fun `Deleting tasks changes the list`() = runTest {
         givenTasks(TASK1, TASK2)
 

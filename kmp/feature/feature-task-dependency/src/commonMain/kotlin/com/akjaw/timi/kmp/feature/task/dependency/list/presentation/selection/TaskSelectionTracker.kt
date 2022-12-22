@@ -4,17 +4,16 @@ import com.akjaw.timi.kmp.core.shared.coroutines.DispatcherProvider
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.rickclephas.kmm.viewmodel.ViewModelScope
 import com.rickclephas.kmm.viewmodel.coroutineScope
+import com.rickclephas.kmm.viewmodel.stateIn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.plus
 
 class TaskSelectionTracker(
-    viewModelScope: CoroutineScope,
+    viewModelScope: ViewModelScope,
     originalTaskFlow: Flow<List<Task>>,
 ) {
 

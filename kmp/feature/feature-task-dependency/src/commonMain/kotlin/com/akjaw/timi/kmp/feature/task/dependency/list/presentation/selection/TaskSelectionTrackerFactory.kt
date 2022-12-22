@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 class TaskSelectionTrackerFactory {
 
     fun create(
-        viewModelScope: CoroutineScope,
+        viewModelScope: ViewModelScope,
         originalTaskFlow: Flow<List<Task>>,
     ): TaskSelectionTracker =
         TaskSelectionTracker(viewModelScope, originalTaskFlow)

@@ -22,7 +22,7 @@ internal class CommonTaskListViewModel(
 ) : TaskListViewModel() {
 
     private val selectionTracker: TaskSelectionTracker = taskSelectionTrackerFactory.create(
-        viewModelScope = viewModelScope.coroutineScope + dispatcherProvider.io,
+        viewModelScope = viewModelScope,
         originalTaskFlow = getTasks.execute(),
     )
     override val tasks: StateFlow<List<Task>> = selectionTracker.tasksWithSelection
