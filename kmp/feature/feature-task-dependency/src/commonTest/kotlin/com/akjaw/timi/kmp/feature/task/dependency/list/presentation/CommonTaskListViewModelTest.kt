@@ -80,7 +80,7 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         stopKoin()
     }
 
-    @Test // TODO still flaky but probably cause by StateFlow refactor
+    @Test
     fun `Adding a task changes the list`() = runTest {
         givenTasks(TASK1)
 
@@ -91,7 +91,7 @@ internal class CommonTaskListViewModelTest : KoinComponent {
         }
     }
 
-    @Test // TODO still flaky but probably cause by StateFlow refactor
+    @Test
     fun `Deleting tasks changes the list`() = runTest {
         givenTasks(TASK1, TASK2)
 
@@ -103,13 +103,15 @@ internal class CommonTaskListViewModelTest : KoinComponent {
     }
 
     private fun givenTasks(vararg task: Task) {
-        task.forEach {
-            taskEntityQueries.insertTask(
-                id = it.id,
-                position = 0,
-                name = it.name,
-                color = it.backgroundColor
-            )
+        taskEntityQueries.transaction {
+            task.forEach {
+                taskEntityQueries.insertTask(
+                    id = it.id,
+                    position = 0,
+                    name = it.name,
+                    color = it.backgroundColor
+                )
+            }
         }
     }
 }

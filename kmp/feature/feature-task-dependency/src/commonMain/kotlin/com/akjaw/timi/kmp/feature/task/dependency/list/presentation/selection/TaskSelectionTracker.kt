@@ -13,16 +13,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 
 class TaskSelectionTracker(
-    viewModelScope: ViewModelScope,
     originalTaskFlow: Flow<List<Task>>,
 ) {
 
     private val selections = MutableStateFlow<List<Long>>(emptyList())
-    val tasksWithSelection: StateFlow<List<Task>> = combine(
+    val tasksWithSelection: Flow<List<Task>> = combine(
         originalTaskFlow,
         selections,
         ::markSelectedTasks
-    ).stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+    )
 
     fun toggleTask(task: Task) {
         if (task.isSelected) {

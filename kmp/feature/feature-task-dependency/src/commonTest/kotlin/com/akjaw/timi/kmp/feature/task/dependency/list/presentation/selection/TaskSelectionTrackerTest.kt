@@ -27,21 +27,13 @@ internal class TaskSelectionTrackerTest {
         val TASK2 = Task(id = 1, name = "two")
     }
 
-    private val testCoroutineDispatcher = UnconfinedTestDispatcher()
     private lateinit var originalFlow: MutableStateFlow<List<Task>>
     private lateinit var systemUnderTest: TaskSelectionTracker
 
     @BeforeTest
     fun setUp() {
-        Dispatchers.setMain(testCoroutineDispatcher)
         originalFlow = MutableStateFlow(emptyList())
-        val vm = object : KMMViewModel() {}
-        systemUnderTest = TaskSelectionTracker(vm.viewModelScope, originalFlow)
-    }
-
-    @AfterTest
-    fun tearDown() {
-        Dispatchers.resetMain()
+        systemUnderTest = TaskSelectionTracker(originalFlow)
     }
 
     @Test
