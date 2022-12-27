@@ -65,7 +65,11 @@ Freelancing etc.)
 - ~~Make GHA run only on PRs not on every push~~
 - ~~Fix iOS build GitHub job~~
 - ~~Clean up gradle files using conventional plugins~~
+- Extract Database to separate module
 - Add Stopwatch time database table with relations
+  - Add indexes for relations
+  - Select
+  - Add
 
 ### Brain storming
 - Animations

@@ -1,11 +1,11 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
+import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.database.composition.databaseModule
+import com.akjaw.timi.kmp.feature.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.api.domain.DeleteTasks
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
-import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.dependency.database.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.assertions.assertSoftly

@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.dependency.database
+package com.akjaw.timi.kmp.feature.database
 
 import com.squareup.sqldelight.db.SqlDriver
 

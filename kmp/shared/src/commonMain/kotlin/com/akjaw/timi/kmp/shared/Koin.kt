@@ -4,8 +4,8 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
 import com.akjaw.timi.kmp.core.shared.composition.coreSharedModule
+import com.akjaw.timi.kmp.feature.database.composition.databaseModule
 import com.akjaw.timi.kmp.feature.stopwatch.composition.stopwatchModule
-import com.akjaw.timi.kmp.feature.task.dependency.composition.databaseModule
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
 import org.koin.core.module.Module
 import org.koin.dsl.module

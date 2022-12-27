@@ -8,7 +8,7 @@ plugins {
 
 sqldelight {
     database("TimiDatabase") {
-        packageName = "com.akjaw.timi.kmp.feature.task.dependency.database"
+        packageName = "com.akjaw.timi.kmp.feature.database"
         schemaOutputDirectory = file("src/sqldelight/")
     }
 }

@@ -1,7 +1,7 @@
-package com.akjaw.timi.kmp.feature.task.dependency.list.data
+package com.akjaw.timi.kmp.feature.database.adapter
 
+import com.akjaw.timi.kmp.feature.database.TaskEntity
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntity
 import com.squareup.sqldelight.ColumnAdapter
 
 private class TaskColorAdapter : ColumnAdapter<TaskColor, String> {

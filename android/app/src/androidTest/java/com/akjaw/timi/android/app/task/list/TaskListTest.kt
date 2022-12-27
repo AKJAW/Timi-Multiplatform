@@ -9,7 +9,7 @@ import com.akjaw.timi.android.app.allKoinModules
 import com.akjaw.timi.android.app.composition.testModule
 import com.akjaw.timi.android.app.createBaseTestRule
 import com.akjaw.timi.android.core.view.toTaskColor
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

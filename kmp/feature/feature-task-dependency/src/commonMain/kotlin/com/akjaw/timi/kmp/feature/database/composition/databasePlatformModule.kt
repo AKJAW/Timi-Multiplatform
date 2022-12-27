@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.dependency.database
+package com.akjaw.timi.kmp.feature.database.composition
 
 import org.koin.core.module.Module
 

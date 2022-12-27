@@ -1,6 +1,6 @@
 package com.akjaw.timi.android.app.utils
 
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 
 fun TaskEntityQueries.clearDatabase() {
     transaction {
