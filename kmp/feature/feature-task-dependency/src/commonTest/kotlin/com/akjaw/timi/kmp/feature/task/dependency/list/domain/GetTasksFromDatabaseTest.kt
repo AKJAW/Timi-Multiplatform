@@ -2,7 +2,7 @@ package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
-import com.akjaw.timi.kmp.feature.database.createTestSqlDriver
+import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.api.domain.GetTasks
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor

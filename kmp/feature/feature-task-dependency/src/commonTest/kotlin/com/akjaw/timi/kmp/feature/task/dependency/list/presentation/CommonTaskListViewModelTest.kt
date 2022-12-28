@@ -3,7 +3,7 @@ package com.akjaw.timi.kmp.feature.task.dependency.list.presentation
 import com.akjaw.timi.kmp.core.shared.coroutines.TestDispatcherProvider
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
-import com.akjaw.timi.kmp.feature.database.createTestSqlDriver
+import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.dependency.list.composition.taskListModule
