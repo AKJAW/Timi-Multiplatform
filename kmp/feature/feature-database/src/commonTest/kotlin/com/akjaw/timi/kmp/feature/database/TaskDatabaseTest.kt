@@ -15,6 +15,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
+// TODO refactor to not use Koin?
 class TaskDatabaseTest : KoinComponent {
 
     companion object {

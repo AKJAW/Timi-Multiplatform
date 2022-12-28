@@ -66,10 +66,11 @@ Freelancing etc.)
 - ~~Fix iOS build GitHub job~~
 - ~~Clean up gradle files using conventional plugins~~
 - ~~Extract Database to separate module~~
-- Add Stopwatch time database table with relations
-  - Add indexes for relations
-  - Select
-  - Add
+- ~~Add Stopwatch time database table with relations~~
+  - ~~Add indexes for relations~~
+  - ~~Select~~
+  - ~~Add~~
+- Add some sort of DAO for as the public API for the Database
 
 ### Brain storming
 - Animations

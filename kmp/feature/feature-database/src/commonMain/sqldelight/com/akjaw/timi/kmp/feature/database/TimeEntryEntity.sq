@@ -1,0 +1,25 @@
+import com.akjaw.core.common.domain.model.TimestampMilliseconds;
+
+CREATE TABLE TimeEntryEntity (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  taskId INTEGER NOT NULL,
+  timeAmount INTEGER AS TimestampMilliseconds NOT NULL,
+  date INTEGER AS TimestampMilliseconds NOT NULL,
+  FOREIGN KEY (taskId) REFERENCES TaskEntity(id)
+  ON DELETE CASCADE
+);
+
+selectAllEntries:
+SELECT * FROM TimeEntryEntity;
+
+selectEntriesByTaskIds:
+SELECT * FROM TimeEntryEntity
+WHERE taskId IN ?;
+
+insertEntry:
+INSERT INTO TimeEntryEntity(id, taskId, timeAmount, date)
+VALUES(?, ?, ?, ?);
+
+deleteEntryById:
+DELETE FROM TimeEntryEntity
+WHERE id = ?;

@@ -17,4 +17,4 @@ private class TaskColorAdapter : ColumnAdapter<TaskColor, String> {
     }
 }
 
-val taskColorAdapter = TaskEntity.Adapter(TaskColorAdapter())
+internal val taskColorAdapter = TaskEntity.Adapter(TaskColorAdapter())
