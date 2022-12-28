@@ -9,17 +9,17 @@ CREATE TABLE TimeEntryEntity (
   ON DELETE CASCADE
 );
 
-selectAllEntries:
+selectAll:
 SELECT * FROM TimeEntryEntity;
 
-selectEntriesByTaskIds:
+selectByIds:
 SELECT * FROM TimeEntryEntity
 WHERE taskId IN ?;
 
-insertEntry:
+insert:
 INSERT INTO TimeEntryEntity(id, taskId, timeAmount, date)
 VALUES(?, ?, ?, ?);
 
-deleteEntryById:
+deleteById:
 DELETE FROM TimeEntryEntity
 WHERE id = ?;

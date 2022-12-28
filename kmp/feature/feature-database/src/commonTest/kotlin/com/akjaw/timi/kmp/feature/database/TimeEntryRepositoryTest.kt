@@ -3,10 +3,9 @@ package com.akjaw.timi.kmp.feature.database
 import app.cash.turbine.test
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.composition.createDatabase
+import com.akjaw.timi.kmp.feature.database.entry.TimeEntrySqlDelightRepository
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.matchers.collections.shouldHaveSize
@@ -15,26 +14,16 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
-class TimeEntryDatabaseTest {
+class TimeEntryRepositoryTest {
 
-    companion object {
-        private val TASK1 = TaskEntity(
-            id = 1,
-            position = 0,
-            name = "name",
-            color = TaskColor(
-                red = 123 / 255f,
-                green = 123 / 255f,
-                blue = 123 / 255f
-            )
-        )
-    }
-
-    private lateinit var database: TimiDatabase
+    private lateinit var taskEntityQueries: TaskEntityQueries
+    private lateinit var systemUnderTest: TimeEntrySqlDelightRepository
 
     @BeforeTest
     fun setUp() {
-        database = createDatabase(createTestSqlDriver())
+        val database = createDatabase(createTestSqlDriver())
+        taskEntityQueries = database.taskEntityQueries
+        systemUnderTest = TimeEntrySqlDelightRepository(database.timeEntryEntityQueries)
     }
 
     @Test
@@ -51,7 +40,7 @@ class TimeEntryDatabaseTest {
 
         insertEntry(taskId, 60_000, 1672220579147)
 
-        database.timeEntryEntityQueries.selectAllEntries().asFlow().mapToList().test {
+        systemUnderTest.getAll().test {
             assertSoftly(awaitItem()) {
                 shouldHaveSize(1)
                 val entry = first()
@@ -69,9 +58,9 @@ class TimeEntryDatabaseTest {
         insertEntry(taskId, entryId = 1)
         insertEntry(taskId, entryId = 2)
 
-        database.timeEntryEntityQueries.deleteEntryById(1)
+        systemUnderTest.deleteById(1)
 
-        database.timeEntryEntityQueries.selectAllEntries().asFlow().mapToList().test {
+        systemUnderTest.getAll().test {
             assertSoftly(awaitItem()) {
                 shouldHaveSize(1)
                 first().id shouldBe 2
@@ -86,9 +75,9 @@ class TimeEntryDatabaseTest {
         insertEntry(taskId, entryId = 1)
         insertEntry(taskId, entryId = 2)
 
-        database.taskEntityQueries.deleteTaskById(taskId)
+        taskEntityQueries.deleteTaskById(taskId)
 
-        database.timeEntryEntityQueries.selectAllEntries().asFlow().mapToList().test {
+        systemUnderTest.getAll().test {
             awaitItem() shouldBe emptyList()
         }
     }
@@ -102,9 +91,7 @@ class TimeEntryDatabaseTest {
         val irrelevantTaskId = 55L
         createTaskWithOneEntry(taskId = irrelevantTaskId, entryId = 3)
 
-        val query = database.timeEntryEntityQueries.selectEntriesByTaskIds(listOf(firstTaskId, secondTaskId))
-
-        query.asFlow().mapToList().test {
+        systemUnderTest.getByTaskIds(listOf(firstTaskId, secondTaskId)).test {
             assertSoftly(awaitItem()) {
                 shouldHaveSize(2)
                 get(0).id shouldBe 1
@@ -119,7 +106,7 @@ class TimeEntryDatabaseTest {
     }
 
     private fun insertEntry(taskId: Long, amount: Long = 0, dateTimestamp: Long = 0, entryId: Long? = null) {
-        database.timeEntryEntityQueries.insertEntry(
+        systemUnderTest.insert(
             id = entryId,
             taskId = taskId,
             timeAmount = TimestampMilliseconds(amount),
@@ -128,7 +115,7 @@ class TimeEntryDatabaseTest {
     }
 
     private fun insertTask(taskId: Long) {
-        database.taskEntityQueries.insertTask(
+        taskEntityQueries.insertTask(
             id = taskId,
             position = 0,
             name = "",
