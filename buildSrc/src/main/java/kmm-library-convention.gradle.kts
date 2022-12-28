@@ -52,6 +52,10 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
         sourceSets["iosSimulatorArm64Main"].dependsOn(sourceSets["iosMain"])
         sourceSets["iosSimulatorArm64Test"].dependsOn(sourceSets["iosTest"])
 
+        iosArm64()
+        sourceSets["iosArm64Main"].dependsOn(sourceSets["iosMain"])
+        sourceSets["iosArm64Test"].dependsOn(sourceSets["iosTest"])
+
         targets.withType(KotlinNativeTargetWithSimulatorTests::class.java) {
             testRuns["test"].deviceId = "iPhone 14"
         }

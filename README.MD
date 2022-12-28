@@ -65,7 +65,21 @@ Freelancing etc.)
 - ~~Make GHA run only on PRs not on every push~~
 - ~~Fix iOS build GitHub job~~
 - ~~Clean up gradle files using conventional plugins~~
-- Add Stopwatch time database table with relations
+- ~~Extract Database to separate module~~
+- ~~Add Stopwatch time database table with relations~~
+  - ~~Add indexes for relations~~
+  - ~~Select~~
+  - ~~Add~~
+- ~~Add some sort of DAO for as the public API for the Database~~
+- ~~Add time entry domain model~~
+- Add Android UI for adding time to task
+- Add iOS UI for adding time to task
+- Add Android UI for listing ALL time details
+- Add iOS UI for listing ALL time details
+- Add basic calendar for just one month Without bubbles just allows selecting one day
+- Add bubbles
+- Add multiple day selection 
+- Add other months
 
 ### Brain storming
 - Animations

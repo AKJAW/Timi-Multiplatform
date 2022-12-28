@@ -1,9 +1,9 @@
 package com.akjaw.timi.android.app.composition
 
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
-import com.akjaw.timi.kmp.feature.task.dependency.database.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.dependency.database.TimiDatabase
-import com.akjaw.timi.kmp.feature.task.dependency.list.data.taskColorAdapter
+import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
+import com.akjaw.timi.kmp.feature.database.TimiDatabase
+import com.akjaw.timi.kmp.feature.database.adapter.taskColorAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import org.koin.android.ext.koin.androidContext
