@@ -24,6 +24,6 @@ internal fun createDatabase(sqlDriver: SqlDriver): TimiDatabase {
     return TimiDatabase(
         sqlDriver,
         taskColorAdapter,
-        timestampMillisecondsAdapterAdapter,
+        timestampMillisecondsAdapterAdapter
     )
 }

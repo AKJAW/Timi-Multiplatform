@@ -6,5 +6,5 @@ data class TimeEntry(
     val id: Long,
     val taskId: Long,
     val timeAmount: TimestampMilliseconds,
-    val date: TimestampMilliseconds,
+    val date: TimestampMilliseconds
 )

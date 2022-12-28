@@ -1,7 +1,6 @@
 package com.akjaw.timi.kmp.feature.database.entry
 
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import com.akjaw.timi.kmp.feature.database.TimeEntryEntity
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntityQueries
 import com.akjaw.timi.kmp.feature.task.api.domain.model.TimeEntry
 import com.squareup.sqldelight.runtime.coroutines.asFlow
@@ -9,7 +8,7 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 
 internal class TimeEntrySqlDelightRepository(
-    private val timeEntryEntityQueries: TimeEntryEntityQueries,
+    private val timeEntryEntityQueries: TimeEntryEntityQueries
 ) : TimeEntryRepository {
 
     override fun getAll(): Flow<List<TimeEntry>> =
@@ -22,7 +21,7 @@ internal class TimeEntrySqlDelightRepository(
         id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds,
+        date: TimestampMilliseconds
     ) {
         timeEntryEntityQueries.insert(id, taskId, timeAmount, date)
     }

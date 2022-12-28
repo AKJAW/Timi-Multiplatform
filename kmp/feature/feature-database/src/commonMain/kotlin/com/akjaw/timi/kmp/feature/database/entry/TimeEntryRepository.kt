@@ -16,7 +16,7 @@ interface TimeEntryRepository {
         id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds,
+        date: TimestampMilliseconds
     )
 
     fun deleteById(entryId: Long)
