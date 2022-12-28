@@ -23,5 +23,7 @@ actual fun createTestSqlDriver(): SqlDriver {
             },
             inMemory = true
         )
-    )
+    ).apply {
+        execute(null, "PRAGMA foreign_keys=ON;", 0)
+    }
 }
