@@ -45,6 +45,10 @@ android {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
     }
+    lint {
+        warningsAsErrors = true
+        abortOnError = false
+    }
 }
 
 dependencies {
