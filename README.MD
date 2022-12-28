@@ -76,6 +76,10 @@ Freelancing etc.)
 - Add iOS UI for adding time to task
 - Add Android UI for listing ALL time details
 - Add iOS UI for listing ALL time details
+- Add basic calendar for just one month Without bubbles just allows selecting one day
+- Add bubbles
+- Add multiple day selection 
+- Add other months
 
 ### Brain storming
 - Animations
