@@ -70,7 +70,12 @@ Freelancing etc.)
   - ~~Add indexes for relations~~
   - ~~Select~~
   - ~~Add~~
-- Add some sort of DAO for as the public API for the Database
+- ~~Add some sort of DAO for as the public API for the Database~~
+- ~~Add time entry domain model~~
+- Add Android UI for adding time to task
+- Add iOS UI for adding time to task
+- Add Android UI for listing ALL time details
+- Add iOS UI for listing ALL time details
 
 ### Brain storming
 - Animations

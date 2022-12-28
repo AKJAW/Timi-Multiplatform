@@ -3,6 +3,7 @@ package com.akjaw.timi.kmp.feature.database.entry
 import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntity
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntityQueries
+import com.akjaw.timi.kmp.feature.task.api.domain.model.TimeEntry
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -11,10 +12,11 @@ internal class TimeEntrySqlDelightRepository(
     private val timeEntryEntityQueries: TimeEntryEntityQueries,
 ) : TimeEntryRepository {
 
-    override fun getAll(): Flow<List<TimeEntryEntity>> = timeEntryEntityQueries.selectAll().asFlow().mapToList()
+    override fun getAll(): Flow<List<TimeEntry>> =
+        timeEntryEntityQueries.selectAll(mapper = ::toDomain).asFlow().mapToList()
 
-    override fun getByTaskIds(ids: List<Long>): Flow<List<TimeEntryEntity>> =
-        timeEntryEntityQueries.selectByIds(ids).asFlow().mapToList()
+    override fun getByTaskIds(ids: List<Long>): Flow<List<TimeEntry>> =
+        timeEntryEntityQueries.selectByIds(taskId = ids, mapper = ::toDomain).asFlow().mapToList()
 
     override fun insert(
         id: Long?,
@@ -28,4 +30,11 @@ internal class TimeEntrySqlDelightRepository(
     override fun deleteById(entryId: Long) {
         timeEntryEntityQueries.deleteById(entryId)
     }
+
+    private fun toDomain(
+        id: Long,
+        taskId: Long,
+        timeAmount: TimestampMilliseconds,
+        date: TimestampMilliseconds
+    ) = TimeEntry(id, taskId, timeAmount, date)
 }

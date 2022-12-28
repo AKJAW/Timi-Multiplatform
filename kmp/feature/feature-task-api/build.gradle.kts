@@ -9,6 +9,7 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
+            implementation(project(":kmp:core:core-shared"))
             implementation("io.insert-koin:koin-core:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
         }
