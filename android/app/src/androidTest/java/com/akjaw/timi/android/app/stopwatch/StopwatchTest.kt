@@ -5,12 +5,12 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.akjaw.timi.android.app.ActivityComposeTestRule
 import com.akjaw.timi.android.app.BottomNavRobot
 import com.akjaw.timi.android.app.allKoinModules
-import com.akjaw.timi.android.app.composition.TimestampProviderStub
 import com.akjaw.timi.android.app.composition.testModule
 import com.akjaw.timi.android.app.createBaseTestRule
 import com.akjaw.timi.android.app.task.list.DeleteTaskDialogRobot
 import com.akjaw.timi.android.app.task.list.TaskListScreenRobot
 import com.akjaw.timi.android.core.view.toTaskColor
+import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import org.junit.Before
@@ -40,7 +40,7 @@ class StopwatchTest : KoinTest {
 
     private val taskEntityQueries: TaskEntityQueries by inject()
 
-    private val timestampProviderStub: TimestampProviderStub by inject()
+    private val stubTimestampProvider: StubTimestampProvider by inject()
 
     private lateinit var bottomNavRobot: BottomNavRobot
     private lateinit var stopwatchScreenRobot: StopwatchScreenRobot
@@ -62,12 +62,12 @@ class StopwatchTest : KoinTest {
 
     @Test
     fun addingAStopwatchStartsTheStopwatchInTheList() {
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
         stopwatchScreenRobot.clickAddButton()
 
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
 
-        timestampProviderStub.currentMilliseconds = 22000
+        stubTimestampProvider.setValue(22000)
         stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
@@ -97,15 +97,15 @@ class StopwatchTest : KoinTest {
 
     @Test
     fun multipleStopwatchesCanBeStartedAndAreUpdated() {
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
 
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
-        timestampProviderStub.currentMilliseconds = 30000
+        stubTimestampProvider.setValue(30000)
 
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(SECOND_TASK_NAME)
-        timestampProviderStub.currentMilliseconds = 60000
+        stubTimestampProvider.setValue(60000)
 
         Thread.sleep(50)
         stopwatchScreenVerifier.confirmStopwatchForTaskExists(FIRST_TASK_NAME)
@@ -122,14 +122,14 @@ class StopwatchTest : KoinTest {
 
     @Test
     fun pausingAStopwatchPreventsItFromUpdatingTheTime() {
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
-        timestampProviderStub.currentMilliseconds = 30000
+        stubTimestampProvider.setValue(30000)
 
         stopwatchScreenRobot.pauseStopwatchForTask(taskName = FIRST_TASK_NAME)
 
-        timestampProviderStub.currentMilliseconds = 60000
+        stubTimestampProvider.setValue(60000)
         Thread.sleep(50)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
@@ -139,15 +139,15 @@ class StopwatchTest : KoinTest {
 
     @Test
     fun pausingAndResumingTheStopwatchWorksCorrectly() {
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
-        timestampProviderStub.currentMilliseconds = 30000
+        stubTimestampProvider.setValue(30000)
         stopwatchScreenRobot.pauseStopwatchForTask(taskName = FIRST_TASK_NAME)
 
         stopwatchScreenRobot.resumeStopwatchForTask(taskName = FIRST_TASK_NAME)
 
-        timestampProviderStub.currentMilliseconds = 60000
+        stubTimestampProvider.setValue(60000)
         composeTestRule.mainClock.advanceTimeBy(300)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
@@ -168,16 +168,16 @@ class StopwatchTest : KoinTest {
     @Ignore("Was broken by compose update")
     @Test
     fun theStopwatchRemainsRunningWhenChangingTheBottomNav() {
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
         bottomNavRobot.navigateToTasks()
-        timestampProviderStub.currentMilliseconds = 30000
+        stubTimestampProvider.setValue(30000)
 
         bottomNavRobot.navigateToStopwatch()
 
         Thread.sleep(50)
-        timestampProviderStub.currentMilliseconds = 60000
+        stubTimestampProvider.setValue(60000)
         Thread.sleep(50)
         stopwatchScreenVerifier.confirmStopwatchForTaskHasTime(
             taskName = FIRST_TASK_NAME,
@@ -191,7 +191,7 @@ class StopwatchTest : KoinTest {
         val taskListScreenRobot = TaskListScreenRobot(composeTestRule)
         val deleteTaskDialogRobot = DeleteTaskDialogRobot(composeTestRule)
 
-        timestampProviderStub.currentMilliseconds = 0
+        stubTimestampProvider.setValue(0)
         stopwatchScreenRobot.clickAddButton()
         addStopwatchDialogRobot.selectTaskWithName(FIRST_TASK_NAME)
 

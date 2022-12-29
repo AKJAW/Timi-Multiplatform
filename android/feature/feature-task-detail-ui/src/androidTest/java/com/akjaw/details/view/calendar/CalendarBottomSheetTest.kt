@@ -15,9 +15,7 @@ import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import com.akjaw.timi.android.feature.task.detail.ui.view.calendar.CalendarBottomSheet
-import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
-import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
-import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.soywiz.klock.DateTime
@@ -32,15 +30,15 @@ class CalendarBottomSheetTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private lateinit var timestampProviderStub: TimestampProviderStub
+    private lateinit var stubTimestampProvider: StubTimestampProvider
     private lateinit var viewModel: CalendarViewModel
 
     @Before
     fun setUp() {
-        timestampProviderStub = TimestampProviderStub()
+        stubTimestampProvider = StubTimestampProvider()
         givenCurrentMonthIs(6)
         viewModel = CalendarViewModel(
-            timestampProviderStub,
+            stubTimestampProvider,
             CalendarDaysCalculator()
         )
         composeTestRule.setContent {
@@ -137,18 +135,12 @@ class CalendarBottomSheetTest {
     }
 
     private fun givenCurrentMonthIs(monthNumber: Int) {
-        timestampProviderStub.currentMilliseconds = DateTime(
-            year = 2021,
-            month = monthNumber,
-            day = 1
-        ).unixMillisLong
+        stubTimestampProvider.setValue(
+            DateTime(
+                year = 2021,
+                month = monthNumber,
+                day = 1
+            ).unixMillisLong
+        )
     }
-}
-
-class TimestampProviderStub : TimestampProvider {
-
-    var currentMilliseconds: Long = 0
-
-    override fun getMilliseconds(): TimestampMilliseconds =
-        currentMilliseconds.toTimestampMilliseconds()
 }

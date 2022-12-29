@@ -1,8 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter.calendar
 
 import app.cash.turbine.test
-import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
-import com.akjaw.timi.kmp.feature.task.dependency.detail.TimestampProviderStub
+import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.DayViewState
@@ -27,14 +26,14 @@ internal class ViewModelMonthNameAndDaysTest {
         private const val CURRENT_MONTH_INDEX = CalendarViewModel.CURRENT_MONTH_INDEX
     }
 
-    private lateinit var timestampProviderStub: TimestampProviderStub
+    private lateinit var stubTimestampProvider: StubTimestampProvider
     private lateinit var systemUnderTest: CalendarViewModel
 
     @BeforeTest
     fun setUp() {
-        timestampProviderStub = TimestampProviderStub()
-        timestampProviderStub.value = JULY_DATE_TIME.unixMillisLong.toTimestampMilliseconds()
-        systemUnderTest = createCalendarViewModel(timestampProviderStub)
+        stubTimestampProvider = StubTimestampProvider()
+        stubTimestampProvider.setValue(JULY_DATE_TIME.unixMillisLong)
+        systemUnderTest = createCalendarViewModel(stubTimestampProvider)
     }
 
     @Test

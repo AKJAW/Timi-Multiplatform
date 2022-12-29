@@ -1,11 +1,10 @@
-package com.akjaw.timi.kmp.feature.stopwatch.domain.helpers
+package com.akjaw.timi.kmp.core.test.time
 
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
 
-// TODO move out to core-test?
-class FakeTimestampProvider : TimestampProvider {
+class MockTimestampProvider : TimestampProvider {
 
     private var value: Long = 0
 

@@ -7,13 +7,12 @@ import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewMod
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
 // TODO should have list in the name?
 internal class CommonTaskDetailViewModel(
     private val task: Task,
-    private val timeEntryRepository: TimeEntryRepository,
+    private val timeEntryRepository: TimeEntryRepository
 ) : TaskDetailViewModel {
     // TODO move logic to the domain?
 

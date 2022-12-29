@@ -1,9 +1,9 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain.orchestrator
 
+import com.akjaw.timi.kmp.core.test.time.MockTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchListOrchestrator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchStateCalculator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchStateHolderFactory
-import com.akjaw.timi.kmp.feature.stopwatch.domain.helpers.FakeTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
@@ -35,11 +35,11 @@ internal class StopwatchListOrchestratorTest {
         )
     }
 
-    private val fakeTimestampProvider = FakeTimestampProvider()
-    private val elapsedTimeCalculator = ElapsedTimeCalculator(fakeTimestampProvider)
+    private val mockTimestampProvider = MockTimestampProvider()
+    private val elapsedTimeCalculator = ElapsedTimeCalculator(mockTimestampProvider)
     private val stopwatchStateHolderFactory = StopwatchStateHolderFactory(
         stopwatchStateCalculator = StopwatchStateCalculator(
-            fakeTimestampProvider,
+            mockTimestampProvider,
             elapsedTimeCalculator
         ),
         elapsedTimeCalculator = elapsedTimeCalculator,
@@ -152,7 +152,7 @@ internal class StopwatchListOrchestratorTest {
     }
 
     private fun givenTimestamp(time: Int) {
-        fakeTimestampProvider.givenTimePassed(time.toLong())
+        mockTimestampProvider.givenTimePassed(time.toLong())
     }
 
     private fun advanceTime(amount: Long) {
