@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.row.days
 
-import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDay
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.akjaw.timi.kmp.feature.task.dependency.detail.rowDaysEqual
 import com.soywiz.klock.DateTime
