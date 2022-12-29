@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.database.adapter
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntity
 import com.squareup.sqldelight.ColumnAdapter
 

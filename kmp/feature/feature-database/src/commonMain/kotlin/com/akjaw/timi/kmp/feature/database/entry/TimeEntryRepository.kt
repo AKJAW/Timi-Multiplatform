@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.database.entry
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import kotlinx.coroutines.flow.Flow
 

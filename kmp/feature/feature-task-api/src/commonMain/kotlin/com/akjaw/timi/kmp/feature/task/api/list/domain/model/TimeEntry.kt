@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.api.list.domain.model
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 
 data class TimeEntry(
     val id: Long,

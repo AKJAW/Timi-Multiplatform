@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail
 
-import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
+import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import io.kotest.matchers.shouldBe

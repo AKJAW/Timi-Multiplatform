@@ -1,8 +1,8 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain.helpers
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
 
 // TODO move out to core-test?
 class FakeTimestampProvider : TimestampProvider {

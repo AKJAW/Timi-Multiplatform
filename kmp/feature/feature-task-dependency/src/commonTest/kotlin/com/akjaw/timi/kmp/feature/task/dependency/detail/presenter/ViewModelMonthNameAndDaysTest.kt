@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter
 
 import app.cash.turbine.test
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
 import com.akjaw.timi.kmp.feature.task.dependency.detail.TimestampProviderStub
 import com.akjaw.timi.kmp.feature.task.dependency.detail.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel

@@ -1,6 +1,5 @@
-package com.akjaw.core.common.domain.model
+package com.akjaw.timi.kmp.core.shared.time.model
 
-// TODO maybe :stopwatch-api?
 data class TimestampMilliseconds(val value: Long) {
 
     infix operator fun plus(other: TimestampMilliseconds) =

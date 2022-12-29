@@ -1,6 +1,6 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain.model
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 
 internal sealed class StopwatchState {
     data class Running(

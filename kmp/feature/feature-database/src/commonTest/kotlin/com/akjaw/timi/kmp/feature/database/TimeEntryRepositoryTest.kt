@@ -1,7 +1,7 @@
 package com.akjaw.timi.kmp.feature.database
 
 import app.cash.turbine.test
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.composition.createDatabase
 import com.akjaw.timi.kmp.feature.database.entry.TimeEntrySqlDelightRepository
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
