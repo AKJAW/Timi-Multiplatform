@@ -1,4 +1,4 @@
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor;
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor;
 
 CREATE TABLE TaskEntity (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
