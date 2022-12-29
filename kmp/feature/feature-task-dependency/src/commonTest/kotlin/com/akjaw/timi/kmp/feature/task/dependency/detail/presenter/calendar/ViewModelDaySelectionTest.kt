@@ -1,4 +1,4 @@
-package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter
+package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter.calendar
 
 import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
