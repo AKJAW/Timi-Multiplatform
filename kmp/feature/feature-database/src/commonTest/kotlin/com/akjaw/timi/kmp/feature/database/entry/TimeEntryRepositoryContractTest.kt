@@ -1,38 +1,19 @@
-package com.akjaw.timi.kmp.feature.database
+package com.akjaw.timi.kmp.feature.database.entry
 
 import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
-import com.akjaw.timi.kmp.feature.database.composition.createDatabase
-import com.akjaw.timi.kmp.feature.database.entry.TimeEntrySqlDelightRepository
-import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
-import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.test.runTest
-import kotlin.test.BeforeTest
 import kotlin.test.Test
 
-class TimeEntryRepositoryTest {
+abstract class TimeEntryRepositoryContractTest {
 
-    private lateinit var taskEntityQueries: TaskEntityQueries
-    private lateinit var systemUnderTest: TimeEntrySqlDelightRepository
-
-    @BeforeTest
-    fun setUp() {
-        val database = createDatabase(createTestSqlDriver())
-        taskEntityQueries = database.taskEntityQueries
-        systemUnderTest = TimeEntrySqlDelightRepository(database.timeEntryEntityQueries)
-    }
-
-    @Test
-    fun `Entry cannot be created without a corresponding task`() = runTest {
-        shouldThrowAny {
-            insertEntry(2)
-        }
-    }
+    abstract var systemUnderTest: TimeEntryRepository
 
     @Test
     fun `Entry is correctly inserted for an existing task`() = runTest {
@@ -71,20 +52,6 @@ class TimeEntryRepositoryTest {
     }
 
     @Test
-    fun `When a task is removed its entries are also removed`() = runTest {
-        val taskId = 22L
-        insertTask(taskId)
-        insertEntry(taskId, entryId = 1)
-        insertEntry(taskId, entryId = 2)
-
-        taskEntityQueries.deleteTaskById(taskId)
-
-        systemUnderTest.getAll().test {
-            awaitItem() shouldBe emptyList()
-        }
-    }
-
-    @Test
     fun `Retrieving entries by task ids works correctly`() = runTest {
         val firstTaskId = 11L
         createTaskWithOneEntry(taskId = firstTaskId, entryId = 1)
@@ -102,31 +69,19 @@ class TimeEntryRepositoryTest {
         }
     }
 
+    // TODO add test for flow update
+
     private fun createTaskWithOneEntry(taskId: Long, entryId: Long) {
         insertTask(taskId)
         insertEntry(taskId, entryId = entryId)
     }
 
-    private fun insertEntry(
+    abstract fun insertEntry(
         taskId: Long,
         amount: Long = 0,
         date: CalendarDay = CalendarDay(0),
         entryId: Long? = null
-    ) {
-        systemUnderTest.insert(
-            id = entryId,
-            taskId = taskId,
-            timeAmount = TimestampMilliseconds(amount),
-            date = date
-        )
-    }
+    )
 
-    private fun insertTask(taskId: Long) {
-        taskEntityQueries.insertTask(
-            id = taskId,
-            position = 0,
-            name = "",
-            color = TaskColor(0f, 0f, 0f)
-        )
-    }
+    abstract fun insertTask(taskId: Long)
 }

@@ -7,8 +7,8 @@ import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-// TODO write contract test???
 // TODO refactor to flow?
+// TODO move to database module so the tests are cohesive?
 class FakeTimeEntryRepository : TimeEntryRepository {
 
     private val entries: MutableMap<Long, List<TimeEntry>> = mutableMapOf()
@@ -21,7 +21,7 @@ class FakeTimeEntryRepository : TimeEntryRepository {
         entries[taskId]
 
     override fun getAll(): Flow<List<TimeEntry>> {
-        TODO("Not yet implemented")
+        return MutableStateFlow(entries.values.flatten())
     }
 
     override fun getByTaskIds(ids: List<Long>): Flow<List<TimeEntry>> {
