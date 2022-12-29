@@ -12,7 +12,7 @@ import com.akjaw.timi.android.app.task.list.DeleteTaskDialogRobot
 import com.akjaw.timi.android.app.task.list.TaskListScreenRobot
 import com.akjaw.timi.android.core.view.toTaskColor
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule

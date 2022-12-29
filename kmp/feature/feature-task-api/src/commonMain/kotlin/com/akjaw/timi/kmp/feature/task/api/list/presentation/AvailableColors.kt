@@ -1,6 +1,6 @@
-package com.akjaw.timi.kmp.feature.task.api.presentation
+package com.akjaw.timi.kmp.feature.task.api.list.presentation
 
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 
 val availableTaskColors = listOf(
     TaskColor(239 / 255f, 132 / 255f, 132 / 255f),

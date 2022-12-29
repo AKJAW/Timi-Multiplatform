@@ -5,7 +5,7 @@ import com.akjaw.core.common.domain.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.composition.createDatabase
 import com.akjaw.timi.kmp.feature.database.entry.TimeEntrySqlDelightRepository
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.matchers.collections.shouldHaveSize

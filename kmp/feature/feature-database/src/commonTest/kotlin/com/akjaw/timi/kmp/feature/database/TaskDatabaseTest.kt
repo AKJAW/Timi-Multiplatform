@@ -2,7 +2,7 @@ package com.akjaw.timi.kmp.feature.database
 
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import com.squareup.sqldelight.db.SqlDriver
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
