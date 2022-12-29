@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
+import com.akjaw.timi.android.core.ui.OutlinedListButton
 import com.akjaw.timi.android.core.view.tasksPreview
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.kmp.feature.stopwatch.presentation.StopwatchViewModel
@@ -81,7 +82,10 @@ private fun StopwatchContent(
             }
         }
         item(key = "AddStopwatch") {
-            AddNewStopwatchEntryButton(onClick = onAddStopwatchClicked)
+            OutlinedListButton(
+                onClick = onAddStopwatchClicked,
+                text = stringResource(R.string.stopwatch_screen_add_stopwatch)
+            )
         }
     }
 }

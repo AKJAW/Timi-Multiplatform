@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.stopwatch.ui
+package com.akjaw.timi.android.core.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
@@ -12,7 +12,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
@@ -20,7 +19,10 @@ import com.akjaw.timi.android.core.view.theme.stopwatchBorder
 import com.akjaw.timi.android.core.view.theme.taskShape
 
 @Composable
-internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
+fun OutlinedListButton(
+    text: String,
+    onClick: () -> Unit = {},
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,7 +35,7 @@ internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
             contentAlignment = Alignment.Center,
             modifier = Modifier.clickable { onClick() }
         ) {
-            Text(text = stringResource(R.string.stopwatch_screen_add_stopwatch))
+            Text(text = text)
         }
     }
 }
@@ -41,8 +43,8 @@ internal fun AddNewStopwatchEntryButton(onClick: () -> Unit = {}) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
-private fun AddNewStopwatchEntryButtonPreview() {
+private fun OutlinedListButtonPreview() {
     TimiComposeTheme {
-        AddNewStopwatchEntryButton()
+        OutlinedListButton("Text")
     }
 }
