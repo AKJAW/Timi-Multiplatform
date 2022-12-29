@@ -2,40 +2,32 @@ import de.fayard.refreshVersions.core.versionFor
 
 plugins {
     id("kmm-library-convention")
-    id("com.squareup.sqldelight")
+    id("com.rickclephas.kmp.nativecoroutines")
 }
 
-sqldelight {
-    database("TimiDatabase") {
-        packageName = "com.akjaw.timi.kmp.feature.database"
-        schemaOutputDirectory = file("src/sqldelight/")
-    }
-}
+version = "1.0"
 
 kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
             implementation(project(":kmp:core:core-shared"))
+            implementation(project(":kmp:feature:feature-database"))
             implementation(project(":kmp:feature:feature-task-api"))
+            implementation(project(":kmp:feature:feature-stopwatch"))
+            implementation("io.kotest:kotest-assertions-core:_")
             implementation("io.insert-koin:koin-core:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
-            implementation("com.squareup.sqldelight:runtime:_")
-            implementation("com.squareup.sqldelight:coroutines-extensions:_")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+            implementation("com.soywiz.korlibs.klock:klock:_")
         }
 
         sourceSets["commonTest"].dependencies {
-            implementation(project(":kmp:core:core-test"))
             implementation("org.jetbrains.kotlin:kotlin-test-common:_")
             implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:_")
             implementation("app.cash.turbine:turbine:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
             implementation("io.kotest:kotest-assertions-core:_")
-        }
-
-        sourceSets["androidMain"].dependencies {
-            implementation("com.squareup.sqldelight:android-driver:_")
-            implementation("com.squareup.sqldelight:sqlite-driver:_")
         }
 
         sourceSets["androidTest"].dependencies {
@@ -44,7 +36,6 @@ kotlin {
         }
 
         iosDependencies {
-            implementation("com.squareup.sqldelight:native-driver:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_") {
                 version {
                     strictly(versionFor(KotlinX.coroutines.core))

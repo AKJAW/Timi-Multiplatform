@@ -21,6 +21,7 @@ kotlin {
         }
 
         sourceSets["commonTest"].dependencies {
+            implementation(project(":kmp:core:core-test"))
             implementation("org.jetbrains.kotlin:kotlin-test-common:_")
             implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:_")
             implementation("app.cash.turbine:turbine:_")
