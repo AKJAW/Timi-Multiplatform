@@ -6,39 +6,61 @@ import com.akjaw.timi.kmp.feature.database.entry.TimeEntryRepository
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 
-// TODO refactor to flow?
 // TODO move to database module so the tests are cohesive?
 class FakeTimeEntryRepository : TimeEntryRepository {
 
-    private val entries: MutableMap<Long, List<TimeEntry>> = mutableMapOf()
+    private val taskIdWithEntry: MutableStateFlow<Map<Long, List<TimeEntry>>> = MutableStateFlow(emptyMap())
 
     fun setEntry(taskId: Long, entries: List<TimeEntry>) {
-        this.entries[taskId] = entries
+        this.taskIdWithEntry.updateWithEntry(taskId, entries)
     }
 
     fun getEntry(taskId: Long): List<TimeEntry>? =
-        entries[taskId]
+        taskIdWithEntry.value[taskId]
 
     override fun getAll(): Flow<List<TimeEntry>> {
-        return MutableStateFlow(entries.values.flatten())
+        return taskIdWithEntry.map { it.values.flatten() }
     }
 
     override fun getByTaskIds(ids: List<Long>): Flow<List<TimeEntry>> {
-        val tasksEntries: Map<Long, List<TimeEntry>> = entries.filterKeys { taskId -> ids.contains(taskId) }
-        return MutableStateFlow(tasksEntries.values.flatten())
+        return taskIdWithEntry.map { value: Map<Long, List<TimeEntry>> ->
+            value
+                .filterKeys { taskId -> ids.contains(taskId) }
+                .values
+                .flatten()
+        }
     }
 
+    private var entryId = 1L
     override fun insert(id: Long?, taskId: Long, timeAmount: TimestampMilliseconds, date: CalendarDay) {
-        val existingEntries: List<TimeEntry> = entries[taskId] ?: emptyList()
-        entries[taskId] = existingEntries + TimeEntry(id ?: 0, taskId, timeAmount, date)
+        val currentEntries = taskIdWithEntry.value[taskId] ?: emptyList()
+        val newEntries = currentEntries + TimeEntry(id ?: entryId++, taskId, timeAmount, date)
+        taskIdWithEntry.updateWithEntry(taskId, newEntries)
     }
 
     override fun deleteById(entryId: Long) {
-        val newEntries = entries.mapValues { (_, values) ->
-            values.filterNot { it.id == entryId }
+        taskIdWithEntry.update { currentEntries ->
+            buildMap {
+                val newEntries = currentEntries.mapValues { (_, values) ->
+                    values.filterNot { it.id == entryId }
+                }
+                putAll(newEntries)
+            }
         }
-        entries.clear()
-        entries.putAll(newEntries)
+    }
+
+    private fun MutableStateFlow<Map<Long, List<TimeEntry>>>.updateWithEntry(
+        taskId: Long,
+        entries: List<TimeEntry>
+    ) {
+        update { currentEntries ->
+            buildMap {
+                putAll(currentEntries)
+                put(taskId, entries)
+            }
+        }
     }
 }

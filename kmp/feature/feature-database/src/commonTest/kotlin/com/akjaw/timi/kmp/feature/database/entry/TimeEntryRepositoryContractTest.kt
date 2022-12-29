@@ -69,7 +69,21 @@ abstract class TimeEntryRepositoryContractTest {
         }
     }
 
-    // TODO add test for flow update
+    @Test
+    fun `The entries are updated on changes`() = runTest {
+        val taskId = 22L
+        insertTask(taskId)
+
+        systemUnderTest.getAll().test {
+            awaitItem()
+
+            insertEntry(taskId = taskId)
+            awaitItem() shouldHaveSize 1
+
+            systemUnderTest.deleteById(entryId = 1)
+            awaitItem() shouldHaveSize 0
+        }
+    }
 
     private fun createTaskWithOneEntry(taskId: Long, entryId: Long) {
         insertTask(taskId)
