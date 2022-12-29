@@ -19,12 +19,11 @@ internal class TimeEntrySqlDelightRepository(
         timeEntryEntityQueries.selectByIds(taskId = ids, mapper = ::toDomain).asFlow().mapToList()
 
     override fun insert(
-        id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
         date: CalendarDay
     ) {
-        timeEntryEntityQueries.insert(id, taskId, timeAmount, date)
+        timeEntryEntityQueries.insert(null, taskId, timeAmount, date)
     }
 
     override fun deleteById(entryId: Long) {

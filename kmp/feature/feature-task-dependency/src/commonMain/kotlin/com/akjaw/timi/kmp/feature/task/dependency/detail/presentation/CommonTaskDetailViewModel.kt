@@ -24,7 +24,7 @@ internal class CommonTaskDetailViewModel(
     }
 
     override fun addTimeEntry(timeAmount: TimestampMilliseconds, day: CalendarDay) {
-        timeEntryRepository.insert(null, task.id, timeAmount, day)
+        timeEntryRepository.insert(task.id, timeAmount, day)
     }
 
     override fun removeTimeEntry(id: Long) {

@@ -36,8 +36,8 @@ class TimeEntrySqlDelightRepositoryTest : TimeEntryRepositoryContractTest() {
     fun `When a task is removed its entries are also removed`() = runTest {
         val taskId = 22L
         insertTask(taskId)
-        insertEntry(taskId, entryId = 1)
-        insertEntry(taskId, entryId = 2)
+        insertEntry(taskId)
+        insertEntry(taskId)
 
         taskEntityQueries.deleteTaskById(taskId)
 
@@ -49,11 +49,9 @@ class TimeEntrySqlDelightRepositoryTest : TimeEntryRepositoryContractTest() {
     override fun insertEntry(
         taskId: Long,
         amount: Long,
-        date: CalendarDay,
-        entryId: Long?
+        date: CalendarDay
     ) {
         systemUnderTest.insert(
-            id = entryId,
             taskId = taskId,
             timeAmount = TimestampMilliseconds(amount),
             date = date

@@ -12,7 +12,6 @@ interface TimeEntryRepository {
     fun getByTaskIds(ids: List<Long>): Flow<List<TimeEntry>>
 
     fun insert(
-        id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
         date: CalendarDay

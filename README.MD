@@ -53,6 +53,9 @@ Freelancing etc.)
 - Figure out GitHub status requirements before merging
 
 ### High priority:
+- ~~Clean up Repository insert id~~
+- ~~add core-test~~
+- ~~add contract test for time entry repository?~~
 - Add KMM ViewModel for TaskDetails just for one task
 - Add Android UI for adding time to task
 - Add iOS UI for adding time to task

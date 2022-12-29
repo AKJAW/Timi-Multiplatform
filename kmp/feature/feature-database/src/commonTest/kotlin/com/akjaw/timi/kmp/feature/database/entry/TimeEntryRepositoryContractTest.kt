@@ -3,9 +3,7 @@ package com.akjaw.timi.kmp.feature.database.entry
 import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
-import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import io.kotest.assertions.assertSoftly
-import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.test.runTest
@@ -38,8 +36,8 @@ abstract class TimeEntryRepositoryContractTest {
     fun `Entry is correctly removed`() = runTest {
         val taskId = 22L
         insertTask(taskId)
-        insertEntry(taskId, entryId = 1)
-        insertEntry(taskId, entryId = 2)
+        insertEntry(taskId)
+        insertEntry(taskId)
 
         systemUnderTest.deleteById(1)
 
@@ -54,11 +52,11 @@ abstract class TimeEntryRepositoryContractTest {
     @Test
     fun `Retrieving entries by task ids works correctly`() = runTest {
         val firstTaskId = 11L
-        createTaskWithOneEntry(taskId = firstTaskId, entryId = 1)
+        createTaskWithOneEntry(taskId = firstTaskId)
         val secondTaskId = 22L
-        createTaskWithOneEntry(taskId = secondTaskId, entryId = 2)
+        createTaskWithOneEntry(taskId = secondTaskId)
         val irrelevantTaskId = 55L
-        createTaskWithOneEntry(taskId = irrelevantTaskId, entryId = 3)
+        createTaskWithOneEntry(taskId = irrelevantTaskId)
 
         systemUnderTest.getByTaskIds(listOf(firstTaskId, secondTaskId)).test {
             assertSoftly(awaitItem()) {
@@ -85,16 +83,15 @@ abstract class TimeEntryRepositoryContractTest {
         }
     }
 
-    private fun createTaskWithOneEntry(taskId: Long, entryId: Long) {
+    private fun createTaskWithOneEntry(taskId: Long) {
         insertTask(taskId)
-        insertEntry(taskId, entryId = entryId)
+        insertEntry(taskId)
     }
 
     abstract fun insertEntry(
         taskId: Long,
         amount: Long = 0,
-        date: CalendarDay = CalendarDay(0),
-        entryId: Long? = null
+        date: CalendarDay = CalendarDay(0)
     )
 
     abstract fun insertTask(taskId: Long)

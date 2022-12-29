@@ -35,9 +35,9 @@ class FakeTimeEntryRepository : TimeEntryRepository {
     }
 
     private var entryId = 1L
-    override fun insert(id: Long?, taskId: Long, timeAmount: TimestampMilliseconds, date: CalendarDay) {
+    override fun insert(taskId: Long, timeAmount: TimestampMilliseconds, date: CalendarDay) {
         val currentEntries = taskIdWithEntry.value[taskId] ?: emptyList()
-        val newEntries = currentEntries + TimeEntry(id ?: entryId++, taskId, timeAmount, date)
+        val newEntries = currentEntries + TimeEntry(entryId++, taskId, timeAmount, date)
         taskIdWithEntry.updateWithEntry(taskId, newEntries)
     }
 
