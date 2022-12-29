@@ -1,6 +1,7 @@
 package com.akjaw.timi.kmp.feature.database
 
 import app.cash.turbine.test
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.composition.createDatabase
 import com.akjaw.timi.kmp.feature.database.entry.TimeEntrySqlDelightRepository
@@ -29,7 +30,7 @@ class TimeEntryRepositoryTest {
     @Test
     fun `Entry cannot be created without a corresponding task`() = runTest {
         shouldThrowAny {
-            insertEntry(2, 0, 0)
+            insertEntry(2)
         }
     }
 
@@ -37,8 +38,9 @@ class TimeEntryRepositoryTest {
     fun `Entry is correctly inserted for an existing task`() = runTest {
         val taskId = 22L
         insertTask(taskId)
+        val date = CalendarDay(29, 12, 2022)
 
-        insertEntry(taskId, 60_000, 1672220579147)
+        insertEntry(taskId, 60_000, date)
 
         systemUnderTest.getAll().test {
             assertSoftly(awaitItem()) {
@@ -46,7 +48,7 @@ class TimeEntryRepositoryTest {
                 val entry = first()
                 entry.taskId shouldBe taskId
                 entry.timeAmount shouldBe TimestampMilliseconds(60_000)
-                entry.date shouldBe TimestampMilliseconds(1672220579147)
+                entry.date shouldBe date
             }
         }
     }
@@ -105,12 +107,17 @@ class TimeEntryRepositoryTest {
         insertEntry(taskId, entryId = entryId)
     }
 
-    private fun insertEntry(taskId: Long, amount: Long = 0, dateTimestamp: Long = 0, entryId: Long? = null) {
+    private fun insertEntry(
+        taskId: Long,
+        amount: Long = 0,
+        date: CalendarDay = CalendarDay(0),
+        entryId: Long? = null
+    ) {
         systemUnderTest.insert(
             id = entryId,
             taskId = taskId,
             timeAmount = TimestampMilliseconds(amount),
-            date = TimestampMilliseconds(dateTimestamp)
+            date = date
         )
     }
 

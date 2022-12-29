@@ -4,7 +4,7 @@ CREATE TABLE TaskEntity (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   position INTEGER NOT NULL,
   name TEXT NOT NULL,
-  color Text AS TaskColor NOT NULL
+  color TEXT AS TaskColor NOT NULL
 );
 
 CREATE UNIQUE INDEX taskId ON TaskEntity(id);

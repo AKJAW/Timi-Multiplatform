@@ -1,5 +1,6 @@
 package com.akjaw.timi.kmp.feature.database.entry
 
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntityQueries
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
@@ -21,7 +22,7 @@ internal class TimeEntrySqlDelightRepository(
         id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds
+        date: CalendarDay
     ) {
         timeEntryEntityQueries.insert(id, taskId, timeAmount, date)
     }
@@ -34,6 +35,6 @@ internal class TimeEntrySqlDelightRepository(
         id: Long,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds
-    ) = TimeEntry(id, taskId, timeAmount, date)
+        calendarDay: CalendarDay
+    ) = TimeEntry(id, taskId, timeAmount, calendarDay)
 }

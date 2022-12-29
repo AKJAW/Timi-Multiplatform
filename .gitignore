@@ -345,3 +345,4 @@ Thumbs.db
 # End of https://www.toptal.com/developers/gitignore/api/intellij,androidstudio,android,kotlin
 /.idea/deploymentTargetDropDown.xml
 /.idea/kotlinc.xml
+/.idea/inspectionProfiles/Project_Default.xml
