@@ -52,19 +52,23 @@ Freelancing etc.)
 
 ### Medium priority:
 - Figure out GitHub status requirements before merging
+- Clean up Android time picker
+  - Allow seconds
+  - Fix last time pick being remembered?
 
 ### High priority:
 - ~~Clean up Repository insert id~~
 - ~~add core-test~~
 - ~~add contract test for time entry repository?~~
-- Add KMM ViewModel for TaskDetails just for one task
+- ~~Add KMM ViewModel for TaskDetails just for one task~
   - ~~Add date and time formatting~~
-  - Add current day selection
-- Add Android UI for adding time to task
-- Add Android UI for listing ALL time details
+- ~~Add Android UI for adding time to task~~
+- ~~Add Android UI for listing ALL time details~~
 - Add iOS UI for adding time to task
 - Add iOS UI for listing ALL time details
+- Improve ViewModel Contract to allow passing in hours and minutes?
 - Add basic calendar for just one month Without bubbles just allows selecting one day
+- Add current day selection to KMM VM
 - Add bubbles
 - Add multiple day selection 
 - Add other months

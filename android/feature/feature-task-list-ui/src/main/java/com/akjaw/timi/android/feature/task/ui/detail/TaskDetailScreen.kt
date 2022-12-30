@@ -1,5 +1,6 @@
 package com.akjaw.timi.android.feature.task.ui.detail
 
+import android.app.TimePickerDialog
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,13 +46,34 @@ fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parame
 
     TaskDetailScreenContent(
         entries = entries,
-        addEntry = remember { { viewModel.addTimeEntry(TimestampMilliseconds(60_000L), currentDay) } },
+        addEntry = remember {
+            { milliseconds ->
+                viewModel.addTimeEntry(TimestampMilliseconds(milliseconds), currentDay)
+            }
+        },
         onRemoveClick = viewModel::removeTimeEntry
     )
 }
 
 @Composable
-private fun TaskDetailScreenContent(entries: List<TimeEntryUi>, addEntry: () -> Unit, onRemoveClick: (Long) -> Unit) {
+private fun TaskDetailScreenContent(
+    entries: List<TimeEntryUi>,
+    addEntry: (Long) -> Unit,
+    onRemoveClick: (Long) -> Unit
+) {
+    val context = LocalContext.current
+    val timePickerDialog = remember {
+        TimePickerDialog(
+            context,
+            { _, hours: Int, minutes: Int ->
+                // TODO move to ViewModel
+                val totalMinutes = 60 * hours + minutes
+                val totalMilliseconds = totalMinutes * 60 * 1000L
+                addEntry(totalMilliseconds)
+            },
+            0, 0, true
+        )
+    }
     LazyColumn(
         modifier = Modifier.padding(10.dp, 10.dp, 10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -64,7 +87,7 @@ private fun TaskDetailScreenContent(entries: List<TimeEntryUi>, addEntry: () -> 
         item(key = "AddEntry") {
             OutlinedListButton(
                 text = stringResource(R.string.task_detail_add_time_entry),
-                onClick = addEntry,
+                onClick = timePickerDialog::show,
                 modifier = Modifier
             )
         }

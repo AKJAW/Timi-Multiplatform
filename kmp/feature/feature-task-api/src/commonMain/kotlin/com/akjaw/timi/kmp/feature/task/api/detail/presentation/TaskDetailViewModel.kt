@@ -11,7 +11,7 @@ interface TaskDetailViewModel {
     fun getTimeEntries(day: CalendarDay): Flow<List<TimeEntryUi>>
 
     fun addTimeEntry(
-        timeAmount: TimestampMilliseconds,
+        timeAmount: TimestampMilliseconds, // TODO change to hours and seconds
         day: CalendarDay
     )
 
