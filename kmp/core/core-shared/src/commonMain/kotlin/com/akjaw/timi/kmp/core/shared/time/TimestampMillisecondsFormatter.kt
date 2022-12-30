@@ -1,8 +1,8 @@
-package com.akjaw.timi.kmp.feature.stopwatch.domain.utilities
+package com.akjaw.timi.kmp.core.shared.time
 
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 
-internal class TimestampMillisecondsFormatter {
+class TimestampMillisecondsFormatter {
 
     fun format(timestamp: TimestampMilliseconds): String {
         val millisecondsLong = timestamp.value

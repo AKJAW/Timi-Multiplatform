@@ -1,5 +1,6 @@
-package com.akjaw.timi.kmp.feature.stopwatch.domain.utilities
+package com.akjaw.timi.kmp.core.shared.time
 
+import com.akjaw.timi.kmp.core.shared.time.TimestampMillisecondsFormatter
 import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
 import io.kotest.matchers.shouldBe
 import kotlin.test.BeforeTest

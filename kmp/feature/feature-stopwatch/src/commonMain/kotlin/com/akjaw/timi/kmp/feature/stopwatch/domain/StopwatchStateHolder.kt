@@ -3,7 +3,7 @@ package com.akjaw.timi.kmp.feature.stopwatch.domain
 import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
-import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.TimestampMillisecondsFormatter
+import com.akjaw.timi.kmp.core.shared.time.TimestampMillisecondsFormatter
 
 internal class StopwatchStateHolder(
     private val stopwatchStateCalculator: StopwatchStateCalculator,
