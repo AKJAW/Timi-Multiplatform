@@ -11,20 +11,20 @@ import kotlinx.coroutines.flow.map
 
 // TODO should have list in the name?
 internal class CommonTaskDetailViewModel(
-    private val task: Task,
+    private val taskId: Long,
     private val timeEntryRepository: TimeEntryRepository
 ) : TaskDetailViewModel {
     // TODO move logic to the domain?
 
     override fun getTimeEntries(day: CalendarDay): Flow<List<TimeEntry>> {
         // TODO could be moved to a property
-        return timeEntryRepository.getByTaskIds(listOf(task.id)).map { entries: List<TimeEntry> ->
+        return timeEntryRepository.getByTaskIds(listOf(taskId)).map { entries: List<TimeEntry> ->
             entries.filter { it.date == day }
         }
     }
 
     override fun addTimeEntry(timeAmount: TimestampMilliseconds, day: CalendarDay) {
-        timeEntryRepository.insert(task.id, timeAmount, day)
+        timeEntryRepository.insert(taskId, timeAmount, day)
     }
 
     override fun removeTimeEntry(id: Long) {

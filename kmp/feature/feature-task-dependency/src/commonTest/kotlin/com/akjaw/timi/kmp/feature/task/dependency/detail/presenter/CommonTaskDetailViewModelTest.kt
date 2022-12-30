@@ -19,15 +19,12 @@ import kotlin.test.Test
 class CommonTaskDetailViewModelTest {
 
     companion object {
-        private val TASK = Task(
-            id = 2,
-            name = "Testing"
-        )
+        private const val TASK_ID = 2L
         private val TIME_ENTRY = createTimeEntry(1, 20_000, CalendarDay(28, 12, 2022))
 
         // TODO extract to core-test?
         private fun createTimeEntry(id: Long, amount: Long = 0, calendarDay: CalendarDay = CalendarDay(0)) =
-            TimeEntry(id, TASK.id, TimestampMilliseconds(amount), calendarDay)
+            TimeEntry(id, TASK_ID, TimestampMilliseconds(amount), calendarDay)
     }
 
     private lateinit var fakeTimeEntryRepository: FakeTimeEntryRepository
@@ -36,14 +33,14 @@ class CommonTaskDetailViewModelTest {
     @BeforeTest
     fun setUp() {
         fakeTimeEntryRepository = FakeTimeEntryRepository()
-        systemUnderTest = CommonTaskDetailViewModel(TASK, fakeTimeEntryRepository)
+        systemUnderTest = CommonTaskDetailViewModel(TASK_ID, fakeTimeEntryRepository)
     }
 
     @Test
     fun `Correctly returns time entries for that given day`() = runTest {
         val firstTimeEntry = TIME_ENTRY
         val secondTimeEntry = TIME_ENTRY.copy(date = CalendarDay(29, 12, 2022))
-        fakeTimeEntryRepository.setEntry(TASK.id, listOf(firstTimeEntry, secondTimeEntry))
+        fakeTimeEntryRepository.setEntry(TASK_ID, listOf(firstTimeEntry, secondTimeEntry))
 
         systemUnderTest.getTimeEntries(secondTimeEntry.date).test {
             awaitItem() shouldBe listOf(secondTimeEntry)
@@ -57,11 +54,11 @@ class CommonTaskDetailViewModelTest {
 
         systemUnderTest.addTimeEntry(timeAmount, day)
 
-        val result: List<TimeEntry>? = fakeTimeEntryRepository.getEntry(TASK.id)
+        val result: List<TimeEntry>? = fakeTimeEntryRepository.getEntry(TASK_ID)
         assertSoftly(result) {
             shouldNotBeNull()
             shouldHaveSize(1)
-            first().taskId shouldBe TASK.id
+            first().taskId shouldBe TASK_ID
             first().date shouldBe day
             first().timeAmount shouldBe timeAmount
         }
@@ -69,11 +66,11 @@ class CommonTaskDetailViewModelTest {
 
     @Test
     fun `Correctly removes an entry`() = runTest {
-        fakeTimeEntryRepository.setEntry(TASK.id, listOf(TIME_ENTRY))
+        fakeTimeEntryRepository.setEntry(TASK_ID, listOf(TIME_ENTRY))
 
         systemUnderTest.removeTimeEntry(TIME_ENTRY.id)
 
-        val result: List<TimeEntry>? = fakeTimeEntryRepository.getEntry(TASK.id)
+        val result: List<TimeEntry>? = fakeTimeEntryRepository.getEntry(TASK_ID)
         assertSoftly(result) {
             shouldNotBeNull()
             shouldBeEmpty()
