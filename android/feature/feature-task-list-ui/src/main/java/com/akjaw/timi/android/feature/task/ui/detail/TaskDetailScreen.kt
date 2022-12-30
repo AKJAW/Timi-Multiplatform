@@ -32,6 +32,7 @@ import com.akjaw.timi.android.feature.task.list.ui.R
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import org.koin.androidx.compose.get
 import org.koin.core.parameter.parametersOf
@@ -49,7 +50,7 @@ fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parame
 }
 
 @Composable
-private fun TaskDetailScreenContent(entries: List<TimeEntry>, addEntry: () -> Unit, onRemoveClick: (Long) -> Unit) {
+private fun TaskDetailScreenContent(entries: List<TimeEntryUi>, addEntry: () -> Unit, onRemoveClick: (Long) -> Unit) {
     LazyColumn(
         modifier = Modifier.padding(10.dp, 10.dp, 10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -72,7 +73,7 @@ private fun TaskDetailScreenContent(entries: List<TimeEntry>, addEntry: () -> Un
 
 // TODO add swipe to reveal later
 @Composable
-private fun TimeEntryItem(entry: TimeEntry, onRemoveClick: () -> Unit) {
+private fun TimeEntryItem(entry: TimeEntryUi, onRemoveClick: () -> Unit) {
     Card {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -81,9 +82,9 @@ private fun TimeEntryItem(entry: TimeEntry, onRemoveClick: () -> Unit) {
                 .fillMaxWidth()
                 .padding(4.dp)
         ) {
-            Text(entry.timeAmount.value.toString(), style = itemFont)
+            Text(entry.formattedTime, style = itemFont)
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("${entry.date.day}.${entry.date.month}.${entry.date.year}", style = itemFont)
+                Text(entry.formattedDate, style = itemFont)
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
                     imageVector = Icons.Filled.Delete,

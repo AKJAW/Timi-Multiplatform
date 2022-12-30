@@ -11,5 +11,5 @@ import org.koin.dsl.module
 val taskDetailsModule = module {
     factoryOf(::CalendarDaysCalculator)
     factoryOf(::CalendarViewModel)
-    factory<TaskDetailViewModel> { params -> CommonTaskDetailViewModel(params.get(), get())}
+    factory<TaskDetailViewModel> { params -> CommonTaskDetailViewModel(params.get(), get(), get())}
 }

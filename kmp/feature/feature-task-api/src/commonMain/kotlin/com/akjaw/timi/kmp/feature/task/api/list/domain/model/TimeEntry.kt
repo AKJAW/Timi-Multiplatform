@@ -6,7 +6,6 @@ import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 data class TimeEntry(
     val id: Long,
     val taskId: Long,
-    val timeAmount: TimestampMilliseconds, // TODO formatted time?
-    // TODO also a formatted date?
+    val timeAmount: TimestampMilliseconds,
     val date: CalendarDay
 )

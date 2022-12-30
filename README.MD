@@ -58,7 +58,7 @@ Freelancing etc.)
 - ~~add core-test~~
 - ~~add contract test for time entry repository?~~
 - Add KMM ViewModel for TaskDetails just for one task
-  - Add date and time formatting
+  - ~~Add date and time formatting~~
   - Add current day selection
 - Add Android UI for adding time to task
 - Add Android UI for listing ALL time details
