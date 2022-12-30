@@ -5,6 +5,5 @@
     <string name="stopwatch_screen_start">Start</string>
     <string name="stopwatch_screen_pause">Pause</string>
     <string name="stopwatch_screen_stop">Stop</string>
-
     <string name="stopwatch_dialog_choose_task">Choose a task</string>
 </resources>

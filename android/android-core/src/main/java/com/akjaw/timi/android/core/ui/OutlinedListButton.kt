@@ -22,11 +22,11 @@ import com.akjaw.timi.android.core.view.theme.taskShape
 fun OutlinedListButton(
     text: String,
     onClick: () -> Unit = {},
+    modifier: Modifier = Modifier.padding(vertical = 16.dp)
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier then Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp)
             .height(50.dp),
         shape = taskShape,
         border = stopwatchBorder(MaterialTheme.colors)

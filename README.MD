@@ -48,6 +48,7 @@ Freelancing etc.)
 - Add iOS notification with the stopwatch somehow :)
 - Fix the Calendar
 - Add iOS Calendar
+- Add swipe to reveal for delete on time entry list instead of a hardcoded icon
 
 ### Medium priority:
 - Figure out GitHub status requirements before merging
@@ -57,15 +58,19 @@ Freelancing etc.)
 - ~~add core-test~~
 - ~~add contract test for time entry repository?~~
 - Add KMM ViewModel for TaskDetails just for one task
+  - Add date and time formatting
+  - Add current day selection
 - Add Android UI for adding time to task
-- Add iOS UI for adding time to task
 - Add Android UI for listing ALL time details
+- Add iOS UI for adding time to task
 - Add iOS UI for listing ALL time details
 - Add basic calendar for just one month Without bubbles just allows selecting one day
 - Add bubbles
 - Add multiple day selection 
 - Add other months
 - Add support for multiple tasks
+- Clean up string resources
+- Merge task-ui modules into one?
 
 ### Brain storming
 - Animations

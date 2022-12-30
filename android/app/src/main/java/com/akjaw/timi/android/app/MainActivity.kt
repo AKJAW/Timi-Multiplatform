@@ -18,7 +18,7 @@ import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
-import com.akjaw.timi.android.feature.task.detail.ui.view.TaskDetailScreen
+import com.akjaw.timi.android.feature.task.ui.detail.TaskDetailScreen
 import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                         arguments = listOf(navArgument("taskId") { type = NavType.LongType })
                     ) { backStackEntry ->
                         val taskId = backStackEntry.arguments?.getLong("taskId")
+                            ?: throw IllegalArgumentException("Task id cannot be null")
                         Scaffold(
                             topBar = { TopAppBar(title = { Text(text = "Task $taskId") }) },
                             bottomBar = { TimiBottomBar(navController) }
