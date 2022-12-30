@@ -30,6 +30,6 @@ internal class StopwatchStateHolder(
             is StopwatchState.Paused -> currentState.elapsedTime
             is StopwatchState.Running -> elapsedTimeCalculator.calculate(currentState)
         }
-        return timestampMillisecondsFormatter.format(elapsedTime)
+        return timestampMillisecondsFormatter.formatWithMilliseconds(elapsedTime)
     }
 }
