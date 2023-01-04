@@ -44,7 +44,6 @@ internal class TimestampMillisecondsFormatterTest {
         formatWithMillisecondsTestCase(3599999, "59:59:999")
     }
 
-
     @Test
     fun `Timestamp without milliseconds 0 becomes "00 00"`() {
         formatWithoutMillisecondsTestCase(0, "00:00")

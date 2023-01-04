@@ -35,7 +35,6 @@ import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
-import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import org.koin.androidx.compose.get
 import org.koin.core.parameter.parametersOf
 
@@ -71,7 +70,9 @@ private fun TaskDetailScreenContent(
                 val totalMilliseconds = totalMinutes * 60 * 1000L
                 addEntry(totalMilliseconds)
             },
-            0, 0, true
+            0,
+            0,
+            true
         )
     }
     LazyColumn(

@@ -5,7 +5,6 @@ import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.TimestampMillisecondsFormatter
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.core.test.task.FakeTimeEntryRepository
-import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.CommonTaskDetailViewModel
 import io.kotest.assertions.assertSoftly

@@ -6,5 +6,5 @@ data class TimeEntryUi(
     val id: Long,
     val date: CalendarDay,
     val formattedTime: String,
-    val formattedDate: String,
+    val formattedDate: String
 )

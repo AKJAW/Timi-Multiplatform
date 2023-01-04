@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 internal class CommonTaskDetailViewModel(
     private val taskId: Long,
     private val timeEntryRepository: TimeEntryRepository,
-    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,
+    private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter
 ) : TaskDetailViewModel {
     // TODO move logic to the domain?
 

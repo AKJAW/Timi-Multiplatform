@@ -25,5 +25,5 @@ val allKoinModules: List<Module> = listOf(
     *kmmKoinModules.toTypedArray(),
     androidCoreModule,
     taskDetailsModule,
-    settingsModule,
+    settingsModule
 )
