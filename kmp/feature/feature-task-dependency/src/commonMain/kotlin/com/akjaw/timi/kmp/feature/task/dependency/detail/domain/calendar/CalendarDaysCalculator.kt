@@ -1,5 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar
 
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
 

@@ -32,7 +32,7 @@ import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.core.view.theme.stopwatchBorder
 import com.akjaw.timi.android.core.view.theme.taskShape
 import com.akjaw.timi.android.core.view.toComposeColor
-import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
 
 @Composable
 internal fun StopwatchItem(

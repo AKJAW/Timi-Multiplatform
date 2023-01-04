@@ -37,6 +37,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import org.koin.androidx.compose.get
 
+// TODO move to other module
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = get()) {

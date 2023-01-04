@@ -1,8 +1,9 @@
 package com.akjaw.timi.kmp.feature.database.entry
 
-import com.akjaw.core.common.domain.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.database.TimeEntryEntityQueries
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TimeEntry
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -18,12 +19,11 @@ internal class TimeEntrySqlDelightRepository(
         timeEntryEntityQueries.selectByIds(taskId = ids, mapper = ::toDomain).asFlow().mapToList()
 
     override fun insert(
-        id: Long?,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds
+        date: CalendarDay
     ) {
-        timeEntryEntityQueries.insert(id, taskId, timeAmount, date)
+        timeEntryEntityQueries.insert(null, taskId, timeAmount, date)
     }
 
     override fun deleteById(entryId: Long) {
@@ -34,6 +34,6 @@ internal class TimeEntrySqlDelightRepository(
         id: Long,
         taskId: Long,
         timeAmount: TimestampMilliseconds,
-        date: TimestampMilliseconds
-    ) = TimeEntry(id, taskId, timeAmount, date)
+        calendarDay: CalendarDay
+    ) = TimeEntry(id, taskId, timeAmount, calendarDay)
 }

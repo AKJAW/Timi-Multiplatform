@@ -48,38 +48,33 @@ Freelancing etc.)
 - Add iOS notification with the stopwatch somehow :)
 - Fix the Calendar
 - Add iOS Calendar
+- Add swipe to reveal for delete on time entry list instead of a hardcoded icon
 
 ### Medium priority:
-- ~~Replace Dagger with Koin~~
 - Figure out GitHub status requirements before merging
+- Clean up Android time picker
+  - Allow seconds
+  - Fix last time pick being remembered?
 
 ### High priority:
-- ~~Merge to latest branch to main~~
-- ~~Remove stale branches~~
-- ~~Update dependencies~~
-- ~~Remove light mode and settings for the time being~~
-- ~~Disable calendar for now~~
-- ~~Synchronize the Android and iOS features so they're up to date~~
-  - ~~iOS Basic navigation to detail screen~~
-  - ~~iOS missing stopwatch dialog~~
-- ~~Make GHA run only on PRs not on every push~~
-- ~~Fix iOS build GitHub job~~
-- ~~Clean up gradle files using conventional plugins~~
-- ~~Extract Database to separate module~~
-- ~~Add Stopwatch time database table with relations~~
-  - ~~Add indexes for relations~~
-  - ~~Select~~
-  - ~~Add~~
-- ~~Add some sort of DAO for as the public API for the Database~~
-- ~~Add time entry domain model~~
-- Add Android UI for adding time to task
+- ~~Clean up Repository insert id~~
+- ~~add core-test~~
+- ~~add contract test for time entry repository?~~
+- ~~Add KMM ViewModel for TaskDetails just for one task~
+  - ~~Add date and time formatting~~
+- ~~Add Android UI for adding time to task~~
+- ~~Add Android UI for listing ALL time details~~
 - Add iOS UI for adding time to task
-- Add Android UI for listing ALL time details
 - Add iOS UI for listing ALL time details
+- Improve ViewModel Contract to allow passing in hours and minutes?
 - Add basic calendar for just one month Without bubbles just allows selecting one day
+- Add current day selection to KMM VM
 - Add bubbles
 - Add multiple day selection 
 - Add other months
+- Add support for multiple tasks
+- Clean up string resources
+- Merge task-ui modules into one?
 
 ### Brain storming
 - Animations

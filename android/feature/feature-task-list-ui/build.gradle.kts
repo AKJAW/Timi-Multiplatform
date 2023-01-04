@@ -24,6 +24,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:_")
     implementation("io.insert-koin:koin-androidx-compose:_")
 
+    testImplementation(project(":kmp:core:core-test"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testImplementation("org.junit.jupiter:junit-jupiter-params:_")
     testImplementation("io.strikt:strikt-core:_")

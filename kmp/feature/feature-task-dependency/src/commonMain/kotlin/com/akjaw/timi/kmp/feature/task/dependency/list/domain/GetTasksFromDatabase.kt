@@ -1,9 +1,9 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
-import com.akjaw.timi.kmp.feature.task.api.domain.GetTasks
-import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.GetTasks
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow

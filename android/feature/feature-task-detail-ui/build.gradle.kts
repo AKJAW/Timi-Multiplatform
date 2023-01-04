@@ -25,6 +25,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:_")
     implementation("io.insert-koin:koin-androidx-compose:_")
 
+    testImplementation(project(":kmp:core:core-test"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testImplementation("org.junit.jupiter:junit-jupiter-params:_")
     testImplementation("io.kotest:kotest-assertions-core:_")
@@ -33,6 +34,7 @@ dependencies {
     testImplementation("app.cash.turbine:turbine:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 
+    androidTestImplementation(project(":kmp:core:core-test"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
     debugImplementation("androidx.compose.ui:ui-test-manifest:_")
     androidTestImplementation("androidx.test.espresso:espresso-core:_")

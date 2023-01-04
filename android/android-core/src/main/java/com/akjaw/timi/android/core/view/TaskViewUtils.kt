@@ -1,8 +1,8 @@
 package com.akjaw.timi.android.core.view
 
 import androidx.compose.ui.graphics.Color
-import com.akjaw.timi.kmp.feature.task.api.domain.model.Task
-import com.akjaw.timi.kmp.feature.task.api.domain.model.TaskColor
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
+import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 
 val tasksPreview = listOf(
     Task(

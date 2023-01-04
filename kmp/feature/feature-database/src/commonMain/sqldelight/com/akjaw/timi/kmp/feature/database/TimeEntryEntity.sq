@@ -1,10 +1,11 @@
-import com.akjaw.core.common.domain.model.TimestampMilliseconds;
+import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds;
+import com.akjaw.timi.kmp.core.shared.date.CalendarDay;
 
 CREATE TABLE TimeEntryEntity (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   taskId INTEGER NOT NULL,
   timeAmount INTEGER AS TimestampMilliseconds NOT NULL,
-  date INTEGER AS TimestampMilliseconds NOT NULL,
+  date TEXT AS CalendarDay NOT NULL,
   FOREIGN KEY (taskId) REFERENCES TaskEntity(id)
   ON DELETE CASCADE
 );

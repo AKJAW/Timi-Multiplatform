@@ -20,4 +20,7 @@
     <string name="task_list_fab_task_name">Task name</string>
     <string name="task_list_fab_color">Color</string>
     <string name="task_list_fab_add">Add</string>
+
+    <string name="task_detail_add_time_entry">Add a Time Entry</string>
+    <string name="task_detail_remove_time_entry">Remove Time Entry</string>
 </resources>

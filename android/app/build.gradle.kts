@@ -45,6 +45,10 @@ android {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
     }
+    lint {
+        warningsAsErrors = true
+        abortOnError = false
+    }
 }
 
 dependencies {
@@ -67,9 +71,11 @@ dependencies {
     implementation("androidx.activity:activity-compose:_")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
+    testImplementation(project(":kmp:core:core-test"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
+    androidTestImplementation(project(":kmp:core:core-test"))
     androidTestImplementation("androidx.test.espresso:espresso-core:_")
     androidTestImplementation("com.squareup.sqldelight:android-driver:_")
     androidTestImplementation("com.soywiz.korlibs.klock:klock:_")

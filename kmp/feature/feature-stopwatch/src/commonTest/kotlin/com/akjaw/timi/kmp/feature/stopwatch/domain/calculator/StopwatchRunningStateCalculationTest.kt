@@ -1,8 +1,8 @@
 package com.akjaw.timi.kmp.feature.stopwatch.domain.calculator
 
-import com.akjaw.core.common.domain.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.shared.time.model.toTimestampMilliseconds
+import com.akjaw.timi.kmp.core.test.time.MockTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.StopwatchStateCalculator
-import com.akjaw.timi.kmp.feature.stopwatch.domain.helpers.FakeTimestampProvider
 import com.akjaw.timi.kmp.feature.stopwatch.domain.model.StopwatchState
 import com.akjaw.timi.kmp.feature.stopwatch.domain.utilities.ElapsedTimeCalculator
 import io.kotest.matchers.shouldBe
@@ -11,14 +11,14 @@ import kotlin.test.Test
 
 internal class StopwatchRunningStateCalculationTest {
 
-    private val fakeTimestampProvider = FakeTimestampProvider()
-    private val elapsedTimeCalculator = ElapsedTimeCalculator(fakeTimestampProvider)
+    private val mockTimestampProvider = MockTimestampProvider()
+    private val elapsedTimeCalculator = ElapsedTimeCalculator(mockTimestampProvider)
     private lateinit var systemUnderTest: StopwatchStateCalculator
 
     @BeforeTest
     fun setUp() {
         systemUnderTest = StopwatchStateCalculator(
-            timestampProvider = fakeTimestampProvider,
+            timestampProvider = mockTimestampProvider,
             elapsedTimeCalculator = elapsedTimeCalculator
         )
     }
@@ -67,7 +67,7 @@ internal class StopwatchRunningStateCalculationTest {
         oldState: StopwatchState,
         expectedState: StopwatchState.Running
     ) {
-        fakeTimestampProvider.givenTimePassed(currentTimestamp)
+        mockTimestampProvider.givenTimePassed(currentTimestamp)
 
         val result = systemUnderTest.calculateRunningState(oldState)
 

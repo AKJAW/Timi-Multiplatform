@@ -3,7 +3,6 @@ package com.akjaw.timi.android.app
 import android.app.Application
 import com.akjaw.timi.android.core.composition.androidCoreModule
 import com.akjaw.timi.android.feature.settings.ui.composition.settingsModule
-import com.akjaw.timi.android.feature.task.list.ui.composition.taskUiModule
 import com.akjaw.timi.kmp.feature.task.dependency.detail.composition.taskDetailsModule
 import com.akjaw.timi.kmp.shared.kmmKoinModules
 import org.koin.android.ext.koin.androidContext
@@ -25,7 +24,6 @@ class TimiComposeApp : Application() {
 val allKoinModules: List<Module> = listOf(
     *kmmKoinModules.toTypedArray(),
     androidCoreModule,
-    taskUiModule,
     taskDetailsModule,
     settingsModule
 )
