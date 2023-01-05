@@ -97,7 +97,7 @@ struct TaskListItem: View {
         .background(task.backgroundColor.toSwiftColor())
         .cornerRadius(8)
         .background(
-            NavigationLink(destination: Text("Detail for \(task.id)")) {
+            NavigationLink(destination: TaskDetailScreen(task: task)) {
                 EmptyView()
             }
         )
