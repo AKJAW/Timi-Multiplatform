@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentColor
@@ -92,14 +93,12 @@ private fun TaskList(
         contentPadding = PaddingValues(10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        tasks.forEach { task ->
-            item {
-                TaskItem(
-                    task = task,
-                    onTaskClicked = onTaskClick,
-                    onTaskLongClick = onTaskLongClick
-                )
-            }
+        items(items = tasks, key = { it.id }) {
+            TaskItem(
+                task = it,
+                onTaskClicked = onTaskClick,
+                onTaskLongClick = onTaskLongClick
+            )
         }
     }
 }
