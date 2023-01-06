@@ -2,7 +2,7 @@ package com.akjaw.timi.kmp.core.shared.logger
 
 import co.touchlab.kermit.Logger
 
-class KermitDebugLogger(
+internal class KermitDebugLogger(
     private val logger: Logger
 ) : DebugLogger {
 
