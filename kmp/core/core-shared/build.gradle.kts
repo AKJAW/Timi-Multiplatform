@@ -14,6 +14,7 @@ kotlin {
             implementation("io.insert-koin:koin-core:_")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
             implementation("com.soywiz.korlibs.klock:klock:_")
+            implementation("co.touchlab:kermit:_")
         }
 
         sourceSets["commonTest"].dependencies {
