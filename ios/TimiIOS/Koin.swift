@@ -10,12 +10,6 @@ import Foundation
 import shared
 
 func startKoin() {
-    // You could just as easily define all these dependencies in Kotlin,
-    // but this helps demonstrate how you might pass platform-specific
-    // dependencies in a larger scale project where declaring them in
-    // Kotlin is more difficult, or where they're also used in
-    // iOS-specific code.
-
     let koinApplication = KoinIOSKt.doInitKoinIos()
     _koin = koinApplication.koin
 }
@@ -32,5 +26,8 @@ struct KoinWrapper {
     }
     static func get<T>(typeProtocol: Protocol) -> T {
         koin.get(objCProtocol: typeProtocol) as! T
+    }
+    static func get<T>(typeProtocol: Protocol, parameter: Any) -> T {
+        koin.get(objCProtocol: typeProtocol, parameter: parameter) as! T
     }
 }

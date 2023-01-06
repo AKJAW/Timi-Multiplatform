@@ -24,6 +24,5 @@ class TimiComposeApp : Application() {
 val allKoinModules: List<Module> = listOf(
     *kmmKoinModules.toTypedArray(),
     androidCoreModule,
-    taskDetailsModule,
     settingsModule
 )
