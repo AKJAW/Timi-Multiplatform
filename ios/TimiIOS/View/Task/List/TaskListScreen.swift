@@ -67,7 +67,7 @@ struct TaskListScreen: View {
 }
 
 
-struct TaskListItem: View {
+private struct TaskListItem: View {
     
     let task: Task
     let onClick: () -> Void
