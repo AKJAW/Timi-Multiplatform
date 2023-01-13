@@ -1,4 +1,4 @@
-package com.akjaw.details.view.calendar
+package com.akjaw.timi.android.app.task.calendar
 
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsNode
@@ -14,7 +14,7 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
-import com.akjaw.timi.android.feature.task.detail.ui.view.calendar.CalendarBottomSheet
+import com.akjaw.timi.android.feature.task.ui.detail.calendar.CalendarBottomSheet
 import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel

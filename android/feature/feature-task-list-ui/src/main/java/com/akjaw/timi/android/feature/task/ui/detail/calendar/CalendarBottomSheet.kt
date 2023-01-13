@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.task.detail.ui.view.calendar
+package com.akjaw.timi.android.feature.task.ui.detail.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -37,10 +37,9 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import org.koin.androidx.compose.get
 
-// TODO move to other module
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-internal fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = get()) {
+fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = get()) {
     val months = calendarViewModel.viewState.collectAsState().value.months
     val pagerState = rememberPagerState(
         initialPage = CalendarViewModel.CURRENT_MONTH_INDEX

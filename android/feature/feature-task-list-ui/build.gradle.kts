@@ -19,6 +19,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:_")
     implementation("androidx.navigation:navigation-compose:_")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:_")
+    implementation("com.google.accompanist:accompanist-pager:_")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
 
     implementation("io.insert-koin:koin-android:_")
