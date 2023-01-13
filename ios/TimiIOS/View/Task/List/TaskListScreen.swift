@@ -7,10 +7,10 @@ class TaskListPublisher: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     let viewModel: TaskListViewModel =
     KoinWrapper.get(typeProtocol: TaskListViewModel.self)
-    
+
     @Published
     var tasks: [Task] = []
-    
+
     init() {
         createPublisher(for: viewModel.tasksNative)
             .receive(on: RunLoop.main)
@@ -24,10 +24,10 @@ class TaskListPublisher: ObservableObject {
 }
 
 struct TaskListScreen: View {
-    
+
     @State private var isDialogShown = false
     @ObservedObject private var publisher = TaskListPublisher()
-    
+
     var body: some View {
         NavigationView {
             List(publisher.tasks, id: \.id) { task in
@@ -66,12 +66,11 @@ struct TaskListScreen: View {
     }
 }
 
-
 private struct TaskListItem: View {
-    
+
     let task: Task
     let onClick: () -> Void
-    
+
     var body: some View {
         HStack {
             let fontColor = accessibleFontColor(taskColor: task.backgroundColor)

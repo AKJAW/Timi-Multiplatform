@@ -10,13 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Tab = .task
-    
+
     enum Tab {
         case task
         case stopwatch
         case settings
     }
-    
+
     var body: some View {
         TabView(selection: $selection) {
             TaskListScreen()

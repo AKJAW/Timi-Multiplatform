@@ -2,16 +2,16 @@ import SwiftUI
 import shared
 
 struct AddTimeEntryDialog: ViewModifier {
-    
+
     @Binding var isShowing: Bool
     var addEntry: (TimestampMilliseconds) -> Void
     @State private var dateNow: Date = Date.now
-    
+
     init(isShowing: Binding<Bool>, addEntry: @escaping (TimestampMilliseconds) -> Void) {
         _isShowing = isShowing
         self.addEntry = addEntry
     }
-    
+
     func body(content: Content) -> some View {
         ZStack {
             content
@@ -39,7 +39,7 @@ struct AddTimeEntryDialog: ViewModifier {
             }
         }
     }
-    
+
     func onSubmit() {
         isShowing = false
         let calendar = Calendar.current

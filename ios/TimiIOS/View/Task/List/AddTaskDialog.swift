@@ -7,7 +7,7 @@ struct AddTaskDialog: ViewModifier {
     var addTask: (String, TaskColor) -> Void
     @State private var taskName: String = ""
     @State private var selectedColor: TaskColor = TaskColor(red: 255, green: 255, blue: 255)
-    
+
     init(isShowing: Binding<Bool>, addTask: @escaping (String, TaskColor) -> Void) {
         _isShowing = isShowing
         self.addTask = addTask
@@ -43,7 +43,7 @@ struct AddTaskDialog: ViewModifier {
             }
         }
     }
-    
+
     func onSubmit() {
         print(taskName)
         isShowing = false
@@ -56,11 +56,10 @@ struct AddTaskDialog: ViewModifier {
     }
 }
 
-
 struct ColorPicker: View {
-    
+
     var onColorClick: (TaskColor) -> Void
-    
+
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 0) {
@@ -87,8 +86,8 @@ extension View {
     }
 }
 
-//struct AddTaskDialog_Previews: PreviewProvider {
+// struct AddTaskDialog_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddTaskDialog(isShowing: .constant(true), presenting: self)
 //    }
-//}
+// }

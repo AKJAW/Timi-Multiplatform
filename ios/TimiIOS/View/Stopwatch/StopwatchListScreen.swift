@@ -7,12 +7,12 @@ class StopwatchListPublisher: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     let viewModel: StopwatchViewModel =
     KoinWrapper.get(type: StopwatchViewModel.self)
-    
+
     @Published
     var availableTasks: [Task] = []
     @Published
-    var stopwatches: [Task : String] = [:]
-    
+    var stopwatches: [Task: String] = [:]
+
     init() {
         stopwatches = viewModel.stopwatchesNativeValue
         createPublisher(for: viewModel.availableTasksNative)
@@ -24,7 +24,7 @@ class StopwatchListPublisher: ObservableObject {
                 self.availableTasks = tasks
             }
             .store(in: &cancellables)
-        
+
         createPublisher(for: viewModel.stopwatchesNative)
             .receive(on: RunLoop.main)
             .sink { completion in
@@ -35,7 +35,7 @@ class StopwatchListPublisher: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func addStopwatch(task: Task) {
         print("Adding: \(task)")
         viewModel.start(task: task)
@@ -43,10 +43,10 @@ class StopwatchListPublisher: ObservableObject {
 }
 
 struct StopwatchListScreen: View {
-    
+
     @ObservedObject private var publisher = StopwatchListPublisher()
     @State private var isDialogShown = false
-    
+
     var body: some View {
         List {
             ForEach(
@@ -84,7 +84,7 @@ struct StopwatchItem: View {
     var onStart: () -> Void
     var onPause: () -> Void
     var onStop: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -119,7 +119,7 @@ struct StopwatchAction: View {
     var iconName: String
     var taskColor: TaskColor
     var onClick: () -> Void
-    
+
     var body: some View {
         ZStack {
             Image(systemName: iconName)

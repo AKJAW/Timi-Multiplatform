@@ -7,10 +7,10 @@ class TaskDetailPublisher: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var task: Task?
     var viewModel: TaskDetailViewModel?
-    
+
     @Published
     var entries: [TimeEntryUi] = []
-    
+
     func initialize(task: Task) {
         self.task = task
         let viewModel: TaskDetailViewModel =
@@ -30,11 +30,11 @@ class TaskDetailPublisher: ObservableObject {
 }
 
 struct TaskDetailScreen: View {
-    
+
     let task: Task
     @State private var isDialogShown = false
     @ObservedObject private var publisher = TaskDetailPublisher()
-    
+
     var body: some View {
         VStack {
             List {
@@ -68,11 +68,11 @@ struct TaskDetailScreen: View {
     }
 }
 
-private struct TimeEntryItem : View {
-    
+private struct TimeEntryItem: View {
+
     let entry: TimeEntryUi
     let onRemoveClick: () -> Void
-    
+
     var body: some View {
         HStack {
             Text(entry.formattedTime)
