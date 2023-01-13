@@ -54,9 +54,10 @@ struct TaskDetailScreen: View {
         .modifier(
             AddTimeEntryDialog(
                 isShowing: $isDialogShown,
-                addEntry: { timestampMilliseconds in
+                addEntry: { (hours: Int, minutes: Int) in
                     publisher.viewModel?.addTimeEntry(
-                        timeAmount: timestampMilliseconds,
+                        hours: Int32(hours),
+                        minutes: Int32(minutes),
                         day: CalendarDay(day: 6, month: 1, year: 2022)
                     )
                 }

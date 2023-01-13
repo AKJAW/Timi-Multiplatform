@@ -66,10 +66,9 @@ class CommonTaskDetailViewModelTest {
 
     @Test
     fun `Correctly inserts an entry`() = runTest {
-        val timeAmount = TimestampMilliseconds(20_000)
         val day = CalendarDay(20, 12, 2022)
 
-        systemUnderTest.addTimeEntry(timeAmount, day)
+        systemUnderTest.addTimeEntry(3, 30, day)
 
         val result: List<TimeEntry>? = fakeTimeEntryRepository.getEntry(TASK_ID)
         assertSoftly(result) {
@@ -77,7 +76,7 @@ class CommonTaskDetailViewModelTest {
             shouldHaveSize(1)
             first().taskId shouldBe TASK_ID
             first().date shouldBe day
-            first().timeAmount shouldBe timeAmount
+            first().timeAmount shouldBe TimestampMilliseconds(12_600_000)
         }
     }
 

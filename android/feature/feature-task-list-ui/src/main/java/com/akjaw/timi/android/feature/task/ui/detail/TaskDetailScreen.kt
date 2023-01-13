@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.sp
 import com.akjaw.timi.android.core.ui.OutlinedListButton
 import com.akjaw.timi.android.feature.task.list.ui.R
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
-import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import org.koin.androidx.compose.get
@@ -46,8 +45,8 @@ fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parame
     TaskDetailScreenContent(
         entries = entries,
         addEntry = remember {
-            { milliseconds ->
-                viewModel.addTimeEntry(TimestampMilliseconds(milliseconds), currentDay)
+            { hours: Int, minutes: Int ->
+                viewModel.addTimeEntry(hours, minutes, currentDay)
             }
         },
         onRemoveClick = viewModel::removeTimeEntry
@@ -57,7 +56,7 @@ fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parame
 @Composable
 private fun TaskDetailScreenContent(
     entries: List<TimeEntryUi>,
-    addEntry: (Long) -> Unit,
+    addEntry: (hours: Int, minutes: Int) -> Unit,
     onRemoveClick: (Long) -> Unit
 ) {
     val context = LocalContext.current
@@ -65,10 +64,7 @@ private fun TaskDetailScreenContent(
         TimePickerDialog(
             context,
             { _, hours: Int, minutes: Int ->
-                // TODO move to ViewModel
-                val totalMinutes = 60 * hours + minutes
-                val totalMilliseconds = totalMinutes * 60 * 1000L
-                addEntry(totalMilliseconds)
+                addEntry(hours, minutes)
             },
             0,
             0,

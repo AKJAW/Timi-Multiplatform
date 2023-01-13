@@ -65,9 +65,9 @@ Freelancing etc.)
   - ~~Add date and time formatting~~
 - ~~Add Android UI for adding time to task~~
 - ~~Add Android UI for listing ALL time details~~
-- Add iOS UI for adding time to task
-- Add iOS UI for listing ALL time details
-- Improve ViewModel Contract to allow passing in hours and minutes?
+- ~~Add iOS UI for adding time to task~~
+- ~~Add iOS UI for listing ALL time details~~
+- ~~Improve ViewModel Contract to allow passing in hours and minutes?~~
 - Add basic calendar for just one month Without bubbles just allows selecting one day
 - Add current day selection to KMM VM
 - Add calendar day bubbles

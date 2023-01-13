@@ -4,10 +4,10 @@ import shared
 struct AddTimeEntryDialog: ViewModifier {
 
     @Binding var isShowing: Bool
-    var addEntry: (TimestampMilliseconds) -> Void
+    var addEntry: (_ hours: Int, _ minutes: Int) -> Void
     @State private var dateNow: Date = Date.now
 
-    init(isShowing: Binding<Bool>, addEntry: @escaping (TimestampMilliseconds) -> Void) {
+    init(isShowing: Binding<Bool>, addEntry: @escaping (_ hours: Int, _ minutes: Int) -> Void) {
         _isShowing = isShowing
         self.addEntry = addEntry
     }
@@ -45,8 +45,6 @@ struct AddTimeEntryDialog: ViewModifier {
         let calendar = Calendar.current
         let hours = calendar.component(.hour, from: dateNow)
         let minutes = calendar.component(.minute, from: dateNow)
-        let totalMinutes = 60 * hours + minutes
-        let totalMilliseconds = totalMinutes * 60 * 1000
-        addEntry(TimestampMilliseconds(value: Int64(totalMilliseconds)))
+        addEntry(hours, minutes)
     }
 }

@@ -35,8 +35,10 @@ internal class CommonTaskDetailViewModel(
         }
     }
 
-    override fun addTimeEntry(timeAmount: TimestampMilliseconds, day: CalendarDay) {
-        timeEntryRepository.insert(taskId, timeAmount, day)
+    override fun addTimeEntry(hours: Int, minutes: Int, day: CalendarDay) {
+        val totalMinutes = 60 * hours + minutes
+        val totalMilliseconds = totalMinutes * 60 * 1000L
+        timeEntryRepository.insert(taskId, TimestampMilliseconds(totalMilliseconds), day)
     }
 
     override fun removeTimeEntry(id: Long) {
