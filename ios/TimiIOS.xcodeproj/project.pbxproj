@@ -14,6 +14,8 @@
 		AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */; };
 		AE2F89F127FE0451003CF168 /* AddTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */; };
 		AE5509A0294CB25400BC7A9C /* AddStopwatchDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */; };
+		AE8CC54F297183F00002C1A3 /* AddTimeEntryDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CC54E297183F00002C1A3 /* AddTimeEntryDialog.swift */; };
+		AE8CC5512971AE120002C1A3 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CC5502971AE120002C1A3 /* Date.swift */; };
 		AE90346A27DE4E0A0091A381 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346927DE4E0A0091A381 /* KMPNativeCoroutinesCombine */; };
 		AE90346C27DE4E0A0091A381 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = AE90346B27DE4E0A0091A381 /* KMPNativeCoroutinesCore */; };
 		AECEC06829673D0F00609A82 /* TaskDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEC06729673D0F00609A82 /* TaskDetailScreen.swift */; };
@@ -33,6 +35,8 @@
 		AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
 		AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskDialog.swift; sourceTree = "<group>"; };
 		AE55099F294CB25400BC7A9C /* AddStopwatchDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStopwatchDialog.swift; sourceTree = "<group>"; };
+		AE8CC54E297183F00002C1A3 /* AddTimeEntryDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimeEntryDialog.swift; sourceTree = "<group>"; };
+		AE8CC5502971AE120002C1A3 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AECEC06729673D0F00609A82 /* TaskDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailScreen.swift; sourceTree = "<group>"; };
 		AEE5961A27F039F8000B7648 /* StopwatchListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchListScreen.swift; sourceTree = "<group>"; };
 		AEFA437D280756A600188ABB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -87,8 +91,8 @@
 		AECEC06529673CDF00609A82 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */,
 				AE2F89F027FE0451003CF168 /* AddTaskDialog.swift */,
+				AE12A1BE27FB6A250020C35A /* TaskListScreen.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -96,6 +100,7 @@
 		AECEC06629673CED00609A82 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				AE8CC54E297183F00002C1A3 /* AddTimeEntryDialog.swift */,
 				AECEC06729673D0F00609A82 /* TaskDetailScreen.swift */,
 			);
 			path = Detail;
@@ -125,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFA437D280756A600188ABB /* Color.swift */,
+				AE8CC5502971AE120002C1A3 /* Date.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -310,7 +316,9 @@
 				AE12A1BD27FB64F00020C35A /* ContentView.swift in Sources */,
 				AE12A1BF27FB6A250020C35A /* TaskListScreen.swift in Sources */,
 				AECEC06829673D0F00609A82 /* TaskDetailScreen.swift in Sources */,
+				AE8CC5512971AE120002C1A3 /* Date.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
+				AE8CC54F297183F00002C1A3 /* AddTimeEntryDialog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

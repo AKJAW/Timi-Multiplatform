@@ -17,10 +17,6 @@ class TaskDetailPublisher: ObservableObject {
             KoinWrapper.get(typeProtocol: TaskDetailViewModel.self, parameter: task.id as Any)
         self.viewModel = viewModel
         // TODO calendar day selection logic
-        viewModel.addTimeEntry(
-            timeAmount: TimestampMilliseconds(value: 360000),
-            day: CalendarDay(day: 6, month: 1, year: 2022)
-        )
         createPublisher(for: viewModel.getTimeEntriesNative(day: CalendarDay(day: 6, month: 1, year: 2022)))
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
@@ -36,15 +32,34 @@ class TaskDetailPublisher: ObservableObject {
 struct TaskDetailScreen: View {
     
     let task: Task
+    @State private var isDialogShown = false
     @ObservedObject private var publisher = TaskDetailPublisher()
     
     var body: some View {
-        HStack {
+        VStack {
             List(publisher.entries, id: \.id) { entry in
                 TimeEntryItem(entry: entry, onRemoveClick: { publisher.viewModel?.removeTimeEntry(id: entry.id) })
             }
             .listStyle(PlainListStyle())
+            HStack {
+                Spacer()
+                Text("Add a Time Entry")
+                Spacer()
+            }.onTapGesture {
+                isDialogShown = true
+            }
         }
+        .modifier(
+            AddTimeEntryDialog(
+                isShowing: $isDialogShown,
+                addEntry: { timestampMilliseconds in
+                    publisher.viewModel?.addTimeEntry(
+                        timeAmount: timestampMilliseconds,
+                        day: CalendarDay(day: 6, month: 1, year: 2022)
+                    )
+                }
+            )
+        )
         .onAppear(
             perform: { publisher.initialize(task: task) }
         )
@@ -64,6 +79,7 @@ private struct TimeEntryItem : View {
                 Text(entry.formattedDate)
                 Image(systemName: "trash")
                     .font(.system(size: 18.0))
+                    .onTapGesture(perform: onRemoveClick)
             }
         }
     }

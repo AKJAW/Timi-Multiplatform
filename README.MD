@@ -55,6 +55,7 @@ Freelancing etc.)
 - Clean up Android time picker
   - Allow seconds
   - Fix last time pick being remembered?
+- Add "string resources" to the iOS app
 
 ### High priority:
 - ~~Clean up Repository insert id~~
