@@ -20,7 +20,7 @@ class TimeEntrySqlDelightRepositoryTest : TimeEntryRepositoryContractTest() {
 
     @BeforeTest
     fun setUp() {
-        val database = createDatabase(createTestSqlDriver())
+        val database = createDatabase(sqlDriver = createTestSqlDriver(), logger = { println(it) })
         taskEntityQueries = database.taskEntityQueries
         systemUnderTest = TimeEntrySqlDelightRepository(database.timeEntryEntityQueries)
     }

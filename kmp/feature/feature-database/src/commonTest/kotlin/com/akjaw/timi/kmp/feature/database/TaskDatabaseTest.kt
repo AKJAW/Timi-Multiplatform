@@ -1,5 +1,6 @@
 package com.akjaw.timi.kmp.feature.database
 
+import com.akjaw.timi.kmp.core.test.koin.coreTestModule
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
@@ -48,6 +49,7 @@ class TaskDatabaseTest : KoinComponent {
     fun setUp() {
         startKoin {
             modules(
+                coreTestModule,
                 databaseModule,
                 module {
                     single<SqlDriver> { createTestSqlDriver() }
