@@ -9,5 +9,8 @@ data class DayViewState(
     val isSelected: Boolean = false
 )
 
-fun DayViewState.toCalendarDay(): CalendarDay
-    = CalendarDay(day = day, month = month, year = year)
+fun DayViewState.toCalendarDay(): CalendarDay =
+    CalendarDay(day = day, month = month, year = year)
+
+fun CalendarDay.toDayViewState(): DayViewState =
+    DayViewState(day = day, month = month, year = year)

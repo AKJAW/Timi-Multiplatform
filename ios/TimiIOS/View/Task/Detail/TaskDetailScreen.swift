@@ -17,7 +17,8 @@ class TaskDetailPublisher: ObservableObject {
             KoinWrapper.get(typeProtocol: TaskDetailViewModel.self, parameter: task.id as Any)
         self.viewModel = viewModel
         // TODO calendar day selection logic
-        createPublisher(for: viewModel.getTimeEntriesNative(day: CalendarDay(day: 6, month: 1, year: 2022)))
+        viewModel.selectDay(day: DayViewState(day: 6, month: 1, year: 2022, isSelected: false))
+        createPublisher(for: viewModel.timeEntriesNative)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 print("Received completion getTimeEntriesNative: \(completion)")

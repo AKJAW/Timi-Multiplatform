@@ -6,6 +6,8 @@ import com.akjaw.timi.kmp.core.shared.time.TimestampMillisecondsFormatter
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.core.test.task.FakeTimeEntryRepository
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.toCalendarDay
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.toDayViewState
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import com.akjaw.timi.kmp.feature.task.dependency.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.CommonTaskDetailViewModel
@@ -59,12 +61,15 @@ class CommonTaskDetailViewModelTest {
     }
 
     @Test
-    fun `Correctly returns time entries only for that given day`() = runTest {
+    fun `Selecting a day changes the entries to contain only that given day`() = runTest {
+        val date = CalendarDay(29, 12, 2022)
         val firstTimeEntry = TIME_ENTRY
-        val secondTimeEntry = TIME_ENTRY.copy(id = 2, date = CalendarDay(29, 12, 2022))
+        val secondTimeEntry = TIME_ENTRY.copy(id = 2, date = date)
         fakeTimeEntryRepository.setEntry(TASK_ID, listOf(firstTimeEntry, secondTimeEntry))
 
-        systemUnderTest.getTimeEntries(secondTimeEntry.date).test {
+        systemUnderTest.selectDay(date.toDayViewState())
+
+        systemUnderTest.timeEntries.test {
             assertSoftly(awaitItem()) {
                 shouldHaveSize(1)
                 first().id shouldBe secondTimeEntry.id
@@ -75,8 +80,9 @@ class CommonTaskDetailViewModelTest {
     @Test
     fun `Correctly converts the entry`() = runTest {
         fakeTimeEntryRepository.setEntry(TASK_ID, listOf(TIME_ENTRY))
+        systemUnderTest.selectDay(TIME_ENTRY.date.toDayViewState())
 
-        systemUnderTest.getTimeEntries(TIME_ENTRY.date).test {
+        systemUnderTest.timeEntries.test {
             assertSoftly(awaitItem().first()) {
                 id shouldBe TIME_ENTRY.id
                 date shouldBe TIME_ENTRY.date

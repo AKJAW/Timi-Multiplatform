@@ -13,9 +13,9 @@ interface TaskDetailViewModel {
 
     val calendarViewState: StateFlow<CalendarViewState>
 
-    fun selectDay(day: DayViewState)
+    val timeEntries: Flow<List<TimeEntryUi>>
 
-    fun getTimeEntries(day: CalendarDay): Flow<List<TimeEntryUi>>
+    fun selectDay(day: DayViewState)
 
     fun addTimeEntry(
         hours: Int,

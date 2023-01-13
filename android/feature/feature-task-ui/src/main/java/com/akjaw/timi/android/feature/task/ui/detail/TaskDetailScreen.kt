@@ -53,7 +53,7 @@ fun TaskDetailScreen(
     viewModel: TaskDetailViewModel = get { parametersOf(taskId) }
 ) {
     val currentDay by viewModel.selectedDay.collectAsState()
-    val entries by viewModel.getTimeEntries(currentDay).collectAsState(emptyList())
+    val entries by viewModel.timeEntries.collectAsState(emptyList())
     val calendarViewState by viewModel.calendarViewState.collectAsState()
 
     val sheetState = rememberBottomSheetScaffoldState(
