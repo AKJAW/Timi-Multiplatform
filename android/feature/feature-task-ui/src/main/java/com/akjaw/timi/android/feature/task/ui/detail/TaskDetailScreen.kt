@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.akjaw.timi.android.core.ui.OutlinedListButton
-import com.akjaw.timi.android.feature.task.list.ui.R
+import com.akjaw.timi.android.feature.task.ui.R
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi

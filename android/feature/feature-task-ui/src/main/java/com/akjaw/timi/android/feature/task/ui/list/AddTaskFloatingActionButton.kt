@@ -1,4 +1,4 @@
-package com.akjaw.timi.android.feature.task.list.ui.view
+package com.akjaw.timi.android.feature.task.ui.list
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable
@@ -48,7 +48,7 @@ import androidx.compose.ui.window.Dialog
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.core.view.theme.taskTextColorFor
 import com.akjaw.timi.android.core.view.toComposeColor
-import com.akjaw.timi.android.feature.task.list.ui.R
+import com.akjaw.timi.android.feature.task.ui.R
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.Task
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TaskColor
 import com.akjaw.timi.kmp.feature.task.api.list.presentation.availableTaskColors

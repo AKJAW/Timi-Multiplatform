@@ -18,7 +18,7 @@ import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
-import com.akjaw.timi.android.feature.task.list.ui.view.TaskListScreen
+import com.akjaw.timi.android.feature.task.ui.list.TaskListScreen
 import com.akjaw.timi.android.feature.task.ui.detail.TaskDetailScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
