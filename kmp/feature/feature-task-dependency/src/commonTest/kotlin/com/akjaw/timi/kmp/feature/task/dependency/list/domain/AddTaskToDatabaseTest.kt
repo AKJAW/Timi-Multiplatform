@@ -1,5 +1,6 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
+import com.akjaw.timi.kmp.core.test.koin.coreTestModule
 import com.akjaw.timi.kmp.feature.database.TaskEntity
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
@@ -37,6 +38,7 @@ internal class AddTaskToDatabaseTest : KoinComponent {
     fun setUp() {
         startKoin {
             modules(
+                coreTestModule,
                 databaseModule,
                 taskListModule,
                 module {

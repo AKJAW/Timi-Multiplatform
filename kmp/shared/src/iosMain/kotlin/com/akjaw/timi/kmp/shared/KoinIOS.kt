@@ -31,6 +31,11 @@ fun Koin.get(objCProtocol: ObjCProtocol): Any {
     return getOrThrow { get(kClazz) }
 }
 
+fun Koin.get(objCProtocol: ObjCProtocol, parameter: Any): Any {
+    val kClazz = getOriginalKotlinClass(objCProtocol)!!
+    return getOrThrow { get(kClazz) { parametersOf(parameter) } }
+}
+
 fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?, parameter: Any): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!
     return getOrThrow { get(kClazz, qualifier) { parametersOf(parameter) } }

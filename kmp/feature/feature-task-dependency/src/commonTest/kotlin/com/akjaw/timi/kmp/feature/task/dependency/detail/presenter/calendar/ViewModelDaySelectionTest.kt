@@ -2,10 +2,10 @@ package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter.calendar
 
 import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
-import com.akjaw.timi.kmp.feature.task.dependency.detail.createCalendarViewModel
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.CalendarViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
+import com.akjaw.timi.kmp.feature.task.dependency.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
-import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewState
-import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.DayViewState
 import com.soywiz.klock.DateTime
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.collections.shouldHaveSize

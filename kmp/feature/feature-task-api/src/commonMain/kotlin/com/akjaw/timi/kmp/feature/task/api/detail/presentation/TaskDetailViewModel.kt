@@ -1,17 +1,25 @@
 package com.akjaw.timi.kmp.feature.task.api.detail.presentation
 
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
-import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.CalendarViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 interface TaskDetailViewModel {
 
-    // TODO should be a list of CalendarDays and returns map? - Only for bottom sheet
-    fun getTimeEntries(day: CalendarDay): Flow<List<TimeEntryUi>>
+    val selectedDay: StateFlow<CalendarDay>
+
+    val calendarViewState: StateFlow<CalendarViewState>
+
+    val timeEntries: Flow<List<TimeEntryUi>>
+
+    fun selectDay(day: DayViewState)
 
     fun addTimeEntry(
-        timeAmount: TimestampMilliseconds, // TODO change to hours and seconds
+        hours: Int,
+        minutes: Int,
         day: CalendarDay
     )
 

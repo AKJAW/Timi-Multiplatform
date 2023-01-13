@@ -55,6 +55,7 @@ Freelancing etc.)
 - Clean up Android time picker
   - Allow seconds
   - Fix last time pick being remembered?
+- Add "string resources" to the iOS app
 
 ### High priority:
 - ~~Clean up Repository insert id~~
@@ -64,17 +65,27 @@ Freelancing etc.)
   - ~~Add date and time formatting~~
 - ~~Add Android UI for adding time to task~~
 - ~~Add Android UI for listing ALL time details~~
-- Add iOS UI for adding time to task
-- Add iOS UI for listing ALL time details
-- Improve ViewModel Contract to allow passing in hours and minutes?
+- ~~Add iOS UI for adding time to task~~
+- ~~Add iOS UI for listing ALL time details~~
+- ~~Improve ViewModel Contract to allow passing in hours and minutes?~~
 - Add basic calendar for just one month Without bubbles just allows selecting one day
+  - ~~Android~~
+  - iOS
 - Add current day selection to KMM VM
-- Add bubbles
+- Add calendar day bubbles
 - Add multiple day selection 
-- Add other months
+- Add other months in calendar
 - Add support for multiple tasks
 - Clean up string resources
 - Merge task-ui modules into one?
+
+### Known issues:
+- Android: Going to task "details -> Stopwatch -> task list" Does not open the task details but the list again
+  - This might be solved in the future once a different library for navigation is used :) 
+- Android: Bottom nav names are broken
+- iOS: Long pressing tasks is broken
+- iOS: Clicking on task ripple is out of bounds
+- iOS: Missing delete function for the Task list
 
 ### Brain storming
 - Animations

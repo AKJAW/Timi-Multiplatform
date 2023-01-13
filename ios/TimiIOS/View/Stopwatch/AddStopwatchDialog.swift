@@ -2,17 +2,17 @@ import SwiftUI
 import shared
 
 struct AddStopwatchDialog: ViewModifier {
-    
+
     @Binding private var isShowing: Bool
     var addStopwatch: (Task) -> Void
     @Binding private var tasks: [Task]
-    
+
     init(isShowing: Binding<Bool>, tasks: Binding<[Task]>, addStopwatch: @escaping (Task) -> Void) {
         _isShowing = isShowing
         _tasks = tasks
         self.addStopwatch = addStopwatch
     }
-    
+
     func body(content: Content) -> some View {
         ZStack {
             content
