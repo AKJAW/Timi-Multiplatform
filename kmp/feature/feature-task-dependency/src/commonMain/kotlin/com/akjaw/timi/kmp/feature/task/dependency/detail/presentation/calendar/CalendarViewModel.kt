@@ -1,12 +1,16 @@
 package com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar
 
 import com.akjaw.timi.kmp.core.shared.time.TimestampProvider
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.CalendarViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.MonthViewState
 import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.CalendarDaysCalculator
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.MonthSpan
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+// TODO use inside detail VM and rename?
 class CalendarViewModel(
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator

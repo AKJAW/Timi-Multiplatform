@@ -54,6 +54,7 @@ fun TaskDetailScreen(
 ) {
     var currentDay by remember { mutableStateOf(CalendarDay(29, 12, 2022)) } // TODO move to VM
     val entries by viewModel.getTimeEntries(currentDay).collectAsState(emptyList())
+    val calendarViewState by viewModel.calendarViewState.collectAsState()
 
     val sheetState = rememberBottomSheetScaffoldState(
         bottomSheetState = BottomSheetState(BottomSheetValue.Expanded),
@@ -62,7 +63,7 @@ fun TaskDetailScreen(
     BottomSheetScaffold(
         scaffoldState = sheetState,
         sheetPeekHeight = 40.dp,
-        sheetContent = { CalendarBottomSheet() },
+        sheetContent = { CalendarBottomSheet(calendarViewState) },
         topBar = {
             TopAppBar(
                 title = { Text(text = "Task $taskId") },
