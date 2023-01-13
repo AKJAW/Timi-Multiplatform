@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 // TODO use inside detail VM and rename?
 // TODO make internal
-internal class CalendarViewModel(
+class CalendarViewModel(
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator
 ) {

@@ -52,7 +52,7 @@ fun TaskDetailScreen(
     navigateBack: () -> Unit,
     viewModel: TaskDetailViewModel = get { parametersOf(taskId) }
 ) {
-    var currentDay by remember { mutableStateOf(CalendarDay(29, 12, 2022)) } // TODO move to VM
+    val currentDay by viewModel.selectedDay.collectAsState()
     val entries by viewModel.getTimeEntries(currentDay).collectAsState(emptyList())
     val calendarViewState by viewModel.calendarViewState.collectAsState()
 
@@ -63,7 +63,12 @@ fun TaskDetailScreen(
     BottomSheetScaffold(
         scaffoldState = sheetState,
         sheetPeekHeight = 40.dp,
-        sheetContent = { CalendarBottomSheet(calendarViewState) },
+        sheetContent = {
+            CalendarBottomSheet(
+                state = calendarViewState,
+                onDayClick = remember { { viewModel.selectDay(it) } }
+            )
+        },
         topBar = {
             TopAppBar(
                 title = { Text(text = "Task $taskId") },
