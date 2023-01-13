@@ -5,7 +5,9 @@ import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.core.shared.time.TimestampMillisecondsFormatter
 import com.akjaw.timi.kmp.core.shared.time.model.TimestampMilliseconds
 import com.akjaw.timi.kmp.core.test.task.FakeTimeEntryRepository
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
+import com.akjaw.timi.kmp.feature.task.dependency.createCalendarViewModel
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.CommonTaskDetailViewModel
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -33,7 +35,27 @@ class CommonTaskDetailViewModelTest {
     @BeforeTest
     fun setUp() {
         fakeTimeEntryRepository = FakeTimeEntryRepository()
-        systemUnderTest = CommonTaskDetailViewModel(TASK_ID, fakeTimeEntryRepository, TimestampMillisecondsFormatter())
+        systemUnderTest = CommonTaskDetailViewModel(
+            taskId = TASK_ID,
+            timeEntryRepository = fakeTimeEntryRepository,
+            calendarViewModel = createCalendarViewModel(),
+            timestampMillisecondsFormatter = TimestampMillisecondsFormatter()
+        )
+    }
+    // TODO test for the Calendar ViewState
+
+    @Test
+    fun `Initial selected day value is correct`() = runTest {
+        // TODO add an abstraction for selecting the current day
+
+        systemUnderTest.selectedDay.value shouldBe CalendarDay(13, 1, 2023)
+    }
+
+    @Test
+    fun `Selecting a day updates the value`() = runTest {
+        systemUnderTest.selectDay(DayViewState(1, 1, 2023))
+
+        systemUnderTest.selectedDay.value shouldBe CalendarDay(1, 1, 2023)
     }
 
     @Test

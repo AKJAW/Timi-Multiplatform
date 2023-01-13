@@ -6,13 +6,6 @@ import com.akjaw.timi.kmp.feature.task.dependency.detail.domain.calendar.Calenda
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import io.kotest.matchers.shouldBe
 
-internal fun createCalendarViewModel(
-    timestampProvider: TimestampProvider
-) = CalendarViewModel(
-    timestampProvider = timestampProvider,
-    calendarDaysCalculator = CalendarDaysCalculator()
-)
-
 fun List<CalendarDay>.rowWithOneMonthHasCorrectDates(
     month: Int,
     year: Int

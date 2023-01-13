@@ -10,9 +10,13 @@ import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import com.akjaw.timi.kmp.feature.task.api.list.domain.model.TimeEntry
 import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.CalendarViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
+import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.toCalendarDay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 
 // TODO should have list in the name?
 internal class CommonTaskDetailViewModel(
@@ -21,9 +25,15 @@ internal class CommonTaskDetailViewModel(
     private val calendarViewModel: CalendarViewModel, // TODO rename?
     private val timestampMillisecondsFormatter: TimestampMillisecondsFormatter,
 ) : TaskDetailViewModel {
-    // TODO move logic to the domain?
+
+    // TODO initial value should be always today
+    override val selectedDay: MutableStateFlow<CalendarDay> = MutableStateFlow(CalendarDay(13, 1, 2023))
 
     override val calendarViewState: StateFlow<CalendarViewState> = calendarViewModel.viewState
+
+    override fun selectDay(day: DayViewState) {
+        selectedDay.update { day.toCalendarDay() }
+    }
 
     override fun getTimeEntries(day: CalendarDay): Flow<List<TimeEntryUi>> {
         // TODO could be moved to a property

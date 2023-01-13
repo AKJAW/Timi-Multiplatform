@@ -69,6 +69,8 @@ Freelancing etc.)
 - ~~Add iOS UI for listing ALL time details~~
 - ~~Improve ViewModel Contract to allow passing in hours and minutes?~~
 - Add basic calendar for just one month Without bubbles just allows selecting one day
+  - ~~Android~~
+  - iOS
 - Add current day selection to KMM VM
 - Add calendar day bubbles
 - Add multiple day selection 

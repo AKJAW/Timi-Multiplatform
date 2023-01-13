@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 // TODO use inside detail VM and rename?
-class CalendarViewModel(
+// TODO make internal
+internal class CalendarViewModel(
     private val timestampProvider: TimestampProvider,
     private val calendarDaysCalculator: CalendarDaysCalculator
 ) {
@@ -21,7 +22,7 @@ class CalendarViewModel(
         const val CURRENT_MONTH_INDEX = 40
     }
 
-    private var currentMonth = DateTime.fromUnix(timestampProvider.getMilliseconds().value)
+    private var currentMonth: DateTime = DateTime.fromUnix(timestampProvider.getMilliseconds().value)
 
     private val mutableViewState = MutableStateFlow(
         CalendarViewState(
@@ -82,6 +83,7 @@ class CalendarViewModel(
         mutableInitialDays[selectedMonthIndex] =
             mutableInitialDays[selectedMonthIndex].copy(calendarDayRows = newMonth)
 
+        // TODO should be reactive based on a list of selected Common days?
         mutableViewState.value = currentValue.copy(months = mutableInitialDays)
     }
 
