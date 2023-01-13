@@ -27,7 +27,6 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -39,7 +38,6 @@ import androidx.compose.ui.unit.sp
 import com.akjaw.timi.android.core.ui.OutlinedListButton
 import com.akjaw.timi.android.feature.task.ui.R
 import com.akjaw.timi.android.feature.task.ui.detail.calendar.CalendarBottomSheet
-import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import org.koin.androidx.compose.get
@@ -57,7 +55,7 @@ fun TaskDetailScreen(
     val calendarViewState by viewModel.calendarViewState.collectAsState()
 
     val sheetState = rememberBottomSheetScaffoldState(
-        bottomSheetState = BottomSheetState(BottomSheetValue.Expanded),
+        bottomSheetState = BottomSheetState(BottomSheetValue.Expanded)
     )
 
     BottomSheetScaffold(
@@ -80,7 +78,7 @@ fun TaskDetailScreen(
                     )
                 }
             )
-        },
+        }
     ) {
         TaskDetailScreenContent(
             entries = entries,
@@ -98,7 +96,7 @@ fun TaskDetailScreen(
 private fun TaskDetailScreenContent(
     entries: List<TimeEntryUi>,
     addEntry: (hours: Int, minutes: Int) -> Unit,
-    onRemoveClick: (Long) -> Unit,
+    onRemoveClick: (Long) -> Unit
 ) {
     val context = LocalContext.current
     val timePickerDialog = remember {

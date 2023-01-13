@@ -18,8 +18,8 @@ import com.akjaw.timi.android.core.presentation.TaskDestinations
 import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.view.theme.TimiComposeTheme
 import com.akjaw.timi.android.feature.stopwatch.ui.StopwatchScreen
-import com.akjaw.timi.android.feature.task.ui.list.TaskListScreen
 import com.akjaw.timi.android.feature.task.ui.detail.TaskDetailScreen
+import com.akjaw.timi.android.feature.task.ui.list.TaskListScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     ) { backStackEntry ->
                         val taskId = backStackEntry.arguments?.getLong("taskId")
                             ?: throw IllegalArgumentException("Task id cannot be null")
-                        TaskDetailScreen(taskId = taskId, navigateBack = { navController.popBackStack() } )
+                        TaskDetailScreen(taskId = taskId, navigateBack = { navController.popBackStack() })
                     }
                     composable(StopwatchDestinations.List.route) {
                         StopwatchScreen(navController = navController)

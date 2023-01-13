@@ -2,9 +2,9 @@ package com.akjaw.timi.kmp.feature.task.dependency.detail.presenter.calendar
 
 import app.cash.turbine.test
 import com.akjaw.timi.kmp.core.test.time.StubTimestampProvider
-import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.calendar.DayViewState
 import com.akjaw.timi.kmp.feature.task.dependency.createCalendarViewModel
+import com.akjaw.timi.kmp.feature.task.dependency.detail.presentation.calendar.CalendarViewModel
 import com.soywiz.klock.DateTime
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi

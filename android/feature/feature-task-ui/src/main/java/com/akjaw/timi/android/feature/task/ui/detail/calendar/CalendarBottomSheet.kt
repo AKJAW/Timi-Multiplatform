@@ -58,7 +58,7 @@ private fun CalendarMonth(
     monthName: String,
     days: List<List<DayViewState>>,
     onDayClick: (DayViewState) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -93,19 +93,19 @@ private fun CalendarDayCard(dayViewState: DayViewState, onClick: () -> Unit) {
         modifier = Modifier
             .size(25.dp)
             .clickable(onClick = onClick),
-            // .toggleable(
-            //     isClicked,
-            //     interactionSource = remember { MutableInteractionSource() },
-            //     indication = rememberRipple(bounded = false, radius = 12.dp),
-            //     onValueChange = {  }
-            // ),
+        // .toggleable(
+        //     isClicked,
+        //     interactionSource = remember { MutableInteractionSource() },
+        //     indication = rememberRipple(bounded = false, radius = 12.dp),
+        //     onValueChange = {  }
+        // ),
         elevation = 0.dp,
         shape = RoundedCornerShape(50.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize(),
-                // .background(if (isClicked) Color.Cyan else Color.Transparent),
+            // .background(if (isClicked) Color.Cyan else Color.Transparent),
             contentAlignment = Alignment.Center
         ) {
             Text(
