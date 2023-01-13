@@ -15,20 +15,15 @@ import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.Card
-import androidx.compose.material.DrawerState
-import androidx.compose.material.DrawerValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowLeft
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -41,7 +36,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.ui.OutlinedListButton
 import com.akjaw.timi.android.feature.task.ui.R
 import com.akjaw.timi.android.feature.task.ui.detail.calendar.CalendarBottomSheet
@@ -53,7 +47,11 @@ import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parametersOf(taskId) }) {
+fun TaskDetailScreen(
+    taskId: Long,
+    navigateBack: () -> Unit,
+    viewModel: TaskDetailViewModel = get { parametersOf(taskId) }
+) {
     var currentDay by remember { mutableStateOf(CalendarDay(29, 12, 2022)) } // TODO move to VM
     val entries by viewModel.getTimeEntries(currentDay).collectAsState(emptyList())
 
@@ -68,7 +66,13 @@ fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parame
         topBar = {
             TopAppBar(
                 title = { Text(text = "Task $taskId") },
-                navigationIcon = { Icon(Icons.Filled.ArrowLeft, "Back") }
+                navigationIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back",
+                        modifier = Modifier.clickable(onClick = navigateBack)
+                    )
+                }
             )
         },
     ) {
