@@ -1,5 +1,7 @@
 package com.akjaw.timi.kmp.feature.task.dependency.list.domain
 
+import com.akjaw.timi.kmp.core.shared.composition.coreSharedModule
+import com.akjaw.timi.kmp.core.test.koin.coreTestModule
 import com.akjaw.timi.kmp.feature.database.TaskEntityQueries
 import com.akjaw.timi.kmp.feature.database.composition.databaseModule
 import com.akjaw.timi.kmp.feature.database.test.createTestSqlDriver
@@ -37,6 +39,7 @@ internal class DeleteTasksFromDatabaseTest : KoinComponent {
     fun setUp() {
         startKoin {
             modules(
+                coreTestModule,
                 databaseModule,
                 taskListModule,
                 module {
