@@ -11,12 +11,24 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.BottomSheetScaffold
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.Card
+import androidx.compose.material.DrawerState
+import androidx.compose.material.DrawerValue
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowLeft
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -29,35 +41,54 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.akjaw.timi.android.core.presentation.TimiBottomBar
 import com.akjaw.timi.android.core.ui.OutlinedListButton
 import com.akjaw.timi.android.feature.task.ui.R
+import com.akjaw.timi.android.feature.task.ui.detail.calendar.CalendarBottomSheet
 import com.akjaw.timi.kmp.core.shared.date.CalendarDay
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.TaskDetailViewModel
 import com.akjaw.timi.kmp.feature.task.api.detail.presentation.model.TimeEntryUi
 import org.koin.androidx.compose.get
 import org.koin.core.parameter.parametersOf
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun TaskDetailScreen(taskId: Long, viewModel: TaskDetailViewModel = get { parametersOf(taskId) }) {
     var currentDay by remember { mutableStateOf(CalendarDay(29, 12, 2022)) } // TODO move to VM
     val entries by viewModel.getTimeEntries(currentDay).collectAsState(emptyList())
 
-    TaskDetailScreenContent(
-        entries = entries,
-        addEntry = remember {
-            { hours: Int, minutes: Int ->
-                viewModel.addTimeEntry(hours, minutes, currentDay)
-            }
-        },
-        onRemoveClick = viewModel::removeTimeEntry
+    val sheetState = rememberBottomSheetScaffoldState(
+        bottomSheetState = BottomSheetState(BottomSheetValue.Expanded),
     )
+
+    BottomSheetScaffold(
+        scaffoldState = sheetState,
+        sheetPeekHeight = 40.dp,
+        sheetContent = { CalendarBottomSheet() },
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Task $taskId") },
+                navigationIcon = { Icon(Icons.Filled.ArrowLeft, "Back") }
+            )
+        },
+    ) {
+        TaskDetailScreenContent(
+            entries = entries,
+            addEntry = remember {
+                { hours: Int, minutes: Int ->
+                    viewModel.addTimeEntry(hours, minutes, currentDay)
+                }
+            },
+            onRemoveClick = viewModel::removeTimeEntry
+        )
+    }
 }
 
 @Composable
 private fun TaskDetailScreenContent(
     entries: List<TimeEntryUi>,
     addEntry: (hours: Int, minutes: Int) -> Unit,
-    onRemoveClick: (Long) -> Unit
+    onRemoveClick: (Long) -> Unit,
 ) {
     val context = LocalContext.current
     val timePickerDialog = remember {

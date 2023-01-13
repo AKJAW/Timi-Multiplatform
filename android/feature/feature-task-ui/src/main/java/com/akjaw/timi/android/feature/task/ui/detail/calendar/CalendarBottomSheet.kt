@@ -48,7 +48,7 @@ fun CalendarBottomSheet(calendarViewModel: CalendarViewModel = get()) {
     HorizontalPager(
         count = CalendarViewModel.NUMBER_OF_MONTHS,
         state = pagerState,
-        modifier = Modifier.testTag("CalendarPager")
+        modifier = Modifier.testTag("CalendarPager").padding(vertical = 8.dp)
     ) { page ->
         CalendarMonth(
             months[page].monthName,

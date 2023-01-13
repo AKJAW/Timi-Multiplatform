@@ -3,9 +3,12 @@ package com.akjaw.timi.android.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -47,12 +50,7 @@ class MainActivity : ComponentActivity(), KoinComponent {
                     ) { backStackEntry ->
                         val taskId = backStackEntry.arguments?.getLong("taskId")
                             ?: throw IllegalArgumentException("Task id cannot be null")
-                        Scaffold(
-                            topBar = { TopAppBar(title = { Text(text = "Task $taskId") }) },
-                            bottomBar = { TimiBottomBar(navController) }
-                        ) {
-                            TaskDetailScreen(taskId)
-                        }
+                        TaskDetailScreen(taskId)
                     }
                     composable(StopwatchDestinations.List.route) {
                         StopwatchScreen(navController = navController)
