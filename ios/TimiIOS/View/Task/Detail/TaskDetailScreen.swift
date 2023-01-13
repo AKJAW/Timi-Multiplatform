@@ -37,16 +37,18 @@ struct TaskDetailScreen: View {
     
     var body: some View {
         VStack {
-            List(publisher.entries, id: \.id) { entry in
-                TimeEntryItem(entry: entry, onRemoveClick: { publisher.viewModel?.removeTimeEntry(id: entry.id) })
-            }
-            .listStyle(PlainListStyle())
-            HStack {
-                Spacer()
-                Text("Add a Time Entry")
-                Spacer()
-            }.onTapGesture {
-                isDialogShown = true
+            List {
+                ForEach(publisher.entries, id: \.id) { entry in
+                    TimeEntryItem(entry: entry, onRemoveClick: { publisher.viewModel?.removeTimeEntry(id: entry.id) })
+                }
+                HStack {
+                    Spacer()
+                    Text("Add a Time Entry")
+                    Spacer()
+                }.onTapGesture {
+                    isDialogShown = true
+                }
+                .listStyle(PlainListStyle())
             }
         }
         .modifier(

@@ -2,7 +2,7 @@ import SwiftUI
 import shared
 
 struct AddTaskDialog: ViewModifier {
-    
+
     @Binding var isShowing: Bool
     var addTask: (String, TaskColor) -> Void
     @State private var taskName: String = ""
@@ -12,7 +12,7 @@ struct AddTaskDialog: ViewModifier {
         _isShowing = isShowing
         self.addTask = addTask
     }
-    
+
     func body(content: Content) -> some View {
         ZStack {
             content
